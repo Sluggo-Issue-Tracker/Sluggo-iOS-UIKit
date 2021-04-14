@@ -11,7 +11,6 @@
 		7D9963A8261EF3A4002338E7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9963A7261EF3A4002338E7 /* SceneDelegate.swift */; };
 		7D9963AA261EF3A4002338E7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9963A9261EF3A4002338E7 /* ViewController.swift */; };
 		7D9963AD261EF3A4002338E7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D9963AB261EF3A4002338E7 /* Main.storyboard */; };
-		7D9963B0261EF3A4002338E7 /* Sluggo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7D9963AE261EF3A4002338E7 /* Sluggo.xcdatamodeld */; };
 		7D9963B2261EF3A5002338E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D9963B1261EF3A5002338E7 /* Assets.xcassets */; };
 		7D9963B5261EF3A5002338E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D9963B3261EF3A5002338E7 /* LaunchScreen.storyboard */; };
 		7D9963C0261EF3A5002338E7 /* SluggoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9963BF261EF3A5002338E7 /* SluggoTests.swift */; };
@@ -41,7 +40,6 @@
 		7D9963A7261EF3A4002338E7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		7D9963A9261EF3A4002338E7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7D9963AC261EF3A4002338E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		7D9963AF261EF3A4002338E7 /* Sluggo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Sluggo.xcdatamodel; sourceTree = "<group>"; };
 		7D9963B1261EF3A5002338E7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7D9963B4261EF3A5002338E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7D9963B6261EF3A5002338E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -108,7 +106,6 @@
 				7D9963B1261EF3A5002338E7 /* Assets.xcassets */,
 				7D9963B3261EF3A5002338E7 /* LaunchScreen.storyboard */,
 				7D9963B6261EF3A5002338E7 /* Info.plist */,
-				7D9963AE261EF3A4002338E7 /* Sluggo.xcdatamodeld */,
 			);
 			path = Sluggo;
 			sourceTree = "<group>";
@@ -261,7 +258,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D9963B0261EF3A4002338E7 /* Sluggo.xcdatamodeld in Sources */,
 				7D9963AA261EF3A4002338E7 /* ViewController.swift in Sources */,
 				7D9963A6261EF3A4002338E7 /* AppDelegate.swift in Sources */,
 				7D9963A8261EF3A4002338E7 /* SceneDelegate.swift in Sources */,
@@ -599,19 +595,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		7D9963AE261EF3A4002338E7 /* Sluggo.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				7D9963AF261EF3A4002338E7 /* Sluggo.xcdatamodel */,
-			);
-			currentVersion = 7D9963AF261EF3A4002338E7 /* Sluggo.xcdatamodel */;
-			path = Sluggo.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 7D99639A261EF3A4002338E7 /* Project object */;
 }
