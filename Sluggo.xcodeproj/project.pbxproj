@@ -19,6 +19,7 @@
 		7D9963B5261EF3A5002338E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D9963B3261EF3A5002338E7 /* LaunchScreen.storyboard */; };
 		7D9963C0261EF3A5002338E7 /* SluggoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9963BF261EF3A5002338E7 /* SluggoTests.swift */; };
 		7D9963CB261EF3A5002338E7 /* SluggoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9963CA261EF3A5002338E7 /* SluggoUITests.swift */; };
+		7DC2A21726293F360002CEE6 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DC2A21626293F360002CEE6 /* Home.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		7D9963C6261EF3A5002338E7 /* SluggoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SluggoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D9963CA261EF3A5002338E7 /* SluggoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SluggoUITests.swift; sourceTree = "<group>"; };
 		7D9963CC261EF3A5002338E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7DC2A21626293F360002CEE6 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 		7D9963A4261EF3A4002338E7 /* Sluggo */ = {
 			isa = PBXGroup;
 			children = (
+				7DC2A21526293F1E0002CEE6 /* Storyboards */,
 				2F81E6E62627E85000B6D86D /* Models */,
 				7D9963A5261EF3A4002338E7 /* AppDelegate.swift */,
 				7D9963A7261EF3A4002338E7 /* SceneDelegate.swift */,
@@ -146,6 +149,14 @@
 				7D9963CC261EF3A5002338E7 /* Info.plist */,
 			);
 			path = SluggoUITests;
+			sourceTree = "<group>";
+		};
+		7DC2A21526293F1E0002CEE6 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				7DC2A21626293F360002CEE6 /* Home.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,6 +265,7 @@
 				7D9963B5261EF3A5002338E7 /* LaunchScreen.storyboard in Resources */,
 				7D9963B2261EF3A5002338E7 /* Assets.xcassets in Resources */,
 				7D9963AD261EF3A4002338E7 /* Main.storyboard in Resources */,
+				7DC2A21726293F360002CEE6 /* Home.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
