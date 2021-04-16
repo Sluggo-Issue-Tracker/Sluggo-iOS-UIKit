@@ -1,11 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sbu-F0-bCe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="maM-Yi-Azd">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Sidebar-->
+        <scene sceneID="TJO-mh-Cvz">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Sidebar" id="bzV-Vx-Vf0" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SG2-o4-erd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1504" y="68"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="usx-7B-Cc9">
+            <objects>
+                <viewController id="maM-Yi-Azd" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="x7j-bF-uNP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="esk-5o-h6c">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <connections>
+                                    <segue destination="sbu-F0-bCe" kind="embed" id="AV4-0F-yWL"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eOI-4W-haK">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <connections>
+                                    <segue destination="bzV-Vx-Vf0" kind="embed" id="fZ9-qm-Nhg"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="0Fz-VO-U64"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="eOI-4W-haK" firstAttribute="leading" secondItem="0Fz-VO-U64" secondAttribute="leading" id="GEh-xy-xMY"/>
+                            <constraint firstItem="eOI-4W-haK" firstAttribute="top" secondItem="x7j-bF-uNP" secondAttribute="top" id="MYP-xB-esk"/>
+                            <constraint firstAttribute="bottom" secondItem="eOI-4W-haK" secondAttribute="bottom" id="VA3-tg-JsB"/>
+                            <constraint firstAttribute="bottom" secondItem="esk-5o-h6c" secondAttribute="bottom" id="Xxx-vz-Bpn"/>
+                            <constraint firstItem="eOI-4W-haK" firstAttribute="trailing" secondItem="0Fz-VO-U64" secondAttribute="trailing" id="ruo-C7-lo1"/>
+                            <constraint firstItem="esk-5o-h6c" firstAttribute="top" secondItem="x7j-bF-uNP" secondAttribute="top" id="vUz-yL-gkl"/>
+                            <constraint firstItem="esk-5o-h6c" firstAttribute="leading" secondItem="0Fz-VO-U64" secondAttribute="leading" id="vWa-hc-NTC"/>
+                            <constraint firstItem="esk-5o-h6c" firstAttribute="trailing" secondItem="0Fz-VO-U64" secondAttribute="trailing" id="xy8-AS-ZYO"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Lr-kp-CQb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1362.3188405797102" y="456.69642857142856"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="L3t-1S-G5L">
             <objects>
@@ -21,7 +70,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0VU-E0-E3L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-427" y="213"/>
+            <point key="canvasLocation" x="-268" y="271"/>
         </scene>
         <!--Home-->
         <scene sceneID="R6k-Kr-4Yi">
@@ -53,4 +102,9 @@
             <point key="canvasLocation" x="-428" y="-556"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
