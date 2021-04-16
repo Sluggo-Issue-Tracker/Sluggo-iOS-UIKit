@@ -30,7 +30,7 @@
                                     <segue destination="sbu-F0-bCe" kind="embed" id="AV4-0F-yWL"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eOI-4W-haK">
+                            <containerView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eOI-4W-haK">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <connections>
                                     <segue destination="bzV-Vx-Vf0" kind="embed" id="fZ9-qm-Nhg"/>
