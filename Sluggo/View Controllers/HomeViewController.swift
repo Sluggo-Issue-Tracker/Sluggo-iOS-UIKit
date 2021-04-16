@@ -9,7 +9,6 @@ import UIKit
 
 class HomeViewController: UIViewController {
     @IBAction func pushDaButton(_ sender: Any) {
-        print("We are in fact doing things")
         NotificationCenter.default.post(Notification(name: .onSidebarTrigger))
     }
     
