@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+enum SidebarStatus {
+    case open
+    case closed
+}
+
+class Sidebar {
+    static let USER_INFO_KEY = "sidebar"
+}

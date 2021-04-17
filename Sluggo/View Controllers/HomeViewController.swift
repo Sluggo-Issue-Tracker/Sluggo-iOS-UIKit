@@ -9,7 +9,7 @@ import UIKit
 
 class HomeViewController: UIViewController {
     @IBAction func pushDaButton(_ sender: Any) {
-        NotificationCenter.default.post(Notification(name: .onSidebarTrigger))
+        NotificationCenter.default.post(Notification(name: .onSidebarTrigger, userInfo: [Sidebar.USER_INFO_KEY : SidebarStatus.open]))
     }
     
     override func viewDidLoad() {

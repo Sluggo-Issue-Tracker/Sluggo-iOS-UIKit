@@ -11,6 +11,8 @@
 		2F3AD7A32627C86A00B61A97 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3AD7A22627C86A00B61A97 /* User.swift */; };
 		2F3AD7A82627C89B00B61A97 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3AD7A72627C89B00B61A97 /* Member.swift */; };
 		2F3AD7AD2627C8EF00B61A97 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3AD7AC2627C8EF00B61A97 /* Team.swift */; };
+		7D1DA6AE262B82C200E7C12D /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1DA6AD262B82C200E7C12D /* RootViewController.swift */; };
+		7D1DA6B7262B866D00E7C12D /* SidebarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1DA6B6262B866D00E7C12D /* SidebarData.swift */; };
 		7D9963A6261EF3A4002338E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9963A5261EF3A4002338E7 /* AppDelegate.swift */; };
 		7D9963A8261EF3A4002338E7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9963A7261EF3A4002338E7 /* SceneDelegate.swift */; };
 		7D9963AA261EF3A4002338E7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9963A9261EF3A4002338E7 /* ViewController.swift */; };
@@ -48,6 +50,8 @@
 		2F3AD7A22627C86A00B61A97 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2F3AD7A72627C89B00B61A97 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		2F3AD7AC2627C8EF00B61A97 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		7D1DA6AD262B82C200E7C12D /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RootViewController.swift; path = "Sluggo/View Controllers/RootViewController.swift"; sourceTree = SOURCE_ROOT; };
+		7D1DA6B6262B866D00E7C12D /* SidebarData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarData.swift; sourceTree = "<group>"; };
 		7D9963A2261EF3A4002338E7 /* Sluggo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sluggo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D9963A5261EF3A4002338E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D9963A7261EF3A4002338E7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +105,7 @@
 				2F3AD7A72627C89B00B61A97 /* Member.swift */,
 				2F3AD7AC2627C8EF00B61A97 /* Team.swift */,
 				2F2247AB262920AC006C6EE6 /* Token.swift */,
+				7D1DA6B6262B866D00E7C12D /* SidebarData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -173,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				7DC2A2212629447D0002CEE6 /* SluggoSidebarTableViewController.swift */,
+				7D1DA6AD262B82C200E7C12D /* RootViewController.swift */,
 				7DC2A226262948800002CEE6 /* SluggoSidebarContainerViewController.swift */,
 				7DC2A22E26294F9E0002CEE6 /* HomeViewController.swift */,
 			);
@@ -311,9 +317,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D1DA6B7262B866D00E7C12D /* SidebarData.swift in Sources */,
 				2F3AD7AD2627C8EF00B61A97 /* Team.swift in Sources */,
 				7DC2A227262948800002CEE6 /* SluggoSidebarContainerViewController.swift in Sources */,
 				2F2247AC262920AC006C6EE6 /* Token.swift in Sources */,
+				7D1DA6AE262B82C200E7C12D /* RootViewController.swift in Sources */,
 				2F3AD7A32627C86A00B61A97 /* User.swift in Sources */,
 				7DC2A2222629447D0002CEE6 /* SluggoSidebarTableViewController.swift in Sources */,
 				7DC2A22F26294F9E0002CEE6 /* HomeViewController.swift in Sources */,

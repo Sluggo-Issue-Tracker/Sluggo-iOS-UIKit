@@ -15,35 +15,52 @@ class SluggoSidebarContainerViewController: UIViewController {
     @IBOutlet weak var sidebarContainerLeadingConstraint: NSLayoutConstraint!
     
     // MARK: Properties
-    var sidebarPresenting = false
+    var sidebarPresenting: SidebarStatus = .closed
     
     // MARK: Computed
     var sidebarLeadingConstant: CGFloat {
         get {
             let width = sidebarWidthConstraint.constant
-            return sidebarPresenting ? 0 : -1 * width;
+            return (sidebarPresenting == .open) ? 0 : -1 * width;
         }
     }
     
     var backgroundOpacity: CGFloat {
         get {
-            return sidebarPresenting ? 0.4 : 0.0;
+            return (sidebarPresenting == .open) ? 0.4 : 0.0;
+        }
+    }
+    
+    var foregroundOpacity: CGFloat {
+        get {
+            return (sidebarPresenting == .open) ? 1.0 : 0.0;
         }
     }
     
     // MARK: Functions
-    @objc func triggerSidebar() {
-        sidebarPresenting = !sidebarPresenting
+    @objc func triggerSidebar(_notification: Notification) {
+        guard let sidebarState = _notification.userInfo?[Sidebar.USER_INFO_KEY] as? SidebarStatus else {
+            print("Sidebar triggered without explicit state.")
+            return // TODO log this as an error
+        }
+        
+        sidebarPresenting = sidebarState
         
         updateSidebar()
     }
     
+    @IBAction func backgroundTapGestureRecognized(_ sender: UITapGestureRecognizer) {
+        print("RECOGNIZED")
+        NotificationCenter.default.post(name: .onSidebarTrigger, object: self, userInfo: [Sidebar.USER_INFO_KEY: SidebarStatus.closed])
+        
+    }
+    
     func updateSidebar() {
         sidebarContainerLeadingConstraint.constant = sidebarLeadingConstant
-        view.isUserInteractionEnabled = sidebarPresenting
         
         UIView.animate(withDuration: 0.25) {
             self.backgroundView.alpha = self.backgroundOpacity
+            self.view.alpha = self.foregroundOpacity
             self.view.layoutIfNeeded()
         }
     }
@@ -51,7 +68,7 @@ class SluggoSidebarContainerViewController: UIViewController {
     // MARK: VC Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         updateSidebar()
         
         // Register for notification of sidebar changes

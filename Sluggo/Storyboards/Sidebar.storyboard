@@ -57,6 +57,10 @@
                             <view opaque="NO" alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wkE-ZF-SdT">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="xP8-eI-IHJ" appends="YES" id="Vgc-t6-shp"/>
+                                </connections>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="516-VQ-Of3">
                                 <rect key="frame" x="0.0" y="0.0" width="280" height="896"/>
@@ -72,10 +76,10 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="516-VQ-Of3" firstAttribute="leading" secondItem="uWF-kT-pnW" secondAttribute="leading" id="AMe-Or-rYU"/>
-                            <constraint firstItem="wkE-ZF-SdT" firstAttribute="leading" secondItem="uWF-kT-pnW" secondAttribute="leading" id="C1V-0H-i0n"/>
+                            <constraint firstItem="wkE-ZF-SdT" firstAttribute="leading" secondItem="7tr-Ws-fOj" secondAttribute="leading" id="C1V-0H-i0n"/>
                             <constraint firstItem="wkE-ZF-SdT" firstAttribute="top" secondItem="7tr-Ws-fOj" secondAttribute="top" id="VKJ-E5-dV5"/>
                             <constraint firstItem="516-VQ-Of3" firstAttribute="top" secondItem="7tr-Ws-fOj" secondAttribute="top" id="d2f-9v-STA"/>
-                            <constraint firstItem="wkE-ZF-SdT" firstAttribute="trailing" secondItem="uWF-kT-pnW" secondAttribute="trailing" id="ppW-IP-Y7R"/>
+                            <constraint firstItem="wkE-ZF-SdT" firstAttribute="trailing" secondItem="7tr-Ws-fOj" secondAttribute="trailing" id="ppW-IP-Y7R"/>
                             <constraint firstAttribute="bottom" secondItem="wkE-ZF-SdT" secondAttribute="bottom" id="uzQ-7h-wEj"/>
                             <constraint firstAttribute="bottom" secondItem="516-VQ-Of3" secondAttribute="bottom" id="zZE-WJ-Y78"/>
                         </constraints>
@@ -88,6 +92,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WYC-RV-YA5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="xP8-eI-IHJ">
+                    <connections>
+                        <action selector="backgroundTapGestureRecognized:" destination="z3Q-wy-zSO" id="53N-lk-Byb"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-973.91304347826099" y="63.616071428571423"/>
         </scene>

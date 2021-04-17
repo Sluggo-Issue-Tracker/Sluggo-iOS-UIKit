@@ -16,10 +16,10 @@
             </objects>
             <point key="canvasLocation" x="-1504" y="68"/>
         </scene>
-        <!--View Controller-->
+        <!--Root View Controller-->
         <scene sceneID="usx-7B-Cc9">
             <objects>
-                <viewController id="maM-Yi-Azd" sceneMemberID="viewController">
+                <viewController id="maM-Yi-Azd" customClass="RootViewController" customModule="Sluggo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="x7j-bF-uNP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -40,16 +40,20 @@
                         <viewLayoutGuide key="safeArea" id="0Fz-VO-U64"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="eOI-4W-haK" firstAttribute="leading" secondItem="0Fz-VO-U64" secondAttribute="leading" id="GEh-xy-xMY"/>
+                            <constraint firstItem="eOI-4W-haK" firstAttribute="leading" secondItem="x7j-bF-uNP" secondAttribute="leading" id="GEh-xy-xMY"/>
                             <constraint firstItem="eOI-4W-haK" firstAttribute="top" secondItem="x7j-bF-uNP" secondAttribute="top" id="MYP-xB-esk"/>
                             <constraint firstAttribute="bottom" secondItem="eOI-4W-haK" secondAttribute="bottom" id="VA3-tg-JsB"/>
                             <constraint firstAttribute="bottom" secondItem="esk-5o-h6c" secondAttribute="bottom" id="Xxx-vz-Bpn"/>
-                            <constraint firstItem="eOI-4W-haK" firstAttribute="trailing" secondItem="0Fz-VO-U64" secondAttribute="trailing" id="ruo-C7-lo1"/>
+                            <constraint firstItem="eOI-4W-haK" firstAttribute="trailing" secondItem="x7j-bF-uNP" secondAttribute="trailing" id="ruo-C7-lo1"/>
                             <constraint firstItem="esk-5o-h6c" firstAttribute="top" secondItem="x7j-bF-uNP" secondAttribute="top" id="vUz-yL-gkl"/>
-                            <constraint firstItem="esk-5o-h6c" firstAttribute="leading" secondItem="0Fz-VO-U64" secondAttribute="leading" id="vWa-hc-NTC"/>
-                            <constraint firstItem="esk-5o-h6c" firstAttribute="trailing" secondItem="0Fz-VO-U64" secondAttribute="trailing" id="xy8-AS-ZYO"/>
+                            <constraint firstItem="esk-5o-h6c" firstAttribute="leading" secondItem="x7j-bF-uNP" secondAttribute="leading" id="vWa-hc-NTC"/>
+                            <constraint firstItem="esk-5o-h6c" firstAttribute="trailing" secondItem="x7j-bF-uNP" secondAttribute="trailing" id="xy8-AS-ZYO"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mainContainerView" destination="esk-5o-h6c" id="b1W-48-bzZ"/>
+                        <outlet property="sidebarContainerView" destination="eOI-4W-haK" id="E2Q-ML-bVy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Lr-kp-CQb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
