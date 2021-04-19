@@ -11,6 +11,8 @@
 		2F3AD7A32627C86A00B61A97 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3AD7A22627C86A00B61A97 /* User.swift */; };
 		2F3AD7A82627C89B00B61A97 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3AD7A72627C89B00B61A97 /* Member.swift */; };
 		2F3AD7AD2627C8EF00B61A97 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3AD7AC2627C8EF00B61A97 /* Team.swift */; };
+		7D1DA6AE262B82C200E7C12D /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1DA6AD262B82C200E7C12D /* RootViewController.swift */; };
+		7D1DA6B7262B866D00E7C12D /* SidebarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1DA6B6262B866D00E7C12D /* SidebarData.swift */; };
 		2F3F66E2262DD3BA0040404C /* JsonLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3F66E1262DD3BA0040404C /* JsonLoader.swift */; };
 		2FEF5DA9262D0E7C00434763 /* PaginatedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEF5DA8262D0E7C00434763 /* PaginatedList.swift */; };
 		2FEF5DAE262D1C4900434763 /* MemberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEF5DAD262D1C4900434763 /* MemberTests.swift */; };
@@ -23,6 +25,11 @@
 		7D9963B5261EF3A5002338E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D9963B3261EF3A5002338E7 /* LaunchScreen.storyboard */; };
 		7D9963C0261EF3A5002338E7 /* SluggoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9963BF261EF3A5002338E7 /* SluggoTests.swift */; };
 		7D9963CB261EF3A5002338E7 /* SluggoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9963CA261EF3A5002338E7 /* SluggoUITests.swift */; };
+		7DC2A21726293F360002CEE6 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DC2A21626293F360002CEE6 /* Home.storyboard */; };
+		7DC2A21C262943A70002CEE6 /* Sidebar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DC2A21B262943A70002CEE6 /* Sidebar.storyboard */; };
+		7DC2A2222629447D0002CEE6 /* SluggoSidebarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC2A2212629447D0002CEE6 /* SluggoSidebarTableViewController.swift */; };
+		7DC2A227262948800002CEE6 /* SluggoSidebarContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC2A226262948800002CEE6 /* SluggoSidebarContainerViewController.swift */; };
+		7DC2A22F26294F9E0002CEE6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC2A22E26294F9E0002CEE6 /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +54,8 @@
 		2F3AD7A22627C86A00B61A97 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2F3AD7A72627C89B00B61A97 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		2F3AD7AC2627C8EF00B61A97 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		7D1DA6AD262B82C200E7C12D /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RootViewController.swift; path = "Sluggo/View Controllers/RootViewController.swift"; sourceTree = SOURCE_ROOT; };
+		7D1DA6B6262B866D00E7C12D /* SidebarData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarData.swift; sourceTree = "<group>"; };
 		2F3F66E1262DD3BA0040404C /* JsonLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonLoader.swift; sourceTree = "<group>"; };
 		2FEF5DA8262D0E7C00434763 /* PaginatedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatedList.swift; sourceTree = "<group>"; };
 		2FEF5DAD262D1C4900434763 /* MemberTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberTests.swift; sourceTree = "<group>"; };
@@ -65,6 +74,11 @@
 		7D9963C6261EF3A5002338E7 /* SluggoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SluggoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D9963CA261EF3A5002338E7 /* SluggoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SluggoUITests.swift; sourceTree = "<group>"; };
 		7D9963CC261EF3A5002338E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7DC2A21626293F360002CEE6 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		7DC2A21B262943A70002CEE6 /* Sidebar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Sidebar.storyboard; sourceTree = "<group>"; };
+		7DC2A2212629447D0002CEE6 /* SluggoSidebarTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SluggoSidebarTableViewController.swift; sourceTree = "<group>"; };
+		7DC2A226262948800002CEE6 /* SluggoSidebarContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SluggoSidebarContainerViewController.swift; sourceTree = "<group>"; };
+		7DC2A22E26294F9E0002CEE6 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +113,7 @@
 				2F3AD7A72627C89B00B61A97 /* Member.swift */,
 				2F3AD7AC2627C8EF00B61A97 /* Team.swift */,
 				2F2247AB262920AC006C6EE6 /* Token.swift */,
+				7D1DA6B6262B866D00E7C12D /* SidebarData.swift */,
 				2FEF5DA8262D0E7C00434763 /* PaginatedList.swift */,
 				2F3F66E1262DD3BA0040404C /* JsonLoader.swift */,
 			);
@@ -128,11 +143,12 @@
 		7D9963A4261EF3A4002338E7 /* Sluggo */ = {
 			isa = PBXGroup;
 			children = (
+				7DC2A2202629442B0002CEE6 /* View Controllers */,
+				7DC2A21526293F1E0002CEE6 /* Storyboards */,
 				2F81E6E62627E85000B6D86D /* Models */,
 				7D9963A5261EF3A4002338E7 /* AppDelegate.swift */,
 				7D9963A7261EF3A4002338E7 /* SceneDelegate.swift */,
 				7D9963A9261EF3A4002338E7 /* ViewController.swift */,
-				7D9963AB261EF3A4002338E7 /* Main.storyboard */,
 				7D9963B1261EF3A5002338E7 /* Assets.xcassets */,
 				7D9963B3261EF3A5002338E7 /* LaunchScreen.storyboard */,
 				7D9963B6261EF3A5002338E7 /* Info.plist */,
@@ -158,6 +174,27 @@
 				7D9963CC261EF3A5002338E7 /* Info.plist */,
 			);
 			path = SluggoUITests;
+			sourceTree = "<group>";
+		};
+		7DC2A21526293F1E0002CEE6 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				7D9963AB261EF3A4002338E7 /* Main.storyboard */,
+				7DC2A21626293F360002CEE6 /* Home.storyboard */,
+				7DC2A21B262943A70002CEE6 /* Sidebar.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		7DC2A2202629442B0002CEE6 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				7DC2A2212629447D0002CEE6 /* SluggoSidebarTableViewController.swift */,
+				7D1DA6AD262B82C200E7C12D /* RootViewController.swift */,
+				7DC2A226262948800002CEE6 /* SluggoSidebarContainerViewController.swift */,
+				7DC2A22E26294F9E0002CEE6 /* HomeViewController.swift */,
+			);
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,6 +303,8 @@
 				7D9963B5261EF3A5002338E7 /* LaunchScreen.storyboard in Resources */,
 				7D9963B2261EF3A5002338E7 /* Assets.xcassets in Resources */,
 				7D9963AD261EF3A4002338E7 /* Main.storyboard in Resources */,
+				7DC2A21726293F360002CEE6 /* Home.storyboard in Resources */,
+				7DC2A21C262943A70002CEE6 /* Sidebar.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,10 +329,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D1DA6B7262B866D00E7C12D /* SidebarData.swift in Sources */,
 				2F3AD7AD2627C8EF00B61A97 /* Team.swift in Sources */,
+				7DC2A227262948800002CEE6 /* SluggoSidebarContainerViewController.swift in Sources */,
 				2F3F66E2262DD3BA0040404C /* JsonLoader.swift in Sources */,
 				2F2247AC262920AC006C6EE6 /* Token.swift in Sources */,
+				7D1DA6AE262B82C200E7C12D /* RootViewController.swift in Sources */,
 				2F3AD7A32627C86A00B61A97 /* User.swift in Sources */,
+				7DC2A2222629447D0002CEE6 /* SluggoSidebarTableViewController.swift in Sources */,
+				7DC2A22F26294F9E0002CEE6 /* HomeViewController.swift in Sources */,
 				7D9963AA261EF3A4002338E7 /* ViewController.swift in Sources */,
 				7D9963A6261EF3A4002338E7 /* AppDelegate.swift in Sources */,
 				7D9963A8261EF3A4002338E7 /* SceneDelegate.swift in Sources */,
