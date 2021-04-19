@@ -11,6 +11,7 @@
 		2F3AD7A32627C86A00B61A97 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3AD7A22627C86A00B61A97 /* User.swift */; };
 		2F3AD7A82627C89B00B61A97 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3AD7A72627C89B00B61A97 /* Member.swift */; };
 		2F3AD7AD2627C8EF00B61A97 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3AD7AC2627C8EF00B61A97 /* Team.swift */; };
+		7D1354FC262D026E00D38EE0 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1354FB262D026E00D38EE0 /* UserTests.swift */; };
 		7D9963A6261EF3A4002338E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9963A5261EF3A4002338E7 /* AppDelegate.swift */; };
 		7D9963A8261EF3A4002338E7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9963A7261EF3A4002338E7 /* SceneDelegate.swift */; };
 		7D9963AA261EF3A4002338E7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9963A9261EF3A4002338E7 /* ViewController.swift */; };
@@ -43,6 +44,7 @@
 		2F3AD7A22627C86A00B61A97 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2F3AD7A72627C89B00B61A97 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		2F3AD7AC2627C8EF00B61A97 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		7D1354FB262D026E00D38EE0 /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		7D9963A2261EF3A4002338E7 /* Sluggo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sluggo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D9963A5261EF3A4002338E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D9963A7261EF3A4002338E7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 			children = (
 				7D9963BF261EF3A5002338E7 /* SluggoTests.swift */,
 				7D9963C1261EF3A5002338E7 /* Info.plist */,
+				7D1354FB262D026E00D38EE0 /* UserTests.swift */,
 			);
 			path = SluggoTests;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D1354FC262D026E00D38EE0 /* UserTests.swift in Sources */,
 				7D9963C0261EF3A5002338E7 /* SluggoTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
