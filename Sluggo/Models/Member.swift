@@ -22,7 +22,7 @@ struct MemberRecord: Codable {
     static func createFromJSON(_ string: String) -> MemberRecord? {
         // Get data
         guard let jsonData = string.data(using: .utf8) else {
-            print("Failed to decode provided JSON string into data for user object intialization.")
+            print("Failed to decode provided JSON string into data for Member object intialization.")
             return nil
         }
 
@@ -31,7 +31,7 @@ struct MemberRecord: Codable {
         decoder.dateDecodingStrategy = .iso8601
 
         guard let memberRecord = try? decoder.decode(MemberRecord.self, from: jsonData) else {
-            print("Failed to decode JSON data into object representation for user object initialization.")
+            print("Failed to decode JSON data into object representation for Member object initialization.")
             return nil
         }
           return memberRecord
@@ -47,7 +47,7 @@ struct MemberRecord: Codable {
             
             // Attempt encoding
             guard let jsonData = try? encoder.encode(self) else {
-                print("Failed to encode user object into JSON data.")
+                print("Failed to encode Member object into JSON data.")
                 return nil
                 
             }
