@@ -28,7 +28,7 @@ class UserTests: XCTestCase {
     """
     
     func testUserDoesDeserialize() {
-        let user = UserRecord.createFromJSON(testWorkingJson)
+        let user: UserRecord? = JsonLoader.decode(testWorkingJson)
         XCTAssertNotNil(user)
         
         XCTAssertEqual(user!.username, "wtpisaac")
@@ -40,7 +40,7 @@ class UserTests: XCTestCase {
     }
     
     func testUserDeserializesWithExtraProps() {
-        let user = UserRecord.createFromJSON(testWorkingJsonWithExtraProps)
+        let user: UserRecord? = JsonLoader.decode(testWorkingJsonWithExtraProps)
         XCTAssertNotNil(user)
         
         XCTAssertEqual(user!.username, "wtpisaac")
@@ -54,11 +54,11 @@ class UserTests: XCTestCase {
     func testUserDoesSerialize() {
         let user = UserRecord(id: 1, email: "wtpisaac@icloud.com", first_name: "Isaac", last_name: "Trimble-Pederson", username: "wtpisaac")
         
-        let json = user.jsonString
+        let json = JsonLoader.encode(user)
         XCTAssertNotNil(json)
-        print(json)
+        print(json!)
         
-        let userDuplicate = UserRecord.createFromJSON(json!)
+        let userDuplicate: UserRecord? = JsonLoader.decode(json!)
         XCTAssertNotNil(userDuplicate)
         
         XCTAssertEqual(user.username, userDuplicate!.username)
