@@ -25,13 +25,19 @@ struct UserRecord: Codable {
     
     init?(fromJSONString: String) { // Initializer for data from JSON
         // Get data
-        guard let jsonData = fromJSONString.data(using: .utf8) else { return nil }
+        guard let jsonData = fromJSONString.data(using: .utf8) else {
+            print("Failed to decode provided JSON string into data for user object intialization.")
+            return nil
+        }
         
         // Attempt decoding
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
         
-        guard let userRecord = try? decoder.decode(UserRecord.self, from: jsonData) else { return nil }
+        guard let userRecord = try? decoder.decode(UserRecord.self, from: jsonData) else {
+            print("Failed to decode JSON data into object representation for user object initialization.")
+            return nil
+        }
         
         // Initialize using standard initializer
         self.init(id: userRecord.id, email: userRecord.email, first_name: userRecord.first_name, last_name: userRecord.last_name, username: userRecord.username)
@@ -46,7 +52,11 @@ struct UserRecord: Codable {
             encoder.outputFormatting = .prettyPrinted
             
             // Attempt encoding
-            guard let jsonData = try? encoder.encode(self) else { return nil }
+            guard let jsonData = try? encoder.encode(self) else {
+                print("Failed to encode user object into JSON data.")
+                return nil
+                
+            }
             
             // Attempt stringifying the data, this is failable, which is fine since property is optional.
             return String(data: jsonData, encoding: .utf8)
