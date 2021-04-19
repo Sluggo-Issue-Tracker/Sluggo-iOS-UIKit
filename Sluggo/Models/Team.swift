@@ -11,7 +11,6 @@ import Foundation
 struct TeamRecord: Codable {
     var id: Int
     var name: String
-    var description: String
     var object_uuid: UUID
     var ticket_head: Int
     var created: Date

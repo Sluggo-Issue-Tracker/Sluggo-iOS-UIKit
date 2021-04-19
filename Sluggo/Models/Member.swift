@@ -18,5 +18,4 @@ struct MemberRecord: Codable {
     var created: Date
     var activated: Date?
     var deactivated: Date?
-   
 }
