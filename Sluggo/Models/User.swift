@@ -14,34 +14,24 @@ struct UserRecord: Codable {
     var first_name: String?
     var last_name: String?
     var username: String
-    
-    init(id: Int, email: String, first_name: String?, last_name: String?, username: String) {
-        self.id = id
-        self.email = email
-        self.first_name = first_name
-        self.last_name = last_name
-        self.username = username
-    }
-    
-    init?(fromJSONString: String) { // Initializer for data from JSON
+
+    static func createFromJSON(_ string: String) -> UserRecord? {
         // Get data
-        guard let jsonData = fromJSONString.data(using: .utf8) else {
+        guard let jsonData = string.data(using: .utf8) else {
             print("Failed to decode provided JSON string into data for user object intialization.")
             return nil
         }
-        
+
         // Attempt decoding
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
-        
+
         guard let userRecord = try? decoder.decode(UserRecord.self, from: jsonData) else {
             print("Failed to decode JSON data into object representation for user object initialization.")
             return nil
         }
-        
-        // Initialize using standard initializer
-        self.init(id: userRecord.id, email: userRecord.email, first_name: userRecord.first_name, last_name: userRecord.last_name, username: userRecord.username)
-    }
+          return userRecord
+      }
     
     var jsonString: String? {
         get {
