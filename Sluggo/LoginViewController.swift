@@ -2,7 +2,7 @@
 //  LoginViewController.swift
 //  Sluggo
 //
-//  Created by Troy on 4/18/21.
+//  Created by Troy Ebert on 4/18/21.
 //
 
 import UIKit
@@ -25,6 +25,9 @@ class LoginViewController: UIViewController {
         
         let userString = username.text
         let passString = password.text
+        
+        print("User:", userString!)
+        print("Password:", passString!)
         
         loginMethod(userString!, passString!)
         
