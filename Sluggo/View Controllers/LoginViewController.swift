@@ -31,12 +31,28 @@ class LoginViewController: UIViewController {
         
         loginMethod(userString!, passString!)
         
-        
+        // TODO: programatically segue to root view
     }
     
     func loginMethod(_ user:String, _ password:String) {
-        
-        return
+        let params = ["username":user, "password":password] as Dictionary<String, String>
+
+        var request = URLRequest(url: URL(string: Config.URL_BASE + "auth/login/")!)
+        request.httpMethod = "POST"
+        request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+    
+        let session = URLSession.shared
+        let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
+                print(json)
+            } catch {
+                print("error")
+            }
+        })
+
+        task.resume()
     }
 
 }

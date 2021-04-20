@@ -16,6 +16,7 @@
 		2FEF5DAE262D1C4900434763 /* MemberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEF5DAD262D1C4900434763 /* MemberTests.swift */; };
 		5A79FFE1262E562A00D04320 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A79FFE0262E562A00D04320 /* Main.storyboard */; };
 		5A79FFE6262E563F00D04320 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A79FFE5262E563F00D04320 /* LoginViewController.swift */; };
+		5A79FFEF262E600B00D04320 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A79FFEE262E600B00D04320 /* Config.swift */; };
 		7D1354FC262D026E00D38EE0 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1354FB262D026E00D38EE0 /* UserTests.swift */; };
 		7D1DA6AE262B82C200E7C12D /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1DA6AD262B82C200E7C12D /* RootViewController.swift */; };
 		7D1DA6B7262B866D00E7C12D /* SidebarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1DA6B6262B866D00E7C12D /* SidebarData.swift */; };
@@ -60,6 +61,7 @@
 		2FEF5DAD262D1C4900434763 /* MemberTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberTests.swift; sourceTree = "<group>"; };
 		5A79FFE0262E562A00D04320 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		5A79FFE5262E563F00D04320 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		5A79FFEE262E600B00D04320 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		7D1354FB262D026E00D38EE0 /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		7D1DA6AD262B82C200E7C12D /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RootViewController.swift; path = "Sluggo/View Controllers/RootViewController.swift"; sourceTree = SOURCE_ROOT; };
 		7D1DA6B6262B866D00E7C12D /* SidebarData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarData.swift; sourceTree = "<group>"; };
@@ -111,15 +113,24 @@
 		2F81E6E62627E85000B6D86D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2F3F66E1262DD3BA0040404C /* JsonLoader.swift */,
+				7D1DA6B6262B866D00E7C12D /* SidebarData.swift */,
+				5A79FFED262E5FEF00D04320 /* Codables */,
+				5A79FFEE262E600B00D04320 /* Config.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5A79FFED262E5FEF00D04320 /* Codables */ = {
+			isa = PBXGroup;
+			children = (
 				2F3AD7A22627C86A00B61A97 /* User.swift */,
 				2F3AD7A72627C89B00B61A97 /* Member.swift */,
 				2F3AD7AC2627C8EF00B61A97 /* Team.swift */,
 				2F2247AB262920AC006C6EE6 /* Token.swift */,
-				7D1DA6B6262B866D00E7C12D /* SidebarData.swift */,
 				2FEF5DA8262D0E7C00434763 /* PaginatedList.swift */,
-				2F3F66E1262DD3BA0040404C /* JsonLoader.swift */,
 			);
-			path = Models;
+			path = Codables;
 			sourceTree = "<group>";
 		};
 		7D996399261EF3A4002338E7 = {
@@ -335,6 +346,7 @@
 			files = (
 				5A79FFE6262E563F00D04320 /* LoginViewController.swift in Sources */,
 				7D1DA6B7262B866D00E7C12D /* SidebarData.swift in Sources */,
+				5A79FFEF262E600B00D04320 /* Config.swift in Sources */,
 				2F3AD7AD2627C8EF00B61A97 /* Team.swift in Sources */,
 				7DC2A227262948800002CEE6 /* SluggoSidebarContainerViewController.swift in Sources */,
 				2F3F66E2262DD3BA0040404C /* JsonLoader.swift in Sources */,

@@ -104,36 +104,6 @@
             </objects>
             <point key="canvasLocation" x="4525" y="93"/>
         </scene>
-        <!--Home View Controller-->
-        <scene sceneID="8Dv-78-iHl">
-            <objects>
-                <viewController id="8mw-1D-GOb" customClass="HomeViewController" customModule="Sluggo" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="4H3-kk-Uhl">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VY4-i8-slo">
-                                <rect key="frame" x="135" y="391" width="105" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Return to Login">
-                                    <color key="titleColor" systemColor="systemRedColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="backToLoginButton:" destination="8mw-1D-GOb" eventType="touchUpInside" id="p25-fg-LLv"/>
-                                    <segue destination="3PN-XF-5uX" kind="unwind" identifier="unwindToLogin" unwindAction="unwind:" id="y99-Yv-uI0"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="MN3-Yb-d1l"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="0OS-cS-rK6"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="14b-Yx-wKR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="3PN-XF-5uX" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="4425" y="-499"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="SdP-E9-UYX">
             <objects>
@@ -158,9 +128,6 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
