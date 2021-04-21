@@ -36,4 +36,43 @@ class JsonLoader {
         // Attempt stringifying the data, this is failable, which is fine since property is optional.
         return jsonData
     }
+    
+    static func executeCodableRequest<T: Codable>(request: URLRequest) throws -> T? {
+        
+        let session = URLSession.shared
+        let semaphore = DispatchSemaphore(value: 0)
+        var record: T?
+        var errorMessage: String?
+        
+        let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
+            
+            if error != nil {
+                errorMessage = "\(error!)"
+                return
+            }
+            
+            let resp = response as! HTTPURLResponse
+            if (resp.statusCode <= 299 && resp.statusCode >= 200) {
+                if let fetchedData = data {
+                    record = JsonLoader.decode(fetchedData)
+                }
+            } else {
+                if let fetchedData = data {
+                    let errorObj: ErrorMessage? = JsonLoader.decode(fetchedData)
+                    errorMessage = errorObj != nil ? errorObj?.detail : "unknown error"
+                }
+            }
+                
+            semaphore.signal()
+        })
+
+        task.resume()
+        semaphore.wait() // await the request
+        
+        if let message = errorMessage {
+            throw RESTException.FailedRequest(message: message)
+        }
+        
+        return record
+    }
 }

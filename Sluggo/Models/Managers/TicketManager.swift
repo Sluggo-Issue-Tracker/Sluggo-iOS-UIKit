@@ -24,13 +24,13 @@ class TicketManager {
         return config.getValue(Config.kURL)! + "/api/teams/" + "\(identity.getTeam().id)" + "/tickets/"
     }
     
-    public func updateTicket(_ ticket: TicketRecord) -> URLRequest {
+    public func updateTicket(_ ticket: TicketRecord) throws -> TicketRecord? {
         var request = URLRequest(url: URL(string: makeDetailUrl(ticket))!)
         request.httpMethod = "PUT"
         request.httpBody = JsonLoader.encode(ticket)
         request.setValue("Bearer \(self.identity.getToken())", forHTTPHeaderField: "Authorization")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        return request
+        return try JsonLoader.executeCodableRequest(request: request)
     }
 }

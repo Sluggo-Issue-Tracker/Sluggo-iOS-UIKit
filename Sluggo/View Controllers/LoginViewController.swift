@@ -48,23 +48,32 @@ class LoginViewController: UIViewController {
         print("User:", userString!)
         print("Password:", passString!)
         
-        loginMethod(userString!, passString!)
+        DispatchQueue.global(qos: .userInitiated).async {
+            self.loginMethod(userString!, passString!)
+        }
         
         // TODO: programatically segue to root view
     }
     
     func loginMethod(_ user:String, _ password:String) {
-        let userManager = UserManager(config, token: nil)
-        let request = userManager.doLogin(username: user, password: password)
-    
-        let session = URLSession.shared
-        let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
-            if let json: TokenRecord? = JsonLoader.decode(data!) {
-                print("data")
+        let userManager = UserManager(config, token: "asdf")
+        do {
+            let request = try userManager.doLogin(username: user, password: password)
+            print(request?.key)
+        } catch RESTException.FailedRequest(let message) { // more would need to be done here.
+            DispatchQueue.main.async {
+                let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+                NSLog("The \"OK\" alert occured.")
+                }))
+                self.present(alert, animated: true, completion: nil)
             }
-        })
-
-        task.resume()
+        } catch {
+            let alert = UIAlertController(title: "Error", message: "some other error ocurred", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+            NSLog("The \"OK\" alert occured.")
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
-
 }
