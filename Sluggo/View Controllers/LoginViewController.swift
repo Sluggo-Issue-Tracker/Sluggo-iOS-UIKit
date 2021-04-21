@@ -11,7 +11,26 @@ class LoginViewController: UIViewController {
 
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
+    private var config: Config
+    private var token: String
     
+    convenience init() {
+        self.init(nibName:nil, bundle:nil)
+    }
+
+    // This extends the superclass.
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        self.config = Config()
+        self.token = "asdf" // will need to be changed
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+
+    // This is also necessary when extending the superclass.
+    required init?(coder aDecoder: NSCoder) {
+        self.config = Config()
+        self.token = "asdf" // will need to be changed
+        super.init(coder: aDecoder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,20 +54,13 @@ class LoginViewController: UIViewController {
     }
     
     func loginMethod(_ user:String, _ password:String) {
-        let params = ["username":user, "password":password] as Dictionary<String, String>
-
-        var request = URLRequest(url: URL(string: Config.URL_BASE + "auth/login/")!)
-        request.httpMethod = "POST"
-        request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        let userManager = UserManager(config, token: nil)
+        let request = userManager.doLogin(username: user, password: password)
     
         let session = URLSession.shared
         let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
-            do {
-                let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, AnyObject>
-                print(json)
-            } catch {
-                print("error")
+            if let json: TokenRecord? = JsonLoader.decode(data!) {
+                print("data")
             }
         })
 
