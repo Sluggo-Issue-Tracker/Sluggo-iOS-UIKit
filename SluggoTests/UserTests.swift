@@ -28,7 +28,7 @@ class UserTests: XCTestCase {
     """
     
     func testUserDoesDeserialize() {
-        let user: UserRecord? = JsonLoader.decode(testWorkingJson)
+        let user: UserRecord? = JsonLoader.decode(testWorkingJson.data(using: .utf8)!)
         XCTAssertNotNil(user)
         
         XCTAssertEqual(user!.username, "wtpisaac")
@@ -40,7 +40,7 @@ class UserTests: XCTestCase {
     }
     
     func testUserDeserializesWithExtraProps() {
-        let user: UserRecord? = JsonLoader.decode(testWorkingJsonWithExtraProps)
+        let user: UserRecord? = JsonLoader.decode(testWorkingJsonWithExtraProps.data(using: .utf8)!)
         XCTAssertNotNil(user)
         
         XCTAssertEqual(user!.username, "wtpisaac")

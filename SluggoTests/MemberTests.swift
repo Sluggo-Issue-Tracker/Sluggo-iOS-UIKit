@@ -48,7 +48,7 @@ class MemberTests: XCTestCase {
     """
     
     func testMemberDoesDeserialize() {
-        let member: MemberRecord? = JsonLoader.decode(testWorkingJson)
+        let member: MemberRecord? = JsonLoader.decode(testWorkingJson.data(using: .utf8)!)
         XCTAssertNotNil(member)
         
         XCTAssertEqual(member!.team_id, 1)
@@ -61,7 +61,7 @@ class MemberTests: XCTestCase {
     }
     
     func testUserDeserializesWithExtraProps() {
-        let member: MemberRecord? = JsonLoader.decode(testWorkingJsonWithExtraProps)
+        let member: MemberRecord? = JsonLoader.decode(testWorkingJsonWithExtraProps.data(using: .utf8)!)
         XCTAssertNotNil(member)
         
         XCTAssertEqual(member!.team_id, 1)
