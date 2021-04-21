@@ -17,6 +17,13 @@
 		5A79FFE1262E562A00D04320 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A79FFE0262E562A00D04320 /* Main.storyboard */; };
 		5A79FFE6262E563F00D04320 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A79FFE5262E563F00D04320 /* LoginViewController.swift */; };
 		5A79FFEF262E600B00D04320 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A79FFEE262E600B00D04320 /* Config.swift */; };
+		5AB1C8DD262FE2DD0010F85E /* TeamManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB1C8DC262FE2DD0010F85E /* TeamManager.swift */; };
+		5AB1C8E5262FE2E60010F85E /* TicketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB1C8E4262FE2E60010F85E /* TicketManager.swift */; };
+		5AB1C8EA262FE2EF0010F85E /* MemberManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB1C8E9262FE2EF0010F85E /* MemberManager.swift */; };
+		5AB1C8EF262FE3210010F85E /* TagManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB1C8EE262FE3210010F85E /* TagManager.swift */; };
+		5AB1C8F7262FE3520010F85E /* AppIdentity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB1C8F6262FE3520010F85E /* AppIdentity.swift */; };
+		5AB1C8FC262FF1690010F85E /* TicketRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB1C8FB262FF1690010F85E /* TicketRecord.swift */; };
+		5AB1C909262FFF500010F85E /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB1C908262FFF500010F85E /* UserManager.swift */; };
 		7D1354FC262D026E00D38EE0 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1354FB262D026E00D38EE0 /* UserTests.swift */; };
 		7D1DA6AE262B82C200E7C12D /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1DA6AD262B82C200E7C12D /* RootViewController.swift */; };
 		7D1DA6B7262B866D00E7C12D /* SidebarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1DA6B6262B866D00E7C12D /* SidebarData.swift */; };
@@ -62,6 +69,13 @@
 		5A79FFE0262E562A00D04320 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		5A79FFE5262E563F00D04320 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5A79FFEE262E600B00D04320 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		5AB1C8DC262FE2DD0010F85E /* TeamManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamManager.swift; sourceTree = "<group>"; };
+		5AB1C8E4262FE2E60010F85E /* TicketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketManager.swift; sourceTree = "<group>"; };
+		5AB1C8E9262FE2EF0010F85E /* MemberManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberManager.swift; sourceTree = "<group>"; };
+		5AB1C8EE262FE3210010F85E /* TagManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagManager.swift; sourceTree = "<group>"; };
+		5AB1C8F6262FE3520010F85E /* AppIdentity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIdentity.swift; sourceTree = "<group>"; };
+		5AB1C8FB262FF1690010F85E /* TicketRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketRecord.swift; sourceTree = "<group>"; };
+		5AB1C908262FFF500010F85E /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		7D1354FB262D026E00D38EE0 /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		7D1DA6AD262B82C200E7C12D /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RootViewController.swift; path = "Sluggo/View Controllers/RootViewController.swift"; sourceTree = SOURCE_ROOT; };
 		7D1DA6B6262B866D00E7C12D /* SidebarData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarData.swift; sourceTree = "<group>"; };
@@ -113,10 +127,12 @@
 		2F81E6E62627E85000B6D86D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				5AB1C8DB262FE29E0010F85E /* Managers */,
 				2F3F66E1262DD3BA0040404C /* JsonLoader.swift */,
 				7D1DA6B6262B866D00E7C12D /* SidebarData.swift */,
 				5A79FFED262E5FEF00D04320 /* Codables */,
 				5A79FFEE262E600B00D04320 /* Config.swift */,
+				5AB1C8F6262FE3520010F85E /* AppIdentity.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -129,8 +145,21 @@
 				2F3AD7AC2627C8EF00B61A97 /* Team.swift */,
 				2F2247AB262920AC006C6EE6 /* Token.swift */,
 				2FEF5DA8262D0E7C00434763 /* PaginatedList.swift */,
+				5AB1C8FB262FF1690010F85E /* TicketRecord.swift */,
 			);
 			path = Codables;
+			sourceTree = "<group>";
+		};
+		5AB1C8DB262FE29E0010F85E /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				5AB1C8DC262FE2DD0010F85E /* TeamManager.swift */,
+				5AB1C8E4262FE2E60010F85E /* TicketManager.swift */,
+				5AB1C8E9262FE2EF0010F85E /* MemberManager.swift */,
+				5AB1C8EE262FE3210010F85E /* TagManager.swift */,
+				5AB1C908262FFF500010F85E /* UserManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		7D996399261EF3A4002338E7 = {
@@ -345,8 +374,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A79FFE6262E563F00D04320 /* LoginViewController.swift in Sources */,
+				5AB1C8FC262FF1690010F85E /* TicketRecord.swift in Sources */,
 				7D1DA6B7262B866D00E7C12D /* SidebarData.swift in Sources */,
 				5A79FFEF262E600B00D04320 /* Config.swift in Sources */,
+				5AB1C8EA262FE2EF0010F85E /* MemberManager.swift in Sources */,
 				2F3AD7AD2627C8EF00B61A97 /* Team.swift in Sources */,
 				7DC2A227262948800002CEE6 /* SluggoSidebarContainerViewController.swift in Sources */,
 				2F3F66E2262DD3BA0040404C /* JsonLoader.swift in Sources */,
@@ -354,10 +385,15 @@
 				7D1DA6AE262B82C200E7C12D /* RootViewController.swift in Sources */,
 				2F3AD7A32627C86A00B61A97 /* User.swift in Sources */,
 				7DC2A2222629447D0002CEE6 /* SluggoSidebarTableViewController.swift in Sources */,
+				5AB1C8F7262FE3520010F85E /* AppIdentity.swift in Sources */,
 				7DC2A22F26294F9E0002CEE6 /* HomeViewController.swift in Sources */,
 				7D9963A6261EF3A4002338E7 /* AppDelegate.swift in Sources */,
+				5AB1C8EF262FE3210010F85E /* TagManager.swift in Sources */,
+				5AB1C8E5262FE2E60010F85E /* TicketManager.swift in Sources */,
 				7D9963A8261EF3A4002338E7 /* SceneDelegate.swift in Sources */,
 				2F3AD7A82627C89B00B61A97 /* Member.swift in Sources */,
+				5AB1C8DD262FE2DD0010F85E /* TeamManager.swift in Sources */,
+				5AB1C909262FFF500010F85E /* UserManager.swift in Sources */,
 				2FEF5DA9262D0E7C00434763 /* PaginatedList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
