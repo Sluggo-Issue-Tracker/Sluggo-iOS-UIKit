@@ -25,7 +25,7 @@
                             <userLayoutGuide location="134" affinity="minY"/>
                         </userGuides>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email/Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OTS-ni-ZHA">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OTS-ni-ZHA">
                                 <rect key="frame" x="16" y="234" width="358" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -47,8 +47,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="loginButton:" destination="B6h-dE-6xD" eventType="touchUpInside" id="wqm-Dq-VVU"/>
-                                    <segue destination="ddb-Nb-yWn" kind="show" id="13g-0H-LTD"/>
+                                    <action selector="loginButton:" destination="B6h-dE-6xD" eventType="touchUpInside" id="uvj-nR-IgH"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login Page" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RgV-5k-2cy">
@@ -81,6 +80,7 @@
                     <connections>
                         <outlet property="password" destination="Opk-bu-JV2" id="Z9O-7o-H31"/>
                         <outlet property="username" destination="OTS-ni-ZHA" id="194-15-Cez"/>
+                        <segue destination="ddb-Nb-yWn" kind="show" identifier="loginToRoot" id="tca-1q-gb1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kpn-RQ-AOr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -90,7 +90,7 @@
         <!--Root-->
         <scene sceneID="Oaf-ww-D71">
             <objects>
-                <viewControllerPlaceholder storyboardName="Root" id="ddb-Nb-yWn" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardIdentifier="rVC" storyboardName="Root" id="ddb-Nb-yWn" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="GWt-8I-dwk"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PMQ-JX-4wg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

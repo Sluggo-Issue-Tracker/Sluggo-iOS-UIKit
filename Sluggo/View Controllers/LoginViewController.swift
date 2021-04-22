@@ -45,14 +45,21 @@ class LoginViewController: UIViewController {
         let userString = username.text
         let passString = password.text
         
-        print("User:", userString!)
-        print("Password:", passString!)
+        //print("User:", userString!)
+        //print("Password:", passString!)
         
         DispatchQueue.global(qos: .userInitiated).async {
             self.loginMethod(userString!, passString!)
         }
         
-        // TODO: programatically segue to root view
+        if(userString!.isEmpty || passString!.isEmpty) {
+            // login Error
+            print("Login Error")
+            return
+        } else {
+            print("Login Success")
+            self.performSegue(withIdentifier: "loginToRoot", sender: self)
+        }
     }
     
     func loginMethod(_ user:String, _ password:String) {
@@ -76,4 +83,15 @@ class LoginViewController: UIViewController {
             self.present(alert, animated: true, completion: nil)
         }
     }
+    
+    func transitionToHome() {
+        
+        /*
+        let rViewController = storyboard?.instantiateViewController(identifier: "rVC") as? RootViewController
+            
+        view.window?.rootViewController = rViewController
+        view.window?.makeKeyAndVisible()
+        */
+        
+        }
 }

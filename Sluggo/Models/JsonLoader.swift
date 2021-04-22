@@ -47,7 +47,8 @@ class JsonLoader {
         let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
             
             if error != nil {
-                errorMessage = "\(error!)"
+                errorMessage = "Server Error!"
+                semaphore.signal()
                 return
             }
             
