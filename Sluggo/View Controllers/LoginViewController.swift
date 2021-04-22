@@ -26,15 +26,23 @@ class LoginViewController: UIViewController {
         let userString = username.text
         let passString = password.text
         
-        print("User:", userString!)
-        print("Password:", passString!)
+        //print("User:", userString!)
+        //print("Password:", passString!)
         
-        loginMethod(userString!, passString!)
+        //loginMethod(userString!, passString!)
         
-        // TODO: programatically segue to root view
+        if(userString!.isEmpty || passString!.isEmpty) {
+            // login Error
+            print("Login Error")
+            return
+        } else {
+            print("Login Success")
+            self.performSegue(withIdentifier: "loginToRoot", sender: self)
+        }
     }
     
     func loginMethod(_ user:String, _ password:String) {
+        
         let params = ["username":user, "password":password] as Dictionary<String, String>
 
         var request = URLRequest(url: URL(string: Config.URL_BASE + "auth/login/")!)
@@ -53,6 +61,20 @@ class LoginViewController: UIViewController {
         })
 
         task.resume()
+        
     }
+    
+    func transitionToHome() {
+        
+        /*
+        let rViewController = storyboard?.instantiateViewController(identifier: "rVC") as? RootViewController
+            
+        view.window?.rootViewController = rViewController
+        view.window?.makeKeyAndVisible()
+        */
+        
+        
+        }
+
 
 }
