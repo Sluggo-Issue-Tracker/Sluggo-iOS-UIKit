@@ -140,6 +140,7 @@
 				5A79FFEE262E600B00D04320 /* Config.swift */,
 				5AB1C8F6262FE3520010F85E /* AppIdentity.swift */,
 				051AAB0A2630FD6500BCB9C7 /* Constants.swift */,
+				5ACC0F052630CA2700DCF83E /* Exceptions.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -201,7 +202,6 @@
 				7D9963B1261EF3A5002338E7 /* Assets.xcassets */,
 				7D9963B3261EF3A5002338E7 /* LaunchScreen.storyboard */,
 				7D9963B6261EF3A5002338E7 /* Info.plist */,
-				5ACC0F052630CA2700DCF83E /* Exceptions.swift */,
 			);
 			path = Sluggo;
 			sourceTree = "<group>";
