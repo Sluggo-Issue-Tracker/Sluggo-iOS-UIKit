@@ -17,18 +17,18 @@ class TicketManager {
     }
     
     private func makeDetailUrl(_ ticketRecord: TicketRecord) -> String {
-        return config.getValue(Config.kURL)! + "/api/teams/" + "\(identity.getTeam().id)" + "/tickets/" + "\(ticketRecord.id)/"
+        return config.getValue(Config.kURL)! + "/api/teams/" + "\(identity.team.id)" + "/tickets/" + "\(ticketRecord.id)/"
     }
     
     private func makeListUrl() -> String {
-        return config.getValue(Config.kURL)! + "/api/teams/" + "\(identity.getTeam().id)" + "/tickets/"
+        return config.getValue(Config.kURL)! + "/api/teams/" + "\(identity.team.id)" + "/tickets/"
     }
     
-    public func updateTicket(_ ticket: TicketRecord) throws -> TicketRecord? {
+    public func updateTicket(_ ticket: TicketRecord) throws -> TicketRecord {
         var request = URLRequest(url: URL(string: makeDetailUrl(ticket))!)
         request.httpMethod = "PUT"
         request.httpBody = JsonLoader.encode(ticket)
-        request.setValue("Bearer \(self.identity.getToken())", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(self.identity.token)", forHTTPHeaderField: "Authorization")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         return try JsonLoader.executeCodableRequest(request: request)

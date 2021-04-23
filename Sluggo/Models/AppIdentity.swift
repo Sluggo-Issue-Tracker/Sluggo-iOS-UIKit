@@ -8,37 +8,28 @@
 import Foundation
 
 class AppIdentity {
-    private var authenticatedUser: UserRecord
-    private var team: TeamRecord
-    private var token: String
+    private var _authenticatedUser: UserRecord
+    private var _team: TeamRecord
+    private var _token: String
+    
+    var authenticatedUser: UserRecord {
+        get { return _authenticatedUser }
+        set { _authenticatedUser = newValue }
+    }
+
+    var team: TeamRecord {
+        get { return _team }
+        set { _team = newValue }
+    }
+    
+    var token: String {
+        get { return _token }
+        set { _token = newValue }
+    }
     
     init(_ authenticatedUser: UserRecord, _ team: TeamRecord, _ token: String) {
-        self.authenticatedUser = authenticatedUser
-        self.team = team
-        self.token = token
-    }
-    
-    public func getAuthenticatedUser() -> UserRecord {
-        return authenticatedUser
-    }
-    
-    public func getTeam() -> TeamRecord {
-        return team
-    }
-    
-    public func getToken() -> String {
-        return token
-    }
-    
-    public func setAuthenticatedUser(_ authenticatedUser: UserRecord) {
-        self.authenticatedUser = authenticatedUser
-    }
-    
-    public func setTeam(_ team: TeamRecord) {
-        self.team = team
-    }
-    
-    public func setToken(_ token: String) {
-        self.token = token
+        self._authenticatedUser = authenticatedUser
+        self._team = team
+        self._token = token
     }
 }

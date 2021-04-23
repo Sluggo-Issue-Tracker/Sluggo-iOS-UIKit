@@ -37,7 +37,7 @@ class JsonLoader {
         return jsonData
     }
     
-    static func executeCodableRequest<T: Codable>(request: URLRequest) throws -> T? {
+    static func executeCodableRequest<T: Codable>(request: URLRequest) throws -> T {
         
         let session = URLSession.shared
         let semaphore = DispatchSemaphore(value: 0)
@@ -56,6 +56,8 @@ class JsonLoader {
             if (resp.statusCode <= 299 && resp.statusCode >= 200) {
                 if let fetchedData = data {
                     record = JsonLoader.decode(fetchedData)
+                } else {
+                    errorMessage = "Could not decode data!"
                 }
             } else {
                 if let fetchedData = data {
@@ -74,6 +76,6 @@ class JsonLoader {
             throw RESTException.FailedRequest(message: message)
         }
         
-        return record
+        return record!
     }
 }

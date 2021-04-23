@@ -14,7 +14,7 @@ class UserManager {
         self.config = config
     }
     
-    public func doLogin(username: String, password: String) throws -> TokenRecord? {
+    public func doLogin(username: String, password: String) throws -> TokenRecord {
         let params = ["username":username, "password":password] as Dictionary<String, String>
         var request = URLRequest(url: URL(string: config.getValue(Config.kURL)! + "auth/login/")!)
         request.httpMethod = "POST"
@@ -23,7 +23,7 @@ class UserManager {
         return try JsonLoader.executeCodableRequest(request: request)
     }
     
-    public func doLogout(token: String) throws -> ErrorMessage? { // TODO: this is probably incorrect
+    public func doLogout(token: String) throws -> ErrorMessage { // TODO: this is probably incorrect
         var request = URLRequest(url: URL(string: config.getValue(Config.kURL)! + "auth/logout/")!)
         request.httpMethod = "POST"
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")

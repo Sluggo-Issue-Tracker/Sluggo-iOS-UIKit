@@ -66,7 +66,7 @@ class LoginViewController: UIViewController {
         let userManager = UserManager(config, token: "asdf")
         do {
             let request = try userManager.doLogin(username: user, password: password)
-            print(request?.key)
+            print(request.key)
         } catch RESTException.FailedRequest(let message) { // more would need to be done here.
             DispatchQueue.main.async {
                 let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)

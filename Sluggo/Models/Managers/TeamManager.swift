@@ -18,11 +18,11 @@ class TeamManager {
         self.config = config
     }
     
-    public func listUserTeams() throws -> PaginatedList<TeamRecord>? {
+    public func listUserTeams() throws -> PaginatedList<TeamRecord> {
         
         var request = URLRequest(url: URL(string: config.getValue(Config.kURL)! + TeamManager.urlBase)!)
         request.httpMethod = "GET"
-        request.setValue("Bearer \(self.identity.getToken())", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(self.identity.token)", forHTTPHeaderField: "Authorization")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         return try JsonLoader.executeCodableRequest(request: request)
