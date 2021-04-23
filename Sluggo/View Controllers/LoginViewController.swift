@@ -64,24 +64,18 @@ class LoginViewController: UIViewController {
     
     func loginMethod(_ user:String, _ password:String) {
         let userManager = UserManager(config, token: "asdf")
-        do {
-            let request = try userManager.doLogin(username: user, password: password)
-            print(request.key)
-        } catch RESTException.FailedRequest(let message) { // more would need to be done here.
-            DispatchQueue.main.async {
-                let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
-                NSLog("The \"OK\" alert occured.")
-                }))
-                self.present(alert, animated: true, completion: nil)
+        userManager.doLogin(username: user, password: password, completionHandler: { (result: Result<TokenRecord, Error>) -> Void in
+            switch(result) {
+            case .success(let record):
+                print(record.key)
+                break;
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    let alert = UIAlertController.errorController(error: error)
+                    self.present(alert, animated: true, completion: nil)
+                }
             }
-        } catch {
-            let alert = UIAlertController(title: "Error", message: "some other error ocurred", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
-            NSLog("The \"OK\" alert occured.")
-            }))
-            self.present(alert, animated: true, completion: nil)
-        }
+        })
     }
     
     func transitionToHome() {

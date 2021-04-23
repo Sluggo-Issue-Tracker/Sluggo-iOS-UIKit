@@ -37,7 +37,7 @@ class JsonLoader {
         return jsonData
     }
     
-    static func executeCodableRequest<T: Codable>(request: URLRequest) throws -> T {
+    static func executeCodableRequest<T: Codable>(request: URLRequest) -> Result<T, Error> {
         
         let session = URLSession.shared
         let semaphore = DispatchSemaphore(value: 0)
@@ -73,9 +73,9 @@ class JsonLoader {
         semaphore.wait() // await the request
         
         if let message = errorMessage {
-            throw RESTException.FailedRequest(message: message)
+            return .failure(RESTException.failedRequest(message: message))
         }
         
-        return record!
+        return .success(record!)
     }
 }

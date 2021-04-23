@@ -24,32 +24,32 @@ class MemberManager {
         return config.getValue(Config.kURL)! + "/api/teams/" + "\(identity.team.id)" + "/members/"
     }
     
-    public func fetchMemberRecord() throws -> MemberRecord {
-        var request = URLRequest(url: URL(string: makeListUrl())!)
-        request.httpMethod = "GET"
-        request.setValue("Bearer \(self.identity.token)", forHTTPHeaderField: "Authorization")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        return try JsonLoader.executeCodableRequest(request: request)
-    }
-    
-    public func updateMemberRecord(_ memberRecord: MemberRecord) throws -> MemberRecord {
-        var request = URLRequest(url: URL(string: makeDetailUrl(memberRecord))!)
-        request.httpMethod = "Put"
-        request.httpBody = JsonLoader.encode(memberRecord)
-        request.setValue("Bearer \(self.identity.token)", forHTTPHeaderField: "Authorization")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        return try JsonLoader.executeCodableRequest(request: request)
-        
-    }
-    
-    public func listTeamMembers() throws -> PaginatedList<MemberRecord> {
-        var request = URLRequest(url: URL(string: makeListUrl())!)
-        request.httpMethod = "GET"
-        request.setValue("Bearer \(self.identity.token)", forHTTPHeaderField: "Authorization")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        return try JsonLoader.executeCodableRequest(request: request)
-    }
+//    public func fetchMemberRecord() throws -> MemberRecord {
+//        var request = URLRequest(url: URL(string: makeListUrl())!)
+//        request.httpMethod = "GET"
+//        request.setValue("Bearer \(self.identity.token)", forHTTPHeaderField: "Authorization")
+//        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+//        
+//        return try JsonLoader.executeCodableRequest(request: request)
+//    }
+//    
+//    public func updateMemberRecord(_ memberRecord: MemberRecord) throws -> MemberRecord {
+//        var request = URLRequest(url: URL(string: makeDetailUrl(memberRecord))!)
+//        request.httpMethod = "Put"
+//        request.httpBody = JsonLoader.encode(memberRecord)
+//        request.setValue("Bearer \(self.identity.token)", forHTTPHeaderField: "Authorization")
+//        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+//        
+//        return try JsonLoader.executeCodableRequest(request: request)
+//        
+//    }
+//    
+//    public func listTeamMembers() throws -> PaginatedList<MemberRecord> {
+//        var request = URLRequest(url: URL(string: makeListUrl())!)
+//        request.httpMethod = "GET"
+//        request.setValue("Bearer \(self.identity.token)", forHTTPHeaderField: "Authorization")
+//        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+//        
+//        return try JsonLoader.executeCodableRequest(request: request)
+//    }
 }
