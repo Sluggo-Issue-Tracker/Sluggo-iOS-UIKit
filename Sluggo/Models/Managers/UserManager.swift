@@ -24,7 +24,7 @@ class UserManager {
         }
         request.httpBody = body;
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        completionHandler(JsonLoader.executeCodableRequest(request: request))
+        JsonLoader.executeCodableRequest(request: request, completionHandler: completionHandler)
     }
     
 //    public func doLogout(token: String) throws -> ErrorMessage { // TODO: this is probably incorrect

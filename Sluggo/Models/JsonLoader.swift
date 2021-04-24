@@ -37,45 +37,36 @@ class JsonLoader {
         return jsonData
     }
     
-    static func executeCodableRequest<T: Codable>(request: URLRequest) -> Result<T, Error> {
+    static func executeCodableRequest<T: Codable>(request: URLRequest, completionHandler: @escaping (Result<T, Error>) -> Void) -> Void {
         
         let session = URLSession.shared
-        let semaphore = DispatchSemaphore(value: 0)
-        var record: T?
-        var errorMessage: String?
-        
-        let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
-            
+        session.dataTask(with: request, completionHandler: { data, response, error -> Void in
             if error != nil {
-                errorMessage = "Server Error!"
-                semaphore.signal()
+                completionHandler(.failure(Exception.runtimeError(message: "Server Error!")))
                 return
             }
             
             let resp = response as! HTTPURLResponse
             if (resp.statusCode <= 299 && resp.statusCode >= 200) {
                 if let fetchedData = data {
-                    record = JsonLoader.decode(fetchedData)
+                    guard let record: T = JsonLoader.decode(fetchedData) else {
+                        completionHandler(.failure(RESTException.failedRequest(message: "Failure to decode retrieved model in JsonLoader Codable Request")))
+                        return;
+                    }
+                    completionHandler(.success(record))
+                    return;
                 } else {
-                    errorMessage = "Could not decode data!"
+                    completionHandler(.failure(RESTException.failedRequest(message: "Failure to decode retrieved data in JsonLoader Codable request")))
+                    return;
                 }
             } else {
                 if let fetchedData = data {
-                    let errorObj: ErrorMessage? = JsonLoader.decode(fetchedData)
-                    errorMessage = errorObj != nil ? errorObj?.detail : "unknown error"
+                    completionHandler(.failure(RESTException.failedRequest(message: "HTTP Error \(resp.statusCode): \(String(data: fetchedData, encoding: .utf8) ?? "A parsing error occurred")")))
+                    return;
                 }
+                completionHandler(.failure(RESTException.failedRequest(message: "HTTP Error \(resp.statusCode): An unknown error occured.")))
+                return;
             }
-                
-            semaphore.signal()
-        })
-
-        task.resume()
-        semaphore.wait() // await the request
-        
-        if let message = errorMessage {
-            return .failure(RESTException.failedRequest(message: message))
-        }
-        
-        return .success(record!)
+        }).resume()
     }
 }

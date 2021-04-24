@@ -18,7 +18,24 @@ enum Exception: Error {
 
 extension UIAlertController {
     static func errorController(error: Error) -> UIAlertController {
-        let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+        // Setup message
+        var message: String?
+        
+        if let failedRequestError = error as? RESTException {
+            switch(failedRequestError) {
+            case .failedRequest(let errMsg):
+                message = errMsg
+            }
+        }
+        
+        if let exceptionError = error as? Exception {
+            switch(exceptionError) {
+            case .runtimeError(let errMsg):
+                message = errMsg
+            }
+        }
+        
+        let alert = UIAlertController(title: "Error", message: message ?? "Error message not provided", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         
         return alert
