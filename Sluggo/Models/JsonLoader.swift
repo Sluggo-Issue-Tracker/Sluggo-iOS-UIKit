@@ -12,12 +12,12 @@ class JsonLoader {
         // Attempt decoding
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
-
+        
         guard let pagRec = try? decoder.decode(T.self, from: data) else {
             print("Failed to decode JSON data into object representation for object initialization.")
             return nil
         }
-
+        
         return pagRec
     }
     

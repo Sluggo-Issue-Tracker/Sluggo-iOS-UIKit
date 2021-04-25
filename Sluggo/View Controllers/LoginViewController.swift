@@ -64,7 +64,7 @@ class LoginViewController: UIViewController {
     
     func loginMethod(_ user:String, _ password:String) {
         let userManager = UserManager(config, token: "asdf")
-        userManager.doLogin(username: user, password: password, completionHandler: { (result: Result<TokenRecord, Error>) -> Void in
+        userManager.doLogin(username: user, password: password) { result in
             switch(result) {
             case .success(let record):
                 print(record.key)
@@ -75,7 +75,7 @@ class LoginViewController: UIViewController {
                     self.present(alert, animated: true, completion: nil)
                 }
             }
-        })
+        }
     }
     
     func transitionToHome() {
