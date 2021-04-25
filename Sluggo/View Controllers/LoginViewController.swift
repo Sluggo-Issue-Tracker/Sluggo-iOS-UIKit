@@ -60,8 +60,11 @@ class LoginViewController: UIViewController {
             return
         } else {
             print("Login Success")
-            self.performSegue(withIdentifier: "loginToRoot", sender: self)
             
+            // MARK: Persistence
+            
+            
+            self.performSegue(withIdentifier: "loginToRoot", sender: self)
         }
     }
     

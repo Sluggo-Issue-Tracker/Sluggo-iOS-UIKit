@@ -9,4 +9,10 @@ import Foundation
 
 struct Constants {
     
+    struct FilePaths {
+        
+        static let persistencePath = "/Library/sluggodata.json"
+        
+    }
+    
 }
