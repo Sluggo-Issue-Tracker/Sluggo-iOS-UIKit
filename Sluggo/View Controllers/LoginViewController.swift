@@ -11,6 +11,7 @@ class LoginViewController: UIViewController {
 
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var persistButton: UIButton!
     private var config: Config
     private var token: String
     
@@ -34,7 +35,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        persistButton.setImage(UIImage(systemName: "checkmark.square.fill"), for: [.highlighted, .selected])
     }
     
     @IBAction func loginButton(_ sender: Any) {
@@ -77,7 +78,12 @@ class LoginViewController: UIViewController {
             }
         })
     }
-    
+    @IBAction func persistLoginButton(_ sender: UIButton) {
+        sender.isSelected.toggle()
+        
+        //print(sender.isSelected)
+    }
+    /*
     func transitionToHome() {
         
         /*
@@ -88,4 +94,5 @@ class LoginViewController: UIViewController {
         */
         
         }
+     */
 }
