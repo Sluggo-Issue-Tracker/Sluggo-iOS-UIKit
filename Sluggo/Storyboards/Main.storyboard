@@ -54,7 +54,7 @@
                             <userLayoutGuide location="454" affinity="minY"/>
                             <userLayoutGuide location="34" affinity="minY"/>
                             <userLayoutGuide location="134" affinity="minY"/>
-                            <userLayoutGuide location="124" affinity="minX"/>
+                            <userLayoutGuide location="125" affinity="minX"/>
                             <userLayoutGuide location="70" affinity="minX"/>
                             <userLayoutGuide location="266" affinity="minX"/>
                             <userLayoutGuide location="416" affinity="minY"/>
@@ -95,8 +95,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cte-ja-qHw">
-                                <rect key="frame" x="38.999999999999993" y="361" width="107.33333333333331" height="22"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Cte-ja-qHw">
+                                <rect key="frame" x="38.999999999999993" y="361" width="111.33333333333331" height="22"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xnf-s2-OUV">
                                         <rect key="frame" x="0.0" y="0.0" width="19.333333333333332" height="22"/>
@@ -108,11 +108,11 @@
                                         <state key="selected" image="checkmark.square" catalog="system"/>
                                         <state key="highlighted" image="square.fill" catalog="system"/>
                                         <connections>
-                                            <action selector="persistLoginButton:" destination="B6h-dE-6xD" eventType="touchUpInside" id="wlZ-n9-4d0"/>
+                                            <action selector="persistLoginButton:" destination="B6h-dE-6xD" eventType="touchUpInside" id="baZ-4L-oLF"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remember Me?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qP1-Mu-0A5">
-                                        <rect key="frame" x="19.333333333333336" y="0.0" width="88" height="22"/>
+                                        <rect key="frame" x="23.333333333333343" y="0.0" width="88" height="22"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="22" id="r5A-GR-mrp"/>
                                             <constraint firstAttribute="width" constant="88" id="tOM-ZW-f2W"/>
@@ -122,10 +122,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="107.33" id="Hz8-uh-vpf"/>
                                     <constraint firstAttribute="height" constant="22" id="KH6-WE-yB6"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="4HW-rj-qBD" appends="YES" id="ur0-BJ-YPo"/>
+                                </connections>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wgt-tO-gqP"/>
@@ -154,6 +157,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kpn-RQ-AOr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="4HW-rj-qBD">
+                    <connections>
+                        <action selector="persistLoginButton:" destination="B6h-dE-6xD" id="zf7-gS-sQj"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3840" y="-435"/>
         </scene>

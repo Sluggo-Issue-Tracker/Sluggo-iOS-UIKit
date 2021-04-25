@@ -81,9 +81,8 @@ class LoginViewController: UIViewController {
             }
         }
     }
-    @IBAction func persistLoginButton(_ sender: UIButton) {
-        sender.isSelected.toggle()
-        
-        print(sender.isSelected)
+    @IBAction func persistLoginButton(_ sender: Any) {
+        self.persistButton.isSelected.toggle()
+        print(self.persistButton.isSelected)
     }
 }
