@@ -24,32 +24,38 @@ class MemberManager {
         return config.getValue(Config.kURL)! + "/api/teams/" + "\(identity.team.id)" + "/members/"
     }
     
-//    public func fetchMemberRecord() throws -> MemberRecord {
-//        var request = URLRequest(url: URL(string: makeListUrl())!)
-//        request.httpMethod = "GET"
-//        request.setValue("Bearer \(self.identity.token)", forHTTPHeaderField: "Authorization")
-//        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-//        
-//        return try JsonLoader.executeCodableRequest(request: request)
-//    }
-//    
-//    public func updateMemberRecord(_ memberRecord: MemberRecord) throws -> MemberRecord {
-//        var request = URLRequest(url: URL(string: makeDetailUrl(memberRecord))!)
-//        request.httpMethod = "Put"
-//        request.httpBody = JsonLoader.encode(memberRecord)
-//        request.setValue("Bearer \(self.identity.token)", forHTTPHeaderField: "Authorization")
-//        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-//        
-//        return try JsonLoader.executeCodableRequest(request: request)
-//        
-//    }
-//    
-//    public func listTeamMembers() throws -> PaginatedList<MemberRecord> {
-//        var request = URLRequest(url: URL(string: makeListUrl())!)
-//        request.httpMethod = "GET"
-//        request.setValue("Bearer \(self.identity.token)", forHTTPHeaderField: "Authorization")
-//        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-//        
-//        return try JsonLoader.executeCodableRequest(request: request)
-//    }
+    public func fetchMemberRecord(completionHandler: @escaping(Result<MemberRecord, Error>) -> Void) -> Void {
+        var request = URLRequest(url: URL(string: makeListUrl())!)
+        request.httpMethod = "GET"
+        request.setValue("Bearer \(self.identity.token)", forHTTPHeaderField: "Authorization")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        JsonLoader.executeCodableRequest(request: request, completionHandler: completionHandler)
+    }
+    
+    public func updateMemberRecord(_ memberRecord: MemberRecord, completionHandler: @escaping(Result<MemberRecord, Error>) -> Void) -> Void {
+        var request = URLRequest(url: URL(string: makeDetailUrl(memberRecord))!)
+        request.httpMethod = "Put"
+        
+        guard let body = JsonLoader.encode(memberRecord) else {
+            completionHandler(.failure(Exception.runtimeError(message: "Failed to serialize member JSON for updateMemberRecord in MemberManager")))
+            return
+        }
+        
+        request.httpBody = body
+        request.setValue("Bearer \(self.identity.token)", forHTTPHeaderField: "Authorization")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        JsonLoader.executeCodableRequest(request: request, completionHandler: completionHandler)
+        
+    }
+    
+    public func listTeamMembers(completionHandler: @escaping(Result<PaginatedList<MemberRecord>, Error>) -> Void) -> Void{
+        var request = URLRequest(url: URL(string: makeListUrl())!)
+        request.httpMethod = "GET"
+        request.setValue("Bearer \(self.identity.token)", forHTTPHeaderField: "Authorization")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        JsonLoader.executeCodableRequest(request: request, completionHandler: completionHandler)
+    }
 }
