@@ -35,6 +35,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.isModalInPresentation = true
         persistButton.setImage(UIImage(systemName: "checkmark.square.fill"), for: [.highlighted, .selected])
     }
     
@@ -60,8 +61,10 @@ class LoginViewController: UIViewController {
         } else {
             print("Login Success")
             self.performSegue(withIdentifier: "loginToRoot", sender: self)
+            
         }
     }
+    
     
     func loginMethod(_ user:String, _ password:String) {
         let userManager = UserManager(config, token: "asdf")
@@ -81,18 +84,6 @@ class LoginViewController: UIViewController {
     @IBAction func persistLoginButton(_ sender: UIButton) {
         sender.isSelected.toggle()
         
-        //print(sender.isSelected)
+        print(sender.isSelected)
     }
-    /*
-    func transitionToHome() {
-        
-        /*
-        let rViewController = storyboard?.instantiateViewController(identifier: "rVC") as? RootViewController
-            
-        view.window?.rootViewController = rViewController
-        view.window?.makeKeyAndVisible()
-        */
-        
-        }
-     */
 }

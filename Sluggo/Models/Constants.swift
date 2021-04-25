@@ -9,9 +9,4 @@ import Foundation
 
 struct Constants {
     
-    struct Storyboard {
-        
-        static let rootVC = "rVC"
-        
-    }
 }
