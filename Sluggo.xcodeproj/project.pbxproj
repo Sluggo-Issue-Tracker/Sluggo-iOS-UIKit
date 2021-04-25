@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		051AAB0B2630FD6500BCB9C7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051AAB0A2630FD6500BCB9C7 /* Constants.swift */; };
+		052258702636100B00B49CE4 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0522586F2636100B00B49CE4 /* LaunchViewController.swift */; };
 		2F2247AC262920AC006C6EE6 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2247AB262920AC006C6EE6 /* Token.swift */; };
 		2F3AD7A32627C86A00B61A97 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3AD7A22627C86A00B61A97 /* User.swift */; };
 		2F3AD7A82627C89B00B61A97 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3AD7A72627C89B00B61A97 /* Member.swift */; };
@@ -64,6 +65,7 @@
 
 /* Begin PBXFileReference section */
 		051AAB0A2630FD6500BCB9C7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		0522586F2636100B00B49CE4 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		2F2247AB262920AC006C6EE6 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		2F3AD7A22627C86A00B61A97 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2F3AD7A72627C89B00B61A97 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 		7DC2A2202629442B0002CEE6 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				0522586F2636100B00B49CE4 /* LaunchViewController.swift */,
 				5A79FFE5262E563F00D04320 /* LoginViewController.swift */,
 				7DC2A2212629447D0002CEE6 /* SluggoSidebarTableViewController.swift */,
 				7D1DA6AD262B82C200E7C12D /* RootViewController.swift */,
@@ -399,6 +402,7 @@
 				7D1DA6AE262B82C200E7C12D /* RootViewController.swift in Sources */,
 				5ACC0F012630CA1400DCF83E /* ErrorMessage.swift in Sources */,
 				2F3AD7A32627C86A00B61A97 /* User.swift in Sources */,
+				052258702636100B00B49CE4 /* LaunchViewController.swift in Sources */,
 				7DC2A2222629447D0002CEE6 /* SluggoSidebarTableViewController.swift in Sources */,
 				5ACC0F062630CA2700DCF83E /* Exceptions.swift in Sources */,
 				5AB1C8F7262FE3520010F85E /* AppIdentity.swift in Sources */,
