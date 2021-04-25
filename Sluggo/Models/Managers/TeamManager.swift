@@ -18,7 +18,7 @@ class TeamManager {
         self.config = config
     }
     
-    public func listUserTeams(completionHandler: @escaping(Result<PaginatedList<TeamRecord> , Error>) -> Void) -> Void {
+    public func listUserTeams(completionHandler: @escaping(Result<PaginatedList<TeamRecord>, Error>) -> Void) -> Void {
         
         var request = URLRequest(url: URL(string: config.getValue(Config.kURL)! + TeamManager.urlBase)!)
         request.httpMethod = "GET"

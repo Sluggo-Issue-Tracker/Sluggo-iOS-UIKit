@@ -29,7 +29,7 @@ class TicketManager {
         request.httpMethod = "PUT"
         
         guard let body = JsonLoader.encode(ticket) else {
-            completionHandler(.failure(Exception.runtimeError(message: "Failed to serialize ticket JSON for updateTicket in Ticket")))
+            completionHandler(.failure(Exception.runtimeError(message: "Failed to serialize ticket JSON for updateTicket in TicketManager")))
             return
         }
         
