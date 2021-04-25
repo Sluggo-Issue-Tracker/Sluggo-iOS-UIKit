@@ -27,11 +27,11 @@ class UserManager {
         JsonLoader.executeCodableRequest(request: request, completionHandler: completionHandler)
     }
     
-    //    public func doLogout(token: String) throws -> ErrorMessage { // TODO: this is probably incorrect
-    //         var request = URLRequest(url: URL(string: config.getValue(Config.kURL)! + "auth/logout/")!)
-    //         request.httpMethod = "POST"
-    //         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-    //         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-    //         return try JsonLoader.executeCodableRequest(request: request)
-    //     }
+    public func doLogout(token: String, completionHandler: @escaping(Result<LogoutMessage, Error>) -> Void) -> Void { // TODO: this is probably incorrect
+        var request = URLRequest(url: URL(string: config.getValue(Config.kURL)! + "auth/logout/")!)
+        request.httpMethod = "POST"
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        JsonLoader.executeCodableRequest(request: request, completionHandler: completionHandler)
+    }
 }
