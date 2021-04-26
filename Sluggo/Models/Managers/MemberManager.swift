@@ -37,7 +37,7 @@ class MemberManager {
         var request = URLRequest(url: URL(string: makeDetailUrl(memberRecord))!)
         request.httpMethod = "Put"
         
-        guard let body = JsonLoader.encode(memberRecord) else {
+        guard let body = JsonLoader.encode(object: memberRecord) else {
             completionHandler(.failure(Exception.runtimeError(message: "Failed to serialize member JSON for updateMemberRecord in MemberManager")))
             return
         }
