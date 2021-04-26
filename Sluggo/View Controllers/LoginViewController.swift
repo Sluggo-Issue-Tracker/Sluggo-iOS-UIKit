@@ -12,8 +12,11 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var persistButton: UIButton!
-    private var config: Config
-    private var token: String
+    
+    // TODO: AppIdentity be migrated when login flow progressed
+    // This should really be managed by the AppDelegate and passed into VCs along
+    // segues and otherwise.
+    let identity = AppIdentity()
     
     convenience init() {
         self.init(nibName:nil, bundle:nil)
@@ -21,15 +24,11 @@ class LoginViewController: UIViewController {
 
     // This extends the superclass.
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        self.config = Config()
-        self.token = "asdf" // will need to be changed
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
 
     // This is also necessary when extending the superclass.
     required init?(coder aDecoder: NSCoder) {
-        self.config = Config()
-        self.token = "asdf" // will need to be changed
         super.init(coder: aDecoder)
     }
     
@@ -40,41 +39,46 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginButton(_ sender: Any) {
-        
-        
-        // Sanitize input?
-        
         let userString = username.text
         let passString = password.text
         
-        //print("User:", userString!)
-        //print("Password:", passString!)
-        
-        DispatchQueue.global(qos: .userInitiated).async {
-            self.loginMethod(userString!, passString!)
-        }
-        
         if(userString!.isEmpty || passString!.isEmpty) {
             // login Error
-            print("Login Error")
+            print("No username or password provided, not attempting login")
             return
         } else {
-            print("Login Success")
-            
-            // MARK: Persistence
-            
-            
-            self.performSegue(withIdentifier: "loginToRoot", sender: self)
+            DispatchQueue.global(qos: .userInitiated).async {
+                self.attemptLogin(username: userString!, password: passString!)
+            }
         }
     }
     
     
-    func loginMethod(_ user:String, _ password:String) {
-        let userManager = UserManager(config, token: "asdf")
-        userManager.doLogin(username: user, password: password) { result in
+    func attemptLogin(username: String, password: String) {
+        let userManager = UserManager(identity: identity)
+        userManager.doLogin(username: username, password: password) { result in
             switch(result) {
             case .success(let record):
-                print(record.key)
+                print("Successful login and retrieved token " + record.key)
+                
+                // Save to identity
+                self.identity.token = record.key
+                
+                // Persistence
+                // TODO: Fix calling UI stuff from background thread
+                // (maybe have a separate function to move on if login successful?)
+                if(self.persistButton.isSelected) { // if user checks "Remember Me?"
+                    let persistenceResult = self.identity.saveToDisk()
+                    if(!persistenceResult) {
+                        print("SOMETHING WENT WRONG WITH PERSISTENCE!")
+                    }
+                }
+                
+                // Segue out of VC
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: "loginToRoot", sender: self)
+                }
+                
                 break;
             case .failure(let error):
                 DispatchQueue.main.async {
@@ -89,3 +93,4 @@ class LoginViewController: UIViewController {
         print(self.persistButton.isSelected)
     }
 }
+

@@ -9,19 +9,17 @@ import Foundation
 
 class TicketManager {
     private var identity: AppIdentity
-    private var config: Config
     
-    init(_ identity: AppIdentity, _ config: Config) {
+    init(_ identity: AppIdentity) {
         self.identity = identity
-        self.config = config
     }
     
     private func makeDetailUrl(_ ticketRecord: TicketRecord) -> URL {
-        return URL(string: config.getValue(Config.kURL)! + "/api/teams/" + "\(identity.team!.id)" + "/tickets/" + "\(ticketRecord.id)/")!
+        return URL(string: identity.configData[Constants.Config.kURL]! + "/api/teams/" + "\(identity.team!.id)" + "/tickets/" + "\(ticketRecord.id)/")!
     }
     
     private func makeListUrl() -> URL {
-        return URL(string: config.getValue(Config.kURL)! + "/api/teams/" + "\(identity.team!.id)" + "/tickets/")!
+        return URL(string: identity.configData[Constants.Config.kURL]! + "/api/teams/" + "\(identity.team!.id)" + "/tickets/")!
     }
     
     public func updateTicket(_ ticket: TicketRecord, completionHandler: @escaping(Result<TicketRecord, Error>) -> Void)-> Void {

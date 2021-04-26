@@ -9,19 +9,17 @@ import Foundation
 
 class MemberManager {
     private var identity: AppIdentity
-    private var config: Config
     
-    init(_ identity: AppIdentity, _ config: Config) {
+    init(_ identity: AppIdentity) {
         self.identity = identity
-        self.config = config
     }
     
     private func makeDetailUrl(memberRecord: MemberRecord) -> URL {
-        return URL(string: config.getValue(Config.kURL)! + "/api/teams/" + "\(identity.team!.id)" + "/members/" + "\(memberRecord.id)/")!
+        return URL(string: identity.configData[Constants.Config.kURL]! + "/api/teams/" + "\(identity.team!.id)" + "/members/" + "\(memberRecord.id)/")!
     }
     
     private func makeListUrl() -> URL {
-        return URL(string: config.getValue(Config.kURL)! + "/api/teams/" + "\(identity.team!.id)" + "/members/")!
+        return URL(string: identity.configData[Constants.Config.kURL]! + "/api/teams/" + "\(identity.team!.id)" + "/members/")!
     }
     
     public func fetchMemberRecord(completionHandler: @escaping(Result<MemberRecord, Error>) -> Void) -> Void {
