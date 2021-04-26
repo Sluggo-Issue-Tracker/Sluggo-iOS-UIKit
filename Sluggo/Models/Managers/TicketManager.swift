@@ -28,7 +28,7 @@ class TicketManager {
         var request = URLRequest(url: URL(string: makeDetailUrl(ticket))!)
         request.httpMethod = "PUT"
         
-        guard let body = JsonLoader.encode(ticket) else {
+        guard let body = JsonLoader.encode(object: ticket) else {
             completionHandler(.failure(Exception.runtimeError(message: "Failed to serialize ticket JSON for updateTicket in TicketManager")))
             return
         }

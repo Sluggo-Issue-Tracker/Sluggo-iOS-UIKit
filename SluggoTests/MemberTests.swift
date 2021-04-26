@@ -48,7 +48,7 @@ class MemberTests: XCTestCase {
     """
     
     func testMemberDoesDeserialize() {
-        let member: MemberRecord? = JsonLoader.decode(testWorkingJson.data(using: .utf8)!)
+        let member: MemberRecord? = JsonLoader.decode(data: testWorkingJson.data(using: .utf8)!)
         XCTAssertNotNil(member)
         
         XCTAssertEqual(member!.team_id, 1)
@@ -61,7 +61,7 @@ class MemberTests: XCTestCase {
     }
     
     func testUserDeserializesWithExtraProps() {
-        let member: MemberRecord? = JsonLoader.decode(testWorkingJsonWithExtraProps.data(using: .utf8)!)
+        let member: MemberRecord? = JsonLoader.decode(data: testWorkingJsonWithExtraProps.data(using: .utf8)!)
         XCTAssertNotNil(member)
         
         XCTAssertEqual(member!.team_id, 1)
@@ -76,11 +76,11 @@ class MemberTests: XCTestCase {
         
         let member = MemberRecord(id: "this is an md5 eventually", owner: user, team_id: 1, object_uuid: UUID(), role: "UA", bio: nil, created: Date(), activated: nil, deactivated: nil)
         
-        let json = JsonLoader.encode(member)
+        let json = JsonLoader.encode(object: member)
         XCTAssertNotNil(json)
         print(json!)
         
-        let memberDuplicate: MemberRecord? = JsonLoader.decode(json!)
+        let memberDuplicate: MemberRecord? = JsonLoader.decode(data: json!)
         XCTAssertNotNil(memberDuplicate)
         
         XCTAssertEqual(member.object_uuid, memberDuplicate!.object_uuid)
