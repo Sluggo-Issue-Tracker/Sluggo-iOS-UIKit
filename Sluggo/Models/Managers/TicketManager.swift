@@ -16,16 +16,16 @@ class TicketManager {
         self.config = config
     }
     
-    private func makeDetailUrl(_ ticketRecord: TicketRecord) -> String {
-        return config.getValue(Config.kURL)! + "/api/teams/" + "\(identity.team.id)" + "/tickets/" + "\(ticketRecord.id)/"
+    private func makeDetailUrl(_ ticketRecord: TicketRecord) -> URL {
+        return URL(string: config.getValue(Config.kURL)! + "/api/teams/" + "\(identity.team!.id)" + "/tickets/" + "\(ticketRecord.id)/")!
     }
     
-    private func makeListUrl() -> String {
-        return config.getValue(Config.kURL)! + "/api/teams/" + "\(identity.team.id)" + "/tickets/"
+    private func makeListUrl() -> URL {
+        return URL(string: config.getValue(Config.kURL)! + "/api/teams/" + "\(identity.team!.id)" + "/tickets/")!
     }
     
     public func updateTicket(_ ticket: TicketRecord, completionHandler: @escaping(Result<TicketRecord, Error>) -> Void)-> Void {
-        var request = URLRequest(url: URL(string: makeDetailUrl(ticket))!)
+        var request = URLRequest(url: makeDetailUrl(ticket))
         request.httpMethod = "PUT"
         
         guard let body = JsonLoader.encode(ticket) else {
