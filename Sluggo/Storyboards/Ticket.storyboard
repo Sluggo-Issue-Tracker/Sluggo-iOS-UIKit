@@ -49,7 +49,7 @@
         <scene sceneID="Shx-pT-pdo">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Uq0-p5-H1Z" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="bbG-bf-pLB"/>
+                    <tabBarItem key="tabBarItem" title="Item" image="ticket" catalog="system" id="bbG-bf-pLB"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YaC-bH-pbI">
@@ -67,6 +67,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ticket" catalog="system" width="128" height="84"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
