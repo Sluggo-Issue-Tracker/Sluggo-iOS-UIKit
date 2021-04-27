@@ -19,7 +19,7 @@
 		2FEF5DAE262D1C4900434763 /* MemberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEF5DAD262D1C4900434763 /* MemberTests.swift */; };
 		5A79FFE1262E562A00D04320 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A79FFE0262E562A00D04320 /* Main.storyboard */; };
 		5A79FFE6262E563F00D04320 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A79FFE5262E563F00D04320 /* LoginViewController.swift */; };
-		5A9FF8792637EFE800378550 /* IdentityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9FF8782637EFE800378550 /* IdentityView.swift */; };
+		5A9FF8792637EFE800378550 /* IdentityInitialized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9FF8782637EFE800378550 /* IdentityInitialized.swift */; };
 		5A9FF87E2637F03600378550 /* HomeNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9FF87D2637F03600378550 /* HomeNavigationController.swift */; };
 		5A9FF88926386D1400378550 /* Ticket.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A9FF88826386D1400378550 /* Ticket.storyboard */; };
 		5A9FF88E26386D4700378550 /* TicketListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9FF88D26386D4700378550 /* TicketListController.swift */; };
@@ -79,7 +79,7 @@
 		2FEF5DAD262D1C4900434763 /* MemberTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberTests.swift; sourceTree = "<group>"; };
 		5A79FFE0262E562A00D04320 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		5A79FFE5262E563F00D04320 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		5A9FF8782637EFE800378550 /* IdentityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityView.swift; sourceTree = "<group>"; };
+		5A9FF8782637EFE800378550 /* IdentityInitialized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityInitialized.swift; sourceTree = "<group>"; };
 		5A9FF87D2637F03600378550 /* HomeNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationController.swift; sourceTree = "<group>"; };
 		5A9FF88826386D1400378550 /* Ticket.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Ticket.storyboard; sourceTree = "<group>"; };
 		5A9FF88D26386D4700378550 /* TicketListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketListController.swift; sourceTree = "<group>"; };
@@ -257,7 +257,7 @@
 				7D1DA6AD262B82C200E7C12D /* RootViewController.swift */,
 				7DC2A226262948800002CEE6 /* SluggoSidebarContainerViewController.swift */,
 				7DC2A22E26294F9E0002CEE6 /* HomeViewController.swift */,
-				5A9FF8782637EFE800378550 /* IdentityView.swift */,
+				5A9FF8782637EFE800378550 /* IdentityInitialized.swift */,
 				5A9FF87D2637F03600378550 /* HomeNavigationController.swift */,
 				5A9FF88D26386D4700378550 /* TicketListController.swift */,
 			);
@@ -418,7 +418,7 @@
 				5AB1C8F7262FE3520010F85E /* AppIdentity.swift in Sources */,
 				7DC2A22F26294F9E0002CEE6 /* HomeViewController.swift in Sources */,
 				7D9963A6261EF3A4002338E7 /* AppDelegate.swift in Sources */,
-				5A9FF8792637EFE800378550 /* IdentityView.swift in Sources */,
+				5A9FF8792637EFE800378550 /* IdentityInitialized.swift in Sources */,
 				5AB1C8EF262FE3210010F85E /* TagManager.swift in Sources */,
 				5A9FF88E26386D4700378550 /* TicketListController.swift in Sources */,
 				5AB1C8E5262FE2E60010F85E /* TicketManager.swift in Sources */,

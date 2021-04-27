@@ -7,7 +7,6 @@
 
 import UIKit
 
-protocol IdentityView {
+protocol IdentityInitialized {
     init? (coder: NSCoder, identity: AppIdentity)
-    func setIdentity(identity: AppIdentity)
 }

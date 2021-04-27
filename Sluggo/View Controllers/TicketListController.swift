@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TicketListController: UITableViewController, IdentityView {
+class TicketListController: UITableViewController, IdentityInitialized {
 
     
     var identity: AppIdentity

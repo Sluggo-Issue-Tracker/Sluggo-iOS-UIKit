@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, IdentityView {
+class HomeViewController: UIViewController, IdentityInitialized {
     
     public var identity: AppIdentity
     

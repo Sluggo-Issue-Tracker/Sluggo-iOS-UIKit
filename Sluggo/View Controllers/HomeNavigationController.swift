@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeNavigationController: UINavigationController, IdentityView {
+class HomeNavigationController: UINavigationController, IdentityInitialized {
     var identity: AppIdentity?
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
