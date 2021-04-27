@@ -31,7 +31,7 @@ class AppIdentity: Codable {
     
     private static var persistencePath: URL {
         get {
-            return URL(string: NSHomeDirectory() + Constants.FilePaths.persistencePath)!
+            return URL(fileURLWithPath: NSHomeDirectory().appending("/Library/appdata.json"))
         }
     }
     
@@ -50,10 +50,12 @@ class AppIdentity: Codable {
     
     func saveToDisk() -> Bool {
         guard let appIdentityData = JsonLoader.encode(self) else {
+            print("Failed to encode app identity with JSON, could not persist")
             return false
         }
         
         guard let appIdentityContents = String(data: appIdentityData, encoding: .utf8) else {
+            print("Failed to encode app identity encoded data as string, could not persist")
             return false
         }
         
@@ -61,6 +63,7 @@ class AppIdentity: Codable {
             try appIdentityContents.write(to: AppIdentity.persistencePath, atomically: false, encoding: .utf8)
             return true
         } catch {
+            print("Could not write persistence file to disk, could not persist")
             return false
         }
     }

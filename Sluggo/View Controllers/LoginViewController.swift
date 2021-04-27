@@ -16,7 +16,9 @@ class LoginViewController: UIViewController {
     // TODO: AppIdentity be migrated when login flow progressed
     // This should really be managed by the AppDelegate and passed into VCs along
     // segues and otherwise.
-    let identity = AppIdentity()
+    
+    // Attempt to load from disk, otherwise, use the new one.
+    let identity = AppIdentity.loadFromDisk() ?? AppIdentity()
     
     convenience init() {
         self.init(nibName:nil, bundle:nil)
@@ -36,6 +38,15 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         self.isModalInPresentation = true
         persistButton.setImage(UIImage(systemName: "checkmark.square.fill"), for: [.highlighted, .selected])
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if(identity.token != nil) {
+            // Segue out of VC
+            self.performSegue(withIdentifier: "loginToRoot", sender: self)
+        }
     }
     
     @IBAction func loginButton(_ sender: Any) {
@@ -67,11 +78,9 @@ class LoginViewController: UIViewController {
                 // Persistence
                 // TODO: Fix calling UI stuff from background thread
                 // (maybe have a separate function to move on if login successful?)
-                if(self.persistButton.isSelected) { // if user checks "Remember Me?"
-                    let persistenceResult = self.identity.saveToDisk()
-                    if(!persistenceResult) {
-                        print("SOMETHING WENT WRONG WITH PERSISTENCE!")
-                    }
+                let persistenceResult = self.identity.saveToDisk()
+                if(!persistenceResult) {
+                    print("SOMETHING WENT WRONG WITH PERSISTENCE!")
                 }
                 
                 // Segue out of VC
