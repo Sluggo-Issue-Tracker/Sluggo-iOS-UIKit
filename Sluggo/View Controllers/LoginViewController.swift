@@ -38,6 +38,11 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.isModalInPresentation = true
+        
+        // TODO: for testing purposes, the team for the identity is hardcoded. Change this eventually : )
+        self.identity.team = TeamRecord(id: 1, name: "bugslotics", object_uuid: UUID(), ticket_head: 1,
+                                        created: Date(), activated: nil, deactivated: nil)
+        
         // only enable persistence button if the token is nil (that is, we didn't load an AppIdentity)
         self.persistButton.isEnabled = (self.identity.token == nil)
         self.loginButton.isEnabled = (self.identity.token == nil)
@@ -114,6 +119,5 @@ class LoginViewController: UIViewController {
     @IBSegueAction func createRootViewController(_ coder: NSCoder) -> UIViewController? {
         return RootViewController(coder: coder, identity: identity)
     }
-    
 }
 

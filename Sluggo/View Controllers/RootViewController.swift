@@ -41,18 +41,19 @@ class RootViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    @IBSegueAction func createHome(_ coder: NSCoder) -> HomeViewController? {
-        print("custom")
-        return HomeViewController(coder: coder, identity: identity)
-    }
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    // these are interesting.
+    // while connecting them from view controller segues in the tab bar controller
+    // did not actually call these, wrapping each tab in a navigation controlller
+    // in the other storybaord and *then* connecting them to these handlers seems
+    // to have worked.
+    @IBSegueAction func createHome(_ coder: NSCoder) -> HomeViewController? {
+        return HomeViewController(coder: coder, identity: identity)
     }
-    */
-
+    
+    @IBSegueAction func createTicket(_ coder: NSCoder) -> TicketListController? {
+        return TicketListController(coder: coder, identity: identity)
+    }
 }

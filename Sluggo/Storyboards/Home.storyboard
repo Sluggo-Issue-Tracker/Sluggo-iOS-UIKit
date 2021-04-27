@@ -39,10 +39,12 @@
             </objects>
             <point key="canvasLocation" x="795.6521739130435" y="-118.52678571428571"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Item-->
         <scene sceneID="fCq-cQ-Aax">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jEC-9b-EdH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="m5Q-5j-Nv9" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="eDv-6q-5wM"/>
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -51,11 +53,13 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="3an-y3-30F">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="7qR-Bd-0QF" kind="relationship" relationship="rootViewController" destinationCreationSelector="createHome:" id="cXM-W4-6Ih"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jEC-9b-EdH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-114.49275362318842" y="-118.52678571428571"/>
         </scene>

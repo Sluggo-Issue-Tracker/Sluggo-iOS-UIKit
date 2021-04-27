@@ -9,5 +9,6 @@ import Foundation
 
 struct TicketRecord: Codable {
     var id: Int
-    
+    var ticket_number: Int
+    var title: String
 }

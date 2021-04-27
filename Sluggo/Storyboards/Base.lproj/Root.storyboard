@@ -70,6 +70,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="wOi-Vq-YT9" kind="relationship" relationship="viewControllers" id="uhx-Dl-tdo"/>
+                        <segue destination="Ymv-15-4Ny" kind="relationship" relationship="viewControllers" id="h5V-Lf-pAj"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0VU-E0-E3L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -85,7 +86,17 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iZa-AI-9Cc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1093" y="271"/>
+            <point key="canvasLocation" x="639" y="35"/>
+        </scene>
+        <!--Ticket-->
+        <scene sceneID="3Ws-rC-SDg">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Ticket" id="Ymv-15-4Ny" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="Yld-C3-c9u"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D7p-qD-AwA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="641" y="317"/>
         </scene>
     </scenes>
     <resources>
