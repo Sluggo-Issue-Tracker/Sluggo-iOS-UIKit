@@ -12,6 +12,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var persistButton: UIButton!
+    @IBOutlet weak var loginButton: UIButton!
     
     // TODO: AppIdentity be migrated when login flow progressed
     // This should really be managed by the AppDelegate and passed into VCs along
@@ -37,6 +38,9 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.isModalInPresentation = true
+        // only enable persistence button if the token is nil (that is, we didn't load an AppIdentity)
+        self.persistButton.isEnabled = (self.identity.token == nil)
+        self.loginButton.isEnabled = (self.identity.token == nil)
         persistButton.setImage(UIImage(systemName: "checkmark.square.fill"), for: [.highlighted, .selected])
     }
     
@@ -76,11 +80,16 @@ class LoginViewController: UIViewController {
                 self.identity.token = record.key
                 
                 // Persistence
-                // TODO: Fix calling UI stuff from background thread
-                // (maybe have a separate function to move on if login successful?)
-                let persistenceResult = self.identity.saveToDisk()
-                if(!persistenceResult) {
-                    print("SOMETHING WENT WRONG WITH PERSISTENCE!")
+                // This is hacky but better than nothing
+                var rememberMe: Bool = false
+                DispatchQueue.main.sync {
+                    rememberMe = self.persistButton.isSelected
+                }
+                if(rememberMe) {
+                    let persistenceResult = self.identity.saveToDisk()
+                    if(!persistenceResult) {
+                        print("SOMETHING WENT WRONG WITH PERSISTENCE!")
+                    }
                 }
                 
                 // Segue out of VC

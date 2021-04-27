@@ -65,7 +65,7 @@ class AppIdentity: Codable {
         }
         
         do {
-            try appIdentityContents.write(to: AppIdentity.persistencePath, atomically: false, encoding: .utf8)
+            try appIdentityContents.write(to: AppIdentity.persistencePath, atomically: true, encoding: .utf8)
             return true
         } catch {
             print("Could not write persistence file to disk, could not persist")
