@@ -15,11 +15,11 @@ class MemberManager {
     }
     
     private func makeDetailUrl(memberRecord: MemberRecord) -> URL {
-        return URL(string: identity.configData[Constants.Config.kURL]! + "/api/teams/" + "\(identity.team!.id)" + "/members/" + "\(memberRecord.id)/")!
+        return URL(string: identity.baseAddress + "/api/teams/" + "\(identity.team!.id)" + "/members/" + "\(memberRecord.id)/")!
     }
     
     private func makeListUrl() -> URL {
-        return URL(string: identity.configData[Constants.Config.kURL]! + "/api/teams/" + "\(identity.team!.id)" + "/members/")!
+        return URL(string: identity.baseAddress + "/api/teams/" + "\(identity.team!.id)" + "/members/")!
     }
     
     public func fetchMemberRecord(completionHandler: @escaping(Result<MemberRecord, Error>) -> Void) -> Void {

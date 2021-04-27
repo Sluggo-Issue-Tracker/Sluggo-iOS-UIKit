@@ -11,19 +11,7 @@ class AppIdentity: Codable {
     var authenticatedUser: UserRecord?
     var team: TeamRecord?
     var token: String?
-    var instanceURLString: String? {
-        get {
-            return self.configData[Constants.Config.kURL]
-        }
-        
-        set(newURLString) {
-            self.configData[Constants.Config.kURL] = newURLString
-        }
-    }
-    
-    var configData: [String: String] = [
-        Constants.Config.kURL: Constants.Config.URL_BASE // enable change if need be
-    ]
+    var baseAddress: String = Constants.Config.URL_BASE
     
     private static var persistencePath: URL {
         get {

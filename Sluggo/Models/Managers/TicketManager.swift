@@ -15,11 +15,11 @@ class TicketManager {
     }
     
     private func makeDetailUrl(_ ticketRecord: TicketRecord) -> URL {
-        return URL(string: identity.configData[Constants.Config.kURL]! + "/api/teams/" + "\(identity.team!.id)" + "/tickets/" + "\(ticketRecord.id)/")!
+        return URL(string: identity.baseAddress + "/api/teams/" + "\(identity.team!.id)" + "/tickets/" + "\(ticketRecord.id)/")!
     }
     
     private func makeListUrl() -> URL {
-        return URL(string: identity.configData[Constants.Config.kURL]! + "/api/teams/" + "\(identity.team!.id)" + "/tickets/")!
+        return URL(string: identity.baseAddress + "/api/teams/" + "\(identity.team!.id)" + "/tickets/")!
     }
     
     public func updateTicket(_ ticket: TicketRecord, completionHandler: @escaping(Result<TicketRecord, Error>) -> Void)-> Void {
