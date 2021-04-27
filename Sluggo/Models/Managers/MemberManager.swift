@@ -9,23 +9,21 @@ import Foundation
 
 class MemberManager {
     private var identity: AppIdentity
-    private var config: Config
     
-    init(_ identity: AppIdentity, _ config: Config) {
+    init(_ identity: AppIdentity) {
         self.identity = identity
-        self.config = config
     }
     
-    private func makeDetailUrl(_ memberRecord: MemberRecord) -> String {
-        return config.getValue(Config.kURL)! + "/api/teams/" + "\(identity.team.id)" + "/members/" + "\(memberRecord.id)/"
+    private func makeDetailUrl(memberRecord: MemberRecord) -> URL {
+        return URL(string: identity.baseAddress + "/api/teams/" + "\(identity.team!.id)" + "/members/" + "\(memberRecord.id)/")!
     }
     
-    private func makeListUrl() -> String {
-        return config.getValue(Config.kURL)! + "/api/teams/" + "\(identity.team.id)" + "/members/"
+    private func makeListUrl() -> URL {
+        return URL(string: identity.baseAddress + "/api/teams/" + "\(identity.team!.id)" + "/members/")!
     }
     
     public func fetchMemberRecord(completionHandler: @escaping(Result<MemberRecord, Error>) -> Void) -> Void {
-        var request = URLRequest(url: URL(string: makeListUrl())!)
+        var request = URLRequest(url: makeListUrl())
         request.httpMethod = "GET"
         request.setValue("Bearer \(self.identity.token)", forHTTPHeaderField: "Authorization")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -34,7 +32,7 @@ class MemberManager {
     }
     
     public func updateMemberRecord(_ memberRecord: MemberRecord, completionHandler: @escaping(Result<MemberRecord, Error>) -> Void) -> Void {
-        var request = URLRequest(url: URL(string: makeDetailUrl(memberRecord))!)
+        var request = URLRequest(url: makeDetailUrl(memberRecord: memberRecord))
         request.httpMethod = "Put"
         
         guard let body = JsonLoader.encode(object: memberRecord) else {
@@ -51,7 +49,7 @@ class MemberManager {
     }
     
     public func listTeamMembers(completionHandler: @escaping(Result<PaginatedList<MemberRecord>, Error>) -> Void) -> Void{
-        var request = URLRequest(url: URL(string: makeListUrl())!)
+        var request = URLRequest(url: makeListUrl())
         request.httpMethod = "GET"
         request.setValue("Bearer \(self.identity.token)", forHTTPHeaderField: "Authorization")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")

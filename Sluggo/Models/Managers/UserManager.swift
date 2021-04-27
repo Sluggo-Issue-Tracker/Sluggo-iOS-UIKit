@@ -8,15 +8,15 @@
 import Foundation
 
 class UserManager {
-    private var config: Config
+    private var identity: AppIdentity
     
-    init(_ config: Config, token: String?) {
-        self.config = config
+    init(identity: AppIdentity) {
+        self.identity = identity
     }
     
     public func doLogin(username: String, password: String, completionHandler: @escaping(Result<TokenRecord, Error>) -> Void) -> Void {
         let params = ["username":username, "password":password] as Dictionary<String, String>
-        var request = URLRequest(url: URL(string: config.getValue(Config.kURL)! + "auth/login/")!)
+        var request = URLRequest(url: URL(string: identity.baseAddress + "auth/login/")!)
         request.httpMethod = "POST"
         guard let body = try? JSONSerialization.data(withJSONObject: params, options: []) else {
             completionHandler(.failure(Exception.runtimeError(message: "Failed to serialize JSON for doLogin in UserManager")))
@@ -28,7 +28,7 @@ class UserManager {
     }
     
     public func doLogout(token: String, completionHandler: @escaping(Result<LogoutMessage, Error>) -> Void) -> Void { // TODO: this is probably incorrect
-        var request = URLRequest(url: URL(string: config.getValue(Config.kURL)! + "auth/logout/")!)
+        var request = URLRequest(url: URL(string: identity.baseAddress + "auth/logout/")!)
         request.httpMethod = "POST"
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
