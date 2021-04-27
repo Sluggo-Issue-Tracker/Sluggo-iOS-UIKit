@@ -110,5 +110,10 @@ class LoginViewController: UIViewController {
         self.persistButton.isSelected.toggle()
         print(self.persistButton.isSelected)
     }
+    
+    @IBSegueAction func createRootViewController(_ coder: NSCoder) -> UIViewController? {
+        return RootViewController(coder: coder, identity: identity)
+    }
+    
 }
 

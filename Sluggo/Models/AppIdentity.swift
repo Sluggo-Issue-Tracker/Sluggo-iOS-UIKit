@@ -32,7 +32,7 @@ class AppIdentity: Codable {
             return nil
         }
         
-        let appIdentity: AppIdentity? = JsonLoader.decode(persistenceFileData)
+        let appIdentity: AppIdentity? = JsonLoader.decode(data: persistenceFileData)
         if(appIdentity == nil) {
             // File exists, but failed to deserialize, so clean it up
             let _ = deletePersistenceFile()
@@ -42,7 +42,7 @@ class AppIdentity: Codable {
     }
     
     func saveToDisk() -> Bool {
-        guard let appIdentityData = JsonLoader.encode(self) else {
+        guard let appIdentityData = JsonLoader.encode(object: self) else {
             print("Failed to encode app identity with JSON, could not persist")
             return false
         }

@@ -19,6 +19,8 @@
 		2FEF5DAE262D1C4900434763 /* MemberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEF5DAD262D1C4900434763 /* MemberTests.swift */; };
 		5A79FFE1262E562A00D04320 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A79FFE0262E562A00D04320 /* Main.storyboard */; };
 		5A79FFE6262E563F00D04320 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A79FFE5262E563F00D04320 /* LoginViewController.swift */; };
+		5A9FF8792637EFE800378550 /* IdentityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9FF8782637EFE800378550 /* IdentityView.swift */; };
+		5A9FF87E2637F03600378550 /* HomeNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9FF87D2637F03600378550 /* HomeNavigationController.swift */; };
 		5AB1C8DD262FE2DD0010F85E /* TeamManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB1C8DC262FE2DD0010F85E /* TeamManager.swift */; };
 		5AB1C8E5262FE2E60010F85E /* TicketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB1C8E4262FE2E60010F85E /* TicketManager.swift */; };
 		5AB1C8EA262FE2EF0010F85E /* MemberManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB1C8E9262FE2EF0010F85E /* MemberManager.swift */; };
@@ -75,6 +77,8 @@
 		2FEF5DAD262D1C4900434763 /* MemberTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberTests.swift; sourceTree = "<group>"; };
 		5A79FFE0262E562A00D04320 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		5A79FFE5262E563F00D04320 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		5A9FF8782637EFE800378550 /* IdentityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityView.swift; sourceTree = "<group>"; };
+		5A9FF87D2637F03600378550 /* HomeNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationController.swift; sourceTree = "<group>"; };
 		5AB1C8DC262FE2DD0010F85E /* TeamManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamManager.swift; sourceTree = "<group>"; };
 		5AB1C8E4262FE2E60010F85E /* TicketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketManager.swift; sourceTree = "<group>"; };
 		5AB1C8E9262FE2EF0010F85E /* MemberManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberManager.swift; sourceTree = "<group>"; };
@@ -248,6 +252,8 @@
 				7D1DA6AD262B82C200E7C12D /* RootViewController.swift */,
 				7DC2A226262948800002CEE6 /* SluggoSidebarContainerViewController.swift */,
 				7DC2A22E26294F9E0002CEE6 /* HomeViewController.swift */,
+				5A9FF8782637EFE800378550 /* IdentityView.swift */,
+				5A9FF87D2637F03600378550 /* HomeNavigationController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -395,6 +401,7 @@
 				051AAB0B2630FD6500BCB9C7 /* Constants.swift in Sources */,
 				2F3F66E2262DD3BA0040404C /* JsonLoader.swift in Sources */,
 				2F2247AC262920AC006C6EE6 /* Token.swift in Sources */,
+				5A9FF87E2637F03600378550 /* HomeNavigationController.swift in Sources */,
 				7D1DA6AE262B82C200E7C12D /* RootViewController.swift in Sources */,
 				5ACC0F012630CA1400DCF83E /* ErrorMessage.swift in Sources */,
 				2F3AD7A32627C86A00B61A97 /* User.swift in Sources */,
@@ -404,6 +411,7 @@
 				5AB1C8F7262FE3520010F85E /* AppIdentity.swift in Sources */,
 				7DC2A22F26294F9E0002CEE6 /* HomeViewController.swift in Sources */,
 				7D9963A6261EF3A4002338E7 /* AppDelegate.swift in Sources */,
+				5A9FF8792637EFE800378550 /* IdentityView.swift in Sources */,
 				5AB1C8EF262FE3210010F85E /* TagManager.swift in Sources */,
 				5AB1C8E5262FE2E60010F85E /* TicketManager.swift in Sources */,
 				7D9963A8261EF3A4002338E7 /* SceneDelegate.swift in Sources */,

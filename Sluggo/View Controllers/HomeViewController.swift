@@ -7,14 +7,33 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, IdentityView {
+    
+    public var identity: AppIdentity
+    
+    required init?(coder: NSCoder, identity: AppIdentity) {
+        self.identity = identity
+        super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("identity must be passed by ctor")
+    }
+    
+    func setIdentity(identity: AppIdentity) {
+        print("is set")
+        self.identity = identity
+    }
+    
     @IBAction func pushDaButton(_ sender: Any) {
         NotificationCenter.default.post(Notification(name: .onSidebarTrigger, userInfo: [Sidebar.USER_INFO_KEY : SidebarStatus.open]))
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print(identity.token!)
+        
+        
         // Do any additional setup after loading the view.
     }
     
