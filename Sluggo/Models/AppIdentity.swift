@@ -25,13 +25,11 @@ class AppIdentity: Codable {
         Constants.Config.kURL: Constants.Config.URL_BASE // enable change if need be
     ]
     
-    init() {
-        print(AppIdentity.persistencePath)
-    }
-    
     private static var persistencePath: URL {
         get {
-            return URL(fileURLWithPath: NSHomeDirectory().appending("/Library/appdata.json"))
+            let path = URL(fileURLWithPath: NSHomeDirectory().appending("/Library/appdata.json"))
+            print(path)
+            return path
         }
     }
     
@@ -41,10 +39,17 @@ class AppIdentity: Codable {
         }
         
         guard let persistenceFileData = persistenceFileContents.data(using: .utf8) else {
+            // File exists but was corrupted, so clean it up
+            let _ = deletePersistenceFile()
             return nil
         }
         
         let appIdentity: AppIdentity? = JsonLoader.decode(persistenceFileData)
+        if(appIdentity == nil) {
+            // File exists, but failed to deserialize, so clean it up
+            let _ = deletePersistenceFile()
+        }
+        
         return appIdentity
     }
     
@@ -69,13 +74,18 @@ class AppIdentity: Codable {
     }
     
     static func deletePersistenceFile() -> Bool {
+        // Succeed if the persistence file doesn't exist. This allows us to clean up a bad file.
+        if !(FileManager.default.fileExists(atPath: self.persistencePath.path)) {
+            print("Attempted to delete persistence file when it doesn't exist, returning")
+            return true
+        }
+        
         do {
             try FileManager.default.removeItem(at: self.persistencePath)
             return true
         } catch {
+            print("FAILED TO CLEAN UP PERSISTENCE FILE")
             return false
         }
     }
-    
-    
 }
