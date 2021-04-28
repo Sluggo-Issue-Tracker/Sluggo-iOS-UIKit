@@ -26,7 +26,7 @@ class MemberManager {
     public func fetchTeamMembers(completionHandler: @escaping(Result<MemberRecord, Error>) -> Void) -> Void {
         
         let requestBuilder = URLRequestBuilder(url: makeListUrl())
-            .setMethod(method: HTTPMethod.GET)
+            .setMethod(method: .GET)
             .setIdentity(identity: identity)
         
         JsonLoader.executeCodableRequest(request: requestBuilder.getRequest(), completionHandler: completionHandler)
@@ -41,7 +41,7 @@ class MemberManager {
 
         let requestBuilder = URLRequestBuilder(url: makeDetailUrl(memberRecord: memberRecord))
             .setData(data: body)
-            .setMethod(method: HTTPMethod.PUT)
+            .setMethod(method: .PUT)
             .setIdentity(identity: identity)
         
         JsonLoader.executeCodableRequest(request: requestBuilder.getRequest(), completionHandler: completionHandler)
@@ -52,7 +52,7 @@ class MemberManager {
         
         let requestBuilder = URLRequestBuilder(url: makeListUrl())
             .setIdentity(identity: identity)
-            .setMethod(method: HTTPMethod.GET)
+            .setMethod(method: .GET)
         
         JsonLoader.executeCodableRequest(request: requestBuilder.getRequest(), completionHandler: completionHandler)
     }

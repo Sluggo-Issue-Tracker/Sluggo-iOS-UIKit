@@ -19,7 +19,7 @@ class TeamManager {
         
         let requestBuilder = URLRequestBuilder(url: URL(string: identity.baseAddress + TeamManager.urlBase)!)
             .setIdentity(identity: identity)
-            .setMethod(method: HTTPMethod.GET)
+            .setMethod(method: .GET)
         
         JsonLoader.executeCodableRequest(request: requestBuilder.getRequest(), completionHandler: completionHandler)
     }

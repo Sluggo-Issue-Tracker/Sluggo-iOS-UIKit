@@ -25,7 +25,7 @@ class TicketManager {
     
     public func listTeamTickets(completionHandler: @escaping (Result<PaginatedList<TicketRecord>, Error>) -> Void) -> Void {
         let requestBuilder = URLRequestBuilder(url: makeListUrl())
-            .setMethod(method: HTTPMethod.GET)
+            .setMethod(method: .GET)
             .setIdentity(identity: self.identity)
         
         JsonLoader.executeCodableRequest(request: requestBuilder.getRequest(), completionHandler: completionHandler)
@@ -38,7 +38,7 @@ class TicketManager {
         }
         
         let requestBuilder = URLRequestBuilder(url: makeDetailUrl(ticket))
-            .setMethod(method: HTTPMethod.PUT)
+            .setMethod(method: .PUT)
             .setData(data: body)
             .setIdentity(identity: self.identity)
 

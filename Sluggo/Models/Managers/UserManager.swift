@@ -24,14 +24,14 @@ class UserManager {
         
         let requestBuilder = URLRequestBuilder(url: URL(string: identity.baseAddress + UserManager.urlBase + "login/")!)
             .setData(data: body)
-            .setMethod(method: HTTPMethod.POST)
+            .setMethod(method: .POST)
 
         JsonLoader.executeCodableRequest(request: requestBuilder.getRequest(), completionHandler: completionHandler)
     }
     
     public func doLogout(completionHandler: @escaping(Result<LogoutMessage, Error>) -> Void) -> Void { // TODO: this is probably incorrect
         let requestBuilder = URLRequestBuilder(url: URL(string: identity.baseAddress + UserManager.urlBase + "logout/")!)
-            .setMethod(method: HTTPMethod.POST)
+            .setMethod(method: .POST)
             .setIdentity(identity: self.identity)
         
         JsonLoader.executeCodableRequest(request: requestBuilder.getRequest(), completionHandler: completionHandler)
