@@ -8,6 +8,7 @@
 import Foundation
 
 class TicketManager {
+    static let urlBase = "/tickets/"
     private var identity: AppIdentity
     
     init(_ identity: AppIdentity) {
@@ -15,11 +16,11 @@ class TicketManager {
     }
     
     private func makeDetailUrl(_ ticketRecord: TicketRecord) -> URL {
-        return URL(string: identity.baseAddress + "api/teams/" + "\(identity.team!.id)" + "/tickets/" + "\(ticketRecord.id)/")!
+        return URL(string: identity.baseAddress + TeamManager.urlBase + "\(identity.team!.id)" + TicketManager.urlBase + "\(ticketRecord.id)/")!
     }
     
     private func makeListUrl() -> URL {
-        return URL(string: identity.baseAddress + "api/teams/" + "\(identity.team!.id)" + "/tickets/")!
+        return URL(string: identity.baseAddress + TeamManager.urlBase + "\(identity.team!.id)" + TicketManager.urlBase)!
     }
     
     public func listTeamTickets(completionHandler: @escaping (Result<PaginatedList<TicketRecord>, Error>) -> Void) -> Void {

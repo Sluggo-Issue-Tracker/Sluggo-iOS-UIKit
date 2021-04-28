@@ -8,6 +8,7 @@
 import Foundation
 
 class MemberManager {
+    static let urlBase = "/members/"
     private var identity: AppIdentity
     
     init(_ identity: AppIdentity) {
@@ -15,17 +16,17 @@ class MemberManager {
     }
     
     private func makeDetailUrl(memberRecord: MemberRecord) -> URL {
-        return URL(string: identity.baseAddress + "/api/teams/" + "\(identity.team!.id)" + "/members/" + "\(memberRecord.id)/")!
+        return URL(string: identity.baseAddress + TeamManager.urlBase + "\(identity.team!.id)" + MemberManager.urlBase + "\(memberRecord.id)/")!
     }
     
     private func makeListUrl() -> URL {
-        return URL(string: identity.baseAddress + "/api/teams/" + "\(identity.team!.id)" + "/members/")!
+        return URL(string: identity.baseAddress + TeamManager.urlBase + "\(identity.team!.id)" + MemberManager.urlBase)!
     }
     
     public func fetchMemberRecord(completionHandler: @escaping(Result<MemberRecord, Error>) -> Void) -> Void {
         var request = URLRequest(url: makeListUrl())
         request.httpMethod = "GET"
-        request.setValue("Bearer \(self.identity.token)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(self.identity.token!)", forHTTPHeaderField: "Authorization")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         JsonLoader.executeCodableRequest(request: request, completionHandler: completionHandler)
@@ -41,7 +42,7 @@ class MemberManager {
         }
         
         request.httpBody = body
-        request.setValue("Bearer \(self.identity.token)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(self.identity.token!)", forHTTPHeaderField: "Authorization")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         JsonLoader.executeCodableRequest(request: request, completionHandler: completionHandler)
@@ -51,7 +52,7 @@ class MemberManager {
     public func listTeamMembers(completionHandler: @escaping(Result<PaginatedList<MemberRecord>, Error>) -> Void) -> Void{
         var request = URLRequest(url: makeListUrl())
         request.httpMethod = "GET"
-        request.setValue("Bearer \(self.identity.token)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(self.identity.token!)", forHTTPHeaderField: "Authorization")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         JsonLoader.executeCodableRequest(request: request, completionHandler: completionHandler)
