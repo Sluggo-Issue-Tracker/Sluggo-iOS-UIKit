@@ -7,22 +7,17 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, IdentityInitialized {
+class HomeViewController: UIViewController {
     
     public var identity: AppIdentity
     
-    required init?(coder: NSCoder, identity: AppIdentity) {
+    init?(coder: NSCoder, identity: AppIdentity) {
         self.identity = identity
         super.init(coder: coder)
     }
     
     required init?(coder: NSCoder) {
         fatalError("identity must be passed by ctor")
-    }
-    
-    func setIdentity(identity: AppIdentity) {
-        print("is set")
-        self.identity = identity
     }
     
     @IBAction func pushDaButton(_ sender: Any) {

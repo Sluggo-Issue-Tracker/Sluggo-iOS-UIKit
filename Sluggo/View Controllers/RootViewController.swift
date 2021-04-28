@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RootViewController: UIViewController, IdentityInitialized {
+class RootViewController: UIViewController {
     private var identity: AppIdentity
     @IBOutlet weak var mainContainerView: UIView! // contains the main app and tab bar controller
     @IBOutlet weak var sidebarContainerView: UIView! // contains the sidebar container view controller

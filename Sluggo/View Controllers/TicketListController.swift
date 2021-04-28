@@ -7,13 +7,13 @@
 
 import UIKit
 
-class TicketListController: UITableViewController, IdentityInitialized {
+class TicketListController: UITableViewController {
 
     
     var identity: AppIdentity
     var tickets: [TicketRecord]
     
-    required init? (coder: NSCoder, identity: AppIdentity) {
+    init? (coder: NSCoder, identity: AppIdentity) {
         self.identity = identity
         self.tickets = []
         super.init(coder: coder)
@@ -21,10 +21,6 @@ class TicketListController: UITableViewController, IdentityInitialized {
     
     required init? (coder: NSCoder) {
         fatalError("must be initialized with identity")
-    }
-    
-    func setIdentity(identity: AppIdentity) {
-        self.identity = identity
     }
     
     override func viewDidAppear(_ animated: Bool) {
