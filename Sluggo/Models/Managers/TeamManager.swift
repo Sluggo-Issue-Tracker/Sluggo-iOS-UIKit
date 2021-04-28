@@ -8,23 +8,19 @@
 import Foundation
 
 class TeamManager {
-    static let urlBase = "/api/teams/"
+    static let urlBase = "api/teams/"
     private var identity: AppIdentity
-    private var config: Config
     
-    
-    init(_ identity: AppIdentity, _ config: Config) {
+    init(identity: AppIdentity) {
         self.identity = identity
-        self.config = config
     }
     
     public func listUserTeams(completionHandler: @escaping(Result<PaginatedList<TeamRecord>, Error>) -> Void) -> Void {
         
-        var request = URLRequest(url: URL(string: config.getValue(Config.kURL)! + TeamManager.urlBase)!)
-        request.httpMethod = "GET"
-        request.setValue("Bearer \(self.identity.token)", forHTTPHeaderField: "Authorization")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        let requestBuilder = URLRequestBuilder(url: URL(string: identity.baseAddress + TeamManager.urlBase)!)
+            .setIdentity(identity: identity)
+            .setMethod(method: .GET)
         
-        JsonLoader.executeCodableRequest(request: request, completionHandler: completionHandler)
+        JsonLoader.executeCodableRequest(request: requestBuilder.getRequest(), completionHandler: completionHandler)
     }
 }

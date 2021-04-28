@@ -8,7 +8,7 @@
 import Foundation
 
 class JsonLoader {
-    static func decode<T: Codable>(_ data: Data) -> T? {
+    static func decode<T: Codable>(data: Data) -> T? {
         // Attempt decoding
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
@@ -21,7 +21,7 @@ class JsonLoader {
         return pagRec
     }
     
-    static func encode<T: Codable>(_ data: T) -> Data? {
+    static func encode<T: Codable>(object data: T) -> Data? {
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
         encoder.outputFormatting = .prettyPrinted
@@ -49,7 +49,7 @@ class JsonLoader {
             let resp = response as! HTTPURLResponse
             if (resp.statusCode <= 299 && resp.statusCode >= 200) {
                 if let fetchedData = data {
-                    guard let record: T = JsonLoader.decode(fetchedData) else {
+                    guard let record: T = JsonLoader.decode(data: fetchedData) else {
                         completionHandler(.failure(RESTException.failedRequest(message: "Failure to decode retrieved model in JsonLoader Codable Request")))
                         return;
                     }
