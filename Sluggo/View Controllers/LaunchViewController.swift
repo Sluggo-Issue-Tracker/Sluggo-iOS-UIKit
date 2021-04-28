@@ -31,13 +31,13 @@ class LaunchViewController: UIViewController {
         if(remember) {
             // Call login function from remembered. If failed go to login
         } else {
-            sleep(1)
+//            sleep(1)
             self.performSegue(withIdentifier: "showLogin", sender: self)
         }
     }
     
     func continueLogin() {
-        sleep(3)
+//        sleep(3)
         self.performSegue(withIdentifier: "automaticLogin", sender: self)
     }
     
