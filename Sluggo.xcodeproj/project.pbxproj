@@ -43,6 +43,7 @@
 		7DC2A2222629447D0002CEE6 /* SluggoSidebarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC2A2212629447D0002CEE6 /* SluggoSidebarTableViewController.swift */; };
 		7DC2A227262948800002CEE6 /* SluggoSidebarContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC2A226262948800002CEE6 /* SluggoSidebarContainerViewController.swift */; };
 		7DC2A22F26294F9E0002CEE6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC2A22E26294F9E0002CEE6 /* HomeViewController.swift */; };
+		7DEA17852639E7B5004E5A71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DEA17842639E7B5004E5A71 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +106,7 @@
 		7DC2A2212629447D0002CEE6 /* SluggoSidebarTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SluggoSidebarTableViewController.swift; sourceTree = "<group>"; };
 		7DC2A226262948800002CEE6 /* SluggoSidebarContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SluggoSidebarContainerViewController.swift; sourceTree = "<group>"; };
 		7DC2A22E26294F9E0002CEE6 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		7DEA17842639E7B5004E5A71 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +236,7 @@
 				7DC2A21626293F360002CEE6 /* Home.storyboard */,
 				7DC2A21B262943A70002CEE6 /* Sidebar.storyboard */,
 				5A9FF88826386D1400378550 /* Ticket.storyboard */,
+				7DEA17842639E7B5004E5A71 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				5A9FF88926386D1400378550 /* Ticket.storyboard in Resources */,
 				5A79FFE1262E562A00D04320 /* Main.storyboard in Resources */,
 				7D9963AD261EF3A4002338E7 /* Root.storyboard in Resources */,
+				7DEA17852639E7B5004E5A71 /* LaunchScreen.storyboard in Resources */,
 				7DC2A21726293F360002CEE6 /* Home.storyboard in Resources */,
 				7DC2A21C262943A70002CEE6 /* Sidebar.storyboard in Resources */,
 			);
