@@ -8,7 +8,7 @@
 import Foundation
 
 class TeamManager {
-    static let urlBase = "/api/teams/"
+    static let urlBase = "api/teams/"
     private var identity: AppIdentity
     
     init(identity: AppIdentity) {
@@ -17,11 +17,10 @@ class TeamManager {
     
     public func listUserTeams(completionHandler: @escaping(Result<PaginatedList<TeamRecord>, Error>) -> Void) -> Void {
         
-        var request = URLRequest(url: URL(string: identity.baseAddress + TeamManager.urlBase)!)
-        request.httpMethod = "GET"
-        request.setValue("Bearer \(self.identity.token)", forHTTPHeaderField: "Authorization")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        let requestBuilder = URLRequestBuilder(url: URL(string: identity.baseAddress + TeamManager.urlBase)!)
+            .setIdentity(identity: identity)
+            .setMethod(method: .GET)
         
-        JsonLoader.executeCodableRequest(request: request, completionHandler: completionHandler)
+        JsonLoader.executeCodableRequest(request: requestBuilder.getRequest(), completionHandler: completionHandler)
     }
 }

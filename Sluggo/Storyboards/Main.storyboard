@@ -11,7 +11,7 @@
         <!--Launch View Controller-->
         <scene sceneID="r4n-7D-ukw">
             <objects>
-                <viewController id="Mda-Hn-Fdu" customClass="LaunchViewController" customModule="Sluggo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="launchView" id="Mda-Hn-Fdu" customClass="LaunchViewController" customModule="Sluggo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xnD-tR-gF6">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -31,8 +31,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <segue destination="B6h-dE-6xD" kind="presentation" identifier="showLogin" id="CkF-k3-c1g"/>
-                        <segue destination="ddb-Nb-yWn" kind="presentation" identifier="automaticLogin" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="HqJ-zn-R2P"/>
+                        <segue destination="B6h-dE-6xD" kind="presentation" identifier="showLogin" destinationCreationSelector="createLogin:" id="CkF-k3-c1g"/>
+                        <segue destination="ddb-Nb-yWn" kind="presentation" identifier="automaticLogin" destinationCreationSelector="createRoot:" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="HqJ-zn-R2P"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w7i-PR-yA2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -42,7 +42,7 @@
         <!--Login View Controller-->
         <scene sceneID="hi3-2l-oZJ">
             <objects>
-                <viewController id="B6h-dE-6xD" customClass="LoginViewController" customModule="Sluggo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginPage" id="B6h-dE-6xD" customClass="LoginViewController" customModule="Sluggo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BhZ-IL-Pgj">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -154,7 +154,7 @@
                         <outlet property="password" destination="Opk-bu-JV2" id="Z9O-7o-H31"/>
                         <outlet property="persistButton" destination="xnf-s2-OUV" id="pzy-hN-xOj"/>
                         <outlet property="username" destination="OTS-ni-ZHA" id="194-15-Cez"/>
-                        <segue destination="ddb-Nb-yWn" kind="presentation" identifier="loginToRoot" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="vG5-ph-4p6"/>
+                        <segue destination="ddb-Nb-yWn" kind="presentation" identifier="loginToRoot" destinationCreationSelector="createRootViewController:" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="vG5-ph-4p6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kpn-RQ-AOr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -178,7 +178,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="vG5-ph-4p6"/>
+        <segue reference="HqJ-zn-R2P"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="checkmark.square" catalog="system" width="128" height="114"/>

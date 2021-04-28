@@ -19,25 +19,22 @@ class LoginViewController: UIViewController {
     // segues and otherwise.
     
     // Attempt to load from disk, otherwise, use the new one.
-    let identity = AppIdentity.loadFromDisk() ?? AppIdentity()
+    var identity: AppIdentity
     
-    convenience init() {
-        self.init(nibName:nil, bundle:nil)
+    init? (coder: NSCoder, identity: AppIdentity) {
+        self.identity = identity
+        super.init(coder: coder)
     }
-
-    // This extends the superclass.
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-
+    
     // This is also necessary when extending the superclass.
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        fatalError("must be created with identity")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.isModalInPresentation = true
+        
         // only enable persistence button if the token is nil (that is, we didn't load an AppIdentity)
         self.persistButton.isEnabled = (self.identity.token == nil)
         self.loginButton.isEnabled = (self.identity.token == nil)
@@ -109,6 +106,10 @@ class LoginViewController: UIViewController {
     @IBAction func persistLoginButton(_ sender: Any) {
         self.persistButton.isSelected.toggle()
         print(self.persistButton.isSelected)
+    }
+    
+    @IBSegueAction func createRootViewController(_ coder: NSCoder) -> UIViewController? {
+        return RootViewController(coder: coder, identity: identity)
     }
 }
 
