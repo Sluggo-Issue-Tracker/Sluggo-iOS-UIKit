@@ -33,8 +33,8 @@ class TicketListController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Ticket", for: indexPath) as! TicketTableViewCell
-        cell.titleLabel.text = tickets[indexPath.row].title
-        cell.assignedLabel.text = tickets[indexPath.row].assigned_user?.owner.email
+//        cell.titleLabel.text = tickets[indexPath.row].title.capitalized
+//        cell.assignedLabel.text = tickets[indexPath.row].assigned_user?.owner.email
         return cell
     }
     
