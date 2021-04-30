@@ -34,7 +34,6 @@ extension UIColor {
             }
         }
 
-        print("failed!")
         return nil
     }
 }

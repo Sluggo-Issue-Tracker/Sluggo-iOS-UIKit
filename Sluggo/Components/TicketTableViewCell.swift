@@ -30,7 +30,9 @@ class TicketTableViewCell: UITableViewCell {
         }
         
         if let color = ticket.status?.color {
-            containerView.backgroundColor = UIColor(hex: color.lowercased()) ?? containerView.backgroundColor
+            containerView.backgroundColor = UIColor(hex: color.lowercased())
+        } else {
+            containerView.backgroundColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
         }
     }
 }

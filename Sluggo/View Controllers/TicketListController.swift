@@ -55,7 +55,7 @@ class TicketListController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Ticket", for: indexPath) as! TicketTableViewCell
         cell.loadFromTicketRecord(ticket: tickets[indexPath.row])
         
-        if (indexPath.row == tickets.count - 1 && tickets.count < maxNumber) {
+        if (indexPath.row == tickets.count - 1 && tickets.count < maxNumber && !isFetching) {
             DispatchQueue.main.async {
                 self.loadData(page: ((indexPath.row + 1) / self.identity.pageSize) + 1)
             }
@@ -67,14 +67,17 @@ class TicketListController: UITableViewController {
     // MARK: API calls
     private func loadData(page: Int) {
         let ticketManager = TicketManager(identity)
+        isFetching = true
         ticketManager.listTeamTickets(page: page) { result in
             switch(result) {
             case .success(let record):
                 self.tickets += record.results
                 self.maxNumber = record.count
+                
                 DispatchQueue.main.async {
-                    self.tableView.reloadData()
                     self.refreshControl?.endRefreshing()
+                    self.tableView.reloadData()
+                    self.isFetching = false
                 }
                 break;
             case .failure(let error):
