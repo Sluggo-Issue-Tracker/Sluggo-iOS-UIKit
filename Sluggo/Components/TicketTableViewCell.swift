@@ -13,12 +13,6 @@ class TicketTableViewCell: UITableViewCell {
             containerView.layer.cornerRadius = 5
         }
     }
-    
-    @IBOutlet var ticketStatus: UIView! {
-        didSet {
-            ticketStatus.layer.cornerRadius = 5
-        }
-    }
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var assignedLabel: UILabel!
     
@@ -33,6 +27,10 @@ class TicketTableViewCell: UITableViewCell {
             assignedLabel.text = formatter.string(from: date)
         } else {
             assignedLabel.text = ""
+        }
+        
+        if let color = ticket.status?.color {
+            containerView.backgroundColor = UIColor(hex: color) ?? containerView.backgroundColor
         }
     }
 }
