@@ -12,6 +12,7 @@ class AppIdentity: Codable {
     var team: TeamRecord?
     var token: String?
     var baseAddress: String = Constants.Config.URL_BASE
+    var pageSize = 10
     
     private static var persistencePath: URL {
         get {

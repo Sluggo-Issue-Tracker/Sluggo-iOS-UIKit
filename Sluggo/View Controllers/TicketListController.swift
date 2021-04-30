@@ -9,13 +9,13 @@ import UIKit
 
 class TicketListController: UITableViewController {
 
-    
     var identity: AppIdentity
-    var tickets: [TicketRecord]
+    var maxNumber: Int = 0
+    var tickets: [TicketRecord] = []
+    var isFetching: Bool = false
     
     init? (coder: NSCoder, identity: AppIdentity) {
         self.identity = identity
-        self.tickets = []
         super.init(coder: coder)
     }
     
@@ -23,8 +23,28 @@ class TicketListController: UITableViewController {
         fatalError("must be initialized with identity")
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        loadData()
+    // MARK: initial actions
+    override func viewDidLoad() {
+        configureRefreshControl()
+        loadData(page: 1)
+    }
+    
+    func configureRefreshControl() {
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(handleRefreshAction), for: .valueChanged)
+    }
+    
+    @objc func handleRefreshAction() {
+        tickets = []
+        self.loadData(page: 1)
+    }
+
+    
+    // MARK: Table view stuff
+    
+    // @stephan this is probably where you'll spawn the detail views once you get going on that.
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("selected row!")
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -32,20 +52,32 @@ class TicketListController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Ticket", for: indexPath)
-        cell.textLabel?.text = tickets[indexPath.row].title
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Ticket", for: indexPath) as! TicketTableViewCell
+        cell.loadFromTicketRecord(ticket: tickets[indexPath.row])
+        
+        if (indexPath.row == tickets.count - 1 && tickets.count < maxNumber && !isFetching) {
+            DispatchQueue.main.async {
+                self.loadData(page: ((indexPath.row + 1) / self.identity.pageSize) + 1)
+            }
+        }
+        
         return cell
     }
     
-    private func loadData() {
+    // MARK: API calls
+    private func loadData(page: Int) {
         let ticketManager = TicketManager(identity)
-        ticketManager.listTeamTickets() { result in
+        isFetching = true
+        ticketManager.listTeamTickets(page: page) { result in
             switch(result) {
             case .success(let record):
-                print("Successful login and retrieved tickets")
-                self.tickets = record.results
+                self.tickets += record.results
+                self.maxNumber = record.count
+                
                 DispatchQueue.main.async {
+                    self.refreshControl?.endRefreshing()
                     self.tableView.reloadData()
+                    self.isFetching = false
                 }
                 break;
             case .failure(let error):
