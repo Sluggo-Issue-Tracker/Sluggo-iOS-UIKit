@@ -14,9 +14,12 @@ extension UIColor {
     public convenience init?(hex: String) {
         let r, g, b, a: CGFloat
 
-        if hex.hasPrefix("#") {
-            let start = hex.index(hex.startIndex, offsetBy: 1)
-            let hexColor = String(hex[start...])
+        // TODO: this is hacky, backend needs to fix this
+        let hexNew = hex + "ff"
+        
+        if hexNew.hasPrefix("#") {
+            let start = hexNew.index(hexNew.startIndex, offsetBy: 1)
+            let hexColor = String(hexNew[start...])
 
             if hexColor.count == 8 {
                 let scanner = Scanner(string: hexColor)
@@ -34,6 +37,7 @@ extension UIColor {
             }
         }
 
+        print("failed!")
         return nil
     }
 }
