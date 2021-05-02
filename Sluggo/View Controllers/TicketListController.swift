@@ -27,6 +27,7 @@ class TicketListController: UITableViewController {
     override func viewDidLoad() {
         configureRefreshControl()
         loadData(page: 1)
+        navigationItem.rightBarButtonItem = UIBarButtonItem( barButtonSystemItem: .add, target: self, action: #selector(connectPopUp))
     }
     
     func configureRefreshControl() {
@@ -44,8 +45,35 @@ class TicketListController: UITableViewController {
     
     // @stephan this is probably where you'll spawn the detail views once you get going on that.
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("selected row!")
+//        print("selected row!")
+//        print(tickets[indexPath.row])
+        //self.performSegue(withIdentifier: "TicketDetailSegue", sender: tickets[indexPath.row])
+        let identity = self.identity
+        if let vc = storyboard?.instantiateViewController(identifier: "TicketDetail", creator:{ coder in
+            return TicketDetailViewController(coder: coder, identity: identity)
+        }) {
+            print("Just in case")
+            vc.ticket = tickets[indexPath.row]
+            vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+            
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
+    
+    @objc func connectPopUp() {
+        //self.performSegue(withIdentifier: "TicketDetailSegue", sender: self)
+    }
+    
+//    @IBSegueAction func passToDetail(_ coder: NSCoder, sender: Any?) -> TicketDetailViewController? {
+//        print ("Sender Stuff: /n")
+//        print(sender)
+//        print("Type is")
+//        print(sender is UITableViewCell)
+//        if(sender is UITableViewCell){
+//
+//        }
+//        return TicketDetailViewController(coder: coder, identity: identity, ticket: nil)
+//    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.tickets.count
@@ -88,4 +116,5 @@ class TicketListController: UITableViewController {
             }
         }
     }
+    
 }

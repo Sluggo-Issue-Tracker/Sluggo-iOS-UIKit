@@ -32,7 +32,21 @@ class TicketManager {
         JsonLoader.executeCodableRequest(request: requestBuilder.getRequest(), completionHandler: completionHandler)
     }
     
-    public func updateTicket(_ ticket: TicketRecord, completionHandler: @escaping(Result<TicketRecord, Error>) -> Void)-> Void {
+    public func makeTicket(ticket: TicketRecord, completionHandler: @escaping(Result<TicketRecord, Error>) -> Void)->Void{
+        guard let body = JsonLoader.encode(object: ticket) else {
+            completionHandler(.failure(Exception.runtimeError(message: "Failed to serialize ticket JSON for makeTicket in TicketManager")))
+            return
+        }
+        
+        let requestBuilder = URLRequestBuilder(url: makeListUrl(page: 1))
+            .setMethod(method: .POST)
+            .setData(data: body)
+            .setIdentity(identity: self.identity)
+        
+        JsonLoader.executeCodableRequest(request: requestBuilder.getRequest(), completionHandler: completionHandler)
+    }
+    
+    public func updateTicket(ticket: TicketRecord, completionHandler: @escaping(Result<TicketRecord, Error>) -> Void)-> Void {
         guard let body = JsonLoader.encode(object: ticket) else {
             completionHandler(.failure(Exception.runtimeError(message: "Failed to serialize ticket JSON for updateTicket in TicketManager")))
             return
