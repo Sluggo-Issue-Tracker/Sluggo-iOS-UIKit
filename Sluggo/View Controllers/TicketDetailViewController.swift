@@ -31,7 +31,19 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+//        let memberManager = MemberManager(identity: identity)
+//        memberManager.fetchTeamMembers(){ result in
+//            switch(result){
+//            case .success(let record):
+//                print (record)
+//
+//            case .failure(let error):
+//                DispatchQueue.main.async {
+//                    let alert = UIAlertController.errorController(error: error)
+//                    self.present(alert, animated: true, completion: nil)
+//                }
+//            }
+//        }
         NotificationCenter.default.addObserver(self, selector: #selector(changeLabel), name: .changeAssignedUser, object: nil)
         
         ticketDescription.delegate = self

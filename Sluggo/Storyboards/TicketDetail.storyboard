@@ -127,7 +127,7 @@
                                 <rect key="frame" x="50" y="294" width="314" height="318"/>
                                 <subviews>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2c1-J0-NNm">
-                                        <rect key="frame" x="0.0" y="0.0" width="314" height="216"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="216"/>
                                     </pickerView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rue-i6-kHE">
                                         <rect key="frame" x="0.0" y="254" width="100" height="50"/>

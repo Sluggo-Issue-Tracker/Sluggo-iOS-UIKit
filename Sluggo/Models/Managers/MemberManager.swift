@@ -11,7 +11,7 @@ class MemberManager {
     static let urlBase = "/members/"
     private var identity: AppIdentity
     
-    init(_ identity: AppIdentity) {
+    init(identity: AppIdentity) {
         self.identity = identity
     }
     
