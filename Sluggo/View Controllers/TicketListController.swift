@@ -45,23 +45,39 @@ class TicketListController: UITableViewController {
     
     // @stephan this is probably where you'll spawn the detail views once you get going on that.
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        print("selected row!")
-//        print(tickets[indexPath.row])
-        //self.performSegue(withIdentifier: "TicketDetailSegue", sender: tickets[indexPath.row])
+
         let identity = self.identity
-        if let vc = storyboard?.instantiateViewController(identifier: "TicketDetail", creator:{ coder in
+        let detailStoryboard = UIStoryboard(name: "TicketDetail", bundle: nil)
+        if let vc = detailStoryboard.instantiateViewController(identifier: "TicketDetail", creator:{ coder in
             return TicketDetailViewController(coder: coder, identity: identity)
-        }) {
-            print("Just in case")
+        }) as TicketDetailViewController? {
             vc.ticket = tickets[indexPath.row]
-            vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
             
-            navigationController?.pushViewController(vc, animated: true)
+            self.present(vc, animated: true, completion: nil)
         }
+        
+        
+        
+//        let tempStory = UIStoryboard(name: "TicketDetail", bundle: nil)
+//        let vc = tempStory.instantiateViewController(identifier: "TicketDetail", creator: { coder in
+//            return TicketDetailViewController(coder: coder, identity: self.identity)
+//        })
+//
+//        vc.ticket = tickets[indexPath.row]
+//
+//        self.present(vc, animated: true, completion: nil)
+        
     }
     
     @objc func connectPopUp() {
-        //self.performSegue(withIdentifier: "TicketDetailSegue", sender: self)
+        let identity = self.identity
+        let detailStoryboard = UIStoryboard(name: "TicketDetail", bundle: nil)
+        if let vc = detailStoryboard.instantiateViewController(identifier: "TicketDetail", creator:{ coder in
+            return TicketDetailViewController(coder: coder, identity: identity)
+        }) as TicketDetailViewController? {
+            vc.ticket = nil
+            self.present(vc, animated: true, completion: nil)
+        }
     }
     
 //    @IBSegueAction func passToDetail(_ coder: NSCoder, sender: Any?) -> TicketDetailViewController? {

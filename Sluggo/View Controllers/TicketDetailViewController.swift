@@ -7,12 +7,18 @@
 
 import UIKit
 
+var teamMembers: [String] = ["No Assigned User", "User1", "User2", "User3", "User4"]
+var currentMember: String = "No Assigned User"
+
 class TicketDetailViewController: UIViewController, UITextViewDelegate {
     
-    public var identity: AppIdentity
-    public var ticket: TicketRecord?
+    @IBOutlet weak var ticketTitle: UITextField!
+    @IBOutlet weak var ticketDescription: UITextView!
+    @IBOutlet weak var currentAssignedUserLabel: UILabel!
+    
+    var identity: AppIdentity
+    var ticket: TicketRecord?
     let stackView = UIStackView()
-    var ticketDescription = UITextView()
     
     init? (coder: NSCoder, identity: AppIdentity) {
         self.identity = identity
@@ -26,59 +32,28 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        stackView.axis = .vertical
-        stackView.spacing = 5
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        let LightGrayColor = UIColor(displayP3Red: 12, green: 12, blue: 12, alpha: 1)
-        
-        view.backgroundColor = .white
-        let ticketTitle = UITextField()
-        // title.translatesAutoresizingMaskIntoConstraints = false
-        ticketTitle.borderStyle = .roundedRect
-        ticketTitle.contentHorizontalAlignment = .center
-        ticketTitle.contentVerticalAlignment = .top
-        ticketTitle.textAlignment = .center
-        ticketTitle.font = UIFont.systemFont(ofSize: 30, weight: .bold)
-        ticketTitle.borderStyle = .bezel
-        ticketTitle.backgroundColor = LightGrayColor
-        ticketTitle.adjustsFontSizeToFitWidth = true
-        ticketTitle.placeholder = "Title of Ticket"
+        NotificationCenter.default.addObserver(self, selector: #selector(changeLabel), name: .changeAssignedUser, object: nil)
         
         ticketDescription.delegate = self
-        ticketDescription.textAlignment = .center
-        ticketDescription.font = UIFont.systemFont(ofSize: 20)
-        
-        // This is placeholder text, make sure to account for it when accepting submissions
-        ticketDescription.textColor = .lightGray
-        ticketDescription.text = "Description of Ticket"
-        // Real text should be in black textColor, not lightGray. Use that to determine submissions
-        
-        
-        
-        //view.addSubview(testLabel)
-        
-        stackView.addArrangedSubview(ticketTitle)
-        stackView.addArrangedSubview(ticketDescription)
-        
-        stackView.backgroundColor = .white
-        view.addSubview(stackView)
-        stackView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-        stackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        stackView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-        
-        
-        //stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        // stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        //stackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7).isActive = true
-        //stackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.45).isActive = true
-
-
-
-        
-        
+        if(ticket != nil){
+            ticketTitle.text = ticket?.title
+            ticketDescription.text = ticket?.description
+            if(ticket?.assigned_user != nil){
+                currentAssignedUserLabel.text = ticket?.assigned_user?.owner.username
+            }
+            
+        }
+        else{
+            ticketDescription.text = "Description of ticket"
+            ticketDescription.textColor = .lightGray
+        }
         
     }
+    
+    @objc func changeLabel(_notification: Notification){
+        currentAssignedUserLabel.text = currentMember
+    }
+    
     // MARK: Placeholder text for description
     // Whoever decided to not code placeholder text for UITextView deserves to be beaten
     func textViewDidBeginEditing (_ textView: UITextView) {
@@ -87,14 +62,66 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate {
             ticketDescription.textColor = .black
         }
     }
-    
+
     func textViewDidEndEditing (_ textView: UITextView) {
         if ticketDescription.text.isEmpty || ticketDescription.text == "" {
             ticketDescription.textColor = .lightGray
             ticketDescription.text = "Description of Ticket"
         }
     }
-    
 }
 
+//MARK: PopupController manager
+
+class PopupVC: UIViewController {
+
+    @IBOutlet weak var assignedUsersPicker: UIPickerView!
+    @IBOutlet weak var pickerViewController: UIPickerView!
+    
+    override func viewDidLoad(){
+        super.viewDidLoad()
+        
+        currentMember = "No Assigned User"  // This was done because pickerView is weird, thus this needs to be forced.
+        
+        pickerViewController.dataSource = self
+        pickerViewController.delegate = self
+    }
+    
+    // Buttons in popup, submit button passes notification to trigger change in assignedUserLabel
+    @IBAction func dismissPopup(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    @IBAction func submitButton(_ sender: Any) {
+        NotificationCenter.default.post(name: .changeAssignedUser, object:self)
+        dismiss(animated: true, completion: nil)
+    }
+}
+
+
+//MARK: UIPickerView manager
+
+extension PopupVC: UIPickerViewDelegate, UIPickerViewDataSource {
+
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return teamMembers.count
+    }
+
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        //print(teamMembers[row])
+        //currentMember = teamMembers[row]
+        return teamMembers[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        currentMember = teamMembers[row]
+    }
+}
+
+extension Notification.Name {
+    static let changeAssignedUser = Notification.Name(rawValue: "changeAssignedUserNotification")
+}
 
