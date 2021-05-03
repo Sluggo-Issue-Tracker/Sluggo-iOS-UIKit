@@ -31,7 +31,7 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let memberManager = MemberManager(identity: identity)
+//        let memberManager = MemberManager(identity: self.identity)
 //        memberManager.fetchTeamMembers(){ result in
 //            switch(result){
 //            case .success(let record):
