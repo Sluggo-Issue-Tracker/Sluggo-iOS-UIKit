@@ -7,7 +7,7 @@
 
 import UIKit
 
-var teamMembers: [String] = ["No Assigned User", "User1", "User2", "User3", "User4"]
+var teamMembers: [String] = ["No Assigned User"]
 var currentMember: String = "No Assigned User"
 
 class TicketDetailViewController: UIViewController, UITextViewDelegate {
@@ -18,7 +18,6 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate {
     
     var identity: AppIdentity
     var ticket: TicketRecord?
-    let stackView = UIStackView()
     
     init? (coder: NSCoder, identity: AppIdentity) {
         self.identity = identity
@@ -31,19 +30,23 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let memberManager = MemberManager(identity: self.identity)
-//        memberManager.fetchTeamMembers(){ result in
-//            switch(result){
-//            case .success(let record):
-//                print (record)
-//
-//            case .failure(let error):
-//                DispatchQueue.main.async {
-//                    let alert = UIAlertController.errorController(error: error)
-//                    self.present(alert, animated: true, completion: nil)
-//                }
-//            }
-//        }
+        let memberManager = MemberManager(identity: self.identity)
+        memberManager.listTeamMembers(){ result in
+            switch(result){
+            case .success(let record):
+                teamMembers = ["No Assigned User"]
+                for user in record.results{
+                    teamMembers.append(user.owner.username)
+                }
+                // print (record)
+
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    let alert = UIAlertController.errorController(error: error)
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+        }
         NotificationCenter.default.addObserver(self, selector: #selector(changeLabel), name: .changeAssignedUser, object: nil)
         
         ticketDescription.delegate = self
@@ -66,8 +69,41 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate {
         currentAssignedUserLabel.text = currentMember
     }
     
+//    func createDatePicker() {
+//        // create toolbar
+//        let toolbar = UIToolbar()
+//        toolbar.sizeToFit()
+//        toolbar.translatesAutoresizingMaskIntoConstraints = false
+//
+//        // create bar button
+//        //let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneDatePressed))
+//        //toolbar.setItems([doneButton], animated: true)
+//        //assign toolbar
+//        dueDateTextField.inputAccessoryView = toolbar
+//
+//        // assign date picker to text field
+//        dueDateTextField.inputView = datePicker
+//
+//        // date picker date only mode
+//        datePicker.datePickerMode = .date
+//
+//    }
+//
+//
+//    @objc func doneDatePressed(){
+//        // date formatter
+//        let formatter = DateFormatter()
+//        formatter.dateStyle = .medium
+//        formatter.timeStyle = .none
+//
+//
+//        dueDateTextField.text = formatter.string(from: datePicker.date)
+//        self.view.endEditing(true)
+//    }
+//
+    
     // MARK: Placeholder text for description
-    // Whoever decided to not code placeholder text for UITextView deserves to be beaten
+    // Whoever decided to  code UITextView deserves to be beaten
     func textViewDidBeginEditing (_ textView: UITextView) {
         if ticketDescription.textColor == .lightGray{
             ticketDescription.text = nil

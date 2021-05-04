@@ -23,15 +23,6 @@ class MemberManager {
         return URL(string: identity.baseAddress + TeamManager.urlBase + "\(identity.team!.id)" + MemberManager.urlBase)!
     }
     
-    public func fetchTeamMembers(completionHandler: @escaping(Result<MemberRecord, Error>) -> Void) -> Void {
-        
-        let requestBuilder = URLRequestBuilder(url: makeListUrl())
-            .setMethod(method: .GET)
-            .setIdentity(identity: identity)
-        
-        JsonLoader.executeCodableRequest(request: requestBuilder.getRequest(), completionHandler: completionHandler)
-    }
-    
     public func updateMemberRecord(_ memberRecord: MemberRecord, completionHandler: @escaping(Result<MemberRecord, Error>) -> Void) -> Void {
         
         guard let body = JsonLoader.encode(object: memberRecord) else {

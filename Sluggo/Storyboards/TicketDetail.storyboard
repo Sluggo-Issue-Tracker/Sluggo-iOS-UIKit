@@ -13,7 +13,7 @@
         <scene sceneID="d7P-a4-Y7S">
             <objects>
                 <viewController storyboardIdentifier="TicketDetail" id="v6O-wt-Sh7" customClass="TicketDetailViewController" customModule="Sluggo" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="G4G-Dw-MFq">
+                    <view key="view" contentMode="scaleToFill" id="G4G-Dw-MFq" customClass="UIScrollView">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -72,7 +72,7 @@
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Assigned User:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vxw-ZB-vHe">
                                 <rect key="frame" x="16" y="250.5" width="130" height="40"/>
-                                <color key="backgroundColor" systemColor="tertiaryLabelColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="PCj-vv-zP7"/>
                                     <constraint firstAttribute="width" constant="130" id="qNL-iF-PJF"/>
@@ -81,10 +81,27 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due Date: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2db-lg-nyB">
+                                <rect key="frame" x="16" y="306.5" width="84.5" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="FbZ-WY-V4l"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="Zuk-4d-CN5">
+                                <rect key="frame" x="117" y="307" width="281" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="dvY-Vj-9XH"/>
+                                </constraints>
+                            </datePicker>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="82h-np-WKU"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="2db-lg-nyB" firstAttribute="top" secondItem="Vxw-ZB-vHe" secondAttribute="bottom" constant="16" id="1Fh-DH-dZI"/>
                             <constraint firstItem="LZK-hv-dAH" firstAttribute="leading" secondItem="82h-np-WKU" secondAttribute="leading" constant="16" id="4S5-Wv-btE"/>
                             <constraint firstItem="Ktc-OX-Cgm" firstAttribute="top" secondItem="Cfz-FS-H8Z" secondAttribute="bottom" constant="20" id="5Oo-96-31V"/>
                             <constraint firstItem="LZK-hv-dAH" firstAttribute="top" secondItem="82h-np-WKU" secondAttribute="top" constant="30" id="7bu-xN-GAl"/>
@@ -94,11 +111,15 @@
                             <constraint firstItem="LH4-ba-KJz" firstAttribute="leading" secondItem="82h-np-WKU" secondAttribute="leading" constant="16" id="PfN-JK-yDR"/>
                             <constraint firstItem="IZs-dg-efM" firstAttribute="top" secondItem="Cfz-FS-H8Z" secondAttribute="bottom" constant="20" id="QD3-Ye-eij"/>
                             <constraint firstItem="82h-np-WKU" firstAttribute="trailing" secondItem="LH4-ba-KJz" secondAttribute="trailing" constant="16" id="SJ1-L5-D5g"/>
+                            <constraint firstItem="Zuk-4d-CN5" firstAttribute="leading" secondItem="2db-lg-nyB" secondAttribute="trailing" constant="16" id="Ser-0P-qhT"/>
                             <constraint firstItem="NdD-gU-pli" firstAttribute="leading" secondItem="82h-np-WKU" secondAttribute="leading" constant="16" id="Sn8-Fg-0nM"/>
                             <constraint firstItem="82h-np-WKU" firstAttribute="trailing" secondItem="Cfz-FS-H8Z" secondAttribute="trailing" constant="16" id="TNH-sS-W6H"/>
                             <constraint firstItem="LH4-ba-KJz" firstAttribute="top" secondItem="NdD-gU-pli" secondAttribute="bottom" id="Vek-dh-0Tx"/>
+                            <constraint firstItem="Zuk-4d-CN5" firstAttribute="top" secondItem="Ktc-OX-Cgm" secondAttribute="bottom" constant="16" id="VmY-bc-QBM"/>
                             <constraint firstItem="IZs-dg-efM" firstAttribute="leading" secondItem="Ktc-OX-Cgm" secondAttribute="trailing" constant="5" id="VuC-KX-FXf"/>
+                            <constraint firstItem="2db-lg-nyB" firstAttribute="leading" secondItem="82h-np-WKU" secondAttribute="leading" constant="16" id="bc1-Iw-pDB"/>
                             <constraint firstItem="Cfz-FS-H8Z" firstAttribute="leading" secondItem="82h-np-WKU" secondAttribute="leading" constant="16" id="eFh-aH-0Ju"/>
+                            <constraint firstItem="82h-np-WKU" firstAttribute="trailing" secondItem="Zuk-4d-CN5" secondAttribute="trailing" constant="16" id="fZY-aF-oVC"/>
                             <constraint firstItem="Vxw-ZB-vHe" firstAttribute="top" secondItem="Cfz-FS-H8Z" secondAttribute="bottom" constant="20" id="kSk-HW-igt"/>
                             <constraint firstItem="82h-np-WKU" firstAttribute="trailing" secondItem="IZs-dg-efM" secondAttribute="trailing" constant="16" id="qpN-FC-80z"/>
                             <constraint firstItem="82h-np-WKU" firstAttribute="trailing" secondItem="NdD-gU-pli" secondAttribute="trailing" constant="16" id="re5-mH-CNH"/>
@@ -189,7 +210,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a5d-Mo-tV9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1390" y="474"/>
+            <point key="canvasLocation" x="1420" y="477"/>
         </scene>
     </scenes>
     <resources>
@@ -204,9 +225,6 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="tertiaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
