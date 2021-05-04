@@ -51,6 +51,18 @@ class HomeTableViewController: UITableViewController {
 
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let _ = self.tableView(self.tableView, cellForRowAt: indexPath) as? TicketTableViewCell {
+            // Present error
+            let error = Exception.runtimeError(message: "Opening ticket details from Home not yet implemented!")
+            let errorController = UIAlertController.errorController(error: error)
+            self.present(errorController, animated: true)
+            
+            // Deselect row
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
 
     /*
     // Override to support conditional editing of the table view.
