@@ -17,7 +17,7 @@ enum Exception: Error {
 }
 
 extension UIAlertController {
-    static func errorController(error: Error) -> UIAlertController {
+    static func errorController(error: Error, handler: ((UIAlertAction) -> Void)?) -> UIAlertController {
         // Setup message
         var message: String?
         
@@ -36,8 +36,18 @@ extension UIAlertController {
         }
         
         let alert = UIAlertController(title: "Error", message: message ?? "Error message not provided", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: handler))
         
         return alert
+    }
+    
+    static func errorController(error: Error) -> UIAlertController {
+        return self.errorController(error: error, handler: nil)
+    }
+    
+    static func createAndPresentError(vc: UIViewController, error: Error, completion: ((UIAlertAction) -> Void)?) {
+        let alertController = UIAlertController.errorController(error: error, handler: completion)
+        
+        vc.present(alertController, animated: true, completion: nil)
     }
 }

@@ -56,11 +56,10 @@ class HomeTableViewController: UITableViewController {
         if let _ = self.tableView(self.tableView, cellForRowAt: indexPath) as? TicketTableViewCell {
             // Present error
             let error = Exception.runtimeError(message: "Opening ticket details from Home not yet implemented!")
-            let errorController = UIAlertController.errorController(error: error)
-            self.present(errorController, animated: true)
-            
-            // Deselect row
-            tableView.deselectRow(at: indexPath, animated: true)
+            UIAlertController.createAndPresentError(vc: self, error: error) { action in
+                // Deselect row once alert acknowledged
+                tableView.deselectRow(at: indexPath, animated: true)
+            }
         }
     }
 
