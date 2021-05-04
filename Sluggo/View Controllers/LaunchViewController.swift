@@ -26,13 +26,38 @@ class LaunchViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         
-        let remember = false
+        let remember = (self.identity.token != nil)
+        let userManager = UserManager(identity: self.identity)
         
         if(remember) {
             // Call login function from remembered. If failed go to login
+            userManager.getUser() { result in
+                switch result {
+                case .success(let record):
+                    DispatchQueue.main.sync {
+                        self.performSegue(withIdentifier: "automaticLogin", sender: self)
+                    }
+                    break
+                case .failure(let error):
+                    print(error)
+                    DispatchQueue.main.sync {
+                        self.showLogin()
+                    }
+                }
+            }
         } else {
-//            sleep(1)
-            self.performSegue(withIdentifier: "showLogin", sender: self)
+            self.showLogin()
+        }
+    }
+    
+    func showLogin() {
+        if let vc = self.storyboard?.instantiateViewController(identifier: "loginPage", creator: {coder in
+            return LoginViewController(coder: coder, identity: self.identity, completion: {
+                self.continueLogin()
+            })
+        }) {
+            vc.isModalInPresentation = true
+            self.present(vc, animated: true)
         }
     }
     
@@ -43,8 +68,5 @@ class LaunchViewController: UIViewController {
     
     @IBSegueAction func createRoot(_ coder: NSCoder) -> UIViewController? {
         return RootViewController(coder: coder, identity: identity)
-    }
-    @IBSegueAction func createLogin(_ coder: NSCoder) -> LoginViewController? {
-        return LoginViewController(coder: coder, identity: identity)
     }
 }

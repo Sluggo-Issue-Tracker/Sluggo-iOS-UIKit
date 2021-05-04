@@ -20,9 +20,11 @@ class LoginViewController: UIViewController {
     
     // Attempt to load from disk, otherwise, use the new one.
     var identity: AppIdentity
+    var completion: (() -> Void)?
     
-    init? (coder: NSCoder, identity: AppIdentity) {
+    init? (coder: NSCoder, identity: AppIdentity, completion: (() -> Void)?) {
         self.identity = identity
+        self.completion = completion
         super.init(coder: coder)
     }
     
@@ -35,24 +37,18 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         self.isModalInPresentation = true
         
-        // only enable persistence button if the token is nil (that is, we didn't load an AppIdentity)
-        self.persistButton.isEnabled = (self.identity.token == nil)
-        self.loginButton.isEnabled = (self.identity.token == nil)
         persistButton.setImage(UIImage(systemName: "checkmark.square.fill"), for: [.highlighted, .selected])
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        if(identity.token != nil) {
-            // Segue out of VC
-            self.performSegue(withIdentifier: "loginToRoot", sender: self)
-        }
     }
     
     @IBAction func loginButton(_ sender: Any) {
         let userString = username.text
         let passString = password.text
+        
+        print("button pressed")
         
         if(userString!.isEmpty || passString!.isEmpty) {
             // login Error
@@ -91,7 +87,8 @@ class LoginViewController: UIViewController {
                 
                 // Segue out of VC
                 DispatchQueue.main.async {
-                    self.performSegue(withIdentifier: "loginToRoot", sender: self)
+                    //self.performSegue(withIdentifier: "loginToRoot", sender: self)
+                    self.dismiss(animated: true, completion: self.completion)
                 }
                 
                 break;
