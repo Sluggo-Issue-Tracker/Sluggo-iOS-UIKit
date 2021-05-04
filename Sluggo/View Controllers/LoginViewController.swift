@@ -88,7 +88,7 @@ class LoginViewController: UIViewController {
                 // Segue out of VC
                 DispatchQueue.main.async {
                     //self.performSegue(withIdentifier: "loginToRoot", sender: self)
-                    self.dismiss(animated: true, completion: self.completion)
+                    self.launchTeamSelect()
                 }
                 
                 break;
@@ -100,6 +100,18 @@ class LoginViewController: UIViewController {
             }
         }
     }
+    
+    private func launchTeamSelect() {
+        if let vc = storyboard?.instantiateViewController(identifier: "TeamSelect", creator: { coder in
+            return TeamTableViewController(coder: coder, identity: self.identity) {
+                self.dismiss(animated: true, completion: self.completion)
+            }
+        }) {
+            vc.isModalInPresentation = true
+            self.present(vc, animated: true)
+        }
+    }
+    
     @IBAction func persistLoginButton(_ sender: Any) {
         self.persistButton.isSelected.toggle()
         print(self.persistButton.isSelected)

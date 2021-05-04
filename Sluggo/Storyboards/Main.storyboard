@@ -3,6 +3,7 @@
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -162,23 +163,60 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3840" y="-435"/>
+            <point key="canvasLocation" x="3786" y="-343"/>
         </scene>
         <!--Team Table View Controller-->
         <scene sceneID="X1h-4T-EAG">
             <objects>
-                <tableViewController storyboardIdentifier="TeamTableView" id="6JP-5O-LNy" customClass="TeamTableViewController" customModule="Sluggo" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="TeamSelect" id="6JP-5O-LNy" customClass="TeamTableViewController" customModule="Sluggo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="k0U-Dp-z3Q">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="V0f-JU-efH">
+                            <rect key="frame" x="0.0" y="0.0" width="390" height="75"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="caG-rg-WmI">
+                                    <rect key="frame" x="344.33333333333331" y="19" width="25.666666666666686" height="37"/>
+                                    <state key="normal">
+                                        <imageReference key="image" image="gearshape" catalog="system" symbolScale="large"/>
+                                    </state>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Teams" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OOX-Ep-9YR">
+                                    <rect key="frame" x="20" y="27" width="50" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <viewLayoutGuide key="safeArea" id="Jn0-Jw-o3w"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="Jn0-Jw-o3w" firstAttribute="bottom" secondItem="OOX-Ep-9YR" secondAttribute="bottom" constant="27" id="0Ir-jQ-OUP"/>
+                                <constraint firstItem="Jn0-Jw-o3w" firstAttribute="trailing" secondItem="caG-rg-WmI" secondAttribute="trailing" constant="19.999999999999943" id="4Xx-Cb-cmX"/>
+                                <constraint firstItem="OOX-Ep-9YR" firstAttribute="centerY" secondItem="Jn0-Jw-o3w" secondAttribute="centerY" id="FPj-g4-zIg"/>
+                                <constraint firstItem="OOX-Ep-9YR" firstAttribute="leading" secondItem="Jn0-Jw-o3w" secondAttribute="leading" constant="20" id="SOB-cj-xfr"/>
+                                <constraint firstItem="Jn0-Jw-o3w" firstAttribute="bottom" secondItem="caG-rg-WmI" secondAttribute="bottom" constant="19" id="UUB-aD-3a0"/>
+                                <constraint firstItem="caG-rg-WmI" firstAttribute="centerY" secondItem="Jn0-Jw-o3w" secondAttribute="centerY" id="meV-Rw-3hf"/>
+                            </constraints>
+                        </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="c6C-7Z-RD9">
-                                <rect key="frame" x="0.0" y="28" width="390" height="43.666667938232422"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Team" textLabel="Xed-fS-leo" rowHeight="62" style="IBUITableViewCellStyleDefault" id="c6C-7Z-RD9">
+                                <rect key="frame" x="0.0" y="103" width="390" height="62"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="c6C-7Z-RD9" id="TFn-f1-Eue">
-                                    <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="62"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Xed-fS-leo">
+                                            <rect key="frame" x="20" y="0.0" width="350" height="62"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -187,10 +225,11 @@
                             <outlet property="delegate" destination="6JP-5O-LNy" id="jW3-b5-AgP"/>
                         </connections>
                     </tableView>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZY0-VO-EJL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4918" y="-436"/>
+            <point key="canvasLocation" x="4710.7692307692305" y="-343.3649289099526"/>
         </scene>
         <!--Root-->
         <scene sceneID="Oaf-ww-D71">
@@ -205,6 +244,7 @@
     </scenes>
     <resources>
         <image name="checkmark.square" catalog="system" width="128" height="114"/>
+        <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="square" catalog="system" width="128" height="114"/>
         <image name="square.fill" catalog="system" width="128" height="114"/>
         <systemColor name="linkColor">
