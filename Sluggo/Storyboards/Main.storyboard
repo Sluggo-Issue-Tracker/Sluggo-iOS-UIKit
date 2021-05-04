@@ -3,7 +3,6 @@
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -165,12 +164,12 @@
             </objects>
             <point key="canvasLocation" x="3786" y="-343"/>
         </scene>
-        <!--Team Table View Controller-->
+        <!--Teams-->
         <scene sceneID="X1h-4T-EAG">
             <objects>
                 <tableViewController storyboardIdentifier="TeamSelect" id="6JP-5O-LNy" customClass="TeamTableViewController" customModule="Sluggo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="k0U-Dp-z3Q">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="696"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
@@ -197,67 +196,24 @@
                             <outlet property="delegate" destination="6JP-5O-LNy" id="jW3-b5-AgP"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Teams" id="4vs-7c-8tq"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZY0-VO-EJL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6467.6923076923076" y="-343.3649289099526"/>
+            <point key="canvasLocation" x="7020" y="-358"/>
         </scene>
         <!--Team Selector Container View Controller-->
         <scene sceneID="Rmd-hI-BYc">
             <objects>
                 <viewController storyboardIdentifier="TableViewContainer" id="rGb-An-tKe" customClass="TeamSelectorContainerViewController" customModule="Sluggo" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="LJj-rC-r6b">
+                    <containerView key="view" opaque="NO" contentMode="scaleToFill" id="126-3A-3eB">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z3N-Hx-beE">
-                                <rect key="frame" x="0.0" y="148" width="390" height="696"/>
-                                <connections>
-                                    <segue destination="6JP-5O-LNy" kind="embed" destinationCreationSelector="launchTeamSelector:" id="6DC-6l-ft4"/>
-                                </connections>
-                            </containerView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q4X-XL-beo">
-                                <rect key="frame" x="0.0" y="66" width="390" height="74"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Teams" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7nW-Sa-11U">
-                                        <rect key="frame" x="8.0000000000000036" y="21.666666666666671" width="62.333333333333343" height="26.333333333333329"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ZL-d8-fjY">
-                                        <rect key="frame" x="357" y="25" width="25" height="24"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="25" id="Epg-cl-KtK"/>
-                                        </constraints>
-                                        <state key="normal" title="Button">
-                                            <imageReference key="image" image="plus.circle" catalog="system" symbolScale="large"/>
-                                        </state>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstItem="3ZL-d8-fjY" firstAttribute="centerY" secondItem="Q4X-XL-beo" secondAttribute="centerY" id="6Hm-kZ-jas"/>
-                                    <constraint firstItem="3ZL-d8-fjY" firstAttribute="trailing" secondItem="Q4X-XL-beo" secondAttribute="trailingMargin" id="pJy-cn-ck8"/>
-                                    <constraint firstAttribute="width" constant="390" id="sbZ-uB-B4y"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="4or-z5-5FG"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstAttribute="bottomMargin" secondItem="Z3N-Hx-beE" secondAttribute="bottom" constant="-34" id="4QO-s8-uOf"/>
-                            <constraint firstItem="Z3N-Hx-beE" firstAttribute="top" secondItem="Q4X-XL-beo" secondAttribute="bottom" constant="8" id="5aZ-qh-OlU"/>
-                            <constraint firstItem="Q4X-XL-beo" firstAttribute="leading" secondItem="4or-z5-5FG" secondAttribute="leading" id="6uM-qm-F4H"/>
-                            <constraint firstItem="Z3N-Hx-beE" firstAttribute="centerX" secondItem="LJj-rC-r6b" secondAttribute="centerX" id="Cve-5C-cQc"/>
-                            <constraint firstItem="Z3N-Hx-beE" firstAttribute="top" secondItem="4or-z5-5FG" secondAttribute="top" constant="104" id="SXT-XL-E5J"/>
-                            <constraint firstItem="Q4X-XL-beo" firstAttribute="top" secondItem="4or-z5-5FG" secondAttribute="top" constant="22" id="cpe-ll-WAm"/>
-                            <constraint firstItem="Z3N-Hx-beE" firstAttribute="leading" secondItem="4or-z5-5FG" secondAttribute="leading" id="nxL-8Y-baJ"/>
-                            <constraint firstItem="4or-z5-5FG" firstAttribute="trailing" secondItem="Q4X-XL-beo" secondAttribute="trailing" id="qvb-hy-cuI"/>
-                        </constraints>
-                    </view>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <connections>
+                            <segue destination="Fe1-YR-9dK" kind="embed" id="Gip-t1-RnU"/>
+                        </connections>
+                    </containerView>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DyB-vH-6LV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -273,10 +229,27 @@
             </objects>
             <point key="canvasLocation" x="4525" y="93"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="G4f-mK-Kux">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Fe1-YR-9dK" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Vbi-xe-T4p">
+                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="6JP-5O-LNy" kind="relationship" relationship="rootViewController" destinationCreationSelector="launchTeamSelect:" id="o97-mF-9Kn"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kaW-9L-7ZL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5977" y="-358"/>
+        </scene>
     </scenes>
     <resources>
         <image name="checkmark.square" catalog="system" width="128" height="114"/>
-        <image name="plus.circle" catalog="system" width="128" height="121"/>
         <image name="square" catalog="system" width="128" height="114"/>
         <image name="square.fill" catalog="system" width="128" height="114"/>
         <systemColor name="linkColor">
