@@ -14,14 +14,6 @@ class RootViewController: UIViewController {
     @IBOutlet var swipeRight: UISwipeGestureRecognizer!
     @IBOutlet var swipeLeft: UISwipeGestureRecognizer!
     
-//    lazy var menuBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "sidebar.leading")?.withRenderingMode(.alwaysOriginal), style: .done,
-//                                                 target: self, action: #selector(menuBarButtonItemTapped))
-//
-//    @objc func menuBarButtonItemTapped() {
-//        print("tapped")
-//    }
-    
-    
     init? (coder: NSCoder, identity: AppIdentity) {
         self.identity = identity
         super.init(coder: coder)
@@ -47,7 +39,6 @@ class RootViewController: UIViewController {
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(self, selector: #selector(onSidebarNotificationRecieved), name: .onSidebarTrigger, object: nil)
-//        navigationItem.setLeftBarButton(menuBarButtonItem, animated: false)
 
         // Do any additional setup after loading the view.
     }
@@ -75,6 +66,6 @@ class RootViewController: UIViewController {
         print("swiped left")
     }
     @IBSegueAction func showSidebar(_ coder: NSCoder) -> UIViewController? {
-        return SluggoSidebarContainerViewController(coder: coder)
+        return SluggoSidebarContainerViewController(coder: coder, identity: self.identity)
     }
 }

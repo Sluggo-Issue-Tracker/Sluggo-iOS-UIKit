@@ -8,41 +8,40 @@
 import UIKit
 
 class TeamTableViewController: UITableViewController {
-    private var identity: AppIdentity
-    private var completion: (() -> Void)?
+    var identity: AppIdentity!
+    var completion: ((TeamRecord) -> Void)?
+    private var isFetching: Bool = false
+    private var maxNumber: Int = 0
     private var teams: [TeamRecord] = []
     
-    init? (coder: NSCoder, identity: AppIdentity, completion: (() -> Void)?) {
-        self.identity = identity
-        self.completion = completion
-        super.init(coder: coder)
-    }
-    
-    required init? (coder: NSCoder) {
-        fatalError("must be called w/ identity")
-    }
-    
     override func viewDidLoad() {
-        let teamManager = TeamManager(identity: self.identity)
-        
-        teamManager.listUserTeams() { result in
-            switch result {
-            case .success(let teams):
-                print("success!")
-                DispatchQueue.main.sync { // TODO: handle pagination
-                    self.teams = teams.results
-                    self.tableView.reloadData()
-                }
+        self.configureRefreshControl()
+        self.loadData(page: 1)
+    }
+    
+    func configureRefreshControl() {
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(handleRefreshAction), for: .valueChanged)
+    }
+    
+    @objc func handleRefreshAction() {
+        teams = []
+        self.loadData(page: 1)
+    }
+    
+    private func preselectRow() {
+        for i in 0...teams.count-1 {
+            let team = teams[i]
+            let indexPath = IndexPath(row: i, section: 0)
+            if team == self.identity.team {
+                tableView.selectRow(at: indexPath, animated: true, scrollPosition: .top)
                 break
-            case .failure(let error):
-                print(error)
             }
         }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.identity.team = self.teams[indexPath.row]
-        self.dismiss(animated: true, completion: self.completion)
+        self.completion?(self.teams[indexPath.row])
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -50,9 +49,41 @@ class TeamTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Team", for: indexPath) as UITableViewCell
-        cell.textLabel?.text = self.teams[indexPath.row].name
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SLGSidebarCell", for: indexPath) as UITableViewCell
+        let team = self.teams[indexPath.row]
+        cell.textLabel?.text = team.name
+        cell.accessoryType = (team == self.identity.team) ? .checkmark : .none
+        
         return cell
+    }
+    
+    // MARK: API calls
+    private func loadData(page: Int) {
+        let teamManager = TeamManager(identity: identity)
+        teamManager.listUserTeams(page: page) { result in
+            switch(result) {
+            case .success(let record):
+                self.teams += record.results
+                self.maxNumber = record.count
+                
+                DispatchQueue.main.async {
+                    if (self.teams.count >= self.maxNumber) {
+                        self.refreshControl?.endRefreshing()
+                        self.tableView.reloadData()
+                        self.isFetching = false
+                        self.preselectRow()
+                    } else {
+                        self.loadData(page: page + 1)
+                    }
+                }
+                break;
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    let alert = UIAlertController.errorController(error: error)
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+        }
     }
     
 }

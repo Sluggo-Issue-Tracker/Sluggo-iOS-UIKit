@@ -102,8 +102,8 @@ class LoginViewController: UIViewController {
     }
     
     private func launchTeamSelect() {
-        if let vc = storyboard?.instantiateViewController(identifier: "TeamSelect", creator: { coder in
-            return TeamTableViewController(coder: coder, identity: self.identity) {
+        if let vc = storyboard?.instantiateViewController(identifier: "TableViewContainer", creator: { coder in
+            return TeamSelectorContainerViewController(coder: coder, identity: self.identity) {
                 self.dismiss(animated: true, completion: self.completion)
             }
         }) {
@@ -115,10 +115,6 @@ class LoginViewController: UIViewController {
     @IBAction func persistLoginButton(_ sender: Any) {
         self.persistButton.isSelected.toggle()
         print(self.persistButton.isSelected)
-    }
-    
-    @IBSegueAction func createRootViewController(_ coder: NSCoder) -> UIViewController? {
-        return RootViewController(coder: coder, identity: identity)
     }
 }
 

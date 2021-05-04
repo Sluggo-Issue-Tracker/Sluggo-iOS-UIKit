@@ -33,7 +33,7 @@ class LaunchViewController: UIViewController {
             // Call login function from remembered. If failed go to login
             userManager.getUser() { result in
                 switch result {
-                case .success(let record):
+                case .success( _):
                     DispatchQueue.main.sync {
                         self.performSegue(withIdentifier: "automaticLogin", sender: self)
                     }

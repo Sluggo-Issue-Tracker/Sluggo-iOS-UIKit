@@ -15,9 +15,9 @@ class TeamManager {
         self.identity = identity
     }
     
-    public func listUserTeams(completionHandler: @escaping(Result<PaginatedList<TeamRecord>, Error>) -> Void) -> Void {
+    public func listUserTeams(page: Int, completionHandler: @escaping(Result<PaginatedList<TeamRecord>, Error>) -> Void) -> Void {
         
-        let requestBuilder = URLRequestBuilder(url: URL(string: identity.baseAddress + TeamManager.urlBase)!)
+        let requestBuilder = URLRequestBuilder(url: URL(string: identity.baseAddress + TeamManager.urlBase + "?page=\(page)")!)
             .setIdentity(identity: identity)
             .setMethod(method: .GET)
         
