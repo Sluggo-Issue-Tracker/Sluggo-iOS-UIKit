@@ -49,8 +49,8 @@ class RootViewController: UIViewController {
     // did not actually call these, wrapping each tab in a navigation controlller
     // in the other storybaord and *then* connecting them to these handlers seems
     // to have worked.
-    @IBSegueAction func createHome(_ coder: NSCoder) -> HomeViewController? {
-        return HomeViewController(coder: coder, identity: identity)
+    @IBSegueAction func createHome(_ coder: NSCoder) -> HomeTableViewController? {
+        return HomeTableViewController(coder: coder, identity: identity)
     }
     
     @IBSegueAction func createTicket(_ coder: NSCoder) -> TicketListController? {

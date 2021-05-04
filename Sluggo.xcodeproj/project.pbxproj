@@ -39,6 +39,7 @@
 		7D1354FC262D026E00D38EE0 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1354FB262D026E00D38EE0 /* UserTests.swift */; };
 		7D1DA6AE262B82C200E7C12D /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1DA6AD262B82C200E7C12D /* RootViewController.swift */; };
 		7D1DA6B7262B866D00E7C12D /* SidebarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1DA6B6262B866D00E7C12D /* SidebarData.swift */; };
+		7D23834B264119050091C7E8 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D23834A264119050091C7E8 /* HomeTableViewController.swift */; };
 		7D9963A6261EF3A4002338E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9963A5261EF3A4002338E7 /* AppDelegate.swift */; };
 		7D9963AD261EF3A4002338E7 /* Root.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D9963AB261EF3A4002338E7 /* Root.storyboard */; };
 		7D9963B2261EF3A5002338E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D9963B1261EF3A5002338E7 /* Assets.xcassets */; };
@@ -48,7 +49,6 @@
 		7DC2A21C262943A70002CEE6 /* Sidebar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DC2A21B262943A70002CEE6 /* Sidebar.storyboard */; };
 		7DC2A2222629447D0002CEE6 /* SluggoSidebarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC2A2212629447D0002CEE6 /* SluggoSidebarTableViewController.swift */; };
 		7DC2A227262948800002CEE6 /* SluggoSidebarContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC2A226262948800002CEE6 /* SluggoSidebarContainerViewController.swift */; };
-		7DC2A22F26294F9E0002CEE6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC2A22E26294F9E0002CEE6 /* HomeViewController.swift */; };
 		7DEA17852639E7B5004E5A71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DEA17842639E7B5004E5A71 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -102,6 +102,7 @@
 		7D1354FB262D026E00D38EE0 /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		7D1DA6AD262B82C200E7C12D /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RootViewController.swift; path = "Sluggo/View Controllers/RootViewController.swift"; sourceTree = SOURCE_ROOT; };
 		7D1DA6B6262B866D00E7C12D /* SidebarData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarData.swift; sourceTree = "<group>"; };
+		7D23834A264119050091C7E8 /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeTableViewController.swift; path = "Sluggo/View Controllers/HomeTableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		7D9963A2261EF3A4002338E7 /* Sluggo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sluggo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D9963A5261EF3A4002338E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D9963AC261EF3A4002338E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Root.storyboard; sourceTree = "<group>"; };
@@ -117,7 +118,6 @@
 		7DC2A21B262943A70002CEE6 /* Sidebar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Sidebar.storyboard; sourceTree = "<group>"; };
 		7DC2A2212629447D0002CEE6 /* SluggoSidebarTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SluggoSidebarTableViewController.swift; sourceTree = "<group>"; };
 		7DC2A226262948800002CEE6 /* SluggoSidebarContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SluggoSidebarContainerViewController.swift; sourceTree = "<group>"; };
-		7DC2A22E26294F9E0002CEE6 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		7DEA17842639E7B5004E5A71 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -283,8 +283,8 @@
 				7DC2A2212629447D0002CEE6 /* SluggoSidebarTableViewController.swift */,
 				7D1DA6AD262B82C200E7C12D /* RootViewController.swift */,
 				7DC2A226262948800002CEE6 /* SluggoSidebarContainerViewController.swift */,
-				7DC2A22E26294F9E0002CEE6 /* HomeViewController.swift */,
 				5A9FF88D26386D4700378550 /* TicketListController.swift */,
+				7D23834A264119050091C7E8 /* HomeTableViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -442,10 +442,10 @@
 				3A150A6726365A9A0052934B /* StatusRecord.swift in Sources */,
 				5ACC0F062630CA2700DCF83E /* Exceptions.swift in Sources */,
 				5AB1C8F7262FE3520010F85E /* AppIdentity.swift in Sources */,
-				7DC2A22F26294F9E0002CEE6 /* HomeViewController.swift in Sources */,
 				7D9963A6261EF3A4002338E7 /* AppDelegate.swift in Sources */,
 				5A673570263BF2D200C4C778 /* UIColor.swift in Sources */,
 				3A150A6C26365B670052934B /* TagRecord.swift in Sources */,
+				7D23834B264119050091C7E8 /* HomeTableViewController.swift in Sources */,
 				5AB1C8EF262FE3210010F85E /* TagManager.swift in Sources */,
 				5A9FF88E26386D4700378550 /* TicketListController.swift in Sources */,
 				5AB1C8E5262FE2E60010F85E /* TicketManager.swift in Sources */,
