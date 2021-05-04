@@ -8,71 +8,17 @@
 import Foundation
 
 class AppIdentity: Codable {
-    
-    private var _authenticatedUser: UserRecord?
-    private var _team: TeamRecord?
-    private var _token: String?
-    private var _pageSize = 10
-    private var _baseAddress: String = Constants.Config.URL_BASE
-    
-    // MARK: Computed Properties
-    var authenticatedUser: UserRecord? {
-        set(newUser) {
-            _authenticatedUser = newUser
-            enqueueSave()
-        }
-        get {
-            return _authenticatedUser
-        }
-    }
-    var team: TeamRecord? {
-        set(newTeam) {
-            _team = newTeam
-            enqueueSave()
-        }
-        get {
-            return _team
-        }
-    }
-    var token: String? {
-        set (newToken) {
-            _token = newToken
-            enqueueSave()
-        }
-        get {
-            return _token
-        }
-    }
-    var pageSize: Int {
-        set(newPageSize) {
-            _pageSize = newPageSize
-            enqueueSave()
-        }
-        get {
-            return _pageSize
-        }
-    }
-    var baseAddress: String {
-        set(newBaseAddress) {
-            _baseAddress = newBaseAddress
-            enqueueSave()
-        }
-        get {
-            return _baseAddress
-        }
-    }
+    var authenticatedUser: UserRecord?
+    var team: TeamRecord?
+    var token: String?
+    var baseAddress: String = Constants.Config.URL_BASE
+    var pageSize = 10
     
     private static var persistencePath: URL {
         get {
             let path = URL(fileURLWithPath: NSHomeDirectory().appending("/Library/appdata.json"))
             print(path)
             return path
-        }
-    }
-    
-    private func enqueueSave() {
-        DispatchQueue.global().async {
-            let _ = self.saveToDisk()
         }
     }
     
