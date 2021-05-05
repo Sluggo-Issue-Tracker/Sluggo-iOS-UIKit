@@ -67,9 +67,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="Zuk-4d-CN5">
-                                <rect key="frame" x="116.5" y="342.5" width="281.5" height="40"/>
+                                <rect key="frame" x="182" y="343" width="216" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="dvY-Vj-9XH"/>
+                                    <constraint firstAttribute="height" constant="40" id="7qL-lo-IFo"/>
                                 </constraints>
                             </datePicker>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4nU-Eb-c9j">
@@ -91,6 +91,15 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="6M8-dK-cqB">
+                                <rect key="frame" x="116.5" y="346.5" width="51" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Z4A-Ft-gEy"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="dueDateSwitch:" destination="v6O-wt-Sh7" eventType="valueChanged" id="eHn-9q-p8V"/>
+                                </connections>
+                            </switch>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="82h-np-WKU"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -101,23 +110,25 @@
                             <constraint firstItem="82h-np-WKU" firstAttribute="trailing" secondItem="vFY-BO-rSH" secondAttribute="trailing" constant="16" id="4c6-Wk-Dyd"/>
                             <constraint firstItem="4nU-Eb-c9j" firstAttribute="leading" secondItem="82h-np-WKU" secondAttribute="leading" id="B1M-fg-ANX"/>
                             <constraint firstItem="82h-np-WKU" firstAttribute="trailing" secondItem="LZK-hv-dAH" secondAttribute="trailing" constant="16" id="BM7-WA-kKn"/>
+                            <constraint firstItem="Zuk-4d-CN5" firstAttribute="leading" secondItem="6M8-dK-cqB" secondAttribute="trailing" constant="16" id="EyH-Gs-L28"/>
+                            <constraint firstItem="6M8-dK-cqB" firstAttribute="leading" secondItem="2db-lg-nyB" secondAttribute="trailing" constant="16" id="GHV-bx-6za"/>
                             <constraint firstItem="Cfz-FS-H8Z" firstAttribute="top" secondItem="LH4-ba-KJz" secondAttribute="bottom" id="HvZ-GS-jAe"/>
                             <constraint firstItem="4nU-Eb-c9j" firstAttribute="top" secondItem="82h-np-WKU" secondAttribute="top" id="JhE-5B-rVC"/>
                             <constraint firstItem="LH4-ba-KJz" firstAttribute="leading" secondItem="82h-np-WKU" secondAttribute="leading" constant="16" id="PfN-JK-yDR"/>
                             <constraint firstItem="4nU-Eb-c9j" firstAttribute="trailing" secondItem="82h-np-WKU" secondAttribute="trailing" id="RL1-7g-fvX"/>
                             <constraint firstItem="82h-np-WKU" firstAttribute="trailing" secondItem="LH4-ba-KJz" secondAttribute="trailing" constant="16" id="SJ1-L5-D5g"/>
-                            <constraint firstItem="Zuk-4d-CN5" firstAttribute="leading" secondItem="2db-lg-nyB" secondAttribute="trailing" constant="16" id="Ser-0P-qhT"/>
                             <constraint firstItem="NdD-gU-pli" firstAttribute="leading" secondItem="82h-np-WKU" secondAttribute="leading" constant="16" id="Sn8-Fg-0nM"/>
                             <constraint firstItem="82h-np-WKU" firstAttribute="trailing" secondItem="Cfz-FS-H8Z" secondAttribute="trailing" constant="16" id="TNH-sS-W6H"/>
                             <constraint firstItem="LH4-ba-KJz" firstAttribute="top" secondItem="NdD-gU-pli" secondAttribute="bottom" id="Vek-dh-0Tx"/>
-                            <constraint firstItem="Zuk-4d-CN5" firstAttribute="top" secondItem="vFY-BO-rSH" secondAttribute="bottom" constant="16" id="Wdw-1G-nws"/>
                             <constraint firstItem="2db-lg-nyB" firstAttribute="leading" secondItem="82h-np-WKU" secondAttribute="leading" constant="16" id="bc1-Iw-pDB"/>
                             <constraint firstItem="Cfz-FS-H8Z" firstAttribute="leading" secondItem="82h-np-WKU" secondAttribute="leading" constant="16" id="eFh-aH-0Ju"/>
-                            <constraint firstItem="82h-np-WKU" firstAttribute="trailing" secondItem="Zuk-4d-CN5" secondAttribute="trailing" constant="16" id="fZY-aF-oVC"/>
                             <constraint firstItem="vFY-BO-rSH" firstAttribute="leading" secondItem="Vxw-ZB-vHe" secondAttribute="trailing" constant="16" id="hYe-ZP-N39"/>
+                            <constraint firstItem="82h-np-WKU" firstAttribute="trailing" secondItem="Zuk-4d-CN5" secondAttribute="trailing" constant="16" id="kSH-xV-Tly"/>
                             <constraint firstItem="Vxw-ZB-vHe" firstAttribute="top" secondItem="Cfz-FS-H8Z" secondAttribute="bottom" constant="20" id="kSk-HW-igt"/>
+                            <constraint firstItem="6M8-dK-cqB" firstAttribute="top" secondItem="Vxw-ZB-vHe" secondAttribute="bottom" constant="16" id="lod-gz-w3P"/>
                             <constraint firstItem="LZK-hv-dAH" firstAttribute="top" secondItem="4nU-Eb-c9j" secondAttribute="bottom" constant="30" id="lwW-FA-Ozh"/>
                             <constraint firstItem="82h-np-WKU" firstAttribute="trailing" secondItem="NdD-gU-pli" secondAttribute="trailing" constant="16" id="re5-mH-CNH"/>
+                            <constraint firstItem="Zuk-4d-CN5" firstAttribute="top" secondItem="vFY-BO-rSH" secondAttribute="bottom" constant="16" id="xIV-O0-7hs"/>
                             <constraint firstItem="Vxw-ZB-vHe" firstAttribute="leading" secondItem="82h-np-WKU" secondAttribute="leading" constant="16" id="xaQ-Rt-2KS"/>
                             <constraint firstItem="LH4-ba-KJz" firstAttribute="top" secondItem="LZK-hv-dAH" secondAttribute="bottom" constant="16" id="yLe-3b-zQn"/>
                         </constraints>
@@ -125,6 +136,8 @@
                     <connections>
                         <outlet property="assignedUserTextField" destination="vFY-BO-rSH" id="E56-g8-5uY"/>
                         <outlet property="dateTimePicker" destination="Zuk-4d-CN5" id="4Z9-rV-EfC"/>
+                        <outlet property="dueDateLabel" destination="2db-lg-nyB" id="vBh-n4-QFI"/>
+                        <outlet property="dueDateSwitch" destination="6M8-dK-cqB" id="fZQ-qz-HXr"/>
                         <outlet property="navBar" destination="4nU-Eb-c9j" id="Yaa-N9-2t9"/>
                         <outlet property="navigationItemDisplay" destination="bkh-Sd-dph" id="DrR-Om-w3b"/>
                         <outlet property="ticketDescription" destination="LH4-ba-KJz" id="htt-fC-Ort"/>

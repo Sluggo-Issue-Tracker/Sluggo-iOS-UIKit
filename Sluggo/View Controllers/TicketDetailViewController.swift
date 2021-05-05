@@ -21,6 +21,8 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var dateTimePicker: UIDatePicker!
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var ticketTitleTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var dueDateSwitch: UISwitch!
+    @IBOutlet weak var dueDateLabel: UILabel!
     
     var identity: AppIdentity
     var ticket: TicketRecord?
@@ -39,6 +41,8 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        dateTimePicker.isEnabled = dueDateSwitch.isOn
+
         let memberManager = MemberManager(identity: self.identity)
         memberManager.listTeamMembers(){ result in
             switch(result){
@@ -82,6 +86,11 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate {
             }
             if let date = ticket?.due_date{
                 dateTimePicker.date = date
+                dateTimePicker.isEnabled = true
+            }
+            else{
+                dateTimePicker.isHidden = true
+                dueDateLabel.isHidden = true
             }
             navBar.isHidden = true
             ticketTitleTopConstraint.constant = 0
@@ -89,6 +98,7 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate {
             ticketDescription.isUserInteractionEnabled = false
             dateTimePicker.isUserInteractionEnabled = false
             assignedUserTextField.isUserInteractionEnabled = false
+            dueDateSwitch.isHidden = true
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(setToEditMode))
         }
         else{
@@ -98,6 +108,11 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate {
             navigationItemDisplay.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(submitTicketMode))
         }
     }
+    
+    @IBAction func dueDateSwitch(_ sender: UISwitch) {
+        dateTimePicker.isEnabled = sender.isOn
+    }
+
     
     @objc func goBackToPrevView(){
         navigationController?.popViewController(animated: true)
@@ -115,7 +130,7 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate {
         if ticketDescription.textColor != .lightGray {
             description = ticketDescription.text
         }
-        let date = dateTimePicker.date
+        let date = dueDateSwitch.isOn ? dateTimePicker.date : nil
         var member: String?
         member = currentMember?.id
         
@@ -124,7 +139,7 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate {
         let manager = TicketManager(identity)
         manager.makeTicket(ticket: ticket){ result in
             switch(result){
-            case .success(let record):
+            case .success(_):
                 DispatchQueue.main.async {
                     self.dismiss(animated: true, completion: self.completion)
                 }
