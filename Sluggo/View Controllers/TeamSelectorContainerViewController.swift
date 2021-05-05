@@ -11,10 +11,12 @@ class TeamSelectorContainerViewController: UIViewController {
     private var identity: AppIdentity
     private var completion: (() -> Void)?
     private var failure: (() -> Void)?
+    @IBOutlet var cancelButton: UIButton!
     
-    init? (coder: NSCoder, identity: AppIdentity, completion: (() -> Void)?) {
+    init? (coder: NSCoder, identity: AppIdentity, completion: (() -> Void)?, failure: (() -> Void)?) {
         self.identity = identity
         self.completion = completion
+        self.failure = failure
         super.init(coder: coder)
     }
     
@@ -44,7 +46,7 @@ class TeamSelectorContainerViewController: UIViewController {
             }
         }
     }
-//    
+//
 //    @IBSegueAction func launchTeamSelect(_ coder: NSCoder) -> TeamTableViewController? {
 //        let vc = TeamTableViewController(coder: coder)
 //        vc?.identity = self.identity
@@ -55,9 +57,11 @@ class TeamSelectorContainerViewController: UIViewController {
 //        vc?.failure = {
 //            self.dismiss(animated: true, completion: self.failure)
 //        }
-//        
+//
 //        return vc
 //    }
-    
+    @IBAction func didCancel(_ sender: Any) {
+        self.dismiss(animated: true, completion: self.failure)
+    }
 
 }

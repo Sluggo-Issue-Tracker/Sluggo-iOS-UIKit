@@ -10,7 +10,6 @@ import UIKit
 class TeamTableViewController: UITableViewController {
     var identity: AppIdentity!
     var completion: ((TeamRecord) -> Void)?
-    var failure: (() -> Void)?
     private var isFetching: Bool = false
     private var maxNumber: Int = 0
     private var teams: [TeamRecord] = []

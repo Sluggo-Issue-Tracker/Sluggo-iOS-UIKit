@@ -14,6 +14,7 @@ class AppIdentity: Codable {
     private var _token: String?
     private var _pageSize = 10
     private var _baseAddress: String = Constants.Config.URL_BASE
+    private var persist: Bool = false
     
     // MARK: Computed Properties
     var authenticatedUser: UserRecord? {
@@ -70,9 +71,20 @@ class AppIdentity: Codable {
         }
     }
     
+    public func setPersistData(persist: Bool) {
+        self.persist = persist
+        if persist {
+            enqueueSave()
+        } else {
+            let _ = AppIdentity.deletePersistenceFile()
+        }
+    }
+    
     private func enqueueSave() {
-        DispatchQueue.global().async {
-            let _ = self.saveToDisk()
+        if self.persist {
+            DispatchQueue.global().async {
+                let _ = self.saveToDisk()
+            }
         }
     }
     

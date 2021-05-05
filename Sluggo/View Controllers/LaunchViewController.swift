@@ -90,6 +90,14 @@ class LaunchViewController: UIViewController {
         if let vc = self.storyboard?.instantiateViewController(identifier: "TableViewContainer", creator: {coder in
             return TeamSelectorContainerViewController(coder: coder, identity: self.identity, completion: {
                 self.continueLogin()
+            }, failure: {
+                
+                // reset the data, go back to the login page.
+                self.identity.token = nil
+                self.identity.authenticatedUser = nil
+                self.identity.team = nil
+                
+                self.showLogin()
             })
         }) {
             vc.isModalInPresentation = true

@@ -72,19 +72,6 @@ class LoginViewController: UIViewController {
                 // Save to identity
                 self.identity.token = record.key
                 
-                // Persistence
-                // This is hacky but better than nothing
-                var rememberMe: Bool = false
-                DispatchQueue.main.sync {
-                    rememberMe = self.persistButton.isSelected
-                }
-                if(rememberMe) {
-                    let persistenceResult = self.identity.saveToDisk()
-                    if(!persistenceResult) {
-                        print("SOMETHING WENT WRONG WITH PERSISTENCE!")
-                    }
-                }
-                
                 // Segue out of VC
                 DispatchQueue.main.async {
                     self.dismiss(animated: true, completion: self.completion)
@@ -102,6 +89,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func persistLoginButton(_ sender: Any) {
         self.persistButton.isSelected.toggle()
+        self.identity.setPersistData(persist: self.persistButton.isSelected)
         print(self.persistButton.isSelected)
     }
 }

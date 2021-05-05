@@ -235,6 +235,9 @@
                                         <state key="normal">
                                             <imageReference key="image" image="xmark.circle" catalog="system" symbolScale="large"/>
                                         </state>
+                                        <connections>
+                                            <action selector="didCancel:" destination="rGb-An-tKe" eventType="touchUpInside" id="tr8-iJ-4QF"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -261,6 +264,9 @@
                         </constraints>
                     </view>
                     <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="cancelButton" destination="QMb-3q-4Z8" id="SCw-Ud-ElF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DyB-vH-6LV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
