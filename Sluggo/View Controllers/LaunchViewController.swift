@@ -69,7 +69,9 @@ class LaunchViewController: UIViewController {
                 }
             }
         } else {
-            self.showTeams()
+            DispatchQueue.main.sync {
+                self.showTeams()
+            }
         }
     }
     
