@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct MemberRecord: Codable {
+struct MemberRecord: Codable{
     var id: String
     var owner: UserRecord
     var team_id: Int

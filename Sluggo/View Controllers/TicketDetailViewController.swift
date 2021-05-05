@@ -7,14 +7,21 @@
 
 import UIKit
 
-var teamMembers: [String] = ["No Assigned User"]
-var currentMember: String = "No Assigned User"
+//var teamMembers: [String] = ["No Assigned User"]
+var teamMembers: [MemberRecord?] = [nil]
+var currentMember: MemberRecord? = nil
+var currentlyChosenMember: MemberRecord? = nil
 
 class TicketDetailViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var ticketTitle: UITextField!
     @IBOutlet weak var ticketDescription: UITextView!
     @IBOutlet weak var currentAssignedUserLabel: UILabel!
+    @IBOutlet weak var navigationItemDisplay: UINavigationItem!
+    @IBOutlet weak var dateTimePicker: UIDatePicker!
+    @IBOutlet weak var navBar: UINavigationBar!
+    @IBOutlet weak var changeButton: UIButton!
+    @IBOutlet weak var ticketTitleTopConstraint: NSLayoutConstraint!
     
     var identity: AppIdentity
     var ticket: TicketRecord?
@@ -34,9 +41,9 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate {
         memberManager.listTeamMembers(){ result in
             switch(result){
             case .success(let record):
-                teamMembers = ["No Assigned User"]
+                teamMembers = [nil]
                 for user in record.results{
-                    teamMembers.append(user.owner.username)
+                    teamMembers.append(user)
                 }
                 // print (record)
 
@@ -52,21 +59,88 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate {
         ticketDescription.delegate = self
         if(ticket != nil){
             ticketTitle.text = ticket?.title
-            ticketDescription.text = ticket?.description
+            if let description = ticket?.description{
+                if(description != ""){
+                    ticketDescription.text = description
+                }
+                else{   // Placeholder text
+                    ticketDescription.text = "Description of ticket"
+                    ticketDescription.textColor = .lightGray
+                }
+            }
+            else{   // Placeholder text
+                ticketDescription.text = "Description of ticket"
+                ticketDescription.textColor = .lightGray
+            }
             if(ticket?.assigned_user != nil){
                 currentAssignedUserLabel.text = ticket?.assigned_user?.owner.username
+                currentlyChosenMember = ticket?.assigned_user
             }
-            
+            if let date = ticket?.due_date{
+                dateTimePicker.date = date
+            }
+            //navigationController?.setNavigationBarHidden(true, animated: true)
+            navBar.isHidden = true
+            ticketTitleTopConstraint.constant = 0
+            changeButton.isHidden = true
+            ticketTitle.isUserInteractionEnabled = false
+            ticketDescription.isUserInteractionEnabled = false
+            dateTimePicker.isUserInteractionEnabled = false
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(setToEditMode))
         }
         else{
-            ticketDescription.text = "Description of ticket"
+            ticketDescription.text = "Description of ticket"    // Placeholder text
             ticketDescription.textColor = .lightGray
+            navigationItemDisplay.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelMode))
+            navigationItemDisplay.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(submitTicketMode))
         }
+    }
+    
+    @objc func goBackToPrevView(){
+        navigationController?.popViewController(animated: true)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    @objc func cancelMode(){
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func submitTicketMode(){
+        let title = ticketTitle.text ?? "Default title (This is an error)"
+        var description: String?
+        description = nil
+        if ticketDescription.textColor != .lightGray {
+            description = ticketDescription.text
+        }
+        let date = dateTimePicker.date
+        
+        
+        let ticket = WriteTicketRecord(tag_list: nil, assigned_user: currentMember, status: nil, title: title, description: description, due_date: date)
+        //print (ticket)
+        let manager = TicketManager(identity)
+        manager.makeTicket(ticket: ticket){ result in
+            switch(result){
+            case .success(let record):
+                print(record)
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            case .failure(let error):
+                print(error)
+                DispatchQueue.main.async {
+                    let alert = UIAlertController.errorController(error: error)
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+        }
+    }
+    
+    @objc func setToEditMode(){
         
     }
     
     @objc func changeLabel(_notification: Notification){
-        currentAssignedUserLabel.text = currentMember
+        currentAssignedUserLabel.text = currentMember?.owner.username ?? "No Assigned User"
     }
     
 //    func createDatePicker() {
@@ -129,7 +203,7 @@ class PopupVC: UIViewController {
     override func viewDidLoad(){
         super.viewDidLoad()
         
-        currentMember = "No Assigned User"  // This was done because pickerView is weird, thus this needs to be forced.
+        currentMember = nil  // This was done because pickerView is weird, thus this needs to be forced.
         
         pickerViewController.dataSource = self
         pickerViewController.delegate = self
@@ -161,7 +235,7 @@ extension PopupVC: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         //print(teamMembers[row])
         //currentMember = teamMembers[row]
-        return teamMembers[row]
+        return teamMembers[row]?.owner.username ?? "No Assigned User"
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

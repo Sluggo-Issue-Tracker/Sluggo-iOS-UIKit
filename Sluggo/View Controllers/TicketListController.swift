@@ -53,7 +53,7 @@ class TicketListController: UITableViewController {
         }) as TicketDetailViewController? {
             vc.ticket = tickets[indexPath.row]
             
-            self.present(vc, animated: true, completion: nil)
+            navigationController?.pushViewController(vc, animated: true)
         }
         
         
