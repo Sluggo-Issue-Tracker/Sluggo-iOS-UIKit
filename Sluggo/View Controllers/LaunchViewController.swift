@@ -35,9 +35,7 @@ class LaunchViewController: UIViewController {
                 switch loginResult {
                 case .success( _):
                     //Need to also check for invalid saved team
-                    DispatchQueue.main.sync {
-                        self.tryTeam()
-                    }
+                    self.tryTeam()
                     break
                 case .failure(let error):
                     print(error)
@@ -71,7 +69,9 @@ class LaunchViewController: UIViewController {
                 }
             }
         } else {
-            self.showTeams()
+            DispatchQueue.main.sync {
+                self.showTeams()
+            }
         }
     }
     

@@ -14,6 +14,7 @@ class AppIdentity: Codable {
     private var _token: String?
     private var _pageSize = 10
     private var _baseAddress: String = Constants.Config.URL_BASE
+    private var _rememberMe: Bool = false
     
     // MARK: Computed Properties
     var authenticatedUser: UserRecord? {
@@ -61,6 +62,15 @@ class AppIdentity: Codable {
             return _baseAddress
         }
     }
+    var rememberMe: Bool {
+        set (newRememberMe) {
+            _rememberMe = newRememberMe
+            enqueueSave()
+        }
+        get {
+            return _rememberMe
+        }
+    }
     
     private static var persistencePath: URL {
         get {
@@ -97,7 +107,22 @@ class AppIdentity: Codable {
     }
     
     func saveToDisk() -> Bool {
-        guard let appIdentityData = JsonLoader.encode(object: self) else {
+        
+        let savedRecord = AppIdentity()
+        
+        savedRecord._pageSize = self._pageSize
+        savedRecord._baseAddress = self._baseAddress
+        savedRecord._rememberMe = self._rememberMe
+        
+        // this respects the user prefreence to store the information necessary to do api requests
+        if (self._rememberMe) {
+            savedRecord._team = self._team
+            savedRecord._token = self._token
+            savedRecord._authenticatedUser = self._authenticatedUser
+        }
+        
+        
+        guard let appIdentityData = JsonLoader.encode(object: savedRecord) else {
             print("Failed to encode app identity with JSON, could not persist")
             return false
         }
