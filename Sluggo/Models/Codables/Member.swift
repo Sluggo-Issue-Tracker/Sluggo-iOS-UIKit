@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import NullCodable
 
 struct MemberRecord: Codable{
     var id: String
@@ -14,8 +14,8 @@ struct MemberRecord: Codable{
     var team_id: Int
     var object_uuid: UUID
     var role: String
-    var bio: String?
+    @NullCodable var bio: String?
     var created: Date
-    var activated: Date?
-    var deactivated: Date?
+    @NullCodable var activated: Date?
+    @NullCodable var deactivated: Date?
 }

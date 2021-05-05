@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -38,6 +38,7 @@
 		5AB1C8F7262FE3520010F85E /* AppIdentity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB1C8F6262FE3520010F85E /* AppIdentity.swift */; };
 		5AB1C8FC262FF1690010F85E /* TicketRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB1C8FB262FF1690010F85E /* TicketRecord.swift */; };
 		5AB1C909262FFF500010F85E /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB1C908262FFF500010F85E /* UserManager.swift */; };
+		5AB1F18F26435F9600993D1A /* NullCodable in Frameworks */ = {isa = PBXBuildFile; productRef = 5AB1F18E26435F9600993D1A /* NullCodable */; };
 		5AC6459026412F0C00F46137 /* TeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC6458F26412F0C00F46137 /* TeamTableViewCell.swift */; };
 		5ACC0F012630CA1400DCF83E /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACC0F002630CA1400DCF83E /* ErrorMessage.swift */; };
 		5ACC0F062630CA2700DCF83E /* Exceptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACC0F052630CA2700DCF83E /* Exceptions.swift */; };
@@ -134,6 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AB1F18F26435F9600993D1A /* NullCodable in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,6 +319,9 @@
 			dependencies = (
 			);
 			name = Sluggo;
+			packageProductDependencies = (
+				5AB1F18E26435F9600993D1A /* NullCodable */,
+			);
 			productName = Sluggo;
 			productReference = 7D9963A2261EF3A4002338E7 /* Sluggo.app */;
 			productType = "com.apple.product-type.application";
@@ -388,6 +393,9 @@
 				Base,
 			);
 			mainGroup = 7D996399261EF3A4002338E7;
+			packageReferences = (
+				5AB1F18D26435F9600993D1A /* XCRemoteSwiftPackageReference "NullCodable" */,
+			);
 			productRefGroup = 7D9963A3261EF3A4002338E7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -811,6 +819,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5AB1F18D26435F9600993D1A /* XCRemoteSwiftPackageReference "NullCodable" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/g-mark/NullCodable.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5AB1F18E26435F9600993D1A /* NullCodable */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5AB1F18D26435F9600993D1A /* XCRemoteSwiftPackageReference "NullCodable" */;
+			productName = NullCodable;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7D99639A261EF3A4002338E7 /* Project object */;
 }
