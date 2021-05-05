@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct TeamRecord: Codable {
+struct TeamRecord: Codable, Equatable {
     var id: Int
     var name: String
     var object_uuid: UUID
@@ -16,5 +16,8 @@ struct TeamRecord: Codable {
     var created: Date
     var activated: Date?
     var deactivated: Date?
-   
+    
+    static func == (lhs: TeamRecord, rhs: TeamRecord) -> Bool {
+        return lhs.object_uuid == rhs.object_uuid
+    }
 }

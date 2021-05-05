@@ -15,3 +15,11 @@ struct UserRecord: Codable {
     var last_name: String?
     var username: String
 }
+
+struct AuthRecord: Codable {
+    var pk: Int
+    var email: String
+    var first_name: String?
+    var last_name: String?
+    var username: String
+}

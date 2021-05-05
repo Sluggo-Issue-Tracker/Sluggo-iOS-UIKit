@@ -14,7 +14,7 @@
                 <viewControllerPlaceholder storyboardName="Sidebar" id="bzV-Vx-Vf0" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SG2-o4-erd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1504" y="68"/>
+            <point key="canvasLocation" x="-799" y="23"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="usx-7B-Cc9">
@@ -33,12 +33,13 @@
                             <containerView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eOI-4W-haK">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <connections>
-                                    <segue destination="bzV-Vx-Vf0" kind="embed" id="fZ9-qm-Nhg"/>
+                                    <segue destination="bzV-Vx-Vf0" kind="embed" destinationCreationSelector="showSidebar:" id="fZ9-qm-Nhg"/>
                                 </connections>
                             </containerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="0Fz-VO-U64"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="eOI-4W-haK" firstAttribute="leading" secondItem="x7j-bF-uNP" secondAttribute="leading" id="GEh-xy-xMY"/>
                             <constraint firstItem="eOI-4W-haK" firstAttribute="top" secondItem="x7j-bF-uNP" secondAttribute="top" id="MYP-xB-esk"/>
@@ -49,13 +50,29 @@
                             <constraint firstItem="esk-5o-h6c" firstAttribute="leading" secondItem="x7j-bF-uNP" secondAttribute="leading" id="vWa-hc-NTC"/>
                             <constraint firstItem="esk-5o-h6c" firstAttribute="trailing" secondItem="x7j-bF-uNP" secondAttribute="trailing" id="xy8-AS-ZYO"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="k8J-zR-BIu" appends="YES" id="BNc-Oy-3HQ"/>
+                            <outletCollection property="gestureRecognizers" destination="4Zz-6B-a9H" appends="YES" id="4Uk-wt-2ON"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="mainContainerView" destination="esk-5o-h6c" id="b1W-48-bzZ"/>
                         <outlet property="sidebarContainerView" destination="eOI-4W-haK" id="E2Q-ML-bVy"/>
+                        <outlet property="swipeLeft" destination="4Zz-6B-a9H" id="mAZ-2N-zZ9"/>
+                        <outlet property="swipeRight" destination="k8J-zR-BIu" id="jqh-Tm-can"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Lr-kp-CQb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="k8J-zR-BIu">
+                    <connections>
+                        <action selector="receivedGesture" destination="maM-Yi-Azd" id="k6E-er-fTw"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="4Zz-6B-a9H">
+                    <connections>
+                        <action selector="receieveLeft" destination="maM-Yi-Azd" id="CXM-nd-htf"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-1362.3188405797102" y="456.69642857142856"/>
         </scene>

@@ -15,6 +15,14 @@ class UserManager {
         self.identity = identity
     }
     
+    public func getUser(completitonHandler: @escaping(Result<AuthRecord, Error>) -> Void) {
+        let requestBuilder = URLRequestBuilder(url: URL(string: identity.baseAddress + "auth/user/")!)
+            .setMethod(method: .GET)
+            .setIdentity(identity: self.identity)
+        
+        JsonLoader.executeCodableRequest(request: requestBuilder.getRequest(), completionHandler: completitonHandler)
+    }
+    
     public func doLogin(username: String, password: String, completionHandler: @escaping(Result<TokenRecord, Error>) -> Void) -> Void {
         let params = ["username":username, "password":password] as Dictionary<String, String>
         guard let body = try? JSONSerialization.data(withJSONObject: params, options: []) else {
