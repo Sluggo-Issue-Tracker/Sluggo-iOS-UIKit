@@ -31,12 +31,22 @@ class LaunchViewController: UIViewController {
         
         if(remember) {
             // Call login function from remembered. If failed go to login
-            userManager.getUser() { result in
-                switch result {
+            userManager.getUser() { loginResult in
+                switch loginResult {
                 case .success( _):
-                    DispatchQueue.main.sync {
-                        self.performSegue(withIdentifier: "automaticLogin", sender: self)
+                    
+                    //Need to also check for invalid saved team
+                    if(self.identity.team == nil) {
+                        DispatchQueue.main.sync {
+                            self.showTeams()
+                        }
+                    } else {
+                        DispatchQueue.main.sync {
+                            self.continueLogin()
+                        }
+                    
                     }
+                    
                     break
                 case .failure(let error):
                     print(error)
@@ -53,6 +63,17 @@ class LaunchViewController: UIViewController {
     func showLogin() {
         if let vc = self.storyboard?.instantiateViewController(identifier: "loginPage", creator: {coder in
             return LoginViewController(coder: coder, identity: self.identity, completion: {
+                self.showTeams()
+            })
+        }) {
+            vc.isModalInPresentation = true
+            self.present(vc, animated: true)
+        }
+    }
+    
+    func showTeams() {
+        if let vc = self.storyboard?.instantiateViewController(identifier: "TableViewContainer", creator: {coder in
+            return TeamSelectorContainerViewController(coder: coder, identity: self.identity, completion: {
                 self.continueLogin()
             })
         }) {
@@ -62,7 +83,6 @@ class LaunchViewController: UIViewController {
     }
     
     func continueLogin() {
-//        sleep(3)
         self.performSegue(withIdentifier: "automaticLogin", sender: self)
     }
     
