@@ -49,47 +49,26 @@ class TicketListController: UITableViewController {
         let identity = self.identity
         let detailStoryboard = UIStoryboard(name: "TicketDetail", bundle: nil)
         if let vc = detailStoryboard.instantiateViewController(identifier: "TicketDetail", creator:{ coder in
-            return TicketDetailViewController(coder: coder, identity: identity)
+            return TicketDetailViewController(coder: coder, identity: identity, completion: nil)
         }) as TicketDetailViewController? {
             vc.ticket = tickets[indexPath.row]
             
             navigationController?.pushViewController(vc, animated: true)
         }
-        
-        
-        
-//        let tempStory = UIStoryboard(name: "TicketDetail", bundle: nil)
-//        let vc = tempStory.instantiateViewController(identifier: "TicketDetail", creator: { coder in
-//            return TicketDetailViewController(coder: coder, identity: self.identity)
-//        })
-//
-//        vc.ticket = tickets[indexPath.row]
-//
-//        self.present(vc, animated: true, completion: nil)
-        
     }
     
     @objc func connectPopUp() {
         let identity = self.identity
         let detailStoryboard = UIStoryboard(name: "TicketDetail", bundle: nil)
         if let vc = detailStoryboard.instantiateViewController(identifier: "TicketDetail", creator:{ coder in
-            return TicketDetailViewController(coder: coder, identity: identity)
+            return TicketDetailViewController(coder: coder, identity: identity, completion: {
+                self.handleRefreshAction()
+            })
         }) as TicketDetailViewController? {
             vc.ticket = nil
             self.present(vc, animated: true, completion: nil)
         }
     }
-    
-//    @IBSegueAction func passToDetail(_ coder: NSCoder, sender: Any?) -> TicketDetailViewController? {
-//        print ("Sender Stuff: /n")
-//        print(sender)
-//        print("Type is")
-//        print(sender is UITableViewCell)
-//        if(sender is UITableViewCell){
-//
-//        }
-//        return TicketDetailViewController(coder: coder, identity: identity, ticket: nil)
-//    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.tickets.count

@@ -37,7 +37,6 @@ class TicketManager {
             completionHandler(.failure(Exception.runtimeError(message: "Failed to serialize ticket JSON for makeTicket in TicketManager")))
             return
         }
-        print(NSString(data: body, encoding: String.Encoding.utf8.rawValue))
         let requestBuilder = URLRequestBuilder(url: makeListUrl(page: 1))
             .setMethod(method: .POST)
             .setData(data: body)
