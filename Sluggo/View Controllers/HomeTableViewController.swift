@@ -29,8 +29,10 @@ class HomeTableViewController: UITableViewController {
         manager.listTeamTickets(page: 1) { result in
             switch(result) {
             case .success(let list):
-                self.tickets = list.results
-                print(self.tickets)
+                DispatchQueue.main.sync {
+                    self.tickets = list.results
+                    self.tableView.reloadData()
+                }
                 break;
             case .failure(let error):
                 UIAlertController.createAndPresentError(vc: self, error: error, completion: nil)
