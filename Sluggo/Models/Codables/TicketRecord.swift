@@ -28,7 +28,7 @@ struct TicketRecord: Codable {
 
 struct WriteTicketRecord: Codable{
     var tag_list: [TagRecord]?
-    var assigned_user: MemberRecord?
+    var assigned_user: String?
     var status: StatusRecord?
     var title: String
     var description: String?

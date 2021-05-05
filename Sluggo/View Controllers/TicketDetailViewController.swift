@@ -16,15 +16,15 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var ticketTitle: UITextField!
     @IBOutlet weak var ticketDescription: UITextView!
-    @IBOutlet weak var currentAssignedUserLabel: UILabel!
     @IBOutlet weak var navigationItemDisplay: UINavigationItem!
+    @IBOutlet weak var assignedUserTextField: UITextField!
     @IBOutlet weak var dateTimePicker: UIDatePicker!
     @IBOutlet weak var navBar: UINavigationBar!
-    @IBOutlet weak var changeButton: UIButton!
     @IBOutlet weak var ticketTitleTopConstraint: NSLayoutConstraint!
     
     var identity: AppIdentity
     var ticket: TicketRecord?
+    var pickerView: UIPickerView = UIPickerView()
     
     init? (coder: NSCoder, identity: AppIdentity) {
         self.identity = identity
@@ -54,7 +54,11 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate {
                 }
             }
         }
-        NotificationCenter.default.addObserver(self, selector: #selector(changeLabel), name: .changeAssignedUser, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(changeLabel), name: .changeAssignedUser, object: nil)
+        
+        pickerView.dataSource = self
+        pickerView.delegate = self
+        createUserPicker()
         
         ticketDescription.delegate = self
         if(ticket != nil){
@@ -73,7 +77,7 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate {
                 ticketDescription.textColor = .lightGray
             }
             if(ticket?.assigned_user != nil){
-                currentAssignedUserLabel.text = ticket?.assigned_user?.owner.username
+                assignedUserTextField.text = ticket?.assigned_user?.owner.username
                 currentlyChosenMember = ticket?.assigned_user
             }
             if let date = ticket?.due_date{
@@ -82,7 +86,6 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate {
             //navigationController?.setNavigationBarHidden(true, animated: true)
             navBar.isHidden = true
             ticketTitleTopConstraint.constant = 0
-            changeButton.isHidden = true
             ticketTitle.isUserInteractionEnabled = false
             ticketDescription.isUserInteractionEnabled = false
             dateTimePicker.isUserInteractionEnabled = false
@@ -113,9 +116,11 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate {
             description = ticketDescription.text
         }
         let date = dateTimePicker.date
+        var member: String?
+        member = currentMember?.id
         
         
-        let ticket = WriteTicketRecord(tag_list: nil, assigned_user: currentMember, status: nil, title: title, description: description, due_date: date)
+        let ticket = WriteTicketRecord(tag_list: nil, assigned_user: member, status: nil, title: title, description: description, due_date: date)
         //print (ticket)
         let manager = TicketManager(identity)
         manager.makeTicket(ticket: ticket){ result in
@@ -139,10 +144,29 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate {
         
     }
     
-    @objc func changeLabel(_notification: Notification){
-        currentAssignedUserLabel.text = currentMember?.owner.username ?? "No Assigned User"
+//    @objc func changeLabel(_notification: Notification){
+//        assignedUserTextField.text = currentMember?.owner.username ?? "No Assigned User"
+//    }
+    
+    func createUserPicker() {
+        //create toolbar
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        toolbar.translatesAutoresizingMaskIntoConstraints = false
+        
+        //create bar button
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(userPicked))
+        toolbar.setItems([doneButton], animated: true)
+        assignedUserTextField.inputAccessoryView = toolbar
+        
+        assignedUserTextField.inputView = pickerView
     }
     
+    @objc func userPicked(){
+        assignedUserTextField.text = currentMember?.owner.username ?? "No Assigned User"
+        self.view.endEditing(true)
+
+    }
 //    func createDatePicker() {
 //        // create toolbar
 //        let toolbar = UIToolbar()
@@ -195,34 +219,34 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate {
 
 //MARK: PopupController manager
 
-class PopupVC: UIViewController {
-
-    @IBOutlet weak var assignedUsersPicker: UIPickerView!
-    @IBOutlet weak var pickerViewController: UIPickerView!
-    
-    override func viewDidLoad(){
-        super.viewDidLoad()
-        
-        currentMember = nil  // This was done because pickerView is weird, thus this needs to be forced.
-        
-        pickerViewController.dataSource = self
-        pickerViewController.delegate = self
-    }
-    
-    // Buttons in popup, submit button passes notification to trigger change in assignedUserLabel
-    @IBAction func dismissPopup(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-    @IBAction func submitButton(_ sender: Any) {
-        NotificationCenter.default.post(name: .changeAssignedUser, object:self)
-        dismiss(animated: true, completion: nil)
-    }
-}
+//class PopupVC: UIViewController {
+//
+//    @IBOutlet weak var assignedUsersPicker: UIPickerView!
+//    @IBOutlet weak var pickerViewController: UIPickerView!
+//
+//    override func viewDidLoad(){
+//        super.viewDidLoad()
+//
+//        currentMember = nil  // This was done because pickerView is weird, thus this needs to be forced.
+//
+//        pickerViewController.dataSource = self
+//        pickerViewController.delegate = self
+//    }
+//
+//    // Buttons in popup, submit button passes notification to trigger change in assignedUserLabel
+//    @IBAction func dismissPopup(_ sender: Any) {
+//        dismiss(animated: true, completion: nil)
+//    }
+//    @IBAction func submitButton(_ sender: Any) {
+//        NotificationCenter.default.post(name: .changeAssignedUser, object:self)
+//        dismiss(animated: true, completion: nil)
+//    }
+//}
 
 
 //MARK: UIPickerView manager
 
-extension PopupVC: UIPickerViewDelegate, UIPickerViewDataSource {
+extension TicketDetailViewController: UIPickerViewDelegate, UIPickerViewDataSource {
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -243,7 +267,7 @@ extension PopupVC: UIPickerViewDelegate, UIPickerViewDataSource {
     }
 }
 
-extension Notification.Name {
-    static let changeAssignedUser = Notification.Name(rawValue: "changeAssignedUserNotification")
-}
+//extension Notification.Name {
+//    static let changeAssignedUser = Notification.Name(rawValue: "changeAssignedUserNotification")
+//}
 
