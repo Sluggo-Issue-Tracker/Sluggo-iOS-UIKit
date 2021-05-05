@@ -46,11 +46,11 @@ class TicketManager {
     }
     
     public func updateTicket(ticket: TicketRecord, completionHandler: @escaping(Result<TicketRecord, Error>) -> Void)-> Void {
-        guard let body = JsonLoader.encode(object: ticket) else {
+        let writeTicket = WriteTicketRecord(tag_list: ticket.tag_list, assigned_user: ticket.assigned_user?.id, status: ticket.status, title: ticket.title, description: ticket.description, due_date: ticket.due_date)
+        guard let body = JsonLoader.encode(object: writeTicket) else {
             completionHandler(.failure(Exception.runtimeError(message: "Failed to serialize ticket JSON for updateTicket in TicketManager")))
             return
         }
-        
         let requestBuilder = URLRequestBuilder(url: makeDetailUrl(ticket))
             .setMethod(method: .PUT)
             .setData(data: body)

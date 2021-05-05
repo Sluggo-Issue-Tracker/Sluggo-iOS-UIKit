@@ -7,9 +7,7 @@
 
 import UIKit
 
-//var teamMembers: [String] = ["No Assigned User"]
-var teamMembers: [MemberRecord?] = [nil]
-var currentMember: MemberRecord? = nil
+
 
 class TicketDetailViewController: UIViewController, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
@@ -28,6 +26,10 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate, UIPicker
     var ticket: TicketRecord?
     var pickerView: UIPickerView = UIPickerView()
     var completion: (() ->Void)?
+    var editingTicket = false
+    
+    var teamMembers: [MemberRecord?] = [nil]
+    var currentMember: MemberRecord? = nil
     
     init? (coder: NSCoder, identity: AppIdentity, ticket: TicketRecord?, completion: (() -> Void)?) {
         self.identity = identity
@@ -49,9 +51,9 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate, UIPicker
         memberManager.listTeamMembers(){ result in
             switch(result){
             case .success(let record):
-                teamMembers = [nil]
+                self.teamMembers = [nil]
                 for user in record.results{
-                    teamMembers.append(user)
+                    self.teamMembers.append(user)
                 }
 
             case .failure(let error):
@@ -72,7 +74,15 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate, UIPicker
             ticketTitle.text = passedTicket.title
             
             if let description = passedTicket.description {
-                ticketDescription.text = description
+                if description.isEmpty {
+                    ticketDescription.text = "Description of ticket"    // Placeholder text
+                    ticketDescription.textColor = .lightGray
+                } else {
+                    ticketDescription.text = description
+                }
+            } else {
+                ticketDescription.text = "Description of ticket"    // Placeholder text
+                ticketDescription.textColor = .lightGray
             }
             
             if let assignedName = passedTicket.assigned_user?.owner.username {
@@ -98,6 +108,8 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate, UIPicker
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(setToEditMode))
         }
         else{
+            ticketDescription.text = "Description of ticket"    // Placeholder text
+            ticketDescription.textColor = .lightGray
             navigationItemDisplay.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelMode))
             navigationItemDisplay.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(submitTicketMode))
         }
@@ -113,35 +125,99 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate, UIPicker
     
     @objc func submitTicketMode(){
         let title = ticketTitle.text ?? "Default title (This is an error)"
-        var description: String? = nil
+        var description: String? = ""
         if ticketDescription.textColor != .lightGray {
             description = ticketDescription.text
         }
         
         let date = dueDateSwitch.isOn ? dateTimePicker.date : nil
-        
         let member = currentMember?.id
         
-        let ticket = WriteTicketRecord(tag_list: nil, assigned_user: member, status: nil, title: title, description: description, due_date: date)
-        
-        let manager = TicketManager(identity)
-        manager.makeTicket(ticket: ticket){ result in
-            switch(result){
-            case .success(_):
-                DispatchQueue.main.async {
-                    self.dismiss(animated: true, completion: self.completion)
+        if(editingTicket){  // Edit Ticket
+            
+            ticket!.title = title
+            ticket!.description = description
+            ticket!.due_date = date
+            ticket!.assigned_user = currentMember
+            
+            let manager = TicketManager(identity)
+            manager.updateTicket(ticket: ticket!){ result in
+                switch(result){
+                    case .success(_):
+                        DispatchQueue.main.async {
+                            self.noEditingMode()
+                            NotificationCenter.default.post(name: .refreshTrigger, object: self)
+                            
+                        }
+                    case .failure(let error):
+                        DispatchQueue.main.async {
+                            let alert = UIAlertController.errorController(error: error)
+                            self.present(alert, animated: true, completion: nil)
+                        }
                 }
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    let alert = UIAlertController.errorController(error: error)
-                    self.present(alert, animated: true, completion: nil)
+            }
+        }
+        else{   // Create Ticket
+            let ticket = WriteTicketRecord(tag_list: nil, assigned_user: member, status: nil, title: title, description: description, due_date: date)
+            let manager = TicketManager(identity)
+            manager.makeTicket(ticket: ticket){ result in
+                switch(result){
+                    case .success(_):
+                        DispatchQueue.main.async {
+                            self.dismiss(animated: true, completion: self.completion)
+                        }
+                    case .failure(let error):
+                        DispatchQueue.main.async {
+                            let alert = UIAlertController.errorController(error: error)
+                            self.present(alert, animated: true, completion: nil)
+                        }
                 }
             }
         }
     }
     
+    // MARK: Placeholder text for description
+    // Whoever decided to code UITextView deserves to be beaten
+    func textViewDidBeginEditing (_ textView: UITextView) {
+        if ticketDescription.textColor == .lightGray{
+            ticketDescription.text = nil
+            ticketDescription.textColor = .black
+        }
+    }
+
+    func textViewDidEndEditing (_ textView: UITextView) {
+        if ticketDescription.text.isEmpty || ticketDescription.text == "" {
+            ticketDescription.textColor = .lightGray
+            ticketDescription.text = "Description of Ticket"
+        }
+    }
+    
+    // We understand that these two are bad, but for now, passing parameters to selectors is not very fun.
     @objc func setToEditMode(){
-        
+        editingTicket = true
+        navigationItem.rightBarButtonItem = nil
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(submitTicketMode))
+        ticketTitle.isUserInteractionEnabled = true
+        ticketDescription.isUserInteractionEnabled = true
+        dateTimePicker.isUserInteractionEnabled = true
+        assignedUserTextField.isUserInteractionEnabled = true
+        dueDateSwitch.isHidden = false
+        dueDateSwitch.isOn = dateTimePicker.isEnabled
+        dateTimePicker.isHidden = false
+        dueDateLabel.isHidden = false
+    }
+    
+    func noEditingMode(){
+        editingTicket = false
+        navigationItem.rightBarButtonItem = nil
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(setToEditMode))
+        ticketTitle.isUserInteractionEnabled = false
+        ticketDescription.isUserInteractionEnabled = false
+        dateTimePicker.isUserInteractionEnabled = false
+        assignedUserTextField.isUserInteractionEnabled = false
+        dueDateSwitch.isHidden = true
+        dateTimePicker.isHidden = !dateTimePicker.isEnabled
+        dueDateLabel.isHidden = !dateTimePicker.isEnabled
     }
     
     func createUserPicker() {
