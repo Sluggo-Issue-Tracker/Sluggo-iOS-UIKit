@@ -9,6 +9,7 @@ import UIKit
 
 class HomeTableViewController: UITableViewController {
     var identity: AppIdentity!
+    var tickets: [TicketRecord] = []
     
     // Injection for identity
     init? (coder: NSCoder, identity: AppIdentity) {
@@ -22,6 +23,20 @@ class HomeTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Load the tickets
+        let manager = TicketManager(identity)
+        manager.listTeamTickets(page: 1) { result in
+            switch(result) {
+            case .success(let list):
+                self.tickets = list.results
+                print(self.tickets)
+                break;
+            case .failure(let error):
+                UIAlertController.createAndPresentError(vc: self, error: error, completion: nil)
+                print("FAILURE")
+            }
+        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -39,15 +54,14 @@ class HomeTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return tickets.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Ticket", for: indexPath) as! TicketTableViewCell
-
-        let mockRecord = TicketRecord(id: 1, ticket_number: 1, tag_list: nil, object_uuid: UUID(), assigned_user: nil, status: nil, title: "Test Ticket", description: "A Sample Description", due_date: nil, created: Date(), activated: nil, deactivated: nil)
+        let record = tickets[indexPath.row]
         
-        cell.loadFromTicketRecord(ticket: mockRecord)
+        cell.loadFromTicketRecord(ticket: record)
 
         return cell
     }
