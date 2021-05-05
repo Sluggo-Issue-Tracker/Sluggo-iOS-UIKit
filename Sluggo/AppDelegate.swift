@@ -25,10 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         let identity = AppIdentity.loadFromDisk() ?? AppIdentity()
         
-        // TODO: for testing purposes, the team for the identity is hardcoded. Change this eventually :)
-        identity.team = TeamRecord(id: 1, name: "bugslotics", object_uuid: UUID(), ticket_head: 1,
-                                        created: Date(), activated: nil, deactivated: nil)
-        
         initialViewController = storyboard.instantiateViewController(identifier: "launchView", creator: { coder in
             return LaunchViewController(coder: coder, identity: identity)
         })

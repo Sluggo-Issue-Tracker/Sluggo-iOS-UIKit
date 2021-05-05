@@ -11,16 +11,16 @@
         <!--Teams-->
         <scene sceneID="iqQ-sC-Z5D">
             <objects>
-                <tableViewController id="PJK-Xs-1jr" sceneMemberID="viewController">
+                <tableViewController id="PJK-Xs-1jr" customClass="TeamTableViewController" customModule="Sluggo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="DSP-3Y-Wmp">
                         <rect key="frame" x="0.0" y="0.0" width="280" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="SLGSidebarCell" textLabel="73u-VP-0wj" style="IBUITableViewCellStyleDefault" id="t4U-f1-qzY">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="SLGSidebarCell" textLabel="73u-VP-0wj" style="IBUITableViewCellStyleDefault" id="t4U-f1-qzY" customClass="TeamTableViewCell" customModule="Sluggo" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="280" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="t4U-f1-qzY" id="sBI-5J-NPm">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="t4U-f1-qzY" id="sBI-5J-NPm" customClass="TeamTableViewCell" customModule="Sluggo" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="240" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
@@ -111,7 +111,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="PJK-Xs-1jr" kind="relationship" relationship="rootViewController" id="NWN-S5-aEd"/>
+                        <segue destination="PJK-Xs-1jr" kind="relationship" relationship="rootViewController" destinationCreationSelector="launchSidebar:" id="NWN-S5-aEd"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="56C-UM-bo4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
