@@ -100,17 +100,6 @@ class LoginViewController: UIViewController {
         }
     }
     
-//    private func launchTeamSelect() {
-//        if let vc = storyboard?.instantiateViewController(identifier: "TableViewContainer", creator: { coder in
-//            return TeamSelectorContainerViewController(coder: coder, identity: self.identity) {
-//                self.dismiss(animated: true, completion: self.completion)
-//            }
-//        }) {
-//            vc.isModalInPresentation = true
-//            self.present(vc, animated: true)
-//        }
-//    }
-    
     @IBAction func persistLoginButton(_ sender: Any) {
         self.persistButton.isSelected.toggle()
         print(self.persistButton.isSelected)
