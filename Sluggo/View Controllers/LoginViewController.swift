@@ -47,7 +47,9 @@ class LoginViewController: UIViewController {
     @IBAction func loginButton(_ sender: Any) {
         let userString = username.text
         let passString = password.text
-                
+        
+        print("button pressed")
+        
         if(userString!.isEmpty || passString!.isEmpty) {
             // login Error
             print("No username or password provided, not attempting login")
@@ -70,6 +72,19 @@ class LoginViewController: UIViewController {
                 // Save to identity
                 self.identity.token = record.key
                 
+                // Persistence
+                // This is hacky but better than nothing
+                var rememberMe: Bool = false
+                DispatchQueue.main.sync {
+                    rememberMe = self.persistButton.isSelected
+                }
+                if(rememberMe) {
+                    let persistenceResult = self.identity.saveToDisk()
+                    if(!persistenceResult) {
+                        print("SOMETHING WENT WRONG WITH PERSISTENCE!")
+                    }
+                }
+                
                 // Segue out of VC
                 DispatchQueue.main.async {
                     self.dismiss(animated: true, completion: self.completion)
@@ -85,9 +100,19 @@ class LoginViewController: UIViewController {
         }
     }
     
+//    private func launchTeamSelect() {
+//        if let vc = storyboard?.instantiateViewController(identifier: "TableViewContainer", creator: { coder in
+//            return TeamSelectorContainerViewController(coder: coder, identity: self.identity) {
+//                self.dismiss(animated: true, completion: self.completion)
+//            }
+//        }) {
+//            vc.isModalInPresentation = true
+//            self.present(vc, animated: true)
+//        }
+//    }
+    
     @IBAction func persistLoginButton(_ sender: Any) {
         self.persistButton.isSelected.toggle()
-        self.identity.rememberMe = self.persistButton.isSelected
         print(self.persistButton.isSelected)
     }
 }
