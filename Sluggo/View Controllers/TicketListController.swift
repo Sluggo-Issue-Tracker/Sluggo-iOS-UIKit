@@ -28,6 +28,7 @@ class TicketListController: UITableViewController {
         configureRefreshControl()
         loadData(page: 1)
         navigationItem.rightBarButtonItem = UIBarButtonItem( barButtonSystemItem: .add, target: self, action: #selector(connectPopUp))
+        NotificationCenter.default.addObserver(self, selector: #selector(handleRefreshAction), name: .refreshTrigger, object: nil)
     }
     
     func configureRefreshControl() {
@@ -112,4 +113,8 @@ class TicketListController: UITableViewController {
         }
     }
     
+}
+
+extension Notification.Name {
+    static let refreshTrigger = Notification.Name(rawValue: "SLGRefreshTriggerNotification")
 }

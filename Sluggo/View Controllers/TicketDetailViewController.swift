@@ -28,6 +28,7 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate {
     var ticket: TicketRecord?
     var pickerView: UIPickerView = UIPickerView()
     var completion: (() ->Void)?
+    var editingTicket = false
     
     init? (coder: NSCoder, identity: AppIdentity, completion: (() -> Void)?) {
         self.identity = identity
@@ -126,34 +127,86 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate {
     @objc func submitTicketMode(){
         let title = ticketTitle.text ?? "Default title (This is an error)"
         var description: String?
-        description = nil
+        description = ""
         if ticketDescription.textColor != .lightGray {
             description = ticketDescription.text
         }
         let date = dueDateSwitch.isOn ? dateTimePicker.date : nil
+        print(dueDateSwitch.isOn)
+        print(date)
         var member: String?
         member = currentMember?.id
         
-        
-        let ticket = WriteTicketRecord(tag_list: nil, assigned_user: member, status: nil, title: title, description: description, due_date: date)
-        let manager = TicketManager(identity)
-        manager.makeTicket(ticket: ticket){ result in
-            switch(result){
-            case .success(_):
-                DispatchQueue.main.async {
-                    self.dismiss(animated: true, completion: self.completion)
+        if(editingTicket){  // Edit Ticket
+            
+            ticket!.title = title
+            ticket!.description = description
+            ticket!.due_date = date
+            print(ticket!.due_date)
+            ticket!.assigned_user = currentMember
+            
+            let manager = TicketManager(identity)
+            manager.updateTicket(ticket: ticket!){ result in
+                switch(result){
+                    case .success(_):
+                        DispatchQueue.main.async {
+                            //self.navigationController?.popViewController(animated: true)
+                            self.noEditingMode()
+                            NotificationCenter.default.post(name: .refreshTrigger, object: self)
+                            
+                        }
+                    case .failure(let error):
+                        DispatchQueue.main.async {
+                            let alert = UIAlertController.errorController(error: error)
+                            self.present(alert, animated: true, completion: nil)
+                        }
                 }
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    let alert = UIAlertController.errorController(error: error)
-                    self.present(alert, animated: true, completion: nil)
+            }
+        }
+        else{   // Create Ticket
+            let ticket = WriteTicketRecord(tag_list: nil, assigned_user: member, status: nil, title: title, description: description, due_date: date)
+            let manager = TicketManager(identity)
+            manager.makeTicket(ticket: ticket){ result in
+                switch(result){
+                    case .success(_):
+                        DispatchQueue.main.async {
+                            self.dismiss(animated: true, completion: self.completion)
+                        }
+                    case .failure(let error):
+                        DispatchQueue.main.async {
+                            let alert = UIAlertController.errorController(error: error)
+                            self.present(alert, animated: true, completion: nil)
+                        }
                 }
             }
         }
     }
     
     @objc func setToEditMode(){
-        
+        editingTicket = true
+        navigationItem.rightBarButtonItem = nil
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(submitTicketMode))
+        ticketTitle.isUserInteractionEnabled = true
+        ticketDescription.isUserInteractionEnabled = true
+        dateTimePicker.isUserInteractionEnabled = true
+        assignedUserTextField.isUserInteractionEnabled = true
+        dueDateSwitch.isHidden = false
+        dueDateSwitch.isOn = dateTimePicker.isEnabled
+        dateTimePicker.isHidden = false
+        dueDateLabel.isHidden = false
+    }
+    
+    func noEditingMode(){
+        editingTicket = false
+        navigationItem.rightBarButtonItem = nil
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(setToEditMode))
+        ticketTitle.isUserInteractionEnabled = false
+        ticketDescription.isUserInteractionEnabled = false
+        dateTimePicker.isUserInteractionEnabled = false
+        assignedUserTextField.isUserInteractionEnabled = false
+        dueDateSwitch.isHidden = true
+        dateTimePicker.isHidden = !dateTimePicker.isEnabled
+        dueDateLabel.isHidden = !dateTimePicker.isEnabled
     }
     
     func createUserPicker() {
