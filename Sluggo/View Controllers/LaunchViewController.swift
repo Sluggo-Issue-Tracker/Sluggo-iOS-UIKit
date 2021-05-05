@@ -34,19 +34,10 @@ class LaunchViewController: UIViewController {
             userManager.getUser() { loginResult in
                 switch loginResult {
                 case .success( _):
-                    
                     //Need to also check for invalid saved team
-                    if(self.identity.team == nil) {
-                        DispatchQueue.main.sync {
-                            self.showTeams()
-                        }
-                    } else {
-                        DispatchQueue.main.sync {
-                            self.continueLogin()
-                        }
-                    
+                    DispatchQueue.main.sync {
+                        self.tryTeam()
                     }
-                    
                     break
                 case .failure(let error):
                     print(error)
@@ -57,6 +48,30 @@ class LaunchViewController: UIViewController {
             }
         } else {
             self.showLogin()
+        }
+    }
+    
+    // runs on a background thread
+    private func tryTeam() {
+        if let team = identity.team{
+            let teamManager = TeamManager(identity: self.identity)
+            teamManager.getTeam(team: team) { result in
+                switch result {
+                case .success(let teamRecord):
+                    self.identity.team = teamRecord
+                    DispatchQueue.main.sync {
+                        self.continueLogin()
+                    }
+                    break
+                case .failure(let error):
+                    print(error)
+                    DispatchQueue.main.sync {
+                        self.showTeams()
+                    }
+                }
+            }
+        } else {
+            self.showTeams()
         }
     }
     
