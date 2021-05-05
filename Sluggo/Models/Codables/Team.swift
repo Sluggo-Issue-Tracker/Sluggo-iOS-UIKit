@@ -18,11 +18,6 @@ struct TeamRecord: Codable, Equatable {
     var deactivated: Date?
     
     static func == (lhs: TeamRecord, rhs: TeamRecord) -> Bool {
-        return lhs.id == rhs.id &&
-            lhs.object_uuid == rhs.object_uuid &&
-            lhs.ticket_head == rhs.ticket_head &&
-            lhs.created == rhs.created &&
-            lhs.activated == rhs.activated &&
-            lhs.deactivated == rhs.deactivated
+        return lhs.object_uuid == rhs.object_uuid
     }
 }

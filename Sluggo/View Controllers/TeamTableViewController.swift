@@ -30,6 +30,8 @@ class TeamTableViewController: UITableViewController {
     }
     
     private func preselectRow() {
+        if (teams.count == 0) { return }
+        
         for i in 0...teams.count-1 {
             let team = teams[i]
             let indexPath = IndexPath(row: i, section: 0)
