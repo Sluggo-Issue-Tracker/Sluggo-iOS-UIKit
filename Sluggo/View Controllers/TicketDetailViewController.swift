@@ -10,9 +10,9 @@ import UIKit
 //var teamMembers: [String] = ["No Assigned User"]
 var teamMembers: [MemberRecord?] = [nil]
 var currentMember: MemberRecord? = nil
-var currentlyChosenMember: MemberRecord? = nil
 
-class TicketDetailViewController: UIViewController, UITextViewDelegate {
+class TicketDetailViewController: UIViewController, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+    
     
     @IBOutlet weak var ticketTitle: UITextField!
     @IBOutlet weak var ticketDescription: UITextView!
@@ -29,9 +29,10 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate {
     var pickerView: UIPickerView = UIPickerView()
     var completion: (() ->Void)?
     
-    init? (coder: NSCoder, identity: AppIdentity, completion: (() -> Void)?) {
+    init? (coder: NSCoder, identity: AppIdentity, ticket: TicketRecord?, completion: (() -> Void)?) {
         self.identity = identity
         self.completion = completion
+        self.ticket = ticket
         super.init(coder: coder)
     }
     
@@ -42,6 +43,7 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         dateTimePicker.isEnabled = dueDateSwitch.isOn
+        
 
         let memberManager = MemberManager(identity: self.identity)
         memberManager.listTeamMembers(){ result in
@@ -65,26 +67,19 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate {
         createUserPicker()
         
         ticketDescription.delegate = self
-        if(ticket != nil){
-            ticketTitle.text = ticket?.title
-            if let description = ticket?.description{
-                if(description != ""){
-                    ticketDescription.text = description
-                }
-                else{   // Placeholder text
-                    ticketDescription.text = "Description of ticket"
-                    ticketDescription.textColor = .lightGray
-                }
+        if let passedTicket = ticket {
+            
+            ticketTitle.text = passedTicket.title
+            
+            if let description = passedTicket.description {
+                ticketDescription.text = description
             }
-            else{   // Placeholder text
-                ticketDescription.text = "Description of ticket"
-                ticketDescription.textColor = .lightGray
+            
+            if let assignedName = passedTicket.assigned_user?.owner.username {
+                assignedUserTextField.text = assignedName
             }
-            if(ticket?.assigned_user != nil){
-                assignedUserTextField.text = ticket?.assigned_user?.owner.username
-                currentlyChosenMember = ticket?.assigned_user
-            }
-            if let date = ticket?.due_date{
+            
+            if let date = passedTicket.due_date {
                 dateTimePicker.date = date
                 dateTimePicker.isEnabled = true
             }
@@ -92,6 +87,7 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate {
                 dateTimePicker.isHidden = true
                 dueDateLabel.isHidden = true
             }
+            
             navBar.isHidden = true
             ticketTitleTopConstraint.constant = 0
             ticketTitle.isUserInteractionEnabled = false
@@ -102,8 +98,6 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate {
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(setToEditMode))
         }
         else{
-            ticketDescription.text = "Description of ticket"    // Placeholder text
-            ticketDescription.textColor = .lightGray
             navigationItemDisplay.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelMode))
             navigationItemDisplay.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(submitTicketMode))
         }
@@ -112,30 +106,24 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate {
     @IBAction func dueDateSwitch(_ sender: UISwitch) {
         dateTimePicker.isEnabled = sender.isOn
     }
-
     
-    @objc func goBackToPrevView(){
-        navigationController?.popViewController(animated: true)
-        navigationController?.setNavigationBarHidden(false, animated: true)
-    }
-    
-    @objc func cancelMode(){
+    @objc func cancelMode() {
         self.dismiss(animated: true, completion: nil)
     }
     
     @objc func submitTicketMode(){
         let title = ticketTitle.text ?? "Default title (This is an error)"
-        var description: String?
-        description = nil
+        var description: String? = nil
         if ticketDescription.textColor != .lightGray {
             description = ticketDescription.text
         }
-        let date = dueDateSwitch.isOn ? dateTimePicker.date : nil
-        var member: String?
-        member = currentMember?.id
         
+        let date = dueDateSwitch.isOn ? dateTimePicker.date : nil
+        
+        let member = currentMember?.id
         
         let ticket = WriteTicketRecord(tag_list: nil, assigned_user: member, status: nil, title: title, description: description, due_date: date)
+        
         let manager = TicketManager(identity)
         manager.makeTicket(ticket: ticket){ result in
             switch(result){
@@ -176,27 +164,10 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate {
 
     }
     
-    // MARK: Placeholder text for description
-    // Whoever decided to code UITextView deserves to be beaten
-    func textViewDidBeginEditing (_ textView: UITextView) {
-        if ticketDescription.textColor == .lightGray{
-            ticketDescription.text = nil
-            ticketDescription.textColor = .black
-        }
-    }
-
-    func textViewDidEndEditing (_ textView: UITextView) {
-        if ticketDescription.text.isEmpty || ticketDescription.text == "" {
-            ticketDescription.textColor = .lightGray
-            ticketDescription.text = "Description of Ticket"
-        }
-    }
-}
-
-//MARK: UIPickerView manager
-
-extension TicketDetailViewController: UIPickerViewDelegate, UIPickerViewDataSource {
-
+    
+    
+    
+    //MARK: UIPickerView manager
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -212,4 +183,5 @@ extension TicketDetailViewController: UIPickerViewDelegate, UIPickerViewDataSour
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         currentMember = teamMembers[row]
     }
+    
 }
