@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import NullCodable
 
 struct StatusRecord: Codable {
     var id: Int
@@ -14,7 +14,7 @@ struct StatusRecord: Codable {
     var title: String
     var color: String
     var created: Date
-    var activated: Date?
-    var deactivated: Date?
+    @NullCodable var activated: Date?
+    @NullCodable var deactivated: Date?
 
 }
