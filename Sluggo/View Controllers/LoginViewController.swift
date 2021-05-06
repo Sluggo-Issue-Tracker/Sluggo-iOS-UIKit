@@ -79,6 +79,12 @@ class LoginViewController: UIViewController {
                         switch(result) {
                         case .success(let userRecord):
                             self.identity.authenticatedUser = userRecord
+                            
+                            // Segue out of VC
+                            DispatchQueue.main.async {
+                                self.dismiss(animated: true, completion: self.completion)
+                            }
+                            
                             break
                         case .failure(let error):
                             print("FAILURE!")
@@ -87,13 +93,9 @@ class LoginViewController: UIViewController {
                             }
                         }
                     }
-                    if(self.identity.authenticatedUser == nil) { return }; // avoid segueing out if we didn't fully successfully log in
                 }
                 
-                // Segue out of VC
-                DispatchQueue.main.async {
-                    self.dismiss(animated: true, completion: self.completion)
-                }
+                
                 
                 break;
             case .failure(let error):
