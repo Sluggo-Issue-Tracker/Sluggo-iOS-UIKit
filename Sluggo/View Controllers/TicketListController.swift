@@ -11,7 +11,8 @@ class TicketListController: UITableViewController {
 
     var identity: AppIdentity
     var maxNumber: Int = 0
-    var tickets: [TicketRecord] = []
+    var pinnedTickets: [TicketRecord] = []
+    var assignedTickets: [TicketRecord] = []
     var isFetching: Bool = false
     
     init? (coder: NSCoder, identity: AppIdentity) {
@@ -35,7 +36,7 @@ class TicketListController: UITableViewController {
     }
     
     @objc func handleRefreshAction() {
-        tickets = []
+        pinnedTickets = []
         self.loadData(page: 1)
     }
 
@@ -48,14 +49,14 @@ class TicketListController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.tickets.count
+        return self.pinnedTickets.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Ticket", for: indexPath) as! TicketTableViewCell
-        cell.loadFromTicketRecord(ticket: tickets[indexPath.row])
+        cell.loadFromTicketRecord(ticket: pinnedTickets[indexPath.row])
         
-        if (indexPath.row == tickets.count - 1 && tickets.count < maxNumber && !isFetching) {
+        if (indexPath.row == pinnedTickets.count - 1 && pinnedTickets.count < maxNumber && !isFetching) {
             DispatchQueue.main.async {
                 self.loadData(page: ((indexPath.row + 1) / self.identity.pageSize) + 1)
             }
@@ -71,7 +72,7 @@ class TicketListController: UITableViewController {
         ticketManager.listTeamTickets(page: page) { result in
             switch(result) {
             case .success(let record):
-                self.tickets += record.results
+                self.pinnedTickets += record.results
                 self.maxNumber = record.count
                 
                 DispatchQueue.main.async {
