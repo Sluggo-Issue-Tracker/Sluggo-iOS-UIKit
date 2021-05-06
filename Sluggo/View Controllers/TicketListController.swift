@@ -37,7 +37,7 @@ class TicketListController: UITableViewController {
     }
     
     @objc func handleRefreshAction() {
-        tickets = []
+        self.tableView.isUserInteractionEnabled = false
         self.loadData(page: 1)
     }
 
@@ -94,23 +94,25 @@ class TicketListController: UITableViewController {
         ticketManager.listTeamTickets(page: page) { result in
             switch(result) {
             case .success(let record):
+                self.maxNumber = record.count
                 
-                if (self.maxNumber > record.count) {
-                    // our maxNumber is greater than record.count
-                    // therefore our data is invalid and we should reload the entire thing
-                    self.maxNumber = record.count
-                    self.handleRefreshAction()
-                } else {
-                    // there is either more data ahead or no new records have been added
-                    // should be fine to keep this the same.
-                    self.tickets += record.results
-                    self.maxNumber = record.count
+                var ticketsCopy = Array(self.tickets)
+                // remove all after starting from the beginning of the first element in this page
+                let pageOffset = (page - 1) * self.identity.pageSize
+                if (pageOffset < self.tickets.count) {
+                    ticketsCopy.removeSubrange(pageOffset...self.tickets.count-1)
+                }
+                
+                for entry in record.results {
+                        ticketsCopy.append(entry)
+                }
                     
-                    DispatchQueue.main.async {
-                        self.refreshControl?.endRefreshing()
-                        self.tableView.reloadData()
-                        self.isFetching = false
-                    }
+                DispatchQueue.main.sync {
+                    self.refreshControl?.endRefreshing()
+                    self.tickets = ticketsCopy
+                    self.tableView.reloadData()
+                    self.isFetching = false
+                    self.tableView.isUserInteractionEnabled = true
                 }
                 break;
             case .failure(let error):
