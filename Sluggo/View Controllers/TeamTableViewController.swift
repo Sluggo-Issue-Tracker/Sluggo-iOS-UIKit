@@ -97,6 +97,7 @@ class TeamTableViewController: UITableViewController {
                 
                 break;
             case .failure(let error):
+                self.semaphore.signal()
                 DispatchQueue.main.async {
                     let alert = UIAlertController.errorController(error: error)
                     self.present(alert, animated: true, completion: nil)
