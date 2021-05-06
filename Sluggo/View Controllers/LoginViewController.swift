@@ -73,24 +73,21 @@ class LoginViewController: UIViewController {
                 self.identity.token = record.key
                 
                 // Wait for user record to also be fetched
-                // Don't ask me why this needs to be in another dispatch, it just fails otherwise.
-                DispatchQueue.global(qos: .userInitiated).sync {
-                    userManager.getUser() { result in
-                        switch(result) {
-                        case .success(let userRecord):
-                            self.identity.authenticatedUser = userRecord
-                            
-                            // Segue out of VC
-                            DispatchQueue.main.async {
-                                self.dismiss(animated: true, completion: self.completion)
-                            }
-                            
-                            break
-                        case .failure(let error):
-                            print("FAILURE!")
-                            DispatchQueue.main.sync {
-                                UIAlertController.createAndPresentError(vc: self, error: error, completion: nil)
-                            }
+                userManager.getUser() { result in
+                    switch(result) {
+                    case .success(let userRecord):
+                        self.identity.authenticatedUser = userRecord
+                        
+                        // Segue out of VC
+                        DispatchQueue.main.async {
+                            self.dismiss(animated: true, completion: self.completion)
+                        }
+                        
+                        break
+                    case .failure(let error):
+                        print("FAILURE!")
+                        DispatchQueue.main.sync {
+                            UIAlertController.createAndPresentError(vc: self, error: error, completion: nil)
                         }
                     }
                 }
