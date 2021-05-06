@@ -35,6 +35,9 @@ class HomeTableViewController: UITableViewController {
         loadMember() {
             self.loadPinnedTickets(completionHandler: nil)
         }
+        
+        // Setup refresh control
+        self.refreshControl?.addTarget(self, action: #selector(refreshContent), for: .valueChanged)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -83,6 +86,19 @@ class HomeTableViewController: UITableViewController {
                 }
             }
         }
+    }
+    
+    @objc func refreshContent() {
+        if(self.member == nil) {
+            self.refreshControl?.endRefreshing()
+            return;
+        }
+        
+        self.loadPinnedTickets(completionHandler: {
+            DispatchQueue.main.async {
+                self.refreshControl?.endRefreshing()
+            }
+        })
     }
 
     // MARK: - Table view data source
