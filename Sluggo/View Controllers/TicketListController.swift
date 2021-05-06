@@ -73,7 +73,9 @@ class TicketListController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "Ticket", for: indexPath) as! TicketTableViewCell
+        
         cell.loadFromTicketRecord(ticket: tickets[indexPath.row])
         
         if (indexPath.row == tickets.count - 1 && tickets.count < maxNumber && !isFetching) {
@@ -92,13 +94,23 @@ class TicketListController: UITableViewController {
         ticketManager.listTeamTickets(page: page) { result in
             switch(result) {
             case .success(let record):
-                self.tickets += record.results
-                self.maxNumber = record.count
                 
-                DispatchQueue.main.async {
-                    self.refreshControl?.endRefreshing()
-                    self.tableView.reloadData()
-                    self.isFetching = false
+                if (self.maxNumber > record.count) {
+                    // our maxNumber is greater than record.count
+                    // therefore our data is invalid and we should reload the entire thing
+                    self.maxNumber = record.count
+                    self.handleRefreshAction()
+                } else {
+                    // there is either more data ahead or no new records have been added
+                    // should be fine to keep this the same.
+                    self.tickets += record.results
+                    self.maxNumber = record.count
+                    
+                    DispatchQueue.main.async {
+                        self.refreshControl?.endRefreshing()
+                        self.tableView.reloadData()
+                        self.isFetching = false
+                    }
                 }
                 break;
             case .failure(let error):

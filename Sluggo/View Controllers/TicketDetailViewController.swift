@@ -158,7 +158,7 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate, UIPicker
             }
         }
         else{   // Create Ticket
-            let ticket = WriteTicketRecord(tag_list: nil, assigned_user: member, status: nil, title: title, description: description, due_date: date)
+            let ticket = WriteTicketRecord(tag_list: [], assigned_user: member, status: nil, title: title, description: description, due_date: date)
             let manager = TicketManager(identity)
             manager.makeTicket(ticket: ticket){ result in
                 switch(result){

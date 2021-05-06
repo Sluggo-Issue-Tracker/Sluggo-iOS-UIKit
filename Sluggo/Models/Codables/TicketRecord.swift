@@ -12,7 +12,7 @@ import NullCodable
 struct TicketRecord: Codable {
     var id: Int
     var ticket_number: Int
-    @NullCodable var tag_list: [TagRecord]?
+    var tag_list: [TagRecord]
     var object_uuid: UUID
     @NullCodable var assigned_user: MemberRecord?
     @NullCodable var status: StatusRecord?
@@ -28,7 +28,7 @@ struct TicketRecord: Codable {
 }
 
 struct WriteTicketRecord: Codable{
-    @NullCodable var tag_list: [TagRecord]?
+    var tag_list: [TagRecord]
     @NullCodable var assigned_user: String?
     @NullCodable var status: StatusRecord?
     var title: String
