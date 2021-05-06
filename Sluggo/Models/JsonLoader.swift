@@ -50,6 +50,7 @@ class JsonLoader {
             if (resp.statusCode <= 299 && resp.statusCode >= 200) {
                 if let fetchedData = data {
                     guard let record: T = JsonLoader.decode(data: fetchedData) else {
+                        print(String(data: fetchedData, encoding: .utf8) ?? "Failed to print returned values")
                         completionHandler(.failure(RESTException.failedRequest(message: "Failure to decode retrieved model in JsonLoader Codable Request")))
                         return;
                     }

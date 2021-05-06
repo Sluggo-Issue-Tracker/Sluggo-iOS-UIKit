@@ -10,7 +10,8 @@ import UIKit
 class HomeTableViewController: UITableViewController {
     var identity: AppIdentity!
     var member: MemberRecord!
-    var tickets: [TicketRecord] = []
+    var pinnedTickets: [PinnedTicket] = []
+    var assignedTickets: [TicketRecord] = []
     
     // Injection for identity
     init? (coder: NSCoder, identity: AppIdentity) {
@@ -25,40 +26,10 @@ class HomeTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Get the member record
-        let memberManager = MemberManager(identity: identity)
-        memberManager.getMemberRecord(user: identity.authenticatedUser!, identity: identity) { result in
-            switch(result) {
-            case .success(let member):
-                DispatchQueue.main.sync {
-                    self.member = member
-                    self.tableView.reloadData()
-                }
-                break
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    UIAlertController.createAndPresentError(vc: self, error: error, completion: nil)
-                }
-            }
-        }
-        
-        // Load the tickets
-        let manager = TicketManager(identity)
-        DispatchQueue.global(qos: .userInitiated).async {
-            manager.listTeamTickets(page: 1) { result in
-                switch(result) {
-                case .success(let list):
-                    DispatchQueue.main.sync {
-                        self.tickets = list.results
-                        self.tableView.reloadData()
-                    }
-                    break;
-                case .failure(let error):
-                    DispatchQueue.main.sync {
-                        UIAlertController.createAndPresentError(vc: self, error: error, completion: nil)
-                        print("FAILURE")
-                    }
-                }
+        // Fetch items and begin populating the table view
+        loadMember() {
+            self.loadAssignedTickets() {
+                self.loadPinnedTickets(completionHandler: nil)
             }
         }
 
@@ -67,6 +38,48 @@ class HomeTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    func loadMember(completionHandler: (() -> Void)?) {
+        let memberManager = MemberManager(identity: identity)
+        memberManager.getMemberRecord(user: identity.authenticatedUser!, identity: identity) { result in
+            switch(result) {
+            case .success(let member):
+                DispatchQueue.main.sync {
+                    self.member = member
+                    completionHandler?()
+                }
+                break
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    UIAlertController.createAndPresentError(vc: self, error: error, completion: nil)
+                }
+            }
+        }
+    }
+    
+    func loadAssignedTickets(completionHandler: (() -> Void)?) {
+        // TODO
+        completionHandler?()
+    }
+    
+    func loadPinnedTickets(completionHandler: (() -> Void)?) {
+        let pinnedTicketsManager = PinnedTicketManager(identity: self.identity, member: self.member)
+        pinnedTicketsManager.fetchPinnedTickets() { result in
+            switch(result) {
+            case .success(let pinnedTickets):
+                DispatchQueue.main.sync {
+                    self.pinnedTickets = pinnedTickets
+                    self.tableView.reloadData()
+                }
+                completionHandler?()
+                break
+            case .failure(let error):
+                DispatchQueue.main.sync {
+                    UIAlertController.createAndPresentError(vc: self, error: error, completion: nil)
+                }
+            }
+        }
     }
 
     // MARK: - Table view data source
@@ -78,14 +91,28 @@ class HomeTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return tickets.count
+        switch(section) {
+        case 0:
+            return self.assignedTickets.count
+        case 1:
+            return self.pinnedTickets.count
+        default:
+            fatalError("Invalid section count queried")
+        }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Ticket", for: indexPath) as! TicketTableViewCell
-        let record = tickets[indexPath.row]
-        
-        cell.loadFromTicketRecord(ticket: record)
+        switch(indexPath.section) {
+        case 0:
+            cell.loadFromTicketRecord(ticket: assignedTickets[indexPath.row])
+            break
+        case 1:
+            cell.loadFromTicketRecord(ticket: pinnedTickets[indexPath.row].ticket)
+            break
+        default:
+            fatalError("Accessed section outside of scope, should never occur")
+        }
 
         return cell
     }

@@ -49,7 +49,7 @@ class MemberManager {
         JsonLoader.executeCodableRequest(request: requestBuilder.getRequest(), completionHandler: completionHandler)
     }
     
-    public func getMemberRecord(user: UserRecord, identity: AppIdentity, completionHandler: @escaping(Result<MemberRecord, Error>) -> Void) -> Void {
+    public func getMemberRecord(user: AuthRecord, identity: AppIdentity, completionHandler: @escaping(Result<MemberRecord, Error>) -> Void) -> Void {
         // MARK: MD5 hashing convenience
         func MD5String(for str: String) -> String {
             let digest = Insecure.MD5.hash(data: str.data(using: .utf8)!)
@@ -66,7 +66,7 @@ class MemberManager {
         let memberPk = teamHash.appending(userHash)
         
         // Execute request
-        let request = URLRequestBuilder(url: URL(string: makeListUrl().absoluteString + "/\(memberPk)/")!)
+        let request = URLRequestBuilder(url: URL(string: makeListUrl().absoluteString + "\(memberPk)/")!)
             .setMethod(method: .GET)
             .setIdentity(identity: identity)
         

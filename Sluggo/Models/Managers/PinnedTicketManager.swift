@@ -8,7 +8,7 @@
 import Foundation
 
 class PinnedTicketManager {
-    static let urlBase = "/pinned/"
+    static let urlBase = "/pinned_tickets/"
     private var identity: AppIdentity
     private var member: MemberRecord
     
@@ -18,7 +18,7 @@ class PinnedTicketManager {
     }
     
     private func makeListURL() -> URL {
-        return URL(string: identity.baseAddress + TeamManager.urlBase + String(identity.team!.id) + MemberManager.urlBase + PinnedTicketManager.urlBase)!;
+        return URL(string: identity.baseAddress + TeamManager.urlBase + String(identity.team!.id) + MemberManager.urlBase + member.id + PinnedTicketManager.urlBase)!;
     }
     
     private func makeDetailURL(desiredID: String) -> URL {

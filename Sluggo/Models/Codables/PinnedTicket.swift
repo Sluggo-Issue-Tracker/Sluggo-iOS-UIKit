@@ -10,7 +10,6 @@ import Foundation
 struct PinnedTicket: Codable {
     let id: String // Primary key
     let object_uuid: String
-    let created: Date
     let pinned: Date
     let ticket: TicketRecord
 }
