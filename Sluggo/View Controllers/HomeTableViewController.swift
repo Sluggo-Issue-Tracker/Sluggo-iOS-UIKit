@@ -38,7 +38,7 @@ class HomeTableViewController: UITableViewController {
         
         // Setup refresh control
         self.refreshControl?.addTarget(self, action: #selector(refreshContent), for: .valueChanged)
-
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
