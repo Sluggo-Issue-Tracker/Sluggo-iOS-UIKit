@@ -154,17 +154,26 @@ class HomeTableViewController: UITableViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let _ = self.tableView(self.tableView, cellForRowAt: indexPath) as? TicketTableViewCell {
-            // Present error
-            let error = Exception.runtimeError(message: "Opening ticket details from Home not yet implemented!")
-            UIAlertController.createAndPresentError(vc: self, error: error) { action in
-                // Deselect row once alert acknowledged
-                tableView.deselectRow(at: indexPath, animated: true)
-            }
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        if let _ = self.tableView(self.tableView, cellForRowAt: indexPath) as? TicketTableViewCell {
+//            // Present error
+//            let error = Exception.runtimeError(message: "Opening ticket details from Home not yet implemented!")
+//            UIAlertController.createAndPresentError(vc: self, error: error) { action in
+//                // Deselect row once alert acknowledged
+//                tableView.deselectRow(at: indexPath, animated: true)
+//            }
+//        }
+//    }
+
+    @IBSegueAction func gotoTicketDetail(_ coder: NSCoder) -> TicketDetailViewController? {
+        let selectedPath = tableView.indexPathForSelectedRow
+        switch(selectedPath!.section) {
+        case HomepageCategories.pinned.rawValue:
+            return TicketDetailViewController(coder: coder, identity: self.identity, ticket: pinnedTickets[selectedPath!.row].ticket, completion: nil)
+        default:
+            fatalError("Nothing should be selectable from unimplemented categories!")
         }
     }
-
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

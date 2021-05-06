@@ -24,7 +24,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
-                        <segue destination="NEa-XS-BvW" kind="relationship" relationship="rootViewController" destinationCreationSelector="createHome:" id="tWb-uv-ZM6"/>
+                        <segue destination="NEa-XS-BvW" kind="relationship" relationship="rootViewController" destinationCreationSelector="createHome:" id="k3J-q1-XEx"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jEC-9b-EdH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -35,20 +35,20 @@
         <scene sceneID="8TN-eY-CtX">
             <objects>
                 <tableViewController id="NEa-XS-BvW" customClass="HomeTableViewController" customModule="Sluggo" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="9kV-eL-EPG">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="9kV-eL-EPG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlaceholderCell" textLabel="DKk-vH-e5t" style="IBUITableViewCellStyleDefault" id="gZf-LK-F8P">
-                                <rect key="frame" x="0.0" y="49.5" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="49.5" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gZf-LK-F8P" id="iql-Jr-JWE">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DKk-vH-e5t">
-                                            <rect key="frame" x="20" y="0.0" width="374" height="44"/>
+                                            <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                             <nil key="textColor"/>
@@ -62,29 +62,29 @@
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TicketCell" id="QBi-YU-uEd" customClass="TicketTableViewCell" customModule="Sluggo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="93.5" width="414" height="99.5"/>
+                                <rect key="frame" x="0.0" y="93" width="414" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QBi-YU-uEd" id="TR4-pR-d2i">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="99.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WcM-P6-WUn" customClass="TicketTableViewCell" customModule="Sluggo" customModuleProvider="target">
-                                            <rect key="frame" x="7" y="5" width="400" height="89.5"/>
+                                            <rect key="frame" x="7" y="5" width="400" height="90"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R8Z-r2-eLl">
-                                                    <rect key="frame" x="14" y="27" width="307" height="20.5"/>
+                                                    <rect key="frame" x="14" y="27" width="307" height="21"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A58-Co-aDx">
-                                                    <rect key="frame" x="14" y="43" width="307" height="20.5"/>
+                                                    <rect key="frame" x="14" y="43" width="307" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" systemColor="systemGray5Color"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="sKv-hG-Y7C">
-                                                    <rect key="frame" x="379" y="36.5" width="12.5" height="16.5"/>
+                                                    <rect key="frame" x="379" y="37" width="12.5" height="16.5"/>
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </imageView>
                                             </subviews>
@@ -120,6 +120,10 @@
                                     <outlet property="assignedLabel" destination="A58-Co-aDx" id="9MT-bT-5Dy"/>
                                     <outlet property="containerView" destination="WcM-P6-WUn" id="Vgt-D4-eze"/>
                                     <outlet property="titleLabel" destination="R8Z-r2-eLl" id="KCM-Ot-Gfs"/>
+                                    <segue destination="ZX9-e1-Qxq" kind="show" destinationCreationSelector="gotoTicketDetail:" id="nAh-Wo-SQm">
+                                        <segue key="commit" inheritsFrom="parent" id="3rR-6a-eMQ"/>
+                                        <segue key="preview" inheritsFrom="commit" id="Fue-C8-8LZ"/>
+                                    </segue>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -145,7 +149,20 @@
             </objects>
             <point key="canvasLocation" x="697" y="-119"/>
         </scene>
+        <!--TicketDetail-->
+        <scene sceneID="kXg-hH-bB3">
+            <objects>
+                <viewControllerPlaceholder storyboardName="TicketDetail" id="ZX9-e1-Qxq" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="PL1-Oz-nZs"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OzO-sa-1ak" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1370" y="-207"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="nAh-Wo-SQm"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
         <image name="homekit" catalog="system" width="128" height="106"/>
