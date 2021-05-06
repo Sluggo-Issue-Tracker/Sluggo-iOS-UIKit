@@ -89,14 +89,6 @@
             </objects>
             <point key="canvasLocation" x="186.95652173913044" y="276.5625"/>
         </scene>
-        <!--TicketDetail-->
-        <scene sceneID="2tu-Yx-gab">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Mwx-B1-KwL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <viewControllerPlaceholder storyboardIdentifier="TicketDetail" storyboardName="TicketDetail" id="dgM-WS-4qv" sceneMemberID="viewController"/>
-            </objects>
-            <point key="canvasLocation" x="1021" y="224"/>
-        </scene>
         <!--Item-->
         <scene sceneID="Shx-pT-pdo">
             <objects>

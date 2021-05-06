@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -20,8 +20,6 @@
 		2FEF5DAE262D1C4900434763 /* MemberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEF5DAD262D1C4900434763 /* MemberTests.swift */; };
 		3A150A6726365A9A0052934B /* StatusRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A150A6626365A9A0052934B /* StatusRecord.swift */; };
 		3A150A6C26365B670052934B /* TagRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A150A6B26365B670052934B /* TagRecord.swift */; };
-		3A150A77263CB5F70052934B /* TicketDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A150A76263CB5F70052934B /* TicketDetail.storyboard */; };
-		3A150A7F263CBA860052934B /* TicketDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A150A7E263CBA860052934B /* TicketDetailViewController.swift */; };
 		5A00A0142639EDEA0085C8C6 /* URLRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A00A0132639EDEA0085C8C6 /* URLRequestBuilder.swift */; };
 		5A00A045263A34CC0085C8C6 /* TicketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A00A044263A34CC0085C8C6 /* TicketTableViewCell.swift */; };
 		5A673570263BF2D200C4C778 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A67356F263BF2D200C4C778 /* UIColor.swift */; };
@@ -38,7 +36,6 @@
 		5AB1C8F7262FE3520010F85E /* AppIdentity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB1C8F6262FE3520010F85E /* AppIdentity.swift */; };
 		5AB1C8FC262FF1690010F85E /* TicketRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB1C8FB262FF1690010F85E /* TicketRecord.swift */; };
 		5AB1C909262FFF500010F85E /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB1C908262FFF500010F85E /* UserManager.swift */; };
-		5AB1F18F26435F9600993D1A /* NullCodable in Frameworks */ = {isa = PBXBuildFile; productRef = 5AB1F18E26435F9600993D1A /* NullCodable */; };
 		5AC6459026412F0C00F46137 /* TeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC6458F26412F0C00F46137 /* TeamTableViewCell.swift */; };
 		5ACC0F012630CA1400DCF83E /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACC0F002630CA1400DCF83E /* ErrorMessage.swift */; };
 		5ACC0F062630CA2700DCF83E /* Exceptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACC0F052630CA2700DCF83E /* Exceptions.swift */; };
@@ -88,8 +85,6 @@
 		2FEF5DAD262D1C4900434763 /* MemberTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberTests.swift; sourceTree = "<group>"; };
 		3A150A6626365A9A0052934B /* StatusRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusRecord.swift; sourceTree = "<group>"; };
 		3A150A6B26365B670052934B /* TagRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagRecord.swift; sourceTree = "<group>"; };
-		3A150A76263CB5F70052934B /* TicketDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TicketDetail.storyboard; sourceTree = "<group>"; };
-		3A150A7E263CBA860052934B /* TicketDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketDetailViewController.swift; sourceTree = "<group>"; };
 		5A00A0132639EDEA0085C8C6 /* URLRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestBuilder.swift; sourceTree = "<group>"; };
 		5A00A044263A34CC0085C8C6 /* TicketTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketTableViewCell.swift; sourceTree = "<group>"; };
 		5A67356F263BF2D200C4C778 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
@@ -135,7 +130,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5AB1F18F26435F9600993D1A /* NullCodable in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,7 +276,6 @@
 				7DC2A21B262943A70002CEE6 /* Sidebar.storyboard */,
 				5A9FF88826386D1400378550 /* Ticket.storyboard */,
 				7DEA17842639E7B5004E5A71 /* LaunchScreen.storyboard */,
-				3A150A76263CB5F70052934B /* TicketDetail.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -296,7 +289,6 @@
 				7DC2A226262948800002CEE6 /* SluggoSidebarContainerViewController.swift */,
 				7DC2A22E26294F9E0002CEE6 /* HomeViewController.swift */,
 				5A9FF88D26386D4700378550 /* TicketListController.swift */,
-				3A150A7E263CBA860052934B /* TicketDetailViewController.swift */,
 				5A9C4C1B2640BC4E00B270AB /* TeamTableViewController.swift */,
 				5A9C4C202641113D00B270AB /* TeamSelectorContainerViewController.swift */,
 			);
@@ -319,9 +311,6 @@
 			dependencies = (
 			);
 			name = Sluggo;
-			packageProductDependencies = (
-				5AB1F18E26435F9600993D1A /* NullCodable */,
-			);
 			productName = Sluggo;
 			productReference = 7D9963A2261EF3A4002338E7 /* Sluggo.app */;
 			productType = "com.apple.product-type.application";
@@ -393,9 +382,6 @@
 				Base,
 			);
 			mainGroup = 7D996399261EF3A4002338E7;
-			packageReferences = (
-				5AB1F18D26435F9600993D1A /* XCRemoteSwiftPackageReference "NullCodable" */,
-			);
 			productRefGroup = 7D9963A3261EF3A4002338E7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -417,7 +403,6 @@
 				5A79FFE1262E562A00D04320 /* Main.storyboard in Resources */,
 				7D9963AD261EF3A4002338E7 /* Root.storyboard in Resources */,
 				7DEA17852639E7B5004E5A71 /* LaunchScreen.storyboard in Resources */,
-				3A150A77263CB5F70052934B /* TicketDetail.storyboard in Resources */,
 				7DC2A21726293F360002CEE6 /* Home.storyboard in Resources */,
 				7DC2A21C262943A70002CEE6 /* Sidebar.storyboard in Resources */,
 			);
@@ -447,7 +432,6 @@
 				5A9C4C212641113D00B270AB /* TeamSelectorContainerViewController.swift in Sources */,
 				5A79FFE6262E563F00D04320 /* LoginViewController.swift in Sources */,
 				5AB1C8FC262FF1690010F85E /* TicketRecord.swift in Sources */,
-				3A150A7F263CBA860052934B /* TicketDetailViewController.swift in Sources */,
 				7D1DA6B7262B866D00E7C12D /* SidebarData.swift in Sources */,
 				5A00A0142639EDEA0085C8C6 /* URLRequestBuilder.swift in Sources */,
 				2FD70D5D2636144300D13C75 /* LogoutMessage.swift in Sources */,
@@ -819,25 +803,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		5AB1F18D26435F9600993D1A /* XCRemoteSwiftPackageReference "NullCodable" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/g-mark/NullCodable.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.1.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		5AB1F18E26435F9600993D1A /* NullCodable */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5AB1F18D26435F9600993D1A /* XCRemoteSwiftPackageReference "NullCodable" */;
-			productName = NullCodable;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7D99639A261EF3A4002338E7 /* Project object */;
 }
