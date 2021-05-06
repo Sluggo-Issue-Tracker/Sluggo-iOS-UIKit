@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import NullCodable
 
 struct TeamRecord: Codable, Equatable {
     var id: Int
@@ -14,8 +14,8 @@ struct TeamRecord: Codable, Equatable {
     var object_uuid: UUID
     var ticket_head: Int
     var created: Date
-    var activated: Date?
-    var deactivated: Date?
+    @NullCodable var activated: Date?
+    @NullCodable var deactivated: Date?
     
     static func == (lhs: TeamRecord, rhs: TeamRecord) -> Bool {
         return lhs.object_uuid == rhs.object_uuid

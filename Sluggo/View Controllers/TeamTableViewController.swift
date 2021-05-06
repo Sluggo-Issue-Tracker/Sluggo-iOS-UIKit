@@ -10,13 +10,16 @@ import UIKit
 class TeamTableViewController: UITableViewController {
     var identity: AppIdentity!
     var completion: ((TeamRecord) -> Void)?
-    private var isFetching: Bool = false
     private var maxNumber: Int = 0
+    private var fetchingTeams: [TeamRecord] = []
     private var teams: [TeamRecord] = []
+    private let semaphore = DispatchSemaphore(value: 1)
     
     override func viewDidLoad() {
         self.configureRefreshControl()
-        self.loadData(page: 1)
+        DispatchQueue.global().async {
+            self.handleRefreshAction()
+        }
     }
     
     func configureRefreshControl() {
@@ -24,10 +27,7 @@ class TeamTableViewController: UITableViewController {
         refreshControl?.addTarget(self, action: #selector(handleRefreshAction), for: .valueChanged)
     }
     
-    @objc func handleRefreshAction() {
-        teams = []
-        self.loadData(page: 1)
-    }
+
     
     private func preselectRow() {
         if (teams.count == 0) { return }
@@ -59,25 +59,42 @@ class TeamTableViewController: UITableViewController {
         return cell
     }
     
-    // MARK: API calls
+    @objc func handleRefreshAction() {
+        // enter the critical section
+        self.semaphore.wait()
+        self.loadData(page: 1)
+    }
+    
     private func loadData(page: Int) {
         let teamManager = TeamManager(identity: identity)
         teamManager.listUserTeams(page: page) { result in
             switch(result) {
             case .success(let record):
-                self.teams += record.results
                 self.maxNumber = record.count
                 
-                DispatchQueue.main.async {
-                    if (self.teams.count >= self.maxNumber) {
-                        self.refreshControl?.endRefreshing()
-                        self.tableView.reloadData()
-                        self.isFetching = false
-                        self.preselectRow()
-                    } else {
-                        self.loadData(page: page + 1)
-                    }
+                let pageOffset = (page - 1) * self.identity.pageSize
+                if (pageOffset < self.fetchingTeams.count) {
+                    self.fetchingTeams.removeSubrange(pageOffset...self.fetchingTeams.count-1)
                 }
+                
+                for entry in record.results {
+                    self.fetchingTeams.append(entry)
+                }
+                
+                if (self.fetchingTeams.count >= self.maxNumber) {
+                    DispatchQueue.main.async {
+                        self.refreshControl?.endRefreshing()
+                        self.teams = Array(self.fetchingTeams)
+                        self.fetchingTeams.removeAll()
+                        self.tableView.reloadData()
+                        self.preselectRow()
+                    }
+                    self.semaphore.signal()
+                    return
+                } else {
+                    self.loadData(page: page + 1)
+                }
+                
                 break;
             case .failure(let error):
                 self.semaphore.signal()
@@ -88,5 +105,4 @@ class TeamTableViewController: UITableViewController {
             }
         }
     }
-    
 }
