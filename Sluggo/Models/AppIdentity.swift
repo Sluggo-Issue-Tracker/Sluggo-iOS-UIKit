@@ -9,7 +9,7 @@ import Foundation
 
 class AppIdentity: Codable {
     
-    private var _authenticatedUser: UserRecord?
+    private var _authenticatedUser: AuthRecord?
     private var _team: TeamRecord?
     private var _token: String?
     private var _pageSize = 10
@@ -17,7 +17,7 @@ class AppIdentity: Codable {
     private var persist: Bool = false
     
     // MARK: Computed Properties
-    var authenticatedUser: UserRecord? {
+    var authenticatedUser: AuthRecord? {
         set(newUser) {
             _authenticatedUser = newUser
             enqueueSave()

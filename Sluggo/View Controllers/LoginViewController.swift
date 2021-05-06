@@ -72,10 +72,27 @@ class LoginViewController: UIViewController {
                 // Save to identity
                 self.identity.token = record.key
                 
-                // Segue out of VC
-                DispatchQueue.main.async {
-                    self.dismiss(animated: true, completion: self.completion)
+                // Wait for user record to also be fetched
+                userManager.getUser() { result in
+                    switch(result) {
+                    case .success(let userRecord):
+                        self.identity.authenticatedUser = userRecord
+                        
+                        // Segue out of VC
+                        DispatchQueue.main.async {
+                            self.dismiss(animated: true, completion: self.completion)
+                        }
+                        
+                        break
+                    case .failure(let error):
+                        print("FAILURE!")
+                        DispatchQueue.main.sync {
+                            UIAlertController.createAndPresentError(vc: self, error: error, completion: nil)
+                        }
+                    }
                 }
+                
+                
                 
                 break;
             case .failure(let error):
