@@ -25,7 +25,7 @@ class PinnedTicketManager {
         return URL(string: makeListURL().absoluteString + "/\(desiredID)/")!
     }
     
-    public func fetchPinnedTickets(completionHandler: @escaping(Result<[PinnedTicket], Error>) -> Void) -> Void {
+    public func fetchPinnedTickets(completionHandler: @escaping(Result<[PinnedTicketRecord], Error>) -> Void) -> Void {
         let requestBuilder = URLRequestBuilder(url: makeListURL())
             .setMethod(method: .GET)
             .setIdentity(identity: identity)
@@ -33,7 +33,7 @@ class PinnedTicketManager {
         JsonLoader.executeCodableRequest(request: requestBuilder.getRequest(), completionHandler: completionHandler)
     }
     
-    public func postPinnedTicket(member: MemberRecord, ticket: TicketRecord, completionHandler: @escaping(Result<PinnedTicket, Error>) -> Void) -> Void {
+    public func postPinnedTicket(member: MemberRecord, ticket: TicketRecord, completionHandler: @escaping(Result<PinnedTicketRecord, Error>) -> Void) -> Void {
         
         let writeRecord = WritePinnedTicketRecord(ticketID: ticket.id)
         
@@ -50,7 +50,7 @@ class PinnedTicketManager {
         JsonLoader.executeCodableRequest(request: requestBuilder.getRequest(), completionHandler: completionHandler)
     }
     
-    public func deletePinnedTicket(member: MemberRecord, pinned: PinnedTicket, completionHandler: @escaping(Result<ErrorMessage, Error>) -> Void) -> Void {
+    public func deletePinnedTicket(member: MemberRecord, pinned: PinnedTicketRecord, completionHandler: @escaping(Result<ErrorMessage, Error>) -> Void) -> Void {
         
         let requestBuilder = URLRequestBuilder(url: makeDetailURL(desiredID: pinned.id))
             .setMethod(method: .DELETE)

@@ -16,7 +16,7 @@ enum HomepageCategories: Int {
 class HomeTableViewController: UITableViewController {
     var identity: AppIdentity!
     var member: MemberRecord!
-    var pinnedTickets: [PinnedTicket] = []
+    var pinnedTickets: [PinnedTicketRecord] = []
     
     // Injection for identity
     init? (coder: NSCoder, identity: AppIdentity) {

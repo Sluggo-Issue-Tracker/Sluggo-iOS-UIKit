@@ -7,9 +7,13 @@
 
 import Foundation
 
-struct PinnedTicket: Codable {
+struct PinnedTicketRecord: Codable {
     let id: String // Primary key
     let object_uuid: String
     let pinned: Date
     let ticket: TicketRecord
+}
+
+struct WritePinnedTicketRecord: Codable {
+    let ticketID: Int
 }

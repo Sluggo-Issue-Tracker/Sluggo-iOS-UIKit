@@ -55,8 +55,7 @@
 		7DC2A21726293F360002CEE6 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DC2A21626293F360002CEE6 /* Home.storyboard */; };
 		7DC2A21C262943A70002CEE6 /* Sidebar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DC2A21B262943A70002CEE6 /* Sidebar.storyboard */; };
 		7DC2A227262948800002CEE6 /* SluggoSidebarContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC2A226262948800002CEE6 /* SluggoSidebarContainerViewController.swift */; };
-		7DC54AE526437AB3000C8300 /* PinnedTicket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC54AE426437AB3000C8300 /* PinnedTicket.swift */; };
-		7DC54AE7264382C9000C8300 /* WritePinnedTicketRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC54AE6264382C9000C8300 /* WritePinnedTicketRecord.swift */; };
+		7DC54AE526437AB3000C8300 /* PinnedTicketRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC54AE426437AB3000C8300 /* PinnedTicketRecord.swift */; };
 		7DEA17852639E7B5004E5A71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DEA17842639E7B5004E5A71 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -131,8 +130,7 @@
 		7DC2A21626293F360002CEE6 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		7DC2A21B262943A70002CEE6 /* Sidebar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Sidebar.storyboard; sourceTree = "<group>"; };
 		7DC2A226262948800002CEE6 /* SluggoSidebarContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SluggoSidebarContainerViewController.swift; sourceTree = "<group>"; };
-		7DC54AE426437AB3000C8300 /* PinnedTicket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnedTicket.swift; sourceTree = "<group>"; };
-		7DC54AE6264382C9000C8300 /* WritePinnedTicketRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritePinnedTicketRecord.swift; sourceTree = "<group>"; };
+		7DC54AE426437AB3000C8300 /* PinnedTicketRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnedTicketRecord.swift; sourceTree = "<group>"; };
 		7DEA17842639E7B5004E5A71 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -207,8 +205,7 @@
 				2FD70D5C2636144300D13C75 /* LogoutMessage.swift */,
 				3A150A6626365A9A0052934B /* StatusRecord.swift */,
 				3A150A6B26365B670052934B /* TagRecord.swift */,
-				7DC54AE426437AB3000C8300 /* PinnedTicket.swift */,
-				7DC54AE6264382C9000C8300 /* WritePinnedTicketRecord.swift */,
+				7DC54AE426437AB3000C8300 /* PinnedTicketRecord.swift */,
 			);
 			path = Codables;
 			sourceTree = "<group>";
@@ -459,12 +456,11 @@
 				3A150A7F263CBA860052934B /* TicketDetailViewController.swift in Sources */,
 				7D1DA6B7262B866D00E7C12D /* SidebarData.swift in Sources */,
 				5A00A0142639EDEA0085C8C6 /* URLRequestBuilder.swift in Sources */,
-				7DC54AE7264382C9000C8300 /* WritePinnedTicketRecord.swift in Sources */,
 				2FD70D5D2636144300D13C75 /* LogoutMessage.swift in Sources */,
 				5AB1C8EA262FE2EF0010F85E /* MemberManager.swift in Sources */,
 				5A9C4C1C2640BC4E00B270AB /* TeamTableViewController.swift in Sources */,
 				2F3AD7AD2627C8EF00B61A97 /* Team.swift in Sources */,
-				7DC54AE526437AB3000C8300 /* PinnedTicket.swift in Sources */,
+				7DC54AE526437AB3000C8300 /* PinnedTicketRecord.swift in Sources */,
 				7DC2A227262948800002CEE6 /* SluggoSidebarContainerViewController.swift in Sources */,
 				5AC6459026412F0C00F46137 /* TeamTableViewCell.swift in Sources */,
 				051AAB0B2630FD6500BCB9C7 /* Constants.swift in Sources */,
