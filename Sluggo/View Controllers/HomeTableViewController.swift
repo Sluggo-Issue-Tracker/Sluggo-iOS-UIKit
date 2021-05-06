@@ -7,6 +7,12 @@
 
 import UIKit
 
+enum HomepageCategories: Int {
+    case assigned = 0
+    case pinned = 1
+    case tags = 2
+}
+
 class HomeTableViewController: UITableViewController {
     var identity: AppIdentity!
     var member: MemberRecord!
@@ -92,11 +98,11 @@ class HomeTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         switch(section) {
-        case 0:
+        case HomepageCategories.assigned.rawValue:
             return 1
-        case 1:
+        case HomepageCategories.pinned.rawValue:
             return self.pinnedTickets.count
-        case 2:
+        case HomepageCategories.tags.rawValue:
             return 1
         default:
             fatalError("Invalid section count queried")
@@ -105,15 +111,15 @@ class HomeTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch(indexPath.section) {
-        case 0:
+        case HomepageCategories.assigned.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: "PlaceholderCell")!
             cell.textLabel?.text = "Not yet implemented."
             return cell
-        case 1:
+        case HomepageCategories.pinned.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: "TicketCell", for: indexPath) as! TicketTableViewCell
             cell.loadFromTicketRecord(ticket: pinnedTickets[indexPath.row].ticket)
             return cell
-        case 2:
+        case HomepageCategories.tags.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: "PlaceholderCell")!
             cell.textLabel?.text = "Not yet implemented."
             return cell
@@ -124,11 +130,11 @@ class HomeTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
-        case 0:
+        case HomepageCategories.assigned.rawValue:
             return "Assigned to You"
-        case 1:
+        case HomepageCategories.pinned.rawValue:
             return "Pinned Tickets"
-        case 2:
+        case HomepageCategories.tags.rawValue:
             return "Your Tags"
         default:
             return "Error!"
