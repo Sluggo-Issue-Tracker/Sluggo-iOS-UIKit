@@ -86,35 +86,40 @@ class HomeTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 2
+        return 3
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         switch(section) {
         case 0:
-            return self.assignedTickets.count
+            return 1
         case 1:
             return self.pinnedTickets.count
+        case 2:
+            return 1
         default:
             fatalError("Invalid section count queried")
         }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Ticket", for: indexPath) as! TicketTableViewCell
         switch(indexPath.section) {
         case 0:
-            cell.loadFromTicketRecord(ticket: assignedTickets[indexPath.row])
-            break
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PlaceholderCell")!
+            cell.textLabel?.text = "Not yet implemented."
+            return cell
         case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TicketCell", for: indexPath) as! TicketTableViewCell
             cell.loadFromTicketRecord(ticket: pinnedTickets[indexPath.row].ticket)
-            break
+            return cell
+        case 2:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PlaceholderCell")!
+            cell.textLabel?.text = "Not yet implemented."
+            return cell
         default:
             fatalError("Accessed section outside of scope, should never occur")
         }
-
-        return cell
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -123,6 +128,8 @@ class HomeTableViewController: UITableViewController {
             return "Assigned to You"
         case 1:
             return "Pinned Tickets"
+        case 2:
+            return "Your Tags"
         default:
             return "Error!"
         }
