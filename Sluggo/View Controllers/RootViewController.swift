@@ -60,10 +60,10 @@ class RootViewController: UIViewController {
     }
     
     @IBAction func receivedGesture() {
-        print("swiped right")
+        NotificationCenter.default.post(name: .onSidebarTrigger, object: self, userInfo: [Sidebar.USER_INFO_KEY: SidebarStatus.open])
     }
     @IBAction func receieveLeft() {
-        print("swiped left")
+        NotificationCenter.default.post(name: .onSidebarTrigger, object: self, userInfo: [Sidebar.USER_INFO_KEY: SidebarStatus.closed])
     }
     @IBSegueAction func showSidebar(_ coder: NSCoder) -> UIViewController? {
         return SluggoSidebarContainerViewController(coder: coder, identity: self.identity)
