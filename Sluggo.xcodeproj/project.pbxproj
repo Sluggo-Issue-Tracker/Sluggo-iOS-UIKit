@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		051AAB0B2630FD6500BCB9C7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051AAB0A2630FD6500BCB9C7 /* Constants.swift */; };
 		052258702636100B00B49CE4 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0522586F2636100B00B49CE4 /* LaunchViewController.swift */; };
-		2F2247AC262920AC006C6EE6 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2247AB262920AC006C6EE6 /* Token.swift */; };
-		2F3AD7A32627C86A00B61A97 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3AD7A22627C86A00B61A97 /* User.swift */; };
-		2F3AD7A82627C89B00B61A97 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3AD7A72627C89B00B61A97 /* Member.swift */; };
-		2F3AD7AD2627C8EF00B61A97 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3AD7AC2627C8EF00B61A97 /* Team.swift */; };
+		2F2247AC262920AC006C6EE6 /* TokenRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2247AB262920AC006C6EE6 /* TokenRecord.swift */; };
+		2F3AD7A32627C86A00B61A97 /* UserRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3AD7A22627C86A00B61A97 /* UserRecord.swift */; };
+		2F3AD7A82627C89B00B61A97 /* MemberRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3AD7A72627C89B00B61A97 /* MemberRecord.swift */; };
+		2F3AD7AD2627C8EF00B61A97 /* TeamRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3AD7AC2627C8EF00B61A97 /* TeamRecord.swift */; };
 		2F3F66E2262DD3BA0040404C /* JsonLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3F66E1262DD3BA0040404C /* JsonLoader.swift */; };
 		2F44E21D2639FA6B006CA85D /* TicketTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F44E21C2639FA6B006CA85D /* TicketTests.swift */; };
 		2FD70D5D2636144300D13C75 /* LogoutMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD70D5C2636144300D13C75 /* LogoutMessage.swift */; };
@@ -79,10 +79,10 @@
 /* Begin PBXFileReference section */
 		051AAB0A2630FD6500BCB9C7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0522586F2636100B00B49CE4 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
-		2F2247AB262920AC006C6EE6 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
-		2F3AD7A22627C86A00B61A97 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		2F3AD7A72627C89B00B61A97 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
-		2F3AD7AC2627C8EF00B61A97 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		2F2247AB262920AC006C6EE6 /* TokenRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRecord.swift; sourceTree = "<group>"; };
+		2F3AD7A22627C86A00B61A97 /* UserRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRecord.swift; sourceTree = "<group>"; };
+		2F3AD7A72627C89B00B61A97 /* MemberRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberRecord.swift; sourceTree = "<group>"; };
+		2F3AD7AC2627C8EF00B61A97 /* TeamRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRecord.swift; sourceTree = "<group>"; };
 		2F3F66E1262DD3BA0040404C /* JsonLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonLoader.swift; sourceTree = "<group>"; };
 		2F44E21C2639FA6B006CA85D /* TicketTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketTests.swift; sourceTree = "<group>"; };
 		2FD70D5C2636144300D13C75 /* LogoutMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutMessage.swift; sourceTree = "<group>"; };
@@ -195,10 +195,10 @@
 		5A79FFED262E5FEF00D04320 /* Codables */ = {
 			isa = PBXGroup;
 			children = (
-				2F3AD7A22627C86A00B61A97 /* User.swift */,
-				2F3AD7A72627C89B00B61A97 /* Member.swift */,
-				2F3AD7AC2627C8EF00B61A97 /* Team.swift */,
-				2F2247AB262920AC006C6EE6 /* Token.swift */,
+				2F3AD7A22627C86A00B61A97 /* UserRecord.swift */,
+				2F3AD7A72627C89B00B61A97 /* MemberRecord.swift */,
+				2F3AD7AC2627C8EF00B61A97 /* TeamRecord.swift */,
+				2F2247AB262920AC006C6EE6 /* TokenRecord.swift */,
 				2FEF5DA8262D0E7C00434763 /* PaginatedList.swift */,
 				5AB1C8FB262FF1690010F85E /* TicketRecord.swift */,
 				5ACC0F002630CA1400DCF83E /* ErrorMessage.swift */,
@@ -459,16 +459,16 @@
 				2FD70D5D2636144300D13C75 /* LogoutMessage.swift in Sources */,
 				5AB1C8EA262FE2EF0010F85E /* MemberManager.swift in Sources */,
 				5A9C4C1C2640BC4E00B270AB /* TeamTableViewController.swift in Sources */,
-				2F3AD7AD2627C8EF00B61A97 /* Team.swift in Sources */,
+				2F3AD7AD2627C8EF00B61A97 /* TeamRecord.swift in Sources */,
 				7DC54AE526437AB3000C8300 /* PinnedTicketRecord.swift in Sources */,
 				7DC2A227262948800002CEE6 /* SluggoSidebarContainerViewController.swift in Sources */,
 				5AC6459026412F0C00F46137 /* TeamTableViewCell.swift in Sources */,
 				051AAB0B2630FD6500BCB9C7 /* Constants.swift in Sources */,
 				2F3F66E2262DD3BA0040404C /* JsonLoader.swift in Sources */,
-				2F2247AC262920AC006C6EE6 /* Token.swift in Sources */,
+				2F2247AC262920AC006C6EE6 /* TokenRecord.swift in Sources */,
 				7D1DA6AE262B82C200E7C12D /* RootViewController.swift in Sources */,
 				5ACC0F012630CA1400DCF83E /* ErrorMessage.swift in Sources */,
-				2F3AD7A32627C86A00B61A97 /* User.swift in Sources */,
+				2F3AD7A32627C86A00B61A97 /* UserRecord.swift in Sources */,
 				052258702636100B00B49CE4 /* LaunchViewController.swift in Sources */,
 				3A150A6726365A9A0052934B /* StatusRecord.swift in Sources */,
 				7D53BE6926433D6600400D0E /* PinnedTicketManager.swift in Sources */,
@@ -481,7 +481,7 @@
 				5AB1C8EF262FE3210010F85E /* TagManager.swift in Sources */,
 				5A9FF88E26386D4700378550 /* TicketListController.swift in Sources */,
 				5AB1C8E5262FE2E60010F85E /* TicketManager.swift in Sources */,
-				2F3AD7A82627C89B00B61A97 /* Member.swift in Sources */,
+				2F3AD7A82627C89B00B61A97 /* MemberRecord.swift in Sources */,
 				5AB1C8DD262FE2DD0010F85E /* TeamManager.swift in Sources */,
 				5A00A045263A34CC0085C8C6 /* TicketTableViewCell.swift in Sources */,
 				5AB1C909262FFF500010F85E /* UserManager.swift in Sources */,
