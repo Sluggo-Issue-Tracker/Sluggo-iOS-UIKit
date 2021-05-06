@@ -37,7 +37,6 @@ class TicketListController: UITableViewController {
     }
     
     @objc func handleRefreshAction() {
-        self.tableView.isUserInteractionEnabled = false
         self.loadData(page: 1)
     }
 
@@ -104,7 +103,7 @@ class TicketListController: UITableViewController {
                 }
                 
                 for entry in record.results {
-                        ticketsCopy.append(entry)
+                    ticketsCopy.append(entry)
                 }
                     
                 DispatchQueue.main.sync {
@@ -112,7 +111,6 @@ class TicketListController: UITableViewController {
                     self.tickets = ticketsCopy
                     self.tableView.reloadData()
                     self.isFetching = false
-                    self.tableView.isUserInteractionEnabled = true
                 }
                 break;
             case .failure(let error):
