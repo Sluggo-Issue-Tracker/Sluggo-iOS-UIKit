@@ -7,21 +7,31 @@
 //
 
 import Foundation
+import NullCodable
 
 struct TicketRecord: Codable {
     var id: Int
     var ticket_number: Int
-    var tag_list: [TagRecord]?
+    var tag_list: [TagRecord]
     var object_uuid: UUID
-    var assigned_user: MemberRecord?
-    var status: StatusRecord?
+    @NullCodable var assigned_user: MemberRecord?
+    @NullCodable var status: StatusRecord?
     var title: String
-    var description: String?
+    @NullCodable var description: String?
     // var comments?  Future Future Implementation
-    var due_date: Date?
+    @NullCodable var due_date: Date?
     var created: Date
-    var activated: Date?
-    var deactivated: Date?
+    @NullCodable var activated: Date?
+    @NullCodable var deactivated: Date?
     
     
+}
+
+struct WriteTicketRecord: Codable{
+    var tag_list: [TagRecord]
+    @NullCodable var assigned_user: String?
+    @NullCodable var status: StatusRecord?
+    var title: String
+    @NullCodable var description: String?
+    @NullCodable var due_date: Date?
 }

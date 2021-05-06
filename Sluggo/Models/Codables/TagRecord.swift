@@ -6,14 +6,14 @@
 //
 
 import Foundation
-
+import NullCodable
 
 struct TagRecord: Codable {
     var id: Int
     var object_uuid: UUID
     var title: String
     var created: Date
-    var activated: Date?
-    var deactivated: Date?
+    @NullCodable var activated: Date?
+    @NullCodable var deactivated: Date?
 
 }
