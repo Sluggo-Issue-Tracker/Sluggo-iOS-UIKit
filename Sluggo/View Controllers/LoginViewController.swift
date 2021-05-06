@@ -75,6 +75,7 @@ class LoginViewController: UIViewController {
                 
                 // Save to identity
                 self.identity.token = record.key
+                let userManager = UserManager(identity: self.identity)
                 
                 // Persistence
                 // This is hacky but better than nothing

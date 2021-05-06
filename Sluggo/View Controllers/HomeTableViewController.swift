@@ -9,6 +9,7 @@ import UIKit
 
 class HomeTableViewController: UITableViewController {
     var identity: AppIdentity!
+    var member: MemberRecord!
     var tickets: [TicketRecord] = []
     
     // Injection for identity
@@ -24,19 +25,40 @@ class HomeTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Load the tickets
-        let manager = TicketManager(identity)
-        manager.listTeamTickets(page: 1) { result in
+        // Get the member record
+        let memberManager = MemberManager(identity)
+        memberManager.getMemberRecord(user: identity.authenticatedUser!, identity: identity) { result in
             switch(result) {
-            case .success(let list):
+            case .success(let member):
                 DispatchQueue.main.sync {
-                    self.tickets = list.results
+                    self.member = member
                     self.tableView.reloadData()
                 }
-                break;
+                break
             case .failure(let error):
-                UIAlertController.createAndPresentError(vc: self, error: error, completion: nil)
-                print("FAILURE")
+                DispatchQueue.main.async {
+                    UIAlertController.createAndPresentError(vc: self, error: error, completion: nil)
+                }
+            }
+        }
+        
+        // Load the tickets
+        let manager = TicketManager(identity)
+        DispatchQueue.global(qos: .userInitiated).async {
+            manager.listTeamTickets(page: 1) { result in
+                switch(result) {
+                case .success(let list):
+                    DispatchQueue.main.sync {
+                        self.tickets = list.results
+                        self.tableView.reloadData()
+                    }
+                    break;
+                case .failure(let error):
+                    DispatchQueue.main.sync {
+                        UIAlertController.createAndPresentError(vc: self, error: error, completion: nil)
+                        print("FAILURE")
+                    }
+                }
             }
         }
 

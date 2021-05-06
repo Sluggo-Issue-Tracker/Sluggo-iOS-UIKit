@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CryptoKit
 
 class MemberManager {
     static let urlBase = "/members/"
@@ -55,5 +56,29 @@ class MemberManager {
             .setMethod(method: .GET)
         
         JsonLoader.executeCodableRequest(request: requestBuilder.getRequest(), completionHandler: completionHandler)
+    }
+    
+    public func getMemberRecord(user: UserRecord, identity: AppIdentity, completionHandler: @escaping(Result<MemberRecord, Error>) -> Void) -> Void {
+        // MARK: MD5 hashing convenience
+        func MD5String(for str: String) -> String {
+            let digest = Insecure.MD5.hash(data: str.data(using: .utf8)!)
+            
+            return digest.map {
+                String(format: "%02hhx", $0)
+            }.joined()
+        }
+        
+        // Calculate the member PK
+        let teamHash = MD5String(for: String(identity.team!.id))
+        let userHash = MD5String(for: user.username)
+        
+        let memberPk = teamHash.appending(userHash)
+        
+        // Execute request
+        let request = URLRequestBuilder(url: URL(string: makeListUrl().absoluteString + "/\(memberPk)/")!)
+            .setMethod(method: .GET)
+            .setIdentity(identity: identity)
+        
+        JsonLoader.executeCodableRequest(request: request.getRequest(), completionHandler: completionHandler)
     }
 }
