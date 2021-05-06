@@ -44,12 +44,4 @@ class UserManager {
         
         JsonLoader.executeCodableRequest(request: requestBuilder.getRequest(), completionHandler: completionHandler)
     }
-    
-    public func getRecord(identity: AppIdentity, completionHandler: @escaping(Result<AuthRecord, Error>) -> Void) -> Void {
-        let requestBuilder = URLRequestBuilder(url: URL(string: identity.baseAddress + "auth/user/")!)
-            .setMethod(method: .GET)
-            .setIdentity(identity: identity)
-        
-        JsonLoader.executeCodableRequest(request: requestBuilder.getRequest(), completionHandler: completionHandler)
-    }
 }

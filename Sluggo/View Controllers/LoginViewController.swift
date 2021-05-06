@@ -75,7 +75,7 @@ class LoginViewController: UIViewController {
                 // Wait for user record to also be fetched
                 // Don't ask me why this needs to be in another dispatch, it just fails otherwise.
                 DispatchQueue.global(qos: .userInitiated).sync {
-                    userManager.getRecord(identity: self.identity) { result in
+                    userManager.getUser() { result in
                         switch(result) {
                         case .success(let userRecord):
                             self.identity.authenticatedUser = userRecord
