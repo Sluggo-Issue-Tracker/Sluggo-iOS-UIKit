@@ -17,7 +17,6 @@ class HomeTableViewController: UITableViewController {
     var identity: AppIdentity!
     var member: MemberRecord!
     var pinnedTickets: [PinnedTicket] = []
-    var assignedTickets: [TicketRecord] = []
     
     // Injection for identity
     init? (coder: NSCoder, identity: AppIdentity) {
@@ -34,9 +33,7 @@ class HomeTableViewController: UITableViewController {
         
         // Fetch items and begin populating the table view
         loadMember() {
-            self.loadAssignedTickets() {
-                self.loadPinnedTickets(completionHandler: nil)
-            }
+            self.loadPinnedTickets(completionHandler: nil)
         }
 
         // Uncomment the following line to preserve selection between presentations
