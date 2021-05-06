@@ -11,6 +11,8 @@ class RootViewController: UIViewController {
     private var identity: AppIdentity
     @IBOutlet weak var mainContainerView: UIView! // contains the main app and tab bar controller
     @IBOutlet weak var sidebarContainerView: UIView! // contains the sidebar container view controller
+    @IBOutlet var swipeRight: UISwipeGestureRecognizer!
+    @IBOutlet var swipeLeft: UISwipeGestureRecognizer!
     
     init? (coder: NSCoder, identity: AppIdentity) {
         self.identity = identity
@@ -55,5 +57,15 @@ class RootViewController: UIViewController {
     
     @IBSegueAction func createTicket(_ coder: NSCoder) -> TicketListController? {
         return TicketListController(coder: coder, identity: identity)
+    }
+    
+    @IBAction func receivedGesture() {
+        print("swiped right")
+    }
+    @IBAction func receieveLeft() {
+        print("swiped left")
+    }
+    @IBSegueAction func showSidebar(_ coder: NSCoder) -> UIViewController? {
+        return SluggoSidebarContainerViewController(coder: coder, identity: self.identity)
     }
 }

@@ -6,11 +6,12 @@
 //
 
 import Foundation
+import NullCodable
 
 struct PaginatedList<T : Codable> : Codable {
     var count: Int
-    var next: String?
-    var previous: String?
+    @NullCodable var next: String?
+    @NullCodable var previous: String?
     let results: [T]
     
 }

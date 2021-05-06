@@ -26,7 +26,7 @@ class HomeTableViewController: UITableViewController {
         super.viewDidLoad()
         
         // Get the member record
-        let memberManager = MemberManager(identity)
+        let memberManager = MemberManager(identity: identity)
         memberManager.getMemberRecord(user: identity.authenticatedUser!, identity: identity) { result in
             switch(result) {
             case .success(let member):

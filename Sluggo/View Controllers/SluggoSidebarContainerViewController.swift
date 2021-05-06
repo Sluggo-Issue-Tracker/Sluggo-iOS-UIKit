@@ -14,6 +14,17 @@ class SluggoSidebarContainerViewController: UIViewController {
     @IBOutlet weak var sidebarWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var sidebarContainerLeadingConstraint: NSLayoutConstraint!
     
+    private var identity: AppIdentity
+    
+    init? (coder: NSCoder, identity: AppIdentity) {
+        self.identity = identity
+        super.init(coder: coder)
+    }
+    
+    required init? (coder: NSCoder) {
+        fatalError("must include identity")
+    }
+    
     // MARK: Properties
     var sidebarPresenting: SidebarStatus = .closed
     
@@ -87,7 +98,15 @@ class SluggoSidebarContainerViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    @IBSegueAction func launchSidebar(_ coder: NSCoder) -> UITableViewController? {
+        let vc = TeamTableViewController(coder: coder)
+        vc?.identity = self.identity
+        vc?.completion = { team in
+            self.identity.team = team
+        }
+        return vc
+    }
+    
 }
 
 extension Notification.Name {

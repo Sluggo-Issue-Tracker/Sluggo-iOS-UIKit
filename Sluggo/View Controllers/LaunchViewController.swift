@@ -26,25 +26,90 @@ class LaunchViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         
-        let remember = false
+        let remember = (self.identity.token != nil)
+        let userManager = UserManager(identity: self.identity)
         
         if(remember) {
             // Call login function from remembered. If failed go to login
+            userManager.getUser() { loginResult in
+                switch loginResult {
+                case .success( _):
+                    //Need to also check for invalid saved team
+                    self.tryTeam()
+                    break
+                case .failure(let error):
+                    print(error)
+                    DispatchQueue.main.sync {
+                        self.showLogin()
+                    }
+                }
+            }
         } else {
-//            sleep(1)
-            self.performSegue(withIdentifier: "showLogin", sender: self)
+            self.showLogin()
+        }
+    }
+    
+    // runs on a background thread
+    private func tryTeam() {
+        if let team = identity.team{
+            let teamManager = TeamManager(identity: self.identity)
+            teamManager.getTeam(team: team) { result in
+                switch result {
+                case .success(let teamRecord):
+                    self.identity.team = teamRecord
+                    DispatchQueue.main.sync {
+                        self.continueLogin()
+                    }
+                    break
+                case .failure(let error):
+                    print(error)
+                    DispatchQueue.main.sync {
+                        self.showTeams()
+                    }
+                }
+            }
+        } else {
+            DispatchQueue.main.sync {
+                self.showTeams()
+            }
+        }
+    }
+    
+    func showLogin() {
+        if let vc = self.storyboard?.instantiateViewController(identifier: "loginPage", creator: {coder in
+            return LoginViewController(coder: coder, identity: self.identity, completion: {
+                self.showTeams()
+            })
+        }) {
+            vc.isModalInPresentation = true
+            self.present(vc, animated: true)
+        }
+    }
+    
+    func showTeams() {
+        if let vc = self.storyboard?.instantiateViewController(identifier: "TableViewContainer", creator: {coder in
+            return TeamSelectorContainerViewController(coder: coder, identity: self.identity, completion: {
+                self.continueLogin()
+            }, failure: {
+                
+                // reset the data, go back to the login page.
+                self.identity.token = nil
+                self.identity.authenticatedUser = nil
+                self.identity.team = nil
+                
+                self.showLogin()
+            })
+        }) {
+            vc.isModalInPresentation = true
+            self.present(vc, animated: true)
         }
     }
     
     func continueLogin() {
-//        sleep(3)
         self.performSegue(withIdentifier: "automaticLogin", sender: self)
     }
     
     @IBSegueAction func createRoot(_ coder: NSCoder) -> UIViewController? {
         return RootViewController(coder: coder, identity: identity)
-    }
-    @IBSegueAction func createLogin(_ coder: NSCoder) -> LoginViewController? {
-        return LoginViewController(coder: coder, identity: identity)
     }
 }
