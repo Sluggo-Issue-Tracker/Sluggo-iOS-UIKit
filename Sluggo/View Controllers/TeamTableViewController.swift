@@ -13,13 +13,11 @@ class TeamTableViewController: UITableViewController {
     private var maxNumber: Int = 0
     private var fetchingTeams: [TeamRecord] = []
     private var teams: [TeamRecord] = []
-    private let semaphore = DispatchSemaphore(value: 1)
+    private var isFetching  = false
     
     override func viewDidLoad() {
         self.configureRefreshControl()
-        DispatchQueue.global().async {
-            self.handleRefreshAction()
-        }
+        self.handleRefreshAction()
     }
     
     func configureRefreshControl() {
@@ -61,7 +59,10 @@ class TeamTableViewController: UITableViewController {
     
     @objc func handleRefreshAction() {
         // enter the critical section
-        self.semaphore.wait()
+        // do not wait
+        if (isFetching) { return }
+        
+        isFetching = true
         self.loadData(page: 1)
     }
     
@@ -87,9 +88,9 @@ class TeamTableViewController: UITableViewController {
                         self.teams = Array(self.fetchingTeams)
                         self.fetchingTeams.removeAll()
                         self.tableView.reloadData()
+                        self.isFetching = false
                         self.preselectRow()
                     }
-                    self.semaphore.signal()
                     return
                 } else {
                     self.loadData(page: page + 1)
@@ -97,7 +98,6 @@ class TeamTableViewController: UITableViewController {
                 
                 break;
             case .failure(let error):
-                self.semaphore.signal()
                 DispatchQueue.main.async {
                     let alert = UIAlertController.errorController(error: error)
                     self.present(alert, animated: true, completion: nil)
