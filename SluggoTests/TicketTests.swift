@@ -45,16 +45,18 @@ class TicketTests: XCTestCase {
             "activated": "2021-04-28T20:24:15+0000",
             "deactivated": null
         },
+        "status": null,
         "title": "Hi",
         "description": "this is a description",
+        "due_date": null,
         "created": "2021-04-28T20:31:43+0000",
         "activated": "2021-04-28T20:31:43+0000",
+        "deactivated": null
     }
     """
     
     func testTicketDoesDeserialize() {
         // CRASHES, PLEASE FIX!
-        // you break it, you buy it
         let ticket: TicketRecord? = JsonLoader.decode(data: testWorkingJson.data(using: .utf8)!)
 
         XCTAssertNotNil(ticket)
