@@ -16,6 +16,7 @@ enum HomepageCategories: Int {
 class HomeTableViewController: UITableViewController {
     var identity: AppIdentity!
     var member: MemberRecord!
+    var assignedTickets: [TicketRecord] = []
     var pinnedTickets: [PinnedTicketRecord] = []
     
     // Injection for identity
@@ -33,7 +34,9 @@ class HomeTableViewController: UITableViewController {
         
         // Fetch items and begin populating the table view
         loadMember() {
-            self.loadPinnedTickets(completionHandler: nil)
+            self.loadAssignedTickets() {
+                self.loadPinnedTickets(completionHandler: nil)
+            }
         }
         
         // Setup refresh control
@@ -70,9 +73,20 @@ class HomeTableViewController: UITableViewController {
         // Ideally, this could be extended with some other endpoints to get the total counts
         // but this will suffice for now
         let ticketsManager = TicketManager(identity)
-        // TODO Call to filtered method
-        
-        completionHandler?()
+        ticketsManager.listTeamTickets(page: 1, assigned: member) { result in
+            switch(result) {
+            case .success(let assignedTicketsList):
+                DispatchQueue.main.sync {
+                    self.assignedTickets = assignedTicketsList.results
+                    completionHandler?()
+                }
+                break
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    UIAlertController.createAndPresentError(vc: self, error: error, completion: nil)
+                }
+            }
+        }
     }
     
     func loadPinnedTickets(completionHandler: (() -> Void)?) {
@@ -100,10 +114,12 @@ class HomeTableViewController: UITableViewController {
             return;
         }
         
-        self.loadPinnedTickets(completionHandler: {
-            DispatchQueue.main.async {
-                self.refreshControl?.endRefreshing()
-            }
+        self.loadAssignedTickets(completionHandler: {
+            self.loadPinnedTickets(completionHandler: {
+                DispatchQueue.main.async {
+                    self.refreshControl?.endRefreshing()
+                }
+            })
         })
     }
 
@@ -118,7 +134,7 @@ class HomeTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         switch(section) {
         case HomepageCategories.assigned.rawValue:
-            return 1
+            return self.assignedTickets.count
         case HomepageCategories.pinned.rawValue:
             return self.pinnedTickets.count
         case HomepageCategories.tags.rawValue:
@@ -131,8 +147,8 @@ class HomeTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch(indexPath.section) {
         case HomepageCategories.assigned.rawValue:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "PlaceholderCell")!
-            cell.textLabel?.text = "Not yet implemented."
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TicketCell", for: indexPath) as! TicketTableViewCell
+            cell.loadFromTicketRecord(ticket: assignedTickets[indexPath.row])
             return cell
         case HomepageCategories.pinned.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: "TicketCell", for: indexPath) as! TicketTableViewCell
@@ -174,6 +190,8 @@ class HomeTableViewController: UITableViewController {
     @IBSegueAction func gotoTicketDetail(_ coder: NSCoder) -> TicketDetailViewController? {
         let selectedPath = tableView.indexPathForSelectedRow
         switch(selectedPath!.section) {
+        case HomepageCategories.assigned.rawValue:
+            return TicketDetailViewController(coder: coder, identity: self.identity, ticket: assignedTickets[selectedPath!.row], completion: nil)
         case HomepageCategories.pinned.rawValue:
             return TicketDetailViewController(coder: coder, identity: self.identity, ticket: pinnedTickets[selectedPath!.row].ticket, completion: nil)
         default:

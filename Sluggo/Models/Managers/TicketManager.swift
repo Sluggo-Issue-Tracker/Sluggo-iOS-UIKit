@@ -19,16 +19,16 @@ class TicketManager {
         return URL(string: identity.baseAddress + TeamManager.urlBase + "\(identity.team!.id)" + TicketManager.urlBase + "\(ticketRecord.id)/")!
     }
     
-    private func makeListUrl(page: Int, assignedMember: MemberRecord?) -> URL {
+    public func makeListUrl(page: Int, assignedMember: MemberRecord?) -> URL {
         var urlString = identity.baseAddress + TeamManager.urlBase + "\(identity.team!.id)" + TicketManager.urlBase + "?page=\(page)"
         if let assignedMember = assignedMember {
-            urlString += "?assigned_user__owner_username=\(assignedMember.owner.username)"
+            urlString += "&assigned_user__owner__username=\(assignedMember.owner.username)"
         }
         return URL(string: urlString)!
     }
     
     public func listTeamTickets(page: Int, assigned: MemberRecord?, completionHandler: @escaping (Result<PaginatedList<TicketRecord>, Error>) -> Void) -> Void {
-        let requestBuilder = URLRequestBuilder(url: makeListUrl(page: page, assignedMember: nil))
+        let requestBuilder = URLRequestBuilder(url: makeListUrl(page: page, assignedMember: assigned))
             .setMethod(method: .GET)
             .setIdentity(identity: self.identity)
         
