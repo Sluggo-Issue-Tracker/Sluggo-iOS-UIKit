@@ -50,4 +50,8 @@ extension UIAlertController {
         
         vc.present(alertController, animated: true, completion: nil)
     }
+    
+    static func createAndPresentError(vc: UIViewController, error: Error) {
+        UIAlertController.createAndPresentError(vc: vc, error: error, completion: nil)
+    }
 }

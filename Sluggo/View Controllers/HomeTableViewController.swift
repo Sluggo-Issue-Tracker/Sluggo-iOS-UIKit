@@ -32,12 +32,9 @@ class HomeTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.refreshControl?.beginRefreshing()
         // Fetch items and begin populating the table view
-        loadMember() {
-            self.loadAssignedTickets() {
-                self.loadPinnedTickets(completionHandler: nil)
-            }
-        }
+        loadMember(completionHandler: refreshContent)
         
         // Setup refresh control
         self.refreshControl?.addTarget(self, action: #selector(refreshContent), for: .valueChanged)
@@ -52,18 +49,9 @@ class HomeTableViewController: UITableViewController {
     func loadMember(completionHandler: (() -> Void)?) {
         let memberManager = MemberManager(identity: identity)
         memberManager.getMemberRecord(user: identity.authenticatedUser!, identity: identity) { result in
-            switch(result) {
-            case .success(let member):
-                DispatchQueue.main.sync {
-                    self.member = member
-                    completionHandler?()
-                }
-                break
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    UIAlertController.createAndPresentError(vc: self, error: error, completion: nil)
-                }
-            }
+            self.processResult(result: result, onSuccess: { retrievedMember in
+                self.member = retrievedMember
+            }, after: completionHandler)
         }
     }
     
@@ -74,53 +62,61 @@ class HomeTableViewController: UITableViewController {
         // but this will suffice for now
         let ticketsManager = TicketManager(identity)
         ticketsManager.listTeamTickets(page: 1, assigned: member) { result in
-            switch(result) {
-            case .success(let assignedTicketsList):
-                DispatchQueue.main.sync {
-                    self.assignedTickets = assignedTicketsList.results
-                    completionHandler?()
-                }
-                break
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    UIAlertController.createAndPresentError(vc: self, error: error, completion: nil)
-                }
-            }
+            self.processResult(result: result, onSuccess: { retrievedAssignedTickets in
+                self.assignedTickets = retrievedAssignedTickets.results
+                self.tableView.reloadSections([HomepageCategories.assigned.rawValue], with: .automatic)
+            }, after: completionHandler)
         }
     }
     
     func loadPinnedTickets(completionHandler: (() -> Void)?) {
         let pinnedTicketsManager = PinnedTicketManager(identity: self.identity, member: self.member)
         pinnedTicketsManager.fetchPinnedTickets() { result in
-            switch(result) {
-            case .success(let pinnedTickets):
-                DispatchQueue.main.sync {
-                    self.pinnedTickets = pinnedTickets
-                    self.tableView.reloadData()
-                }
-                completionHandler?()
-                break
-            case .failure(let error):
-                DispatchQueue.main.sync {
-                    UIAlertController.createAndPresentError(vc: self, error: error, completion: nil)
-                }
-            }
+            self.processResult(result: result, onSuccess: { retrievedPinned in
+                self.pinnedTickets = retrievedPinned
+                self.tableView.reloadSections([HomepageCategories.pinned.rawValue], with: .automatic)
+            }, after: completionHandler)
         }
     }
     
     @objc func refreshContent() {
-        if(self.member == nil) {
-            self.refreshControl?.endRefreshing()
-            return;
+        // Dispatch to background thread so we don't permanently sleep the main thread
+        // This is done since processResult handles closures back on the main thread
+        DispatchQueue.global(qos: .userInitiated).async {
+            if(self.member == nil) {
+                // Not safe to make the call
+                // Might make sense to migrate to optionals in data layer
+                // for future iterations of the app
+                self.refreshControl?.endRefreshing()
+                return;
+            }
+            
+            // Setup gating semaphores and variables
+            let sem = DispatchSemaphore(value: 0)
+            var loadedAssigned = false
+            var loadedPinned = false
+            
+            // Make calls to reload data, with completions to signal semaphore
+            self.loadAssignedTickets() {
+                loadedAssigned = true
+                sem.signal()
+            }
+            self.loadPinnedTickets() {
+                loadedPinned = true
+                sem.signal()
+            }
+            
+            // Wait for everything to complete and avoid blocking
+            while(!(loadedPinned && loadedAssigned)) {
+                sem.wait()
+            }
+            
+            // Stop the refresh control (being careful to dispatch to main thread)
+            DispatchQueue.main.async {
+                self.refreshControl?.endRefreshing()
+            }
         }
         
-        self.loadAssignedTickets(completionHandler: {
-            self.loadPinnedTickets(completionHandler: {
-                DispatchQueue.main.async {
-                    self.refreshControl?.endRefreshing()
-                }
-            })
-        })
     }
 
     // MARK: - Table view data source
