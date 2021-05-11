@@ -65,7 +65,13 @@ class HomeTableViewController: UITableViewController {
     }
     
     func loadAssignedTickets(completionHandler: (() -> Void)?) {
-        // TODO
+        // Note: This will only grab the first page.
+        // This is an OK assumption, since we assume the total page size is > 3.
+        // Ideally, this could be extended with some other endpoints to get the total counts
+        // but this will suffice for now
+        let ticketsManager = TicketManager(identity)
+        // TODO Call to filtered method
+        
         completionHandler?()
     }
     
