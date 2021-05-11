@@ -19,17 +19,24 @@ class TicketManager {
         return URL(string: identity.baseAddress + TeamManager.urlBase + "\(identity.team!.id)" + TicketManager.urlBase + "\(ticketRecord.id)/")!
     }
     
-    private func makeListUrl(page: Int) -> URL {
-        let urlString = identity.baseAddress + TeamManager.urlBase + "\(identity.team!.id)" + TicketManager.urlBase + "?page=\(page)"
+    public func makeListUrl(page: Int, assignedMember: MemberRecord?) -> URL {
+        var urlString = identity.baseAddress + TeamManager.urlBase + "\(identity.team!.id)" + TicketManager.urlBase + "?page=\(page)"
+        if let assignedMember = assignedMember {
+            urlString += "&assigned_user__owner__username=\(assignedMember.owner.username)"
+        }
         return URL(string: urlString)!
     }
     
-    public func listTeamTickets(page: Int, completionHandler: @escaping (Result<PaginatedList<TicketRecord>, Error>) -> Void) -> Void {
-        let requestBuilder = URLRequestBuilder(url: makeListUrl(page: page))
+    public func listTeamTickets(page: Int, assigned: MemberRecord?, completionHandler: @escaping (Result<PaginatedList<TicketRecord>, Error>) -> Void) -> Void {
+        let requestBuilder = URLRequestBuilder(url: makeListUrl(page: page, assignedMember: assigned))
             .setMethod(method: .GET)
             .setIdentity(identity: self.identity)
         
         JsonLoader.executeCodableRequest(request: requestBuilder.getRequest(), completionHandler: completionHandler)
+    }
+    
+    public func listTeamTickets(page: Int, completionHandler: @escaping (Result<PaginatedList<TicketRecord>, Error>) -> Void) -> Void {
+        listTeamTickets(page: page, assigned: nil, completionHandler: completionHandler)
     }
     
     public func makeTicket(ticket: WriteTicketRecord, completionHandler: @escaping(Result<TicketRecord, Error>) -> Void)->Void{
@@ -37,7 +44,7 @@ class TicketManager {
             completionHandler(.failure(Exception.runtimeError(message: "Failed to serialize ticket JSON for makeTicket in TicketManager")))
             return
         }
-        let requestBuilder = URLRequestBuilder(url: makeListUrl(page: 1))
+        let requestBuilder = URLRequestBuilder(url: makeListUrl(page: 1, assignedMember: nil))
             .setMethod(method: .POST)
             .setData(data: body)
             .setIdentity(identity: self.identity)

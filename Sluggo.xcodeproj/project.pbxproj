@@ -47,6 +47,8 @@
 		7D1DA6B7262B866D00E7C12D /* SidebarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1DA6B6262B866D00E7C12D /* SidebarData.swift */; };
 		7D23834B264119050091C7E8 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D23834A264119050091C7E8 /* HomeTableViewController.swift */; };
 		7D53BE6926433D6600400D0E /* PinnedTicketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D53BE6826433D6600400D0E /* PinnedTicketManager.swift */; };
+		7D778C06264A374C00D4061A /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D778C05264A374C00D4061A /* ViewControllerExtensions.swift */; };
+		7D778C0A264A6A0F00D4061A /* TicketManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D778C09264A6A0F00D4061A /* TicketManagerTests.swift */; };
 		7D9963A6261EF3A4002338E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9963A5261EF3A4002338E7 /* AppDelegate.swift */; };
 		7D9963AD261EF3A4002338E7 /* Root.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D9963AB261EF3A4002338E7 /* Root.storyboard */; };
 		7D9963B2261EF3A5002338E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D9963B1261EF3A5002338E7 /* Assets.xcassets */; };
@@ -116,6 +118,8 @@
 		7D1DA6B6262B866D00E7C12D /* SidebarData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarData.swift; sourceTree = "<group>"; };
 		7D23834A264119050091C7E8 /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeTableViewController.swift; path = "Sluggo/View Controllers/HomeTableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		7D53BE6826433D6600400D0E /* PinnedTicketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnedTicketManager.swift; sourceTree = "<group>"; };
+		7D778C05264A374C00D4061A /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
+		7D778C09264A6A0F00D4061A /* TicketManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketManagerTests.swift; sourceTree = "<group>"; };
 		7D9963A2261EF3A4002338E7 /* Sluggo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sluggo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D9963A5261EF3A4002338E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D9963AC261EF3A4002338E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Root.storyboard; sourceTree = "<group>"; };
@@ -223,6 +227,14 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		7D778C04264A374200D4061A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7D778C05264A374C00D4061A /* ViewControllerExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		7D996399261EF3A4002338E7 = {
 			isa = PBXGroup;
 			children = (
@@ -266,6 +278,7 @@
 				7D1354FB262D026E00D38EE0 /* UserTests.swift */,
 				2FEF5DAD262D1C4900434763 /* MemberTests.swift */,
 				2F44E21C2639FA6B006CA85D /* TicketTests.swift */,
+				7D778C09264A6A0F00D4061A /* TicketManagerTests.swift */,
 			);
 			path = SluggoTests;
 			sourceTree = "<group>";
@@ -296,6 +309,7 @@
 		7DC2A2202629442B0002CEE6 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				7D778C04264A374200D4061A /* Extensions */,
 				0522586F2636100B00B49CE4 /* LaunchViewController.swift */,
 				5A79FFE5262E563F00D04320 /* LoginViewController.swift */,
 				7D1DA6AD262B82C200E7C12D /* RootViewController.swift */,
@@ -477,6 +491,7 @@
 				7D9963A6261EF3A4002338E7 /* AppDelegate.swift in Sources */,
 				5A673570263BF2D200C4C778 /* UIColor.swift in Sources */,
 				3A150A6C26365B670052934B /* TagRecord.swift in Sources */,
+				7D778C06264A374C00D4061A /* ViewControllerExtensions.swift in Sources */,
 				7D23834B264119050091C7E8 /* HomeTableViewController.swift in Sources */,
 				5AB1C8EF262FE3210010F85E /* TagManager.swift in Sources */,
 				5A9FF88E26386D4700378550 /* TicketListController.swift in Sources */,
@@ -496,6 +511,7 @@
 				7D1354FC262D026E00D38EE0 /* UserTests.swift in Sources */,
 				2FEF5DAE262D1C4900434763 /* MemberTests.swift in Sources */,
 				7D9963C0261EF3A5002338E7 /* SluggoTests.swift in Sources */,
+				7D778C0A264A6A0F00D4061A /* TicketManagerTests.swift in Sources */,
 				2F44E21D2639FA6B006CA85D /* TicketTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

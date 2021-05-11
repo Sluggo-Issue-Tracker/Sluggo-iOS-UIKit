@@ -14,6 +14,7 @@ class TicketTests: XCTestCase {
         "id": 2,
         "ticket_number": 2,
         "object_uuid": "cefdf703-40ff-40d0-b07a-1583cc33d7d4",
+        "tag_list": [],
         "title": "Hi",
         "description": "this is a description",
         "created": "2021-04-28T20:31:43+0000",
@@ -55,20 +56,20 @@ class TicketTests: XCTestCase {
     """
     
     func testTicketDoesDeserialize() {
-
+        // CRASHES, PLEASE FIX!
         let ticket: TicketRecord? = JsonLoader.decode(data: testWorkingJson.data(using: .utf8)!)
-        
+
         XCTAssertNotNil(ticket)
-        
+
         XCTAssertEqual(ticket!.ticket_number, 2)
         XCTAssertEqual(ticket!.title, "Hi")
         XCTAssertEqual(ticket!.id, 2)
-        
-        
+
+
         XCTAssertNil(ticket!.status)
         XCTAssertNil(ticket!.assigned_user)
 
-        
+
     }
     
     func testTicketDeserializesWithExtraProps() {
@@ -110,7 +111,7 @@ class TicketTests: XCTestCase {
     
     func testTicketDoesSerialize() {
         
-        let ticket = TicketRecord(id: 1, ticket_number: 1, tag_list: nil, object_uuid: UUID(uuidString: "aa80fe7c-d346-4944-9d9e-3d7286fc4ca7")!, assigned_user: nil, status: nil, title: "Howdy Partner", description: "This is a ticket", due_date: Date(), created: Date(), activated: Date(), deactivated: Date())
+        let ticket = TicketRecord(id: 1, ticket_number: 1, tag_list: [], object_uuid: UUID(uuidString: "aa80fe7c-d346-4944-9d9e-3d7286fc4ca7")!, assigned_user: nil, status: nil, title: "Howdy Partner", description: "This is a ticket", due_date: Date(), created: Date(), activated: Date(), deactivated: Date())
         
         let json = JsonLoader.encode(object: ticket)
         XCTAssertNotNil(json)
