@@ -241,6 +241,10 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate, UIPicker
     }
     
     
+    @IBSegueAction func segueToDetail(_ coder: NSCoder) -> TicketDetailTableViewController? {
+        return TicketDetailTableViewController(coder: coder, identity: identity, ticket: ticket, completion: nil)
+    }
+    
     
     
     //MARK: UIPickerView manager
