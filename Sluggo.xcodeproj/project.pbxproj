@@ -27,6 +27,8 @@
 		5A25CFA2264B8C8100852035 /* TagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A25CFA1264B8C8100852035 /* TagTests.swift */; };
 		5A25CFA7264B934400852035 /* StatusManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A25CFA6264B934400852035 /* StatusManager.swift */; };
 		5A25CFAC264B966300852035 /* TicketFilterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A25CFAB264B966300852035 /* TicketFilterTableViewController.swift */; };
+		5A25CFB1264B9A9300852035 /* Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A25CFB0264B9A9300852035 /* Methods.swift */; };
+		5A25CFC2264B9AFF00852035 /* TeamPaginatedListable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A25CFC1264B9AFF00852035 /* TeamPaginatedListable.swift */; };
 		5A673570263BF2D200C4C778 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A67356F263BF2D200C4C778 /* UIColor.swift */; };
 		5A79FFE1262E562A00D04320 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A79FFE0262E562A00D04320 /* Main.storyboard */; };
 		5A79FFE6262E563F00D04320 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A79FFE5262E563F00D04320 /* LoginViewController.swift */; };
@@ -102,6 +104,8 @@
 		5A25CFA1264B8C8100852035 /* TagTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagTests.swift; sourceTree = "<group>"; };
 		5A25CFA6264B934400852035 /* StatusManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusManager.swift; sourceTree = "<group>"; };
 		5A25CFAB264B966300852035 /* TicketFilterTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketFilterTableViewController.swift; sourceTree = "<group>"; };
+		5A25CFB0264B9A9300852035 /* Methods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Methods.swift; sourceTree = "<group>"; };
+		5A25CFC1264B9AFF00852035 /* TeamPaginatedListable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamPaginatedListable.swift; sourceTree = "<group>"; };
 		5A67356F263BF2D200C4C778 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		5A79FFE0262E562A00D04320 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		5A79FFE5262E563F00D04320 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -173,6 +177,7 @@
 		2F81E6E62627E85000B6D86D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				5A25CFB8264B9AC500852035 /* Interfaces */,
 				5AB1C8DB262FE29E0010F85E /* Managers */,
 				5A79FFED262E5FEF00D04320 /* Codables */,
 				2F3F66E1262DD3BA0040404C /* JsonLoader.swift */,
@@ -181,6 +186,7 @@
 				051AAB0A2630FD6500BCB9C7 /* Constants.swift */,
 				5ACC0F052630CA2700DCF83E /* Exceptions.swift */,
 				5A00A0132639EDEA0085C8C6 /* URLRequestBuilder.swift */,
+				5A25CFB0264B9A9300852035 /* Methods.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -192,6 +198,14 @@
 				5AC6458F26412F0C00F46137 /* TeamTableViewCell.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		5A25CFB8264B9AC500852035 /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				5A25CFC1264B9AFF00852035 /* TeamPaginatedListable.swift */,
+			);
+			path = Interfaces;
 			sourceTree = "<group>";
 		};
 		5A67356E263BF2C600C4C778 /* Extensions */ = {
@@ -479,6 +493,7 @@
 				3A150A7F263CBA860052934B /* TicketDetailViewController.swift in Sources */,
 				7D1DA6B7262B866D00E7C12D /* SidebarData.swift in Sources */,
 				5A00A0142639EDEA0085C8C6 /* URLRequestBuilder.swift in Sources */,
+				5A25CFC2264B9AFF00852035 /* TeamPaginatedListable.swift in Sources */,
 				2FD70D5D2636144300D13C75 /* LogoutMessage.swift in Sources */,
 				5AB1C8EA262FE2EF0010F85E /* MemberManager.swift in Sources */,
 				5A9C4C1C2640BC4E00B270AB /* TeamTableViewController.swift in Sources */,
@@ -501,6 +516,7 @@
 				7D9963A6261EF3A4002338E7 /* AppDelegate.swift in Sources */,
 				5A673570263BF2D200C4C778 /* UIColor.swift in Sources */,
 				3A150A6C26365B670052934B /* TagRecord.swift in Sources */,
+				5A25CFB1264B9A9300852035 /* Methods.swift in Sources */,
 				7D778C06264A374C00D4061A /* ViewControllerExtensions.swift in Sources */,
 				7D23834B264119050091C7E8 /* HomeTableViewController.swift in Sources */,
 				5AB1C8EF262FE3210010F85E /* TagManager.swift in Sources */,

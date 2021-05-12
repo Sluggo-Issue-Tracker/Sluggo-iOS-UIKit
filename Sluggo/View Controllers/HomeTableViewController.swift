@@ -87,7 +87,9 @@ class HomeTableViewController: UITableViewController {
                 // Not safe to make the call
                 // Might make sense to migrate to optionals in data layer
                 // for future iterations of the app
-                self.refreshControl?.endRefreshing()
+                DispatchQueue.main.async {
+                    self.refreshControl?.endRefreshing()
+                }
                 return;
             }
             

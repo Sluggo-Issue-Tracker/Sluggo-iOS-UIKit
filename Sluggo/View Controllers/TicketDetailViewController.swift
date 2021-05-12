@@ -48,7 +48,7 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate, UIPicker
         
 
         let memberManager = MemberManager(identity: self.identity)
-        memberManager.listTeamMembers(){ result in
+        memberManager.listTeamMembers(page: 1){ result in
             switch(result){
             case .success(let record):
                 self.teamMembers = [nil]

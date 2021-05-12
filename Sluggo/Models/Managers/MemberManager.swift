@@ -20,8 +20,8 @@ class MemberManager {
         return URL(string: identity.baseAddress + TeamManager.urlBase + "\(identity.team!.id)" + MemberManager.urlBase + "\(memberRecord.id)/")!
     }
     
-    private func makeListUrl() -> URL {
-        return URL(string: identity.baseAddress + TeamManager.urlBase + "\(identity.team!.id)" + MemberManager.urlBase)!
+    private func makeListUrl(page: Int) -> URL {
+        return URL(string: identity.baseAddress + TeamManager.urlBase + "\(identity.team!.id)" + MemberManager.urlBase + "\(page)")!
     }
     
     public func updateMemberRecord(_ memberRecord: MemberRecord, completionHandler: @escaping(Result<MemberRecord, Error>) -> Void) -> Void {
@@ -42,9 +42,9 @@ class MemberManager {
     
     
     // TODO: why are no pagingation controls added despite this being paginated?
-    public func listTeamMembers(completionHandler: @escaping(Result<PaginatedList<MemberRecord>, Error>) -> Void) -> Void{
+    public func listTeamMembers(page: Int, completionHandler: @escaping(Result<PaginatedList<MemberRecord>, Error>) -> Void) -> Void{
         
-        let requestBuilder = URLRequestBuilder(url: makeListUrl())
+        let requestBuilder = URLRequestBuilder(url: makeListUrl(page: page))
             .setIdentity(identity: identity)
             .setMethod(method: .GET)
         
@@ -68,7 +68,8 @@ class MemberManager {
         let memberPk = teamHash.appending(userHash)
         
         // Execute request
-        let request = URLRequestBuilder(url: URL(string: makeListUrl().absoluteString + "\(memberPk)/")!)
+        // TODO: this needs to handle pagination correclty!
+        let request = URLRequestBuilder(url: URL(string: makeListUrl(page: 1).absoluteString + "\(memberPk)/")!)
             .setMethod(method: .GET)
             .setIdentity(identity: identity)
         

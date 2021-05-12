@@ -14,6 +14,7 @@ class TeamTableViewController: UITableViewController {
     private var fetchingTeams: [TeamRecord] = []
     private var teams: [TeamRecord] = []
     private var isFetching  = false
+    private var semaphore = DispatchSemaphore(value: 1)
     
     override func viewDidLoad() {
         self.configureRefreshControl()
@@ -56,51 +57,28 @@ class TeamTableViewController: UITableViewController {
     }
     
     @objc func handleRefreshAction() {
-        // enter the critical section
-        // do not wait
-        if (isFetching) { return }
-        
-        isFetching = true
-        self.loadData(page: 1)
-    }
-    
-    private func loadData(page: Int) {
-        let teamManager = TeamManager(identity: identity)
-        teamManager.listUserTeams(page: page) { result in
-            switch(result) {
-            case .success(let record):
-                self.maxNumber = record.count
-                
-                let pageOffset = (page - 1) * self.identity.pageSize
-                if (pageOffset < self.fetchingTeams.count) {
-                    self.fetchingTeams.removeSubrange(pageOffset...self.fetchingTeams.count-1)
-                }
-                
-                for entry in record.results {
-                    self.fetchingTeams.append(entry)
-                }
-                
-                if (self.fetchingTeams.count >= self.maxNumber) {
-                    DispatchQueue.main.async {
-                        self.refreshControl?.endRefreshing()
-                        self.teams = Array(self.fetchingTeams)
-                        self.fetchingTeams.removeAll()
-                        self.tableView.reloadData()
-                        self.isFetching = false
-                        self.preselectRow()
-                    }
-                    return
-                } else {
-                    self.loadData(page: page + 1)
-                }
-                
-                break;
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    let alert = UIAlertController.errorController(error: error)
-                    self.present(alert, animated: true, completion: nil)
-                }
+
+        DispatchQueue.global(qos: .userInitiated).async {
+            self.semaphore.wait()
+            
+            let onSuccess = { (teams: [TeamRecord]) -> Void in
+                self.teams = teams
             }
+            
+            let after = { () -> Void in
+                DispatchQueue.main.async {
+                    self.refreshControl?.endRefreshing()
+                    self.preselectRow()
+                }
+                self.semaphore.signal()
+            }
+            
+            let teamManager = TeamManager(identity: self.identity)
+            UnwindState<TeamRecord>.unwindPagination(manager: teamManager,
+                             startingPage: 1,
+                             onSuccess: onSuccess,
+                             onFailure: self.presentErrorFromMainThread,
+                             after: after)
         }
     }
 }
