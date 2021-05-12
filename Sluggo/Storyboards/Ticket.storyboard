@@ -3,10 +3,26 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--View Controller-->
+        <scene sceneID="00a-9V-On4">
+            <objects>
+                <viewController id="qxM-I5-KCU" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Tzo-55-i7o">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Qk8-nM-e7L"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BIH-ay-Klb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="187" y="-450"/>
+        </scene>
         <!--Tickets-->
         <scene sceneID="fAs-CW-lSI">
             <objects>
@@ -87,13 +103,13 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zgX-cy-a2Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="186.95652173913044" y="276.5625"/>
+            <point key="canvasLocation" x="187" y="277"/>
         </scene>
         <!--TicketDetail-->
         <scene sceneID="2tu-Yx-gab">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Mwx-B1-KwL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewControllerPlaceholder storyboardIdentifier="TicketDetail" storyboardName="TicketDetail" id="dgM-WS-4qv" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mwx-B1-KwL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1021" y="224"/>
         </scene>

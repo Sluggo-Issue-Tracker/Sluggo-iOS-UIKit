@@ -40,6 +40,8 @@ class MemberManager {
         
     }
     
+    
+    // TODO: why are no pagingation controls added despite this being paginated?
     public func listTeamMembers(completionHandler: @escaping(Result<PaginatedList<MemberRecord>, Error>) -> Void) -> Void{
         
         let requestBuilder = URLRequestBuilder(url: makeListUrl())

@@ -25,8 +25,6 @@ class TeamTableViewController: UITableViewController {
         refreshControl?.addTarget(self, action: #selector(handleRefreshAction), for: .valueChanged)
     }
     
-
-    
     private func preselectRow() {
         if (teams.count == 0) { return }
         
