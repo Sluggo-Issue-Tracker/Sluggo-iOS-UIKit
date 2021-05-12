@@ -18,12 +18,12 @@ class StatusManager: TeamPaginatedListable {
         self.identity = identity
     }
 
-    private func makeDetailUrl(memberRecord: MemberRecord) -> URL {
-        return URL(string: identity.baseAddress + TeamManager.urlBase + "\(identity.team!.id)" + MemberManager.urlBase + "\(memberRecord.id)/")!
+    private func makeDetailUrl(statusRecord: StatusRecord) -> URL {
+        return URL(string: identity.baseAddress + TeamManager.urlBase + "\(identity.team!.id)" + StatusManager.urlBase + "\(statusRecord.id)/")!
     }
     
     private func makeListUrl(page: Int) -> URL {
-        return URL(string: identity.baseAddress + TeamManager.urlBase + "\(identity.team!.id)" + MemberManager.urlBase + "?page=\(page)")!
+        return URL(string: identity.baseAddress + TeamManager.urlBase + "\(identity.team!.id)" + StatusManager.urlBase + "?page=\(page)")!
     }
     
     func listFromTeams<T>(page: Int, completionHandler: @escaping (Result<PaginatedList<T>, Error>) -> Void) where T : Decodable, T : Encodable {

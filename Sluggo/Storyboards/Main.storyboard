@@ -3,7 +3,6 @@
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -232,9 +231,6 @@
                                             <constraint firstAttribute="width" constant="25" id="9co-2D-ewI"/>
                                             <constraint firstAttribute="height" constant="24" id="lRj-IX-VFF"/>
                                         </constraints>
-                                        <state key="normal">
-                                            <imageReference key="image" image="xmark.circle" catalog="system" symbolScale="large"/>
-                                        </state>
                                         <connections>
                                             <action selector="didCancel:" destination="rGb-An-tKe" eventType="touchUpInside" id="tr8-iJ-4QF"/>
                                         </connections>
@@ -287,7 +283,6 @@
         <image name="checkmark.square" catalog="system" width="128" height="114"/>
         <image name="square" catalog="system" width="128" height="114"/>
         <image name="square.fill" catalog="system" width="128" height="114"/>
-        <image name="xmark.circle" catalog="system" width="128" height="121"/>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

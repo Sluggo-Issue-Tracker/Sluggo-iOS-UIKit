@@ -16,8 +16,8 @@ enum FilterViewCategories: Int {
 class TicketFilterTableViewController: UITableViewController {
     
     // TODO: wire this shit together
-    private let identity = AppIdentity()
-    private var assignedUsers: [MemberRecord] = []
+    var identity: AppIdentity! = nil
+    private var teamMembers: [MemberRecord] = []
     private var ticketTags: [TagRecord] = []
     private var ticketStatuses: [StatusRecord] = []
     private let semaphore = DispatchSemaphore(value: 1)
@@ -43,7 +43,7 @@ class TicketFilterTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         switch(section) {
         case FilterViewCategories.assignedUsers.rawValue:
-            return self.assignedUsers.count
+            return self.teamMembers.count
         case FilterViewCategories.ticketTags.rawValue:
             return self.ticketTags.count
         case FilterViewCategories.ticketStatuses.rawValue:
@@ -53,7 +53,7 @@ class TicketFilterTableViewController: UITableViewController {
         }
     }
     
-    // MARK: refresh bullshit
+    // MARK: refresh stuff
     func configureRefreshControl() {
         refreshControl = UIRefreshControl()
         refreshControl?.addTarget(self, action: #selector(handleRefreshAction), for: .valueChanged)
@@ -77,6 +77,7 @@ class TicketFilterTableViewController: UITableViewController {
                     DispatchQueue.main.async {
                         self.refreshControl?.endRefreshing()
                     }
+                    
                     self.semaphore.signal()
                 }
                 mutex.signal()
@@ -104,7 +105,7 @@ class TicketFilterTableViewController: UITableViewController {
             UnwindState<MemberRecord>.unwindPagination(manager: memberManager,
                                                        startingPage: 1,
                                                        onSuccess: { (members: [MemberRecord]) -> Void in
-                                                            self.assignedUsers = members
+                                                            self.teamMembers = members
                                                        },
                                                        onFailure: self.presentErrorFromMainThread,
                                                        after: after)
