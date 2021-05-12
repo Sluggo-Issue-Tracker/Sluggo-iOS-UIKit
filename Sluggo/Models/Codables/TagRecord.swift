@@ -8,7 +8,7 @@
 import Foundation
 import NullCodable
 
-struct TagRecord: Codable {
+struct TagRecord: Codable, HasTitle {
     var id: Int
     var team_id: Int
     var object_uuid: UUID
@@ -16,4 +16,8 @@ struct TagRecord: Codable {
     var created: Date
     @NullCodable var activated: Date?
     @NullCodable var deactivated: Date?
+    
+    func getTitle() -> String {
+        return title
+    }
 }

@@ -89,6 +89,11 @@ class TicketListController: UITableViewController {
         if let vc = storyboard?.instantiateViewController(identifier: "FilterNavigationController") {
             if let child = vc.children[0] as? TicketFilterTableViewController {
                 child.identity = self.identity
+                child.filterParams = self.filterParams
+                child.completion = { queryParams in
+                    self.filterParams = queryParams
+                    self.handleRefreshAction()
+                }
             }
             
             self.present(vc, animated: true, completion: nil)

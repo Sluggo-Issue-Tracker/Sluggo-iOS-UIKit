@@ -16,20 +16,29 @@ enum FilterViewCategories: Int {
 class TicketFilterTableViewController: UITableViewController {
     
     // TODO: wire this wonderful code together
-    var identity: AppIdentity! = nil
+    var identity: AppIdentity!
     var completion: ((TicketFilterParameters) -> Void)?
+    var filterParams: TicketFilterParameters!
     
-    private var filterParams: TicketFilterParameters = TicketFilterParameters()
     private var teamMembers: [MemberRecord] = []
     private var ticketTags: [TagRecord] = []
     private var ticketStatuses: [StatusRecord] = []
     private let semaphore = DispatchSemaphore(value: 1)
     private static let numSections = 3
+    
+    private var sectionSelectedMap = [
+        FilterViewCategories.assignedUsers.rawValue: nil,
+        FilterViewCategories.ticketTags.rawValue: nil,
+        FilterViewCategories.ticketStatuses.rawValue: nil
+    ] as [Int: Int?]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureRefreshControl()
         configureBarItems()
+        handleRefreshAction() {
+            self.preselectItems()
+        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -54,16 +63,95 @@ class TicketFilterTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        switch(section) {
+        switch(section){
         case FilterViewCategories.assignedUsers.rawValue:
-            return self.teamMembers.count
+            return teamMembers.count
         case FilterViewCategories.ticketTags.rawValue:
-            return self.ticketTags.count
+            return ticketTags.count
         case FilterViewCategories.ticketStatuses.rawValue:
-            return self.ticketStatuses.count
+            return ticketStatuses.count
         default:
-            fatalError("Invalid section count queried")
+            fatalError("no such section")
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FilterEntry", for: indexPath)
+        var text = ""
+        
+        switch(indexPath.section) {
+        case FilterViewCategories.assignedUsers.rawValue:
+            text = teamMembers[indexPath.row].getTitle()
+            break
+        case FilterViewCategories.ticketTags.rawValue:
+            text = ticketTags[indexPath.row].getTitle()
+            break
+        case FilterViewCategories.ticketStatuses.rawValue:
+            text = ticketStatuses[indexPath.row].getTitle()
+            break
+        default:
+            fatalError("no such section")
+        }
+        
+        cell.textLabel?.text = text
+        return cell
+    }
+    
+    // MARK: duplicaty nonsense
+    func preselectItems() {
+        if let row = self.teamMembers.firstIndex(where: { record in
+            record.object_uuid == self.filterParams.assignedUser?.object_uuid
+        }) {
+            let indexPath = IndexPath(row: row, section: FilterViewCategories.assignedUsers.rawValue)
+            tableView.selectRow(at: indexPath, animated: true, scrollPosition: .top)
+        }
+        
+        if let row = self.ticketStatuses.firstIndex(where: { record in
+            record.object_uuid == self.filterParams.ticketStatus?.object_uuid
+        }) {
+            let indexPath = IndexPath(row: row, section: FilterViewCategories.ticketStatuses.rawValue)
+            tableView.selectRow(at: indexPath, animated: true, scrollPosition: .top)
+        }
+        
+        if let row = self.ticketTags.firstIndex(where: { record in
+            record.object_uuid == self.filterParams.ticketTag?.object_uuid
+        }) {
+            let indexPath = IndexPath(row: row, section: FilterViewCategories.ticketTags.rawValue)
+            tableView.selectRow(at: indexPath, animated: true, scrollPosition: .top)
+        }
+        
+    }
+    
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        switch(indexPath.section){
+        case FilterViewCategories.assignedUsers.rawValue:
+            self.filterParams.assignedUser = nil
+        case FilterViewCategories.ticketTags.rawValue:
+            self.filterParams.ticketTag = nil
+        case FilterViewCategories.ticketStatuses.rawValue:
+            self.filterParams.ticketStatus = nil
+        default:
+            fatalError("no such section")
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch(indexPath.section){
+        case FilterViewCategories.assignedUsers.rawValue:
+            self.filterParams.assignedUser = self.teamMembers[indexPath.row]
+        case FilterViewCategories.ticketTags.rawValue:
+            self.filterParams.ticketTag = self.ticketTags[indexPath.row]
+        case FilterViewCategories.ticketStatuses.rawValue:
+            self.filterParams.ticketStatus = self.ticketStatuses[indexPath.row]
+        default:
+            fatalError("no such section")
+        }
+
+        if let previousInSection = self.sectionSelectedMap[indexPath.section]! {
+            tableView.deselectRow(at: IndexPath(row: previousInSection, section: indexPath.section), animated: true)
+        }
+        self.sectionSelectedMap[indexPath.section] = indexPath.row
+        
     }
     
     // MARK: refresh stuff
@@ -72,7 +160,7 @@ class TicketFilterTableViewController: UITableViewController {
         refreshControl?.addTarget(self, action: #selector(handleRefreshAction), for: .valueChanged)
     }
     
-    @objc func handleRefreshAction() {
+    @objc func handleRefreshAction(after: (() -> Void)? = nil) {
 
         DispatchQueue.global(qos: .userInitiated).async {
             self.semaphore.wait()
@@ -89,6 +177,8 @@ class TicketFilterTableViewController: UITableViewController {
                 if (completed == TicketFilterTableViewController.numSections) {
                     DispatchQueue.main.async {
                         self.refreshControl?.endRefreshing()
+                        self.tableView.reloadData() // we reload all the mf data
+                        after?()
                     }
                     
                     self.semaphore.signal()
@@ -122,6 +212,19 @@ class TicketFilterTableViewController: UITableViewController {
                                                        },
                                                        onFailure: self.presentErrorFromMainThread,
                                                        after: after)
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case FilterViewCategories.assignedUsers.rawValue:
+            return "Members"
+        case FilterViewCategories.ticketTags.rawValue:
+            return "Tags"
+        case FilterViewCategories.ticketStatuses.rawValue:
+            return "Statuses"
+        default:
+            return "Error!"
         }
     }
 

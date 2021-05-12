@@ -4,8 +4,6 @@
 //
 //  Created by Samuel Schmidt on 5/11/21.
 //
-//  Rip pop smoke
-//
 
 import Foundation
 
