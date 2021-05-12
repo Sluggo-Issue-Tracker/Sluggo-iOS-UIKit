@@ -47,6 +47,15 @@ class MemberTests: XCTestCase {
     }
     """
     
+    let testPaginated = """
+    {"count":1,"next":null,"previous":null,"results":[{"id":"c74d97b01eae257e44aa9d5bade97baf332532dcfaa1cbf61e2a266bd723612c","owner":{"id":1,"email":"sam@sam.sam","first_name":"","last_name":"","username":"sam"},"team_id":16,"object_uuid":"eb486ea8-660d-4d3b-850b-80c42bb4301f","role":"AD","bio":"asdf","pronouns":null,"created":"2021-05-06T20:58:47+0000","activated":null,"deactivated":null}]}
+    """
+    
+    func testSerializesMultiple() {
+        let members: PaginatedList<MemberRecord>? = JsonLoader.decode(data: testPaginated.data(using: .utf8)!)
+        XCTAssertNotNil(members)
+    }
+    
     func testMemberDoesDeserialize() {
         let member: MemberRecord? = JsonLoader.decode(data: testWorkingJson.data(using: .utf8)!)
         XCTAssertNotNil(member)

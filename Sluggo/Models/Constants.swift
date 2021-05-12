@@ -21,4 +21,8 @@ struct Constants {
         static let kURL = "url"
     
     }
+    
+    struct Signals {
+        static let TEAM_CHANGE_NOTIFICATION = NSNotification.Name(rawValue: "teamChange")
+    }
 }

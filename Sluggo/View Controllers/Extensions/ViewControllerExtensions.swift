@@ -16,6 +16,12 @@ extension UIViewController {
         UIAlertController.createAndPresentError(vc: self, error: error)
     }
     
+    func presentErrorFromMainThread(error: Error) {
+        DispatchQueue.main.async {
+            self.presentError(error: error)
+        }
+    }
+    
     func processResult<T>(result: Result<T, Error>,  onSuccess: @escaping ((T) -> Void),  onError: ((Error) -> Void)?,  after: (() -> Void)?) {
         DispatchQueue.main.sync {
             switch(result) {

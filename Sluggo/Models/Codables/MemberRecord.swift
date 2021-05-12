@@ -8,7 +8,7 @@
 import Foundation
 import NullCodable
 
-struct MemberRecord: Codable{
+struct MemberRecord: Codable, HasTitle {
     var id: String
     var owner: UserRecord
     var team_id: Int
@@ -18,4 +18,8 @@ struct MemberRecord: Codable{
     var created: Date
     @NullCodable var activated: Date?
     @NullCodable var deactivated: Date?
+    
+    func getTitle() -> String {
+        return owner.username
+    }
 }
