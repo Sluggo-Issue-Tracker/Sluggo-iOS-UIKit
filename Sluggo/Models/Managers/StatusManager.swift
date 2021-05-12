@@ -24,7 +24,7 @@ class StatusManager: TeamPaginatedListable {
         return URL(string: identity.baseAddress + TeamManager.urlBase + "\(identity.team!.id)" + StatusManager.urlBase + "?page=\(page)")!
     }
     
-    func listFromTeams<T>(page: Int, completionHandler: @escaping (Result<PaginatedList<T>, Error>) -> Void) where T : Decodable, T : Encodable {
+    func listFromTeams(page: Int, completionHandler: @escaping (Result<PaginatedList<StatusRecord>, Error>) -> Void) {
         let requestBuilder = URLRequestBuilder(url: makeListUrl(page: page))
             .setIdentity(identity: identity)
             .setMethod(method: .GET)

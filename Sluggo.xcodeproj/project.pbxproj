@@ -31,7 +31,6 @@
 		5A25CFC2264B9AFF00852035 /* TeamPaginatedListable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A25CFC1264B9AFF00852035 /* TeamPaginatedListable.swift */; };
 		5A25CFDF264BCF2C00852035 /* TicketFilterParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A25CFDE264BCF2C00852035 /* TicketFilterParameters.swift */; };
 		5A25CFE7264BD73D00852035 /* TicketFilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A25CFE6264BD73D00852035 /* TicketFilterTableViewCell.swift */; };
-		5A25CFEC264BD90B00852035 /* CodablePickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A25CFEB264BD90B00852035 /* CodablePickerTableViewCell.swift */; };
 		5A25CFF1264BE28100852035 /* HasTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A25CFF0264BE28100852035 /* HasTitle.swift */; };
 		5A673570263BF2D200C4C778 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A67356F263BF2D200C4C778 /* UIColor.swift */; };
 		5A79FFE1262E562A00D04320 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A79FFE0262E562A00D04320 /* Main.storyboard */; };
@@ -112,7 +111,6 @@
 		5A25CFC1264B9AFF00852035 /* TeamPaginatedListable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamPaginatedListable.swift; sourceTree = "<group>"; };
 		5A25CFDE264BCF2C00852035 /* TicketFilterParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketFilterParameters.swift; sourceTree = "<group>"; };
 		5A25CFE6264BD73D00852035 /* TicketFilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketFilterTableViewCell.swift; sourceTree = "<group>"; };
-		5A25CFEB264BD90B00852035 /* CodablePickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodablePickerTableViewCell.swift; sourceTree = "<group>"; };
 		5A25CFF0264BE28100852035 /* HasTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasTitle.swift; sourceTree = "<group>"; };
 		5A67356F263BF2D200C4C778 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		5A79FFE0262E562A00D04320 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -353,7 +351,6 @@
 				5A9C4C202641113D00B270AB /* TeamSelectorContainerViewController.swift */,
 				7D23834A264119050091C7E8 /* HomeTableViewController.swift */,
 				5A25CFAB264B966300852035 /* TicketFilterTableViewController.swift */,
-				5A25CFEB264BD90B00852035 /* CodablePickerTableViewCell.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -511,7 +508,6 @@
 				2FD70D5D2636144300D13C75 /* LogoutMessage.swift in Sources */,
 				5AB1C8EA262FE2EF0010F85E /* MemberManager.swift in Sources */,
 				5A9C4C1C2640BC4E00B270AB /* TeamTableViewController.swift in Sources */,
-				5A25CFEC264BD90B00852035 /* CodablePickerTableViewCell.swift in Sources */,
 				2F3AD7AD2627C8EF00B61A97 /* TeamRecord.swift in Sources */,
 				7DC54AE526437AB3000C8300 /* PinnedTicketRecord.swift in Sources */,
 				7DC2A227262948800002CEE6 /* SluggoSidebarContainerViewController.swift in Sources */,

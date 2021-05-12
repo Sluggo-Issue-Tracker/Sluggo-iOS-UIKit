@@ -98,6 +98,7 @@ class TicketFilterTableViewController: UITableViewController {
         }) {
             let indexPath = IndexPath(row: row, section: FilterViewCategories.assignedUsers.rawValue)
             tableView.selectRow(at: indexPath, animated: true, scrollPosition: .top)
+            sectionSelectedMap[FilterViewCategories.assignedUsers.rawValue] = indexPath.row
         }
         
         if let row = self.ticketStatuses.firstIndex(where: { record in
@@ -105,6 +106,8 @@ class TicketFilterTableViewController: UITableViewController {
         }) {
             let indexPath = IndexPath(row: row, section: FilterViewCategories.ticketStatuses.rawValue)
             tableView.selectRow(at: indexPath, animated: true, scrollPosition: .top)
+            sectionSelectedMap[FilterViewCategories.ticketStatuses.rawValue] = indexPath.row
+
         }
         
         if let row = self.ticketTags.firstIndex(where: { record in
@@ -112,8 +115,9 @@ class TicketFilterTableViewController: UITableViewController {
         }) {
             let indexPath = IndexPath(row: row, section: FilterViewCategories.ticketTags.rawValue)
             tableView.selectRow(at: indexPath, animated: true, scrollPosition: .top)
+            sectionSelectedMap[FilterViewCategories.ticketTags.rawValue] = indexPath.row
+
         }
-        
     }
     
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -194,7 +198,7 @@ class TicketFilterTableViewController: UITableViewController {
             }
             
             let tagManager = TagManager(identity: self.identity)
-            UnwindState<TagRecord>.unwindPagination(manager: tagManager,
+            unwindPagination(manager: tagManager,
                              startingPage: 1,
                              onSuccess: { (tags: [TagRecord]) -> Void in
                                 self.ticketTags = tags
@@ -203,22 +207,22 @@ class TicketFilterTableViewController: UITableViewController {
                              after: after)
             
             let statusManger = StatusManager(identity: self.identity)
-            UnwindState<StatusRecord>.unwindPagination(manager: statusManger,
-                                                       startingPage: 1,
-                                                       onSuccess: { (statuses: [StatusRecord]) -> Void in
-                                                        self.ticketStatuses = statuses
-                                                       },
-                                                       onFailure: self.presentErrorFromMainThread,
-                                                       after: after)
+            unwindPagination(manager: statusManger,
+                           startingPage: 1,
+                           onSuccess: { (statuses: [StatusRecord]) -> Void in
+                            self.ticketStatuses = statuses
+                           },
+                           onFailure: self.presentErrorFromMainThread,
+                           after: after)
             
             let memberManager = MemberManager(identity: self.identity)
-            UnwindState<MemberRecord>.unwindPagination(manager: memberManager,
-                                                       startingPage: 1,
-                                                       onSuccess: { (members: [MemberRecord]) -> Void in
-                                                            self.teamMembers = members
-                                                       },
-                                                       onFailure: self.presentErrorFromMainThread,
-                                                       after: after)
+            unwindPagination(manager: memberManager,
+                             startingPage: 1,
+                             onSuccess: { (members: [MemberRecord]) -> Void in
+                                self.teamMembers = members
+                             },
+                             onFailure: self.presentErrorFromMainThread,
+                             after: after)
         }
     }
 

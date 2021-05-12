@@ -42,7 +42,7 @@ class MemberManager: TeamPaginatedListable {
         
     }
     
-    func listFromTeams<T>(page: Int, completionHandler: @escaping (Result<PaginatedList<T>, Error>) -> Void) where T : Decodable, T : Encodable {
+    func listFromTeams(page: Int, completionHandler: @escaping (Result<PaginatedList<MemberRecord>, Error>) -> Void) {
         
         let requestBuilder = URLRequestBuilder(url: makeListUrl(page: page))
             .setIdentity(identity: identity)

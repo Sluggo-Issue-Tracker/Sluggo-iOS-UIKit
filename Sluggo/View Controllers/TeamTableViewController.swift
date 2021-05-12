@@ -75,7 +75,7 @@ class TeamTableViewController: UITableViewController {
             }
             
             let teamManager = TeamManager(identity: self.identity)
-            UnwindState<TeamRecord>.unwindPagination(manager: teamManager,
+            unwindPagination(manager: teamManager,
                              startingPage: 1,
                              onSuccess: onSuccess,
                              onFailure: self.presentErrorFromMainThread,

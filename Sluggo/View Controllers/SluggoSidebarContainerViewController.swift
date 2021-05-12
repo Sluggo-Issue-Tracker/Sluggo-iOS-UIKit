@@ -103,6 +103,7 @@ class SluggoSidebarContainerViewController: UIViewController {
         vc?.identity = self.identity
         vc?.completion = { team in
             self.identity.team = team
+            NotificationCenter.default.post(name: Constants.Signals.TEAM_CHANGE_NOTIFICATION, object: nil)
         }
         return vc
     }

@@ -30,6 +30,12 @@ class TicketListController: UITableViewController {
         setupMenuBar()
         loadData(page: 1)
 
+        NotificationCenter.default.addObserver(forName: Constants.Signals.TEAM_CHANGE_NOTIFICATION,
+                                               object: nil,
+                                               queue: nil) { _ in
+            self.filterParams = TicketFilterParameters()
+            self.handleRefreshAction()
+        }
         NotificationCenter.default.addObserver(self, selector: #selector(handleRefreshAction), name: .refreshTrigger, object: nil)
     }
     
