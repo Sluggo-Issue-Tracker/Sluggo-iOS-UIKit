@@ -61,7 +61,9 @@ class HomeTableViewController: UITableViewController {
         // Ideally, this could be extended with some other endpoints to get the total counts
         // but this will suffice for now
         let ticketsManager = TicketManager(identity)
-        ticketsManager.listTeamTickets(page: 1, assigned: member) { result in
+        let queryParams = TicketFilterParameters(assignedUser: member)
+        
+        ticketsManager.listTeamTickets(page: 1, queryParams: queryParams) { result in
             self.processResult(result: result, onSuccess: { retrievedAssignedTickets in
                 self.assignedTickets = retrievedAssignedTickets.results
                 self.tableView.reloadSections([HomepageCategories.assigned.rawValue], with: .automatic)

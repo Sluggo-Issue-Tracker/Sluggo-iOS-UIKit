@@ -15,8 +15,11 @@ enum FilterViewCategories: Int {
 
 class TicketFilterTableViewController: UITableViewController {
     
-    // TODO: wire this shit together
+    // TODO: wire this wonderful code together
     var identity: AppIdentity! = nil
+    var completion: ((TicketFilterParameters) -> Void)?
+    
+    private var filterParams: TicketFilterParameters = TicketFilterParameters()
     private var teamMembers: [MemberRecord] = []
     private var ticketTags: [TagRecord] = []
     private var ticketStatuses: [StatusRecord] = []
@@ -26,12 +29,22 @@ class TicketFilterTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureRefreshControl()
+        configureBarItems()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    func configureBarItems() {
+        let doneAction = UIAction() { action in
+            self.dismiss(animated: true) {
+                self.completion?(self.filterParams)
+            }
+        }
+        navigationItem.rightBarButtonItem = UIBarButtonItem(systemItem: .done, primaryAction: doneAction)
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {

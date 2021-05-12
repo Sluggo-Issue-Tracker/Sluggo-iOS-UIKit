@@ -13,6 +13,7 @@ class TicketListController: UITableViewController {
     var maxNumber: Int = 0
     var tickets: [TicketRecord] = []
     var isFetching: Bool = false
+    var filterParams: TicketFilterParameters = TicketFilterParameters()
     
     init? (coder: NSCoder, identity: AppIdentity) {
         self.identity = identity
@@ -119,7 +120,7 @@ class TicketListController: UITableViewController {
     private func loadData(page: Int) {
         let ticketManager = TicketManager(identity)
         isFetching = true
-        ticketManager.listTeamTickets(page: page) { result in
+        ticketManager.listTeamTickets(page: page, queryParams: self.filterParams) { result in
             switch(result) {
             case .success(let record):
                 self.maxNumber = record.count
