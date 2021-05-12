@@ -348,10 +348,10 @@
 				7D1DA6AD262B82C200E7C12D /* RootViewController.swift */,
 				7DC2A226262948800002CEE6 /* SluggoSidebarContainerViewController.swift */,
 				5A9FF88D26386D4700378550 /* TicketListController.swift */,
-				7D23834A264119050091C7E8 /* HomeTableViewController.swift */,
 				3A150A7E263CBA860052934B /* TicketDetailViewController.swift */,
 				5A9C4C1B2640BC4E00B270AB /* TeamTableViewController.swift */,
 				5A9C4C202641113D00B270AB /* TeamSelectorContainerViewController.swift */,
+				7D23834A264119050091C7E8 /* HomeTableViewController.swift */,
 				5A25CFAB264B966300852035 /* TicketFilterTableViewController.swift */,
 				5A25CFEB264BD90B00852035 /* CodablePickerTableViewCell.swift */,
 			);

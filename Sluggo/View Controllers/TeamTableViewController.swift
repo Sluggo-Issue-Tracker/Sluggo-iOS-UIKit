@@ -68,6 +68,7 @@ class TeamTableViewController: UITableViewController {
             let after = { () -> Void in
                 DispatchQueue.main.async {
                     self.refreshControl?.endRefreshing()
+                    self.tableView.reloadData()
                     self.preselectRow()
                 }
                 self.semaphore.signal()

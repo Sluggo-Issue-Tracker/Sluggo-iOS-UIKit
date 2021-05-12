@@ -39,12 +39,6 @@ class TicketFilterTableViewController: UITableViewController {
         handleRefreshAction() {
             self.preselectItems()
         }
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     func configureBarItems() {
@@ -150,8 +144,21 @@ class TicketFilterTableViewController: UITableViewController {
         if let previousInSection = self.sectionSelectedMap[indexPath.section]! {
             tableView.deselectRow(at: IndexPath(row: previousInSection, section: indexPath.section), animated: true)
         }
-        self.sectionSelectedMap[indexPath.section] = indexPath.row
         
+        self.sectionSelectedMap[indexPath.section] = indexPath.row
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case FilterViewCategories.assignedUsers.rawValue:
+            return "Members"
+        case FilterViewCategories.ticketTags.rawValue:
+            return "Tags"
+        case FilterViewCategories.ticketStatuses.rawValue:
+            return "Statuses"
+        default:
+            return "Error!"
+        }
     }
     
     // MARK: refresh stuff
@@ -178,7 +185,7 @@ class TicketFilterTableViewController: UITableViewController {
                     DispatchQueue.main.async {
                         self.refreshControl?.endRefreshing()
                         self.tableView.reloadData() // we reload all the mf data
-                        after?()
+                        self.preselectItems()
                     }
                     
                     self.semaphore.signal()
@@ -215,36 +222,5 @@ class TicketFilterTableViewController: UITableViewController {
         }
     }
 
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case FilterViewCategories.assignedUsers.rawValue:
-            return "Members"
-        case FilterViewCategories.ticketTags.rawValue:
-            return "Tags"
-        case FilterViewCategories.ticketStatuses.rawValue:
-            return "Statuses"
-        default:
-            return "Error!"
-        }
-    }
-
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        switch(indexPath.section) {
-//        case HomepageCategories.assigned.rawValue:
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "TicketCell", for: indexPath) as! TicketTableViewCell
-//            cell.loadFromTicketRecord(ticket: assignedTickets[indexPath.row])
-//            return cell
-//        case HomepageCategories.pinned.rawValue:
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "TicketCell", for: indexPath) as! TicketTableViewCell
-//            cell.loadFromTicketRecord(ticket: pinnedTickets[indexPath.row].ticket)
-//            return cell
-//        case HomepageCategories.tags.rawValue:
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "PlaceholderCell")!
-//            cell.textLabel?.text = "Not yet implemented."
-//            return cell
-//        default:
-//            fatalError("Accessed section outside of scope, should never occur")
-//        }
-//    }
 
 }
