@@ -37,6 +37,11 @@ class HomeTableViewController: UITableViewController {
         loadMember(completionHandler: refreshContent)
         
         // Setup refresh control
+        NotificationCenter.default.addObserver(forName: Constants.Signals.TEAM_CHANGE_NOTIFICATION,
+                                               object: nil,
+                                               queue: nil) { _ in
+            self.refreshContent()
+        }
         self.refreshControl?.addTarget(self, action: #selector(refreshContent), for: .valueChanged)
         
         // Uncomment the following line to preserve selection between presentations
