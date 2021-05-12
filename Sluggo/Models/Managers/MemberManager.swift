@@ -8,7 +8,9 @@
 import Foundation
 import CryptoKit
 
-class MemberManager {
+class MemberManager: TeamPaginatedListable {
+
+    
     static let urlBase = "/members/"
     private var identity: AppIdentity
     
@@ -16,12 +18,12 @@ class MemberManager {
         self.identity = identity
     }
     
-    private func makeDetailUrl(memberRecord: MemberRecord) -> URL {
-        return URL(string: identity.baseAddress + TeamManager.urlBase + "\(identity.team!.id)" + MemberManager.urlBase + "\(memberRecord.id)/")!
+    private func makeDetailUrl(id: String) -> URL {
+        return URL(string: identity.baseAddress + TeamManager.urlBase + "\(identity.team!.id)" + MemberManager.urlBase + "\(id)/")!
     }
     
     private func makeListUrl(page: Int) -> URL {
-        return URL(string: identity.baseAddress + TeamManager.urlBase + "\(identity.team!.id)" + MemberManager.urlBase + "\(page)")!
+        return URL(string: identity.baseAddress + TeamManager.urlBase + "\(identity.team!.id)" + MemberManager.urlBase + "?page=\(page)")!
     }
     
     public func updateMemberRecord(_ memberRecord: MemberRecord, completionHandler: @escaping(Result<MemberRecord, Error>) -> Void) -> Void {
@@ -31,7 +33,7 @@ class MemberManager {
             return
         }
 
-        let requestBuilder = URLRequestBuilder(url: makeDetailUrl(memberRecord: memberRecord))
+        let requestBuilder = URLRequestBuilder(url: makeDetailUrl(id: memberRecord.id))
             .setData(data: body)
             .setMethod(method: .PUT)
             .setIdentity(identity: identity)
@@ -40,9 +42,7 @@ class MemberManager {
         
     }
     
-    
-    // TODO: why are no pagingation controls added despite this being paginated?
-    public func listTeamMembers(page: Int, completionHandler: @escaping(Result<PaginatedList<MemberRecord>, Error>) -> Void) -> Void{
+    func listFromTeams<T>(page: Int, completionHandler: @escaping (Result<PaginatedList<T>, Error>) -> Void) where T : Decodable, T : Encodable {
         
         let requestBuilder = URLRequestBuilder(url: makeListUrl(page: page))
             .setIdentity(identity: identity)
@@ -69,7 +69,7 @@ class MemberManager {
         
         // Execute request
         // TODO: this needs to handle pagination correclty!
-        let request = URLRequestBuilder(url: URL(string: makeListUrl(page: 1).absoluteString + "\(memberPk)/")!)
+        let request = URLRequestBuilder(url: URL(string: makeDetailUrl(id: memberPk).absoluteString)!)
             .setMethod(method: .GET)
             .setIdentity(identity: identity)
         

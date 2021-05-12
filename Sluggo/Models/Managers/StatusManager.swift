@@ -9,7 +9,8 @@
 
 import Foundation
 
-class StatusManager {
+class StatusManager: TeamPaginatedListable {
+
     static let urlBase = "/statuses/"
     private let identity: AppIdentity
     
@@ -25,12 +26,11 @@ class StatusManager {
         return URL(string: identity.baseAddress + TeamManager.urlBase + "\(identity.team!.id)" + MemberManager.urlBase + "?page=\(page)")!
     }
     
-    public func listTeamStatuses(page: Int, completionHandler: @escaping(Result<PaginatedList<MemberRecord>, Error>) -> Void) {
+    func listFromTeams<T>(page: Int, completionHandler: @escaping (Result<PaginatedList<T>, Error>) -> Void) where T : Decodable, T : Encodable {
         let requestBuilder = URLRequestBuilder(url: makeListUrl(page: page))
             .setIdentity(identity: identity)
             .setMethod(method: .GET)
         
         JsonLoader.executeCodableRequest(request: requestBuilder.getRequest(), completionHandler: completionHandler)
     }
-    
 }
