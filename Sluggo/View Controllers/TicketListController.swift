@@ -13,6 +13,7 @@ class TicketListController: UITableViewController {
     var maxNumber: Int = 0
     var tickets: [TicketRecord] = []
     var isFetching: Bool = false
+    var filterParams: TicketFilterParameters = TicketFilterParameters()
     
     init? (coder: NSCoder, identity: AppIdentity) {
         self.identity = identity
@@ -26,9 +27,30 @@ class TicketListController: UITableViewController {
     // MARK: initial actions
     override func viewDidLoad() {
         configureRefreshControl()
+        setupMenuBar()
         loadData(page: 1)
-        navigationItem.rightBarButtonItem = UIBarButtonItem( barButtonSystemItem: .add, target: self, action: #selector(connectPopUp))
+
+        NotificationCenter.default.addObserver(forName: Constants.Signals.TEAM_CHANGE_NOTIFICATION,
+                                               object: nil,
+                                               queue: nil) { _ in
+            self.filterParams = TicketFilterParameters()
+            self.handleRefreshAction()
+        }
         NotificationCenter.default.addObserver(self, selector: #selector(handleRefreshAction), name: .refreshTrigger, object: nil)
+    }
+    
+    func setupMenuBar() {
+
+        let saveMenu = UIMenu(title: "", children: [
+                                UIAction(title: "Create New", image: UIImage(systemName: "plus")) { _ in
+                                    self.connectPopUp()
+                                },
+                                UIAction(title: "Filter", image: UIImage(systemName: "folder")) { _ in
+                                    self.launchFilterPopup()
+                                }
+        ])
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem( image: UIImage(systemName: "ellipsis"), primaryAction: nil, menu: saveMenu)
     }
     
     func configureRefreshControl() {
@@ -55,7 +77,8 @@ class TicketListController: UITableViewController {
         }
     }
     
-    @objc func connectPopUp() {
+    // MARK: menu item delegates
+    func connectPopUp() {
         let identity = self.identity
         let detailStoryboard = UIStoryboard(name: "TicketDetail", bundle: nil)
         if let vc = detailStoryboard.instantiateViewController(identifier: "TicketDetail", creator:{ coder in
@@ -64,6 +87,24 @@ class TicketListController: UITableViewController {
             self.present(vc, animated: true, completion: nil)
         }
     }
+    
+    func launchFilterPopup() {
+        // launch the view controller holding the filter view
+        if let vc = storyboard?.instantiateViewController(identifier: "FilterNavigationController") {
+            if let child = vc.children[0] as? TicketFilterTableViewController {
+                child.identity = self.identity
+                child.filterParams = self.filterParams
+                child.completion = { queryParams in
+                    self.filterParams = queryParams
+                    self.handleRefreshAction()
+                }
+            }
+            
+            self.present(vc, animated: true, completion: nil)
+        }
+    }
+    
+    
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.tickets.count
@@ -88,7 +129,7 @@ class TicketListController: UITableViewController {
     private func loadData(page: Int) {
         let ticketManager = TicketManager(identity)
         isFetching = true
-        ticketManager.listTeamTickets(page: page) { result in
+        ticketManager.listTeamTickets(page: page, queryParams: self.filterParams) { result in
             switch(result) {
             case .success(let record):
                 self.maxNumber = record.count
@@ -119,7 +160,6 @@ class TicketListController: UITableViewController {
             }
         }
     }
-    
 }
 
 extension Notification.Name {

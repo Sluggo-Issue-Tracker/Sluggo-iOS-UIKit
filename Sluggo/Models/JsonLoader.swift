@@ -13,12 +13,24 @@ class JsonLoader {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
         
-        guard let pagRec = try? decoder.decode(T.self, from: data) else {
-            print("Failed to decode JSON data into object representation for object initialization.")
-            return nil
+        var decodedValue: T? = nil
+        do {
+            decodedValue = try decoder.decode(T.self, from: data)
+        } catch DecodingError.dataCorrupted(let context) {
+            print("\(context.codingPath) . \(context.debugDescription)")
+        } catch (let context) {
+            switch (context) {
+            case DecodingError.dataCorrupted(let value):
+                print(value.debugDescription)
+                break
+            default:
+                print(context.localizedDescription)
+
+            }
         }
-        
-        return pagRec
+
+
+        return decodedValue
     }
     
     static func encode<T: Codable>(object data: T) -> Data? {

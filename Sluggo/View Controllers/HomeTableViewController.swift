@@ -37,6 +37,11 @@ class HomeTableViewController: UITableViewController {
         loadMember(completionHandler: refreshContent)
         
         // Setup refresh control
+        NotificationCenter.default.addObserver(forName: Constants.Signals.TEAM_CHANGE_NOTIFICATION,
+                                               object: nil,
+                                               queue: nil) { _ in
+            self.refreshContent()
+        }
         self.refreshControl?.addTarget(self, action: #selector(refreshContent), for: .valueChanged)
         
         // Uncomment the following line to preserve selection between presentations
@@ -61,7 +66,9 @@ class HomeTableViewController: UITableViewController {
         // Ideally, this could be extended with some other endpoints to get the total counts
         // but this will suffice for now
         let ticketsManager = TicketManager(identity)
-        ticketsManager.listTeamTickets(page: 1, assigned: member) { result in
+        let queryParams = TicketFilterParameters(assignedUser: member)
+        
+        ticketsManager.listTeamTickets(page: 1, queryParams: queryParams) { result in
             self.processResult(result: result, onSuccess: { retrievedAssignedTickets in
                 self.assignedTickets = retrievedAssignedTickets.results
                 self.tableView.reloadSections([HomepageCategories.assigned.rawValue], with: .automatic)
@@ -87,7 +94,9 @@ class HomeTableViewController: UITableViewController {
                 // Not safe to make the call
                 // Might make sense to migrate to optionals in data layer
                 // for future iterations of the app
-                self.refreshControl?.endRefreshing()
+                DispatchQueue.main.async {
+                    self.refreshControl?.endRefreshing()
+                }
                 return;
             }
             
