@@ -27,11 +27,11 @@ struct TicketFilterParameters {
         }
         
         if let tag = ticketTag {
-            paramString += "&tag_list__title=\(tag.title)"
+            paramString += "&tag_list__id=\(tag.id)"
         }
         
         if let status = ticketStatus {
-            paramString += "&status__title=\(status.title)"
+            paramString += "&status__id=\(status.id)"
         }
         
         return paramString
