@@ -12,16 +12,28 @@ class TicketManagerTests: XCTestCase {
     var identity: AppIdentity!
     var exampleUser: UserRecord!
     var exampleMember: MemberRecord!
-    
+
     override func setUp() {
         let team = TeamRecord(id: 1, name: "bugslotics", object_uuid: UUID(), ticket_head: 1, created: Date(timeIntervalSince1970: 0), activated: nil, deactivated: nil)
-        
+
         identity = AppIdentity()
         identity.team = team
         identity.baseAddress = Constants.Config.URL_BASE
-        
-        exampleUser = UserRecord(id: 1, email: "sammy@ucsc.edu", first_name: "Sammy", last_name: "Slug", username: "sammytheslug")
-        exampleMember = MemberRecord(id: UUID().uuidString, owner: exampleUser, team_id: 1, object_uuid: UUID(), role: "AD", bio: nil, created: Date(timeIntervalSince1970: 0), activated: nil, deactivated: nil)
+
+        exampleUser = UserRecord(id: 1,
+                                 email: "sammy@ucsc.edu",
+                                 first_name: "Sammy",
+                                 last_name: "Slug",
+                                 username: "sammytheslug")
+        exampleMember = MemberRecord(id: UUID().uuidString,
+                                     owner: exampleUser,
+                                     team_id: 1,
+                                     object_uuid: UUID(),
+                                     role: "AD",
+                                     bio: nil,
+                                     created: Date(timeIntervalSince1970: 0),
+                                     activated: nil,
+                                     deactivated: nil)
     }
 
     func testListURLGeneration() throws {

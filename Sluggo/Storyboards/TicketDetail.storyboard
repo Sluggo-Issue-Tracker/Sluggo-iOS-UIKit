@@ -224,7 +224,7 @@
                                                     <rect key="frame" x="10" y="5" width="51" height="33.666666666666664"/>
                                                 </switch>
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="7js-fL-0er">
-                                                    <rect key="frame" x="119" y="5" width="226" height="34"/>
+                                                    <rect key="frame" x="119" y="5" width="226" height="33.666666666666664"/>
                                                 </datePicker>
                                             </subviews>
                                             <constraints>

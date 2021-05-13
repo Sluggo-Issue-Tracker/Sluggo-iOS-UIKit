@@ -49,7 +49,7 @@ class TicketListController: UITableViewController {
         let identity = self.identity
         let detailStoryboard = UIStoryboard(name: "TicketDetail", bundle: nil)
         if let vc = detailStoryboard.instantiateViewController(identifier: "TicketDetail", creator:{ coder in
-            return TicketDetailViewController(coder: coder, identity: identity, ticket: self.tickets[indexPath.row], completion: nil)
+            return TicketDetailViewController(coder: coder, identity: identity, ticket: self.tickets[indexPath.row])
         }) as TicketDetailViewController? {
             navigationController?.pushViewController(vc, animated: true)
         }
@@ -59,9 +59,7 @@ class TicketListController: UITableViewController {
         let identity = self.identity
         let detailStoryboard = UIStoryboard(name: "TicketDetail", bundle: nil)
         if let vc = detailStoryboard.instantiateViewController(identifier: "TicketDetail", creator:{ coder in
-            return TicketDetailViewController(coder: coder, identity: identity, ticket: nil, completion: {
-                self.handleRefreshAction()
-            })
+            return TicketDetailViewController(coder: coder, identity: identity, ticket: nil)
         }) as TicketDetailViewController? {
             self.present(vc, animated: true, completion: nil)
         }

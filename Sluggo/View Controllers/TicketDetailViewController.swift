@@ -25,15 +25,13 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate, UIPicker
     var identity: AppIdentity
     var ticket: TicketRecord?
     var pickerView: UIPickerView = UIPickerView()
-    var completion: (() ->Void)?
     var editingTicket = false
     
     var teamMembers: [MemberRecord?] = [nil]
     var currentMember: MemberRecord? = nil
     
-    init? (coder: NSCoder, identity: AppIdentity, ticket: TicketRecord?, completion: (() -> Void)?) {
+    init? (coder: NSCoder, identity: AppIdentity, ticket: TicketRecord?) {
         self.identity = identity
-        self.completion = completion
         self.ticket = ticket
         super.init(coder: coder)
     }
@@ -164,7 +162,8 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate, UIPicker
                 switch(result){
                     case .success(_):
                         DispatchQueue.main.async {
-                            self.dismiss(animated: true, completion: self.completion)
+                            self.dismiss(animated: true, completion: nil)
+                            NotificationCenter.default.post(name: .refreshTrigger, object: self)
                         }
                     case .failure(let error):
                         DispatchQueue.main.async {
@@ -242,7 +241,7 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate, UIPicker
     
     
     @IBSegueAction func segueToDetail(_ coder: NSCoder) -> TicketDetailTableViewController? {
-        return TicketDetailTableViewController(coder: coder, identity: identity, ticket: ticket, completion: nil)
+        return TicketDetailTableViewController(coder: coder, identity: identity, ticket: ticket)
     }
     
     

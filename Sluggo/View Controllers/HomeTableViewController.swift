@@ -187,9 +187,9 @@ class HomeTableViewController: UITableViewController {
         let selectedPath = tableView.indexPathForSelectedRow
         switch(selectedPath!.section) {
         case HomepageCategories.assigned.rawValue:
-            return TicketDetailViewController(coder: coder, identity: self.identity, ticket: assignedTickets[selectedPath!.row], completion: nil)
+            return TicketDetailViewController(coder: coder, identity: self.identity, ticket: assignedTickets[selectedPath!.row])
         case HomepageCategories.pinned.rawValue:
-            return TicketDetailViewController(coder: coder, identity: self.identity, ticket: pinnedTickets[selectedPath!.row].ticket, completion: nil)
+            return TicketDetailViewController(coder: coder, identity: self.identity, ticket: pinnedTickets[selectedPath!.row].ticket)
         default:
             fatalError("Nothing should be selectable from unimplemented categories!")
         }

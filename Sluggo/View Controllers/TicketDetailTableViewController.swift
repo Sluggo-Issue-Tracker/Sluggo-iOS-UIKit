@@ -26,9 +26,8 @@ class TicketDetailTableViewController: UITableViewController {
     var teamMembers: [MemberRecord?] = [nil]
     var currentMember: MemberRecord? = nil
     
-    init? (coder: NSCoder, identity: AppIdentity, ticket: TicketRecord?, completion: (() -> Void)?) {
+    init? (coder: NSCoder, identity: AppIdentity, ticket: TicketRecord?) {
         self.identity = identity
-        self.completion = completion
         self.ticket = ticket
         super.init(coder: coder)
     }
