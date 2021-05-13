@@ -46,20 +46,14 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate, UIPicker
         
 
         let memberManager = MemberManager(identity: self.identity)
-        memberManager.listFromTeams(page: 1){ (result: Result<PaginatedList<MemberRecord>, Error>) -> Void in
-            switch(result){
-            case .success(let record):
+        memberManager.listFromTeams(page: 1){ result in
+            self.processResult(result: result, onSuccess: {
+                record in
                 self.teamMembers = [nil]
                 for user in record.results{
                     self.teamMembers.append(user)
                 }
-
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    let alert = UIAlertController.errorController(error: error)
-                    self.present(alert, animated: true, completion: nil)
-                }
-            }
+            })
         }
         
         pickerView.dataSource = self
@@ -148,10 +142,7 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate, UIPicker
                             
                         }
                     case .failure(let error):
-                        DispatchQueue.main.async {
-                            let alert = UIAlertController.errorController(error: error)
-                            self.present(alert, animated: true, completion: nil)
-                        }
+                        self.presentErrorFromMainThread(error: error)
                 }
             }
         }
@@ -166,10 +157,7 @@ class TicketDetailViewController: UIViewController, UITextViewDelegate, UIPicker
                             NotificationCenter.default.post(name: .refreshTrigger, object: self)
                         }
                     case .failure(let error):
-                        DispatchQueue.main.async {
-                            let alert = UIAlertController.errorController(error: error)
-                            self.present(alert, animated: true, completion: nil)
-                        }
+                        self.presentErrorFromMainThread(error: error)
                 }
             }
         }
