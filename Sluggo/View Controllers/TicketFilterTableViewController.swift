@@ -15,7 +15,6 @@ enum FilterViewCategories: Int {
 
 class TicketFilterTableViewController: UITableViewController {
     
-    // TODO: wire this wonderful code together
     var identity: AppIdentity!
     var completion: ((TicketFilterParameters) -> Void)?
     var filterParams: TicketFilterParameters!
@@ -51,12 +50,10 @@ class TicketFilterTableViewController: UITableViewController {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return TicketFilterTableViewController.numSections
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         switch(section){
         case FilterViewCategories.assignedUsers.rawValue:
             return teamMembers.count
