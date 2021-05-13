@@ -8,6 +8,7 @@
 import Foundation
 import NullCodable
 
+// swiftlint:disable identifier_name
 struct StatusRecord: Codable, HasTitle {
     var id: Int
     var object_uuid: UUID

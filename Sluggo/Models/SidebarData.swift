@@ -7,6 +7,7 @@
 
 import Foundation
 
+// swiftlint:disable identifier_name
 enum SidebarStatus {
     case open
     case closed

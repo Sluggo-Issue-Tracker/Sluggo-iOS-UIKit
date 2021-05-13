@@ -7,7 +7,7 @@
 
 import Foundation
 import NullCodable
-
+// swiftlint:disable identifier_name
 struct MemberRecord: Codable, HasTitle {
     var id: String
     var owner: UserRecord
@@ -18,7 +18,7 @@ struct MemberRecord: Codable, HasTitle {
     var created: Date
     @NullCodable var activated: Date?
     @NullCodable var deactivated: Date?
-    
+
     func getTitle() -> String {
         return owner.username
     }

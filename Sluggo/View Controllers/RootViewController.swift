@@ -13,39 +13,40 @@ class RootViewController: UIViewController {
     @IBOutlet weak var sidebarContainerView: UIView! // contains the sidebar container view controller
     @IBOutlet var swipeRight: UISwipeGestureRecognizer!
     @IBOutlet var swipeLeft: UISwipeGestureRecognizer!
-    
+
     init? (coder: NSCoder, identity: AppIdentity) {
         self.identity = identity
         super.init(coder: coder)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("must be called with identity")
     }
-        
+    // swiftlint:disable:next identifier_name
     @objc func onSidebarNotificationRecieved(_notification: Notification) {
         guard let status = _notification.userInfo?[Sidebar.USER_INFO_KEY] as? SidebarStatus else {
-            return;
+            return
         }
-        
+
         updateForSidebarStatus(status: status)
     }
-    
+
     func updateForSidebarStatus(status: SidebarStatus) {
         sidebarContainerView.isUserInteractionEnabled = (status == .open) ? true : false
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(onSidebarNotificationRecieved), name: .onSidebarTrigger, object: nil)
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(onSidebarNotificationRecieved),
+                                               name: .onSidebarTrigger, object: nil)
 
         // Do any additional setup after loading the view.
     }
 
     // MARK: - Navigation
 
-    
     // these are interesting.
     // while connecting them from view controller segues in the tab bar controller
     // did not actually call these, wrapping each tab in a navigation controlller
@@ -54,16 +55,18 @@ class RootViewController: UIViewController {
     @IBSegueAction func createHome(_ coder: NSCoder) -> HomeTableViewController? {
         return HomeTableViewController(coder: coder, identity: identity)
     }
-    
+
     @IBSegueAction func createTicket(_ coder: NSCoder) -> TicketListController? {
         return TicketListController(coder: coder, identity: identity)
     }
-    
+
     @IBAction func receivedGesture() {
-        NotificationCenter.default.post(name: .onSidebarTrigger, object: self, userInfo: [Sidebar.USER_INFO_KEY: SidebarStatus.open])
+        NotificationCenter.default.post(name: .onSidebarTrigger,
+                                        object: self, userInfo: [Sidebar.USER_INFO_KEY: SidebarStatus.open])
     }
     @IBAction func receieveLeft() {
-        NotificationCenter.default.post(name: .onSidebarTrigger, object: self, userInfo: [Sidebar.USER_INFO_KEY: SidebarStatus.closed])
+        NotificationCenter.default.post(name: .onSidebarTrigger,
+                                        object: self, userInfo: [Sidebar.USER_INFO_KEY: SidebarStatus.closed])
     }
     @IBSegueAction func showSidebar(_ coder: NSCoder) -> UIViewController? {
         return SluggoSidebarContainerViewController(coder: coder, identity: self.identity)

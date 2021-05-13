@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct TokenRecord: Codable {
     var key: String
 }

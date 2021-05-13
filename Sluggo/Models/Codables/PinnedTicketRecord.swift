@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+// swiftlint:disable identifier_name
 struct PinnedTicketRecord: Codable {
     let id: String // Primary key
     let object_uuid: String

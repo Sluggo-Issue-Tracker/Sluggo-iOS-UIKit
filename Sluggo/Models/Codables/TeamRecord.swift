@@ -8,6 +8,7 @@
 import Foundation
 import NullCodable
 
+// swiftlint:disable identifier_name
 struct TeamRecord: Codable, Equatable {
     var id: Int
     var name: String
@@ -16,7 +17,7 @@ struct TeamRecord: Codable, Equatable {
     var created: Date
     @NullCodable var activated: Date?
     @NullCodable var deactivated: Date?
-    
+
     static func == (lhs: TeamRecord, rhs: TeamRecord) -> Bool {
         return lhs.object_uuid == rhs.object_uuid
     }

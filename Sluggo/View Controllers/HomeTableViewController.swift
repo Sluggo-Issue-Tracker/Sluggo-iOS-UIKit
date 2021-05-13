@@ -18,24 +18,24 @@ class HomeTableViewController: UITableViewController {
     var member: MemberRecord!
     var assignedTickets: [TicketRecord] = []
     var pinnedTickets: [PinnedTicketRecord] = []
-    
+
     // Injection for identity
     init? (coder: NSCoder, identity: AppIdentity) {
         self.identity = identity
         super.init(coder: coder)
     }
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.refreshControl?.beginRefreshing()
         // Fetch items and begin populating the table view
         loadMember(completionHandler: refreshContent)
-        
+
         // Setup refresh control
         NotificationCenter.default.addObserver(forName: Constants.Signals.TEAM_CHANGE_NOTIFICATION,
                                                object: nil,
@@ -43,14 +43,14 @@ class HomeTableViewController: UITableViewController {
             self.refreshContent()
         }
         self.refreshControl?.addTarget(self, action: #selector(refreshContent), for: .valueChanged)
-        
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-    
+
     func loadMember(completionHandler: (() -> Void)?) {
         let memberManager = MemberManager(identity: identity)
         memberManager.getMemberRecord(user: identity.authenticatedUser!, identity: identity) { result in
@@ -59,7 +59,7 @@ class HomeTableViewController: UITableViewController {
             }, after: completionHandler)
         }
     }
-    
+
     func loadAssignedTickets(completionHandler: (() -> Void)?) {
         // Note: This will only grab the first page.
         // This is an OK assumption, since we assume the total page size is > 3.
@@ -67,7 +67,7 @@ class HomeTableViewController: UITableViewController {
         // but this will suffice for now
         let ticketsManager = TicketManager(identity)
         let queryParams = TicketFilterParameters(assignedUser: member)
-        
+
         ticketsManager.listTeamTickets(page: 1, queryParams: queryParams) { result in
             self.processResult(result: result, onSuccess: { retrievedAssignedTickets in
                 self.assignedTickets = retrievedAssignedTickets.results
@@ -75,57 +75,57 @@ class HomeTableViewController: UITableViewController {
             }, after: completionHandler)
         }
     }
-    
+
     func loadPinnedTickets(completionHandler: (() -> Void)?) {
         let pinnedTicketsManager = PinnedTicketManager(identity: self.identity, member: self.member)
-        pinnedTicketsManager.fetchPinnedTickets() { result in
+        pinnedTicketsManager.fetchPinnedTickets { result in
             self.processResult(result: result, onSuccess: { retrievedPinned in
                 self.pinnedTickets = retrievedPinned
                 self.tableView.reloadSections([HomepageCategories.pinned.rawValue], with: .automatic)
             }, after: completionHandler)
         }
     }
-    
+
     @objc func refreshContent() {
         // Dispatch to background thread so we don't permanently sleep the main thread
         // This is done since processResult handles closures back on the main thread
         DispatchQueue.global(qos: .userInitiated).async {
-            if(self.member == nil) {
+            if self.member == nil {
                 // Not safe to make the call
                 // Might make sense to migrate to optionals in data layer
                 // for future iterations of the app
                 DispatchQueue.main.async {
                     self.refreshControl?.endRefreshing()
                 }
-                return;
+                return
             }
-            
+
             // Setup gating semaphores and variables
             let sem = DispatchSemaphore(value: 0)
             var loadedAssigned = false
             var loadedPinned = false
-            
+
             // Make calls to reload data, with completions to signal semaphore
-            self.loadAssignedTickets() {
+            self.loadAssignedTickets {
                 loadedAssigned = true
                 sem.signal()
             }
-            self.loadPinnedTickets() {
+            self.loadPinnedTickets {
                 loadedPinned = true
                 sem.signal()
             }
-            
+
             // Wait for everything to complete and avoid blocking
-            while(!(loadedPinned && loadedAssigned)) {
+            while !(loadedPinned && loadedAssigned) {
                 sem.wait()
             }
-            
+
             // Stop the refresh control (being careful to dispatch to main thread)
             DispatchQueue.main.async {
                 self.refreshControl?.endRefreshing()
             }
         }
-        
+
     }
 
     // MARK: - Table view data source
@@ -137,7 +137,7 @@ class HomeTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        switch(section) {
+        switch section {
         case HomepageCategories.assigned.rawValue:
             return self.assignedTickets.count
         case HomepageCategories.pinned.rawValue:
@@ -148,15 +148,17 @@ class HomeTableViewController: UITableViewController {
             fatalError("Invalid section count queried")
         }
     }
-
+    // swiftlint:disable force_cast
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch(indexPath.section) {
+        switch indexPath.section {
         case HomepageCategories.assigned.rawValue:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TicketCell", for: indexPath) as! TicketTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TicketCell",
+                                                     for: indexPath) as! TicketTableViewCell
             cell.loadFromTicketRecord(ticket: assignedTickets[indexPath.row])
             return cell
         case HomepageCategories.pinned.rawValue:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TicketCell", for: indexPath) as! TicketTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TicketCell",
+                                                     for: indexPath) as! TicketTableViewCell
             cell.loadFromTicketRecord(ticket: pinnedTickets[indexPath.row].ticket)
             return cell
         case HomepageCategories.tags.rawValue:
@@ -167,7 +169,7 @@ class HomeTableViewController: UITableViewController {
             fatalError("Accessed section outside of scope, should never occur")
         }
     }
-    
+    // swiftlint:enable force_cast
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case HomepageCategories.assigned.rawValue:
@@ -180,7 +182,7 @@ class HomeTableViewController: UITableViewController {
             return "Error!"
         }
     }
-    
+
 //    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        if let _ = self.tableView(self.tableView, cellForRowAt: indexPath) as? TicketTableViewCell {
 //            // Present error
@@ -194,11 +196,15 @@ class HomeTableViewController: UITableViewController {
 
     @IBSegueAction func gotoTicketDetail(_ coder: NSCoder) -> TicketDetailTableViewController? {
         let selectedPath = tableView.indexPathForSelectedRow
-        switch(selectedPath!.section) {
+        switch selectedPath!.section {
         case HomepageCategories.assigned.rawValue:
-            return TicketDetailTableViewController(coder: coder, identity: self.identity, ticket: assignedTickets[selectedPath!.row])
+            return TicketDetailTableViewController(coder: coder,
+                                                   identity: self.identity,
+                                                   ticket: assignedTickets[selectedPath!.row])
         case HomepageCategories.pinned.rawValue:
-            return TicketDetailTableViewController(coder: coder, identity: self.identity, ticket: pinnedTickets[selectedPath!.row].ticket)
+            return TicketDetailTableViewController(coder: coder,
+                                                   identity: self.identity,
+                                                   ticket: pinnedTickets[selectedPath!.row].ticket)
         default:
             fatalError("Nothing should be selectable from unimplemented categories!")
         }
@@ -213,12 +219,15 @@ class HomeTableViewController: UITableViewController {
 
     /*
     // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView,
+                            commit editingStyle: UITableViewCell.EditingStyle,
+                            forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+            // Create a new instance of the appropriate class
+            // insert it into the array, and add a new row to the table view
         }    
     }
     */

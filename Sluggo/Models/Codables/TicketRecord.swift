@@ -8,7 +8,7 @@
 
 import Foundation
 import NullCodable
-
+// swiftlint:disable identifier_name
 struct TicketRecord: Codable {
     var id: Int
     var ticket_number: Int
@@ -23,11 +23,10 @@ struct TicketRecord: Codable {
     var created: Date
     @NullCodable var activated: Date?
     @NullCodable var deactivated: Date?
-    
-    
+
 }
 
-struct WriteTicketRecord: Codable{
+struct WriteTicketRecord: Codable {
     var tag_list: [Int]
     @NullCodable var assigned_user: String?
     @NullCodable var status: Int?
