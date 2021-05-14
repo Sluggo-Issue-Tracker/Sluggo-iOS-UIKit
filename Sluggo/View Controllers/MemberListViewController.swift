@@ -9,7 +9,6 @@ import UIKit
 class MemberListViewController: UITableViewController {
     var identity: AppIdentity!
     private var maxNumber: Int = 0
-    private var fetchingMembers: [MemberRecord] = []
     private var members: [MemberRecord] = []
     private var isFetching  = false
     
@@ -58,40 +57,34 @@ class MemberListViewController: UITableViewController {
     
     private func loadData(page: Int) {
         let memberManager = MemberManager(identity: identity)
+        
         memberManager.listTeamMembers() { result in
-            switch(result) {
-            case .success(let record):
+            self.processResult(result: result, onSuccess: { record in
                 self.maxNumber = record.count
-                
+            
+                var membersCopy = Array(self.members)
                 let pageOffset = (page - 1) * self.identity.pageSize
-                if (pageOffset < self.fetchingMembers.count) {
-                    self.fetchingMembers.removeSubrange(pageOffset...self.fetchingMembers.count-1)
+                
+                if (pageOffset < self.members.count) {
+                    membersCopy.removeSubrange(pageOffset...self.members.count-1)
                 }
                 
                 for entry in record.results {
-                    self.fetchingMembers.append(entry)
+                    membersCopy.append(entry)
                 }
-                
-                if (self.fetchingMembers.count >= self.maxNumber) {
-                    DispatchQueue.main.async {
-                        self.refreshControl?.endRefreshing()
-                        self.members = Array(self.fetchingMembers)
-                        self.fetchingMembers.removeAll()
-                        self.tableView.reloadData()
-                        self.isFetching = false
-                    }
-                    return
-                } else {
-                    self.loadData(page: page + 1)
+            
+                DispatchQueue.main.async {
+                    self.refreshControl?.endRefreshing()
+                    self.members = membersCopy
+                    self.tableView.reloadData()
+                    self.isFetching = false
                 }
-                
-                break;
-            case .failure(let error):
+            }, onError: { error in
                 DispatchQueue.main.async {
                     let alert = UIAlertController.errorController(error: error)
                     self.present(alert, animated: true, completion: nil)
                 }
-            }
+            }, after: nil)
         }
     }
 }
