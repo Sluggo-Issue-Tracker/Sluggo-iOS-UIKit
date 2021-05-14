@@ -41,8 +41,6 @@ class MemberListViewController: UITableViewController {
         let member = self.members[indexPath.row]
         cell.textLabel?.text = member.owner.username
         
-        //cell.accessoryType = (member.owner.id == self.identity.authenticatedUser!.pk) ? .checkmark : .none
-        
         return cell
     }
     
@@ -73,36 +71,4 @@ class MemberListViewController: UITableViewController {
         }
     }
     
-//    private func loadData(page: Int) {
-//        let memberManager = MemberManager(identity: identity)
-//        
-//        memberManager.listFromTeams() { result in
-//            self.processResult(result: result, onSuccess: { record in
-//                self.maxNumber = record.count
-//            
-//                var membersCopy = Array(self.members)
-//                let pageOffset = (page - 1) * self.identity.pageSize
-//                
-//                if (pageOffset < self.members.count) {
-//                    membersCopy.removeSubrange(pageOffset...self.members.count-1)
-//                }
-//                
-//                for entry in record.results {
-//                    membersCopy.append(entry)
-//                }
-//            
-//                DispatchQueue.main.async {
-//                    self.refreshControl?.endRefreshing()
-//                    self.members = membersCopy
-//                    self.tableView.reloadData()
-//                    self.isFetching = false
-//                }
-//            }, onError: { error in
-//                DispatchQueue.main.async {
-//                    let alert = UIAlertController.errorController(error: error)
-//                    self.present(alert, animated: true, completion: nil)
-//                }
-//            }, after: nil)
-//        }
-//    }
 }
