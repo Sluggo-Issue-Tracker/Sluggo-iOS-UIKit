@@ -1,5 +1,5 @@
 //
-//  MemberList.swift
+//  MemberListViewController.swift
 //  Sluggo
 //
 //  Created by Troy Ebert on 5/13/21.
@@ -11,6 +11,7 @@ class MemberListViewController: UITableViewController {
     private var maxNumber: Int = 0
     private var members: [MemberRecord] = []
     private var isFetching  = false
+    private var semaphore = DispatchSemaphore(value: 1)
     
     required init? (coder: NSCoder, identity: AppIdentity) {
         self.identity = identity
@@ -47,44 +48,61 @@ class MemberListViewController: UITableViewController {
     
     
     @objc func handleRefreshAction() {
-        // enter the critical section
-        // do not wait
-        if (isFetching) { return }
-        
-        isFetching = true
-        self.loadData(page: 1)
-    }
-    
-    private func loadData(page: Int) {
-        let memberManager = MemberManager(identity: identity)
-        
-        memberManager.listTeamMembers() { result in
-            self.processResult(result: result, onSuccess: { record in
-                self.maxNumber = record.count
+
+        DispatchQueue.global(qos: .userInitiated).async {
+            self.semaphore.wait()
             
-                var membersCopy = Array(self.members)
-                let pageOffset = (page - 1) * self.identity.pageSize
-                
-                if (pageOffset < self.members.count) {
-                    membersCopy.removeSubrange(pageOffset...self.members.count-1)
-                }
-                
-                for entry in record.results {
-                    membersCopy.append(entry)
-                }
+            let onSuccess = { (members: [MemberRecord]) -> Void in
+                self.members = members
+            }
             
+            let after = { () -> Void in
                 DispatchQueue.main.async {
                     self.refreshControl?.endRefreshing()
-                    self.members = membersCopy
                     self.tableView.reloadData()
-                    self.isFetching = false
                 }
-            }, onError: { error in
-                DispatchQueue.main.async {
-                    let alert = UIAlertController.errorController(error: error)
-                    self.present(alert, animated: true, completion: nil)
-                }
-            }, after: nil)
+                self.semaphore.signal()
+            }
+            
+            let memberManager = MemberManager(identity: self.identity)
+            unwindPagination(manager: memberManager,
+                             startingPage: 1,
+                             onSuccess: onSuccess,
+                             onFailure: self.presentErrorFromMainThread,
+                             after: after)
         }
     }
+    
+//    private func loadData(page: Int) {
+//        let memberManager = MemberManager(identity: identity)
+//        
+//        memberManager.listFromTeams() { result in
+//            self.processResult(result: result, onSuccess: { record in
+//                self.maxNumber = record.count
+//            
+//                var membersCopy = Array(self.members)
+//                let pageOffset = (page - 1) * self.identity.pageSize
+//                
+//                if (pageOffset < self.members.count) {
+//                    membersCopy.removeSubrange(pageOffset...self.members.count-1)
+//                }
+//                
+//                for entry in record.results {
+//                    membersCopy.append(entry)
+//                }
+//            
+//                DispatchQueue.main.async {
+//                    self.refreshControl?.endRefreshing()
+//                    self.members = membersCopy
+//                    self.tableView.reloadData()
+//                    self.isFetching = false
+//                }
+//            }, onError: { error in
+//                DispatchQueue.main.async {
+//                    let alert = UIAlertController.errorController(error: error)
+//                    self.present(alert, animated: true, completion: nil)
+//                }
+//            }, after: nil)
+//        }
+//    }
 }
