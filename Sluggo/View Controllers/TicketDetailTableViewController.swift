@@ -13,6 +13,7 @@ class TicketDetailTableViewController: UITableViewController {
     @IBOutlet var ticketTitle: UITextField!
     @IBOutlet var ticketDescription: UITextView!
     @IBOutlet var assignedField: UITextField!
+    @IBOutlet var statusField: UITextField!
     @IBOutlet var dueDatePicker: UIDatePicker!
     @IBOutlet var dueDateSwitch: UISwitch!
     @IBOutlet var dueDateLabel: UILabel!
@@ -23,10 +24,13 @@ class TicketDetailTableViewController: UITableViewController {
     var identity: AppIdentity!
     var ticket: TicketRecord?
     var pickerView: UIPickerView = UIPickerView()
+    var statusPicker: UIPickerView = UIPickerView()
     var editingTicket = false
 
     var teamMembers: [MemberRecord?] = [nil]
+    var statuses: [StatusRecord?] = [nil]
     var currentMember: MemberRecord?
+    var currentStatus: StatusRecord?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,8 +46,25 @@ class TicketDetailTableViewController: UITableViewController {
                 }
             })
         }
+        
+        let statusManager = StatusManager(identity: self.identity)
+        statusManager.listFromTeams(page: 1) {result in
+            self.processResult(result: result, onSuccess: { record in
+                self.statuses = [nil]
+                for status in record.results {
+                    self.statuses.append(status)
+                }
+            })
+        }
+        
         pickerView.dataSource = self
         pickerView.delegate = self
+        
+        statusPicker.dataSource = self
+        statusPicker.delegate = self
+        
+        pickerView.tag = 1
+        statusPicker.tag = 2
         updateUI()
 
     }
@@ -53,6 +74,7 @@ class TicketDetailTableViewController: UITableViewController {
         ticketTitle.text = self.ticket?.title ?? ""
         ticketDescription.text = ticket?.description ?? ""
         assignedField.text = ticket?.assigned_user?.owner.username ?? "No Assigned User"
+        statusField.text = ticket?.status?.title ?? "No Status Selected"
         currentMember = ticket?.assigned_user ?? nil
         dueDatePicker.date = ticket?.due_date ?? Date()
         dueDatePicker.isHidden = (ticket?.due_date == nil)
@@ -63,7 +85,7 @@ class TicketDetailTableViewController: UITableViewController {
         navBar.title = self.ticket != nil ? "Selected Ticket" : "Create a Ticket"
         setEditMode(self.ticket == nil)
         createUserPicker()
-        
+        createStatusPicker()
         rightButton.title = (self.ticket != nil) ? "Edit" : "Done"
     }
 
@@ -77,6 +99,7 @@ class TicketDetailTableViewController: UITableViewController {
         dueDatePicker.isUserInteractionEnabled = editing
         dueDateSwitch.isUserInteractionEnabled = editing
         assignedField.isUserInteractionEnabled = editing
+        statusField.isUserInteractionEnabled = editing
         dueDateSwitch.isHidden = !editing
         dueDatePicker.isHidden = (ticket?.due_date == nil && !editing)
         dueDateLabel.isHidden = (ticket?.due_date != nil || editing)
@@ -87,12 +110,14 @@ class TicketDetailTableViewController: UITableViewController {
         let description = ticketDescription.text
         let date = dueDateSwitch.isOn ? dueDatePicker.date : nil
         let member = currentMember?.id
+        let status = currentStatus?.id
 
         if editingTicket {
             ticket!.title = title
             ticket!.description = description
             ticket!.due_date = date
             ticket!.assigned_user = currentMember
+            ticket!.status = currentStatus
 
             let manager = TicketManager(identity)
 
@@ -107,7 +132,7 @@ class TicketDetailTableViewController: UITableViewController {
         } else {
             let ticket = WriteTicketRecord(tag_list: [],
                                            assigned_user: member,
-                                           status: nil,
+                                           status: status,
                                            title: title,
                                            description: description,
                                            due_date: date)
@@ -158,23 +183,51 @@ extension TicketDetailTableViewController: UIPickerViewDelegate, UIPickerViewDat
 
         assignedField.inputView = pickerView
     }
+    
+    func createStatusPicker() {
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 35))
+        toolbar.sizeToFit()
+        toolbar.translatesAutoresizingMaskIntoConstraints = false
+
+        // create bar button
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(statusPicked))
+        toolbar.setItems([doneButton], animated: true)
+        statusField.inputAccessoryView = toolbar
+        
+        statusField.inputView = statusPicker
+    }
 
     @objc func userPicked() {
         assignedField.text = currentMember?.owner.username ?? "No Assigned User"
         self.view.endEditing(true)
 
     }
+    
+    @objc func statusPicked() {
+        statusField.text = currentStatus?.title ?? "No Status Selected"
+        self.view.endEditing(true)
+    }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return teamMembers.count
+        return pickerView.tag == 1 ? teamMembers.count : statuses.count
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return teamMembers[row]?.owner.username ?? "No Assigned User"
+        if(pickerView.tag == 1){
+            return teamMembers[row]?.owner.username ?? "No Assigned User"
+        }
+        else{
+            return statuses[row]?.title ?? "No Status Selected"
+        }
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        currentMember = teamMembers[row]
+        if(pickerView.tag == 1){
+            currentMember = teamMembers[row]
+        }
+        else{
+            currentStatus = statuses[row]
+        }
     }
 
 }
