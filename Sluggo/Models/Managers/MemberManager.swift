@@ -17,6 +17,7 @@ class MemberManager: TeamPaginatedListable {
         self.identity = identity
     }
 
+    // swiftlint:disable:next identifier_name
     private func makeDetailUrl(id: String) -> URL {
         let urlString = identity.baseAddress + TeamManager.urlBase +
             "\(identity.team!.id)" + MemberManager.urlBase + "\(id)/"

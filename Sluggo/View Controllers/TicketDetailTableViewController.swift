@@ -19,7 +19,7 @@ class TicketDetailTableViewController: UITableViewController {
     @IBOutlet var dueDateLabel: UILabel!
     @IBOutlet var navBar: UINavigationItem!
     @IBOutlet var rightButton: UIBarButtonItem!
-    
+
     // MARK: Variables
     var identity: AppIdentity!
     var ticket: TicketRecord?
@@ -46,7 +46,7 @@ class TicketDetailTableViewController: UITableViewController {
                 }
             })
         }
-        
+
         let statusManager = StatusManager(identity: self.identity)
         statusManager.listFromTeams(page: 1) {result in
             self.processResult(result: result, onSuccess: { record in
@@ -56,13 +56,13 @@ class TicketDetailTableViewController: UITableViewController {
                 }
             })
         }
-        
+
         pickerView.dataSource = self
         pickerView.delegate = self
-        
+
         statusPicker.dataSource = self
         statusPicker.delegate = self
-        
+
         pickerView.tag = 1
         statusPicker.tag = 2
         updateUI()
@@ -183,7 +183,7 @@ extension TicketDetailTableViewController: UIPickerViewDelegate, UIPickerViewDat
 
         assignedField.inputView = pickerView
     }
-    
+
     func createStatusPicker() {
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 35))
         toolbar.sizeToFit()
@@ -193,7 +193,7 @@ extension TicketDetailTableViewController: UIPickerViewDelegate, UIPickerViewDat
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(statusPicked))
         toolbar.setItems([doneButton], animated: true)
         statusField.inputAccessoryView = toolbar
-        
+
         statusField.inputView = statusPicker
     }
 
@@ -202,7 +202,7 @@ extension TicketDetailTableViewController: UIPickerViewDelegate, UIPickerViewDat
         self.view.endEditing(true)
 
     }
-    
+
     @objc func statusPicked() {
         statusField.text = currentStatus?.title ?? "No Status Selected"
         self.view.endEditing(true)
@@ -213,19 +213,17 @@ extension TicketDetailTableViewController: UIPickerViewDelegate, UIPickerViewDat
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if(pickerView.tag == 1){
+        if pickerView.tag == 1 {
             return teamMembers[row]?.owner.username ?? "No Assigned User"
-        }
-        else{
+        } else {
             return statuses[row]?.title ?? "No Status Selected"
         }
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if(pickerView.tag == 1){
+        if pickerView.tag == 1 {
             currentMember = teamMembers[row]
-        }
-        else{
+        } else {
             currentStatus = statuses[row]
         }
     }
