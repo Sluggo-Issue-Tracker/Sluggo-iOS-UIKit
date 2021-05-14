@@ -73,22 +73,24 @@ class TicketListController: UITableViewController {
         let identity = self.identity
         let detailStoryboard = UIStoryboard(name: "TicketDetail", bundle: nil)
         if let view = detailStoryboard.instantiateViewController(identifier: "TicketDetail", creator: { coder in
-            return TicketDetailTableViewController(coder: coder,
-                                                   identity: identity, ticket: self.tickets[indexPath.row])
+            return TicketDetailTableViewController(coder: coder)
         }) as TicketDetailTableViewController? {
+            view.identity = identity
+            view.ticket = self.tickets[indexPath.row]
             navigationController?.pushViewController(view, animated: true)
         }
     }
 
     // MARK: menu item delegates
     func connectPopUp() {
-        let identity = self.identity
         let detailStoryboard = UIStoryboard(name: "TicketDetail", bundle: nil)
-        if let view = detailStoryboard.instantiateViewController(identifier: "TicketDetail", creator: { coder in
-            return TicketDetailTableViewController(coder: coder, identity: identity, ticket: nil)
-        }) as TicketDetailTableViewController? {
-            self.present(view, animated: true, completion: nil)
+        let view = detailStoryboard.instantiateViewController(identifier: "TicketDetailModal")
+        if let child = view.children[0] as? TicketDetailTableViewController {
+            child.identity = self.identity
+            child.ticket = nil
         }
+
+        self.present(view, animated: true, completion: nil)
     }
 
     func launchFilterPopup() {

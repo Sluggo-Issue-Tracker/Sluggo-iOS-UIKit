@@ -15,25 +15,18 @@ class TicketDetailTableViewController: UITableViewController {
     @IBOutlet var assignedField: UITextField!
     @IBOutlet var dueDatePicker: UIDatePicker!
     @IBOutlet var dueDateSwitch: UISwitch!
-
+    @IBOutlet var dueDateLabel: UILabel!
+    @IBOutlet var navBar: UINavigationItem!
+    @IBOutlet var rightButton: UIBarButtonItem!
+    
     // MARK: Variables
-    var identity: AppIdentity
+    var identity: AppIdentity!
     var ticket: TicketRecord?
     var pickerView: UIPickerView = UIPickerView()
     var editingTicket = false
 
     var teamMembers: [MemberRecord?] = [nil]
     var currentMember: MemberRecord?
-
-    init? (coder: NSCoder, identity: AppIdentity, ticket: TicketRecord?) {
-        self.identity = identity
-        self.ticket = ticket
-        super.init(coder: coder)
-    }
-
-    required init? (coder: NSCoder) {
-        fatalError("must be initialized with identity")
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,12 +53,18 @@ class TicketDetailTableViewController: UITableViewController {
         ticketTitle.text = self.ticket?.title ?? ""
         ticketDescription.text = ticket?.description ?? ""
         assignedField.text = ticket?.assigned_user?.owner.username ?? "No Assigned User"
+        currentMember = ticket?.assigned_user ?? nil
         dueDatePicker.date = ticket?.due_date ?? Date()
+        dueDatePicker.isHidden = (ticket?.due_date == nil)
+        dueDateLabel.isHidden = (ticket?.due_date != nil)
         dueDateSwitch.isEnabled = (ticket?.due_date != nil)
         dueDatePicker.isEnabled = dueDateSwitch.isEnabled
         assignedField.isEnabled = true
-        setEditMode(false)
+        navBar.title = self.ticket != nil ? "Selected Ticket" : "Create a Ticket"
+        setEditMode(self.ticket == nil)
         createUserPicker()
+        
+        rightButton.title = (self.ticket != nil) ? "Edit" : "Done"
     }
 
     func setEditMode(_ editing: Bool) {
@@ -73,10 +72,14 @@ class TicketDetailTableViewController: UITableViewController {
         ticketTitle.isUserInteractionEnabled = editing
         ticketDescription.isUserInteractionEnabled = editing
         dueDatePicker.isEnabled = true
+        dueDateSwitch.isEnabled = true
+        dueDateSwitch.isOn = (ticket?.due_date != nil)
         dueDatePicker.isUserInteractionEnabled = editing
         dueDateSwitch.isUserInteractionEnabled = editing
         assignedField.isUserInteractionEnabled = editing
         dueDateSwitch.isHidden = !editing
+        dueDatePicker.isHidden = (ticket?.due_date == nil && !editing)
+        dueDateLabel.isHidden = (ticket?.due_date != nil || editing)
     }
 
     func doSave() {
@@ -125,9 +128,12 @@ class TicketDetailTableViewController: UITableViewController {
             if barButton.title == "Edit" {
                 setEditMode(true)
                 barButton.title = "Save"
-            } else {
+            } else if barButton.title == "Save" {
                 doSave()
                 barButton.title = "Edit"
+            } else {
+                editingTicket = false
+                doSave()
             }
         }
     }
