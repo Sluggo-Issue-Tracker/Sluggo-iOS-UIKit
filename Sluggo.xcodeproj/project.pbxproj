@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		051AAB0B2630FD6500BCB9C7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051AAB0A2630FD6500BCB9C7 /* Constants.swift */; };
 		052258702636100B00B49CE4 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0522586F2636100B00B49CE4 /* LaunchViewController.swift */; };
+		05588A12264DB61E000D8674 /* TeamMembers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05588A11264DB61E000D8674 /* TeamMembers.storyboard */; };
+		05588A1A264DBDAB000D8674 /* MemberListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05588A19264DBDAB000D8674 /* MemberListViewController.swift */; };
 		2F2247AC262920AC006C6EE6 /* TokenRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2247AB262920AC006C6EE6 /* TokenRecord.swift */; };
 		2F3AD7A32627C86A00B61A97 /* UserRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3AD7A22627C86A00B61A97 /* UserRecord.swift */; };
 		2F3AD7A82627C89B00B61A97 /* MemberRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3AD7A72627C89B00B61A97 /* MemberRecord.swift */; };
@@ -81,6 +83,8 @@
 /* Begin PBXFileReference section */
 		051AAB0A2630FD6500BCB9C7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0522586F2636100B00B49CE4 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		05588A11264DB61E000D8674 /* TeamMembers.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TeamMembers.storyboard; sourceTree = "<group>"; };
+		05588A19264DBDAB000D8674 /* MemberListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberListViewController.swift; sourceTree = "<group>"; };
 		2F2247AB262920AC006C6EE6 /* TokenRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRecord.swift; sourceTree = "<group>"; };
 		2F3AD7A22627C86A00B61A97 /* UserRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRecord.swift; sourceTree = "<group>"; };
 		2F3AD7A72627C89B00B61A97 /* MemberRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberRecord.swift; sourceTree = "<group>"; };
@@ -302,6 +306,7 @@
 				5A9FF88826386D1400378550 /* Ticket.storyboard */,
 				7DEA17842639E7B5004E5A71 /* LaunchScreen.storyboard */,
 				3A150A76263CB5F70052934B /* TicketDetail.storyboard */,
+				05588A11264DB61E000D8674 /* TeamMembers.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -312,13 +317,14 @@
 				7D778C04264A374200D4061A /* Extensions */,
 				0522586F2636100B00B49CE4 /* LaunchViewController.swift */,
 				5A79FFE5262E563F00D04320 /* LoginViewController.swift */,
+				5A9C4C202641113D00B270AB /* TeamSelectorContainerViewController.swift */,
+				5A9C4C1B2640BC4E00B270AB /* TeamTableViewController.swift */,
 				7D1DA6AD262B82C200E7C12D /* RootViewController.swift */,
 				7DC2A226262948800002CEE6 /* SluggoSidebarContainerViewController.swift */,
-				5A9FF88D26386D4700378550 /* TicketListController.swift */,
 				7D23834A264119050091C7E8 /* HomeTableViewController.swift */,
+				5A9FF88D26386D4700378550 /* TicketListController.swift */,
 				3A150A7E263CBA860052934B /* TicketDetailViewController.swift */,
-				5A9C4C1B2640BC4E00B270AB /* TeamTableViewController.swift */,
-				5A9C4C202641113D00B270AB /* TeamSelectorContainerViewController.swift */,
+				05588A19264DBDAB000D8674 /* MemberListViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -435,6 +441,7 @@
 				7D9963B2261EF3A5002338E7 /* Assets.xcassets in Resources */,
 				5A9FF88926386D1400378550 /* Ticket.storyboard in Resources */,
 				5A79FFE1262E562A00D04320 /* Main.storyboard in Resources */,
+				05588A12264DB61E000D8674 /* TeamMembers.storyboard in Resources */,
 				7D9963AD261EF3A4002338E7 /* Root.storyboard in Resources */,
 				7DEA17852639E7B5004E5A71 /* LaunchScreen.storyboard in Resources */,
 				3A150A77263CB5F70052934B /* TicketDetail.storyboard in Resources */,
@@ -473,6 +480,7 @@
 				2FD70D5D2636144300D13C75 /* LogoutMessage.swift in Sources */,
 				5AB1C8EA262FE2EF0010F85E /* MemberManager.swift in Sources */,
 				5A9C4C1C2640BC4E00B270AB /* TeamTableViewController.swift in Sources */,
+				05588A1A264DBDAB000D8674 /* MemberListViewController.swift in Sources */,
 				2F3AD7AD2627C8EF00B61A97 /* TeamRecord.swift in Sources */,
 				7DC54AE526437AB3000C8300 /* PinnedTicketRecord.swift in Sources */,
 				7DC2A227262948800002CEE6 /* SluggoSidebarContainerViewController.swift in Sources */,
