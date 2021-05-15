@@ -64,6 +64,10 @@ class RootViewController: UIViewController {
         return MemberListViewController(coder: coder, identity: identity)
     }
 
+    @IBSegueAction func createAdmin(_ coder: NSCoder) -> AdminTableViewController? {
+        return AdminTableViewController(coder: coder, identity: identity)
+    }
+
     @IBAction func receivedGesture() {
         NotificationCenter.default.post(name: .onSidebarTrigger,
                                         object: self, userInfo: [Sidebar.USER_INFO_KEY: SidebarStatus.open])
