@@ -106,21 +106,22 @@
                                                     <rect key="frame" x="119" y="5" width="226" height="33.666666666666664"/>
                                                 </datePicker>
                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Due Date Selected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bhP-22-63p">
-                                                    <rect key="frame" x="90.666666666666686" y="5" width="169" height="33.333333333333336"/>
+                                                    <rect key="frame" x="5" y="5" width="335" height="33.333333333333336"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="bhP-22-63p" firstAttribute="centerX" secondItem="VL6-jI-WTv" secondAttribute="centerX" id="7cJ-f1-gsu"/>
                                                 <constraint firstAttribute="bottom" secondItem="7js-fL-0er" secondAttribute="bottom" constant="5" id="HRE-Bh-y6q"/>
+                                                <constraint firstAttribute="trailing" secondItem="bhP-22-63p" secondAttribute="trailing" constant="10" id="Qom-4N-8IV"/>
                                                 <constraint firstItem="aIS-TR-fvJ" firstAttribute="leading" secondItem="VL6-jI-WTv" secondAttribute="leading" constant="10" id="aDB-F6-ObM"/>
                                                 <constraint firstAttribute="bottom" secondItem="aIS-TR-fvJ" secondAttribute="bottom" constant="5" id="dnF-TB-5az"/>
                                                 <constraint firstAttribute="trailing" secondItem="7js-fL-0er" secondAttribute="trailing" constant="5" id="eH7-Vm-sd8"/>
                                                 <constraint firstItem="7js-fL-0er" firstAttribute="leading" secondItem="aIS-TR-fvJ" secondAttribute="trailing" constant="60" id="hfI-9h-Aj1"/>
                                                 <constraint firstItem="aIS-TR-fvJ" firstAttribute="top" secondItem="VL6-jI-WTv" secondAttribute="top" constant="5" id="jdu-Al-TsW"/>
                                                 <constraint firstAttribute="bottom" secondItem="bhP-22-63p" secondAttribute="bottom" constant="5.5" id="jmr-0f-zSf"/>
+                                                <constraint firstItem="bhP-22-63p" firstAttribute="leading" secondItem="VL6-jI-WTv" secondAttribute="leading" constant="5" id="kqw-4s-YAs"/>
                                                 <constraint firstItem="bhP-22-63p" firstAttribute="top" secondItem="VL6-jI-WTv" secondAttribute="top" constant="5" id="oNL-hj-9J5"/>
                                                 <constraint firstItem="7js-fL-0er" firstAttribute="top" secondItem="VL6-jI-WTv" secondAttribute="top" constant="5" id="r7k-Zw-kpe"/>
                                             </constraints>
