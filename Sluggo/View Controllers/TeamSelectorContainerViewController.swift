@@ -12,14 +12,14 @@ class TeamSelectorContainerViewController: UIViewController {
     private var completion: (() -> Void)?
     private var failure: (() -> Void)?
     @IBOutlet var cancelButton: UIButton!
-    
+
     init? (coder: NSCoder, identity: AppIdentity, completion: (() -> Void)?, failure: (() -> Void)?) {
         self.identity = identity
         self.completion = completion
         self.failure = failure
         super.init(coder: coder)
     }
-    
+
     required init? (coder: NSCoder) {
         fatalError("must init with identity")
     }
@@ -29,18 +29,16 @@ class TeamSelectorContainerViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-    
 
-    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        if let vc = segue.destination as? TeamTableViewController {
-            vc.identity = self.identity
-            vc.completion = { team in
+        if let view = segue.destination as? TeamTableViewController {
+            view.identity = self.identity
+            view.completion = { team in
                 self.identity.team = team
                 self.dismiss(animated: true, completion: self.completion)
             }

@@ -22,20 +22,19 @@ class TagTests: XCTestCase {
     }
     """
 
-    func testExample()  {
+    func testExample() {
         let tag: TagRecord? = JsonLoader.decode(data: workingSingleJson.data(using: .utf8)!)
-        
+
         XCTAssertNotNil(tag)
         let tagUnwrapped = tag!
-        
+
         XCTAssertEqual(tagUnwrapped.id, 1)
         XCTAssertEqual(tagUnwrapped.team_id, 15)
         XCTAssertEqual(tagUnwrapped.object_uuid,
                        UUID(uuidString: "a40cb545-3ada-4656-a02d-2fdaba81fc21"))
         XCTAssertEqual(tagUnwrapped.title, "word around office, the")
     }
-    
-    
+
     let workingMultipleJson = """
     {
         "count": 3,
@@ -72,19 +71,19 @@ class TagTests: XCTestCase {
         ]
     }
     """
-    
+
     func testMultiple() {
         let tags: PaginatedList<TagRecord>? = JsonLoader.decode(data: workingMultipleJson.data(using: .utf8)!)
         XCTAssertNotNil(tags)
         let tagsUnwrapped = tags!
-        
+
         XCTAssertEqual(tagsUnwrapped.count, 3)
         XCTAssertEqual(tagsUnwrapped.next, nil)
         XCTAssertEqual(tagsUnwrapped.previous, nil)
-        
+
         // the tags individually are probably correct if everything else goes well
     }
-    
+
     let brokenMultipleJson = """
     {
         "count": 3,
@@ -113,12 +112,12 @@ class TagTests: XCTestCase {
         ]
     }
     """
-    
+
     func testNoneNil() {
         let tags: PaginatedList<TagRecord>? = JsonLoader.decode(data: brokenMultipleJson.data(using: .utf8)!)
-        
+
         // this should fail because the data in the array must never be null
         XCTAssertNil(tags)
     }
-    
+
 }

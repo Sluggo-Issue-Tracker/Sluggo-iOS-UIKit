@@ -13,81 +13,80 @@ class SluggoSidebarContainerViewController: UIViewController {
     @IBOutlet weak var sidebarContainerView: UIView!
     @IBOutlet weak var sidebarWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var sidebarContainerLeadingConstraint: NSLayoutConstraint!
-    
+
     private var identity: AppIdentity
-    
+
     init? (coder: NSCoder, identity: AppIdentity) {
         self.identity = identity
         super.init(coder: coder)
     }
-    
+
     required init? (coder: NSCoder) {
         fatalError("must include identity")
     }
-    
+
     // MARK: Properties
     var sidebarPresenting: SidebarStatus = .closed
-    
+
     // MARK: Computed
     var sidebarLeadingConstant: CGFloat {
-        get {
-            let width = sidebarWidthConstraint.constant
-            return (sidebarPresenting == .open) ? 0 : -1 * width;
-        }
+        let width = sidebarWidthConstraint.constant
+        return (sidebarPresenting == .open) ? 0 : -1 * width
     }
-    
+
     var backgroundOpacity: CGFloat {
-        get {
-            return (sidebarPresenting == .open) ? 0.4 : 0.0;
-        }
+        return (sidebarPresenting == .open) ? 0.4 : 0.0
     }
-    
+
     var foregroundOpacity: CGFloat {
-        get {
-            return (sidebarPresenting == .open) ? 1.0 : 0.0;
-        }
+        return (sidebarPresenting == .open) ? 1.0 : 0.0
     }
-    
+
     // MARK: Functions
+    // swiftlint:disable:next identifier_name
     @objc func triggerSidebar(_notification: Notification) {
         guard let sidebarState = _notification.userInfo?[Sidebar.USER_INFO_KEY] as? SidebarStatus else {
             print("Sidebar triggered without explicit state.")
             return // TODO log this as an error
         }
-        
+
         sidebarPresenting = sidebarState
-        
+
         updateSidebar()
     }
-    
+
     @IBAction func backgroundTapGestureRecognized(_ sender: UITapGestureRecognizer) {
         print("RECOGNIZED")
-        NotificationCenter.default.post(name: .onSidebarTrigger, object: self, userInfo: [Sidebar.USER_INFO_KEY: SidebarStatus.closed])
-        
+        NotificationCenter.default.post(name: .onSidebarTrigger,
+                                        object: self,
+                                        userInfo: [Sidebar.USER_INFO_KEY: SidebarStatus.closed])
+
     }
-    
+
     func updateSidebar() {
         sidebarContainerLeadingConstraint.constant = sidebarLeadingConstant
-        
+
         UIView.animate(withDuration: 0.25) {
             self.backgroundView.alpha = self.backgroundOpacity
             self.view.alpha = self.foregroundOpacity
             self.view.layoutIfNeeded()
         }
     }
-    
+
     // MARK: VC Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+
         updateSidebar()
-        
+
         // Register for notification of sidebar changes
-        NotificationCenter.default.addObserver(self, selector: #selector(triggerSidebar), name: .onSidebarTrigger, object: nil)
-        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(triggerSidebar),
+                                               name: .onSidebarTrigger,
+                                               object: nil)
+
         // Do any additional setup after loading the view.
     }
-    
 
     /*
     // MARK: - Navigation
@@ -99,15 +98,15 @@ class SluggoSidebarContainerViewController: UIViewController {
     }
     */
     @IBSegueAction func launchSidebar(_ coder: NSCoder) -> UITableViewController? {
-        let vc = TeamTableViewController(coder: coder)
-        vc?.identity = self.identity
-        vc?.completion = { team in
+        let view = TeamTableViewController(coder: coder)
+        view?.identity = self.identity
+        view?.completion = { team in
             self.identity.team = team
             NotificationCenter.default.post(name: Constants.Signals.TEAM_CHANGE_NOTIFICATION, object: nil)
         }
-        return vc
+        return view
     }
-    
+
 }
 
 extension Notification.Name {

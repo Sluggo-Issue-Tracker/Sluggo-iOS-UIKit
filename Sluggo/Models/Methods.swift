@@ -15,7 +15,7 @@ class UnwindState<M: TeamPaginatedListable> {
     var onSuccess: (([M.Record]) -> Void)?
     var onFailure: ((Error) -> Void)?
     var after: (() -> Void)?
-    
+
     init(manager: M,
          page: Int,
          maxCount: Int,
@@ -23,7 +23,7 @@ class UnwindState<M: TeamPaginatedListable> {
          onSuccess: (([M.Record]) -> Void)?,
          onFailure: ((Error) -> Void)?,
          after: (() -> Void)?) {
-        
+
         self.manager = manager
         self.page = page
         self.maxCount = maxCount
@@ -34,44 +34,41 @@ class UnwindState<M: TeamPaginatedListable> {
     }
 }
 
-func unwindPaginationRecurse<M: TeamPaginatedListable>(state: UnwindState<M>) -> Void {
-    
-    state.manager.listFromTeams(page: state.page) {
-        (result: Result<PaginatedList<M.Record>, Error>) -> Void in
+func unwindPaginationRecurse<M: TeamPaginatedListable>(state: UnwindState<M>) {
 
-        switch (result) {
+    state.manager.listFromTeams(page: state.page) { (result: Result<PaginatedList<M.Record>, Error>) -> Void in
+
+        switch result {
         case .success(let record):
             state.maxCount = record.count
-            
+
             for entry in record.results {
                 state.codableArray.append(entry)
             }
-            
-            if (state.codableArray.count < state.maxCount) {
+
+            if state.codableArray.count < state.maxCount {
                 state.page += 1
-                
+
                 // tail recurse to get remaining data
                 unwindPaginationRecurse(state: state)
             } else {
                 state.onSuccess?(state.codableArray)
                 state.after?()
             }
-            break
         case .failure(let error):
             print("error occured")
             state.onFailure?(error)
             state.after?()
-            break
         }
-    };
+    }
 }
 
 func unwindPagination<M: TeamPaginatedListable>(manager: M,
-                                  startingPage: Int,
-                                  onSuccess: (([M.Record]) -> Void)?,
-                                  onFailure: ((Error) -> Void)?,
-                                  after: (() -> Void)?) -> Void {
-    
+                                                startingPage: Int,
+                                                onSuccess: (([M.Record]) -> Void)?,
+                                                onFailure: ((Error) -> Void)?,
+                                                after: (() -> Void)?) {
+
     let state = UnwindState<M>(manager: manager,
                                page: startingPage,
                                maxCount: 0,
@@ -79,10 +76,6 @@ func unwindPagination<M: TeamPaginatedListable>(manager: M,
                                onSuccess: onSuccess,
                                onFailure: onFailure,
                                after: after)
-    
+
     unwindPaginationRecurse(state: state)
 }
-
-
-
-

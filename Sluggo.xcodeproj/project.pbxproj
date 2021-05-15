@@ -20,10 +20,10 @@
 		2FD70D5D2636144300D13C75 /* LogoutMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD70D5C2636144300D13C75 /* LogoutMessage.swift */; };
 		2FEF5DA9262D0E7C00434763 /* PaginatedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEF5DA8262D0E7C00434763 /* PaginatedList.swift */; };
 		2FEF5DAE262D1C4900434763 /* MemberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEF5DAD262D1C4900434763 /* MemberTests.swift */; };
+		2FF89024264BBAC600D50B69 /* TicketDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF89023264BBAC600D50B69 /* TicketDetailTableViewController.swift */; };
 		3A150A6726365A9A0052934B /* StatusRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A150A6626365A9A0052934B /* StatusRecord.swift */; };
 		3A150A6C26365B670052934B /* TagRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A150A6B26365B670052934B /* TagRecord.swift */; };
 		3A150A77263CB5F70052934B /* TicketDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A150A76263CB5F70052934B /* TicketDetail.storyboard */; };
-		3A150A7F263CBA860052934B /* TicketDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A150A7E263CBA860052934B /* TicketDetailViewController.swift */; };
 		5A00A0142639EDEA0085C8C6 /* URLRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A00A0132639EDEA0085C8C6 /* URLRequestBuilder.swift */; };
 		5A00A045263A34CC0085C8C6 /* TicketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A00A044263A34CC0085C8C6 /* TicketTableViewCell.swift */; };
 		5A25CFA2264B8C8100852035 /* TagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A25CFA1264B8C8100852035 /* TagTests.swift */; };
@@ -102,10 +102,10 @@
 		2FD70D5C2636144300D13C75 /* LogoutMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutMessage.swift; sourceTree = "<group>"; };
 		2FEF5DA8262D0E7C00434763 /* PaginatedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatedList.swift; sourceTree = "<group>"; };
 		2FEF5DAD262D1C4900434763 /* MemberTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberTests.swift; sourceTree = "<group>"; };
+		2FF89023264BBAC600D50B69 /* TicketDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketDetailTableViewController.swift; sourceTree = "<group>"; };
 		3A150A6626365A9A0052934B /* StatusRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusRecord.swift; sourceTree = "<group>"; };
 		3A150A6B26365B670052934B /* TagRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagRecord.swift; sourceTree = "<group>"; };
 		3A150A76263CB5F70052934B /* TicketDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TicketDetail.storyboard; sourceTree = "<group>"; };
-		3A150A7E263CBA860052934B /* TicketDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketDetailViewController.swift; sourceTree = "<group>"; };
 		5A00A0132639EDEA0085C8C6 /* URLRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestBuilder.swift; sourceTree = "<group>"; };
 		5A00A044263A34CC0085C8C6 /* TicketTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketTableViewCell.swift; sourceTree = "<group>"; };
 		5A25CFA1264B8C8100852035 /* TagTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagTests.swift; sourceTree = "<group>"; };
@@ -354,8 +354,11 @@
 				7DC2A226262948800002CEE6 /* SluggoSidebarContainerViewController.swift */,
 				7D23834A264119050091C7E8 /* HomeTableViewController.swift */,
 				5A9FF88D26386D4700378550 /* TicketListController.swift */,
-				3A150A7E263CBA860052934B /* TicketDetailViewController.swift */,
+				5A9C4C1B2640BC4E00B270AB /* TeamTableViewController.swift */,
+				5A9C4C202641113D00B270AB /* TeamSelectorContainerViewController.swift */,
+				7D23834A264119050091C7E8 /* HomeTableViewController.swift */,
 				5A25CFAB264B966300852035 /* TicketFilterTableViewController.swift */,
+				2FF89023264BBAC600D50B69 /* TicketDetailTableViewController.swift */,
 				05DE0CD6264F11E400D69C61 /* MemberListViewController.swift */,
 			);
 			path = "View Controllers";
@@ -371,6 +374,7 @@
 				7D99639E261EF3A4002338E7 /* Sources */,
 				7D99639F261EF3A4002338E7 /* Frameworks */,
 				7D9963A0261EF3A4002338E7 /* Resources */,
+				2F0A5167264DB61C00276172 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -498,6 +502,26 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2F0A5167264DB61C00276172 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		7D99639E261EF3A4002338E7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -508,7 +532,6 @@
 				5AB1C8FC262FF1690010F85E /* TicketRecord.swift in Sources */,
 				5A25CFDF264BCF2C00852035 /* TicketFilterParameters.swift in Sources */,
 				5A25CFE7264BD73D00852035 /* TicketFilterTableViewCell.swift in Sources */,
-				3A150A7F263CBA860052934B /* TicketDetailViewController.swift in Sources */,
 				7D1DA6B7262B866D00E7C12D /* SidebarData.swift in Sources */,
 				5A00A0142639EDEA0085C8C6 /* URLRequestBuilder.swift in Sources */,
 				5A25CFC2264B9AFF00852035 /* TeamPaginatedListable.swift in Sources */,
@@ -518,6 +541,7 @@
 				2F3AD7AD2627C8EF00B61A97 /* TeamRecord.swift in Sources */,
 				7DC54AE526437AB3000C8300 /* PinnedTicketRecord.swift in Sources */,
 				7DC2A227262948800002CEE6 /* SluggoSidebarContainerViewController.swift in Sources */,
+				2FF89024264BBAC600D50B69 /* TicketDetailTableViewController.swift in Sources */,
 				5AC6459026412F0C00F46137 /* TeamTableViewCell.swift in Sources */,
 				051AAB0B2630FD6500BCB9C7 /* Constants.swift in Sources */,
 				2F3F66E2262DD3BA0040404C /* JsonLoader.swift in Sources */,
