@@ -11,6 +11,7 @@ class LoginViewController: UIViewController {
 
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
+    @IBOutlet var instanceURL: UITextField!
     @IBOutlet weak var persistButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
 
@@ -47,15 +48,17 @@ class LoginViewController: UIViewController {
     @IBAction func loginButton(_ sender: Any) {
         let userString = username.text
         let passString = password.text
+        let instString = instanceURL.text
 
         print("button pressed")
 
-        if userString!.isEmpty || passString!.isEmpty {
+        if userString!.isEmpty || passString!.isEmpty || instString!.isEmpty {
             // login Error
             print("No username or password provided, not attempting login")
             return
         } else {
             DispatchQueue.global(qos: .userInitiated).async {
+                self.identity.baseAddress = instString!
                 self.attemptLogin(username: userString!, password: passString!)
             }
         }
