@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="maM-Yi-Azd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="maM-Yi-Azd">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -89,6 +89,7 @@
                         <segue destination="wOi-Vq-YT9" kind="relationship" relationship="viewControllers" id="uhx-Dl-tdo"/>
                         <segue destination="Ymv-15-4Ny" kind="relationship" relationship="viewControllers" id="h5V-Lf-pAj"/>
                         <segue destination="TSs-vk-uIV" kind="relationship" relationship="viewControllers" id="TI1-M8-elF"/>
+                        <segue destination="8tt-Bj-h9v" kind="relationship" relationship="viewControllers" id="IJp-mY-eRr"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0VU-E0-E3L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -114,7 +115,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D7p-qD-AwA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="639" y="185"/>
+            <point key="canvasLocation" x="636" y="125"/>
         </scene>
         <!--TeamMembers-->
         <scene sceneID="tWt-KY-9v9">
@@ -124,7 +125,17 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JSt-6f-4tf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="625" y="415"/>
+            <point key="canvasLocation" x="676" y="331"/>
+        </scene>
+        <!--Admin-->
+        <scene sceneID="VQv-bY-2sf">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Admin" id="8tt-Bj-h9v" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="zXK-fi-Poq"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zdo-Ed-Dse" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="705" y="451"/>
         </scene>
     </scenes>
     <resources>

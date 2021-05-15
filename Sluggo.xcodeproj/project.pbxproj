@@ -52,6 +52,7 @@
 		5AC6459026412F0C00F46137 /* TeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC6458F26412F0C00F46137 /* TeamTableViewCell.swift */; };
 		5ACC0F012630CA1400DCF83E /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACC0F002630CA1400DCF83E /* ErrorMessage.swift */; };
 		5ACC0F062630CA2700DCF83E /* Exceptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACC0F052630CA2700DCF83E /* Exceptions.swift */; };
+		7D01B55C264FAAEE0009FA97 /* Admin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D01B55B264FAAEE0009FA97 /* Admin.storyboard */; };
 		7D1354FC262D026E00D38EE0 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1354FB262D026E00D38EE0 /* UserTests.swift */; };
 		7D1DA6AE262B82C200E7C12D /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1DA6AD262B82C200E7C12D /* RootViewController.swift */; };
 		7D1DA6B7262B866D00E7C12D /* SidebarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1DA6B6262B866D00E7C12D /* SidebarData.swift */; };
@@ -133,6 +134,7 @@
 		5AC6458F26412F0C00F46137 /* TeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTableViewCell.swift; sourceTree = "<group>"; };
 		5ACC0F002630CA1400DCF83E /* ErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
 		5ACC0F052630CA2700DCF83E /* Exceptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exceptions.swift; sourceTree = "<group>"; };
+		7D01B55B264FAAEE0009FA97 /* Admin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Admin.storyboard; sourceTree = "<group>"; };
 		7D1354FB262D026E00D38EE0 /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		7D1DA6AD262B82C200E7C12D /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RootViewController.swift; path = "Sluggo/View Controllers/RootViewController.swift"; sourceTree = SOURCE_ROOT; };
 		7D1DA6B6262B866D00E7C12D /* SidebarData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarData.swift; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 				7DEA17842639E7B5004E5A71 /* LaunchScreen.storyboard */,
 				3A150A76263CB5F70052934B /* TicketDetail.storyboard */,
 				05588A11264DB61E000D8674 /* TeamMembers.storyboard */,
+				7D01B55B264FAAEE0009FA97 /* Admin.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -349,10 +352,7 @@
 				0522586F2636100B00B49CE4 /* LaunchViewController.swift */,
 				5A79FFE5262E563F00D04320 /* LoginViewController.swift */,
 				7D1DA6AD262B82C200E7C12D /* RootViewController.swift */,
-				5A9C4C202641113D00B270AB /* TeamSelectorContainerViewController.swift */,
-				5A9C4C1B2640BC4E00B270AB /* TeamTableViewController.swift */,
 				7DC2A226262948800002CEE6 /* SluggoSidebarContainerViewController.swift */,
-				7D23834A264119050091C7E8 /* HomeTableViewController.swift */,
 				5A9FF88D26386D4700378550 /* TicketListController.swift */,
 				5A9C4C1B2640BC4E00B270AB /* TeamTableViewController.swift */,
 				5A9C4C202641113D00B270AB /* TeamSelectorContainerViewController.swift */,
@@ -480,6 +480,7 @@
 				05588A12264DB61E000D8674 /* TeamMembers.storyboard in Resources */,
 				7D9963AD261EF3A4002338E7 /* Root.storyboard in Resources */,
 				7DEA17852639E7B5004E5A71 /* LaunchScreen.storyboard in Resources */,
+				7D01B55C264FAAEE0009FA97 /* Admin.storyboard in Resources */,
 				3A150A77263CB5F70052934B /* TicketDetail.storyboard in Resources */,
 				7DC2A21726293F360002CEE6 /* Home.storyboard in Resources */,
 				7DC2A21C262943A70002CEE6 /* Sidebar.storyboard in Resources */,
