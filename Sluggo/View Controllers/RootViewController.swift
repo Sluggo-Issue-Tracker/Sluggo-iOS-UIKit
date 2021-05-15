@@ -59,6 +59,10 @@ class RootViewController: UIViewController {
         return TicketListController(coder: coder, identity: identity)
     }
     
+    @IBSegueAction func createMembers(_ coder: NSCoder) -> MemberListViewController? {
+        return MemberListViewController(coder: coder, identity: identity)
+    }
+    
     @IBAction func receivedGesture() {
         NotificationCenter.default.post(name: .onSidebarTrigger, object: self, userInfo: [Sidebar.USER_INFO_KEY: SidebarStatus.open])
     }

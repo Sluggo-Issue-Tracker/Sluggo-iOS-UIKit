@@ -74,7 +74,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-1362.3188405797102" y="456.69642857142856"/>
+            <point key="canvasLocation" x="-1377" y="459"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="L3t-1S-G5L">
@@ -88,11 +88,12 @@
                     <connections>
                         <segue destination="wOi-Vq-YT9" kind="relationship" relationship="viewControllers" id="uhx-Dl-tdo"/>
                         <segue destination="Ymv-15-4Ny" kind="relationship" relationship="viewControllers" id="h5V-Lf-pAj"/>
+                        <segue destination="TSs-vk-uIV" kind="relationship" relationship="viewControllers" id="TI1-M8-elF"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0VU-E0-E3L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-268" y="271"/>
+            <point key="canvasLocation" x="-342" y="185"/>
         </scene>
         <!--Home-->
         <scene sceneID="R6k-Kr-4Yi">
@@ -103,7 +104,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iZa-AI-9Cc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="639" y="35"/>
+            <point key="canvasLocation" x="639" y="-38"/>
         </scene>
         <!--Ticket-->
         <scene sceneID="3Ws-rC-SDg">
@@ -113,7 +114,17 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D7p-qD-AwA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="641" y="317"/>
+            <point key="canvasLocation" x="639" y="185"/>
+        </scene>
+        <!--TeamMembers-->
+        <scene sceneID="tWt-KY-9v9">
+            <objects>
+                <viewControllerPlaceholder storyboardName="TeamMembers" id="TSs-vk-uIV" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="i5O-Gp-5TO"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JSt-6f-4tf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="625" y="415"/>
         </scene>
     </scenes>
     <resources>
