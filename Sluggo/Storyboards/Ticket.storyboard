@@ -127,11 +127,11 @@
             </objects>
             <point key="canvasLocation" x="187" y="277"/>
         </scene>
-        <!--Item-->
+        <!--Tickets-->
         <scene sceneID="Shx-pT-pdo">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Uq0-p5-H1Z" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="ticket" catalog="system" id="bbG-bf-pLB"/>
+                    <tabBarItem key="tabBarItem" title="Tickets" image="ticket" catalog="system" id="bbG-bf-pLB"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YaC-bH-pbI">
