@@ -14,6 +14,9 @@ class RootViewController: UIViewController {
     @IBOutlet var swipeRight: UISwipeGestureRecognizer!
     @IBOutlet var swipeLeft: UISwipeGestureRecognizer!
 
+    var mainTabBarController: UITabBarController?
+    var adminController: UIViewController?
+
     init? (coder: NSCoder, identity: AppIdentity) {
         self.identity = identity
         super.init(coder: coder)
@@ -42,7 +45,79 @@ class RootViewController: UIViewController {
                                                selector: #selector(onSidebarNotificationRecieved),
                                                name: .onSidebarTrigger, object: nil)
 
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateAdminAttachment),
+                                               name: Constants.Signals.TEAM_CHANGE_NOTIFICATION,
+                                               object: nil)
+
         // Do any additional setup after loading the view.
+
+        // MARK: Attach admin if relevant
+        updateAdminAttachment()
+    }
+
+    @objc func updateAdminAttachment() {
+        getMember(completionHandler: updateAdminAttachmentForMemberRole)
+    }
+
+    func getMember(completionHandler: @escaping ((MemberRecord) -> Void)) {
+        let memberManager = MemberManager(identity: identity)
+        memberManager.getMemberRecord(user: identity.authenticatedUser!, identity: identity) { result in
+            switch result {
+            case .success(let member):
+                completionHandler(member)
+            case .failure:
+                // Silently fails, for now
+                // TODO: is there a better approach?
+                print("Getting the member failed.")
+            }
+        }
+    }
+
+    func updateAdminAttachmentForMemberRole(member: MemberRecord) {
+        if member.role == "AD" {
+            // Attach admin VC
+            DispatchQueue.main.async {
+                if self.adminController != nil { return }
+                if let adminVC = UIStoryboard(name: "Admin",
+                                              bundle: Bundle.main)
+                    .instantiateInitialViewController() as? AdminTableViewController {
+                    adminVC.identity = self.identity // Does this create a race condition?
+
+                    // Wrap this in a navigation controller
+                    let navVC = UINavigationController(rootViewController: adminVC)
+
+                    // Create bar button item
+                    let adminBarButtonImage = UIImage(systemName: "shield")
+                    let barItem = UITabBarItem(title: "Admin", image: adminBarButtonImage, selectedImage: nil)
+                    navVC.tabBarItem = barItem
+
+                    // Attach VC
+                    self.mainTabBarController?.viewControllers?.append(navVC)
+
+                    // Track it here for removal
+                    self.adminController = navVC
+                }
+            }
+        } else {
+            // Filter the admin controller out of the tab bar view controllers
+            // This *should* remove the view controller which will then deallocate automatically
+            DispatchQueue.main.async {
+                self.mainTabBarController?.viewControllers =
+                    self.mainTabBarController?.viewControllers?.filter { $0 != self.adminController }
+                self.adminController = nil
+            }
+        }
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "tabControllerEmbed":
+            mainTabBarController = segue.destination as? UITabBarController
+        default:
+            break
+        }
+        super.prepare(for: segue, sender: sender)
     }
 
     // MARK: - Navigation
