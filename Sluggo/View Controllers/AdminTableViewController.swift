@@ -23,7 +23,7 @@ class AdminTableViewController: UITableViewController {
 
     @IBSegueAction func createUsersList(_ coder: NSCoder) -> MemberListViewController? {
         let memberVC = MemberListViewController(coder: coder, identity: identity)
-        memberVC?.generateSegueableController = { identity in
+        memberVC?.generateSegueableController = { _ in
             return nil
         }
         memberVC?.generateMemberDetail = { memberRecord in

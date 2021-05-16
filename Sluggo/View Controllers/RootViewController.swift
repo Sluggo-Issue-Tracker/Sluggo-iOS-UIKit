@@ -44,7 +44,7 @@ class RootViewController: UIViewController {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(onSidebarNotificationRecieved),
                                                name: .onSidebarTrigger, object: nil)
-        
+
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(updateAdminAttachment),
                                                name: Constants.Signals.TEAM_CHANGE_NOTIFICATION,
@@ -55,7 +55,7 @@ class RootViewController: UIViewController {
         // MARK: Attach admin if relevant
         updateAdminAttachment()
     }
-    
+
     @objc func updateAdminAttachment() {
         getMember(completionHandler: updateAdminAttachmentForMemberRole)
     }
@@ -78,7 +78,7 @@ class RootViewController: UIViewController {
         if member.role == "AD" {
             // Attach admin VC
             DispatchQueue.main.async {
-                if(self.adminController != nil) { return }
+                if self.adminController != nil { return }
                 if let adminVC = UIStoryboard(name: "Admin",
                                               bundle: Bundle.main)
                     .instantiateInitialViewController() as? AdminTableViewController {
@@ -94,7 +94,7 @@ class RootViewController: UIViewController {
 
                     // Attach VC
                     self.mainTabBarController?.viewControllers?.append(navVC)
-                    
+
                     // Track it here for removal
                     self.adminController = navVC
                 }
@@ -103,7 +103,8 @@ class RootViewController: UIViewController {
             // Filter the admin controller out of the tab bar view controllers
             // This *should* remove the view controller which will then deallocate automatically
             DispatchQueue.main.async {
-                self.mainTabBarController?.viewControllers = self.mainTabBarController?.viewControllers?.filter{ $0 != self.adminController }
+                self.mainTabBarController?.viewControllers =
+                    self.mainTabBarController?.viewControllers?.filter { $0 != self.adminController }
                 self.adminController = nil
             }
         }

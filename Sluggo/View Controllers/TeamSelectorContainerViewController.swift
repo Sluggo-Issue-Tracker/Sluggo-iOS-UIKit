@@ -7,8 +7,6 @@
 
 import UIKit
 
-
-
 class TeamSelectorContainerViewController: UIViewController {
     private var identity: AppIdentity
     private var completion: (() -> Void)?
