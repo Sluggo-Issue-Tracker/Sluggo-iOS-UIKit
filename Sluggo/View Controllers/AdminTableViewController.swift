@@ -8,16 +8,16 @@
 import UIKit
 
 class AdminTableViewController: UITableViewController {
-    
+
     var identity: AppIdentity!
-    
+
     required init?(coder: NSCoder) {
-        fatalError("Coder init called directly on AdminTableViewController. Identity not injected.")
+        super.init(coder: coder)
     }
-    
+
     init?(coder: NSCoder, identity: AppIdentity) {
         super.init(coder: coder)
-        
+
         self.identity = identity
     }
 
