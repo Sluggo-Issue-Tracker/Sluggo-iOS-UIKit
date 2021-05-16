@@ -8,8 +8,8 @@ import UIKit
 
 class MemberListViewController: UITableViewController {
     var identity: AppIdentity!
-    var showsRoles: Bool = false
     var generateSegueableController: ((AppIdentity) -> UIViewController?)?
+    var generateMemberDetail: ((MemberRecord) -> String?)?
     private var maxNumber: Int = 0
     private var members: [MemberRecord] = []
     private var isFetching  = false
@@ -44,7 +44,7 @@ class MemberListViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MemberCell", for: indexPath) as UITableViewCell
         let member = self.members[indexPath.row]
         cell.textLabel?.text = member.owner.username
-        cell.detailTextLabel?.text = self.showsRoles ? member.role : ""
+        cell.detailTextLabel?.text = generateMemberDetail?(member) ?? ""
 
         return cell
     }

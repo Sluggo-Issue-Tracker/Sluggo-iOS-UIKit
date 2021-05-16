@@ -23,9 +23,11 @@ class AdminTableViewController: UITableViewController {
 
     @IBSegueAction func createUsersList(_ coder: NSCoder) -> MemberListViewController? {
         let memberVC = MemberListViewController(coder: coder, identity: identity)
-        memberVC?.showsRoles = true
         memberVC?.generateSegueableController = { identity in
             return nil
+        }
+        memberVC?.generateMemberDetail = { memberRecord in
+            return memberRecord.role
         }
 
         return memberVC
