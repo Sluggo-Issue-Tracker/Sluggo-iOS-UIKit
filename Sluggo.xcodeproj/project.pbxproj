@@ -59,6 +59,7 @@
 		7D1DA6B7262B866D00E7C12D /* SidebarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1DA6B6262B866D00E7C12D /* SidebarData.swift */; };
 		7D23834B264119050091C7E8 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D23834A264119050091C7E8 /* HomeTableViewController.swift */; };
 		7D53BE6926433D6600400D0E /* PinnedTicketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D53BE6826433D6600400D0E /* PinnedTicketManager.swift */; };
+		7D679F822650EF98000429E8 /* UserRolesList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D679F812650EF98000429E8 /* UserRolesList.storyboard */; };
 		7D778C06264A374C00D4061A /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D778C05264A374C00D4061A /* ViewControllerExtensions.swift */; };
 		7D778C0A264A6A0F00D4061A /* TicketManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D778C09264A6A0F00D4061A /* TicketManagerTests.swift */; };
 		7D9963A6261EF3A4002338E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9963A5261EF3A4002338E7 /* AppDelegate.swift */; };
@@ -142,6 +143,7 @@
 		7D1DA6B6262B866D00E7C12D /* SidebarData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarData.swift; sourceTree = "<group>"; };
 		7D23834A264119050091C7E8 /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeTableViewController.swift; path = "Sluggo/View Controllers/HomeTableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		7D53BE6826433D6600400D0E /* PinnedTicketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnedTicketManager.swift; sourceTree = "<group>"; };
+		7D679F812650EF98000429E8 /* UserRolesList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserRolesList.storyboard; sourceTree = "<group>"; };
 		7D778C05264A374C00D4061A /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
 		7D778C09264A6A0F00D4061A /* TicketManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketManagerTests.swift; sourceTree = "<group>"; };
 		7D9963A2261EF3A4002338E7 /* Sluggo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sluggo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -265,6 +267,15 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		7D679F802650EF83000429E8 /* Admin */ = {
+			isa = PBXGroup;
+			children = (
+				7D01B55B264FAAEE0009FA97 /* Admin.storyboard */,
+				7D679F812650EF98000429E8 /* UserRolesList.storyboard */,
+			);
+			path = Admin;
+			sourceTree = "<group>";
+		};
 		7D778C04264A374200D4061A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -334,6 +345,7 @@
 		7DC2A21526293F1E0002CEE6 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				7D679F802650EF83000429E8 /* Admin */,
 				5A79FFE0262E562A00D04320 /* Main.storyboard */,
 				7D9963AB261EF3A4002338E7 /* Root.storyboard */,
 				7DC2A21626293F360002CEE6 /* Home.storyboard */,
@@ -342,7 +354,6 @@
 				7DEA17842639E7B5004E5A71 /* LaunchScreen.storyboard */,
 				3A150A76263CB5F70052934B /* TicketDetail.storyboard */,
 				05588A11264DB61E000D8674 /* TeamMembers.storyboard */,
-				7D01B55B264FAAEE0009FA97 /* Admin.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -484,6 +495,7 @@
 				7D9963AD261EF3A4002338E7 /* Root.storyboard in Resources */,
 				7DEA17852639E7B5004E5A71 /* LaunchScreen.storyboard in Resources */,
 				7D01B55C264FAAEE0009FA97 /* Admin.storyboard in Resources */,
+				7D679F822650EF98000429E8 /* UserRolesList.storyboard in Resources */,
 				3A150A77263CB5F70052934B /* TicketDetail.storyboard in Resources */,
 				7DC2A21726293F360002CEE6 /* Home.storyboard in Resources */,
 				7DC2A21C262943A70002CEE6 /* Sidebar.storyboard in Resources */,
