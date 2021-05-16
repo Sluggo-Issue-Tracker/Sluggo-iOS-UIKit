@@ -42,7 +42,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="XMy-yX-PQZ" kind="show" id="p9F-N2-shF"/>
+                                            <segue destination="XMy-yX-PQZ" kind="show" identifier="createUsersList" destinationCreationSelector="createUsersList:" id="p9F-N2-shF"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -60,10 +60,10 @@
             </objects>
             <point key="canvasLocation" x="1001" y="100"/>
         </scene>
-        <!--UserRolesList-->
+        <!--MemberListViewController-->
         <scene sceneID="hNF-tx-jae">
             <objects>
-                <viewControllerPlaceholder storyboardName="UserRolesList" id="XMy-yX-PQZ" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="TeamMembers" referencedIdentifier="MemberListViewController" id="XMy-yX-PQZ" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="ohX-Qq-9M8"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9fO-4e-am2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
