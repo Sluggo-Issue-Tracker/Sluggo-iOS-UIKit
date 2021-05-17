@@ -38,6 +38,8 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         self.isModalInPresentation = true
 
+        username.becomeFirstResponder()
+
         persistButton.setImage(UIImage(systemName: "checkmark.square.fill"), for: [.highlighted, .selected])
     }
 
