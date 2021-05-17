@@ -15,6 +15,7 @@ class TicketDetailTableViewController: UITableViewController {
     @IBOutlet var assignedField: UITextField!
     @IBOutlet var statusField: UITextField!
     @IBOutlet var dueDatePicker: UIDatePicker!
+    @IBOutlet weak var tagLabel: UILabel!
     @IBOutlet var dueDateSwitch: UISwitch!
     @IBOutlet var dueDateLabel: UILabel!
     @IBOutlet var navBar: UINavigationItem!
@@ -31,6 +32,7 @@ class TicketDetailTableViewController: UITableViewController {
     var statuses: [StatusRecord?] = [nil]
     var currentMember: MemberRecord?
     var currentStatus: StatusRecord?
+    var selectedTags: [TagRecord?] = [nil]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +59,19 @@ class TicketDetailTableViewController: UITableViewController {
             })
         }
 
+//        let tagManager = TagManager(identity: self.identity)
+//        tagManager.listFromTeams(page: 1) {result in
+//            self.processResult(result: result, onSuccess: { record in
+//                for tag in record.results {
+//                    self.selectedTags.append(tag)
+//                }
+//            })
+//        }
+
+        self.selectedTags = ticket!.tag_list
+
+        refreshTagLabel()
+
         pickerView.dataSource = self
         pickerView.delegate = self
 
@@ -67,6 +82,37 @@ class TicketDetailTableViewController: UITableViewController {
         statusPicker.tag = 2
         updateUI()
 
+    }
+
+    func launchTagPopup() {
+        // launch the view controller holding the tag view
+        if let view = storyboard?.instantiateViewController(identifier: "TagNavigationController") {
+            if let child = view.children[0] as? TicketTabTableViewController {
+                child.identity = self.identity
+                child.selectedTags = self.selectedTags
+                child.completion = { newTags in
+                    self.selectedTags = newTags
+                    self.refreshTagLabel()
+                }
+            }
+            self.present(view, animated: true, completion: nil)
+        }
+    }
+
+    @IBAction func addTagButtonHit(_ sender: Any) {
+        launchTagPopup()
+    }
+
+    func refreshTagLabel() {
+        if selectedTags.count == 0 {
+            tagLabel.text = "No Tags Selected"
+        } else if selectedTags.count == 1 {
+            tagLabel.text = selectedTags[0]?.title
+        } else if selectedTags.count == 2 {
+            tagLabel.text = selectedTags[0]!.title + ", " + selectedTags[1]!.title
+        } else {
+            tagLabel.text = selectedTags[0]!.title + ", " + selectedTags[1]!.title + ", ..."
+        }
     }
 
     func updateUI() {
@@ -223,8 +269,10 @@ extension TicketDetailTableViewController: UIPickerViewDelegate, UIPickerViewDat
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView.tag == 1 {
             currentMember = teamMembers[row]
+            // assignedField.text = currentMember?.owner.username ?? "No Assigned User"
         } else {
             currentStatus = statuses[row]
+            // statusField.text = currentStatus?.title ?? "No Status Selected"
         }
     }
 

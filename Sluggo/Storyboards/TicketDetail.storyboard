@@ -7,6 +7,61 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Tag View-->
+        <scene sceneID="6tB-L9-ohh">
+            <objects>
+                <tableViewController title="Tag View" id="d7Y-OP-dfq" customClass="TicketTabTableViewController" customModule="Sluggo" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="taG-lb-W5L">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TagEntry" textLabel="wH1-y3-YAJ" style="IBUITableViewCellStyleDefault" id="Oot-b2-Zv7" customClass="TicketTagTableViewCell" customModule="Sluggo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="49" width="390" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Oot-b2-Zv7" id="KzV-Tk-sLP">
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wH1-y3-YAJ">
+                                            <rect key="frame" x="20" y="0.0" width="350" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="d7Y-OP-dfq" id="wjI-6Q-UXC"/>
+                            <outlet property="delegate" destination="d7Y-OP-dfq" id="SZA-vh-sJn"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Add Tags" id="fym-lY-Ad6"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Aj4-WD-EOW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4288" y="-471"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="EFg-d1-5kE">
+            <objects>
+                <navigationController storyboardIdentifier="TagNavigationController" id="6xP-qZ-JY7" sceneMemberID="viewController">
+                    <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wtK-0a-Qym">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="d7Y-OP-dfq" kind="relationship" relationship="rootViewController" id="lbc-DK-QLb"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="08X-uq-dCu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3380" y="-471"/>
+        </scene>
         <!--Selected Ticket-->
         <scene sceneID="YJv-g9-Z06">
             <objects>
@@ -90,10 +145,50 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="Tags" id="4ZL-nR-onc" userLabel="Tags">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="zrD-b2-DVz">
+                                        <rect key="frame" x="20" y="328.99999809265137" width="350" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zrD-b2-DVz" id="QOS-7M-75q">
+                                            <rect key="frame" x="0.0" y="0.0" width="350" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Tags Selected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vqw-Ya-YEt">
+                                                    <rect key="frame" x="10" y="5" width="305" height="34"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FpC-hV-Akd">
+                                                    <rect key="frame" x="320" y="5" width="20" height="34"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="wPQ-Xu-XVA"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <state key="normal" title="Add Tag Button" image="plus.app" catalog="system"/>
+                                                    <connections>
+                                                        <action selector="addTagButtonHit:" destination="tgi-Ip-0ok" eventType="touchUpInside" id="ZzW-au-l3d"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="Vqw-Ya-YEt" secondAttribute="bottom" constant="5" id="2Zl-8v-lLN"/>
+                                                <constraint firstAttribute="trailing" secondItem="FpC-hV-Akd" secondAttribute="trailing" constant="10" id="9XO-uJ-chc"/>
+                                                <constraint firstItem="FpC-hV-Akd" firstAttribute="top" secondItem="QOS-7M-75q" secondAttribute="top" constant="5" id="BNQ-6Q-6uv"/>
+                                                <constraint firstAttribute="bottom" secondItem="FpC-hV-Akd" secondAttribute="bottom" constant="5" id="TEv-5v-Mkq"/>
+                                                <constraint firstItem="Vqw-Ya-YEt" firstAttribute="top" secondItem="QOS-7M-75q" secondAttribute="top" constant="5" id="bEr-qL-oOQ"/>
+                                                <constraint firstItem="Vqw-Ya-YEt" firstAttribute="leading" secondItem="QOS-7M-75q" secondAttribute="leading" constant="10" id="fwV-Xq-kXq"/>
+                                                <constraint firstItem="FpC-hV-Akd" firstAttribute="leading" secondItem="Vqw-Ya-YEt" secondAttribute="trailing" constant="5" id="hqz-fo-Vfr"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                             <tableViewSection headerTitle="Due Date" id="7Fz-6B-Bdk">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="lqy-U3-bas">
-                                        <rect key="frame" x="20" y="328.99999809265137" width="350" height="43.5"/>
+                                        <rect key="frame" x="20" y="422.66666412353516" width="350" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lqy-U3-bas" id="VL6-jI-WTv">
                                             <rect key="frame" x="0.0" y="0.0" width="350" height="43.5"/>
@@ -132,7 +227,7 @@
                             <tableViewSection headerTitle="Description" id="D4b-Jt-OFW">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="200" id="vfq-cT-bCM">
-                                        <rect key="frame" x="20" y="422.16666412353516" width="350" height="200"/>
+                                        <rect key="frame" x="20" y="515.83333015441895" width="350" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vfq-cT-bCM" id="U8y-Kf-fmc">
                                             <rect key="frame" x="0.0" y="0.0" width="350" height="200"/>
@@ -179,6 +274,7 @@
                         <outlet property="navBar" destination="1gU-cG-gDW" id="9II-yC-yRc"/>
                         <outlet property="rightButton" destination="Y0g-vW-zoO" id="Fmv-oR-rUF"/>
                         <outlet property="statusField" destination="Vd7-MX-zXP" id="n8a-fO-fIH"/>
+                        <outlet property="tagLabel" destination="Vqw-Ya-YEt" id="Xtk-B3-vja"/>
                         <outlet property="ticketDescription" destination="FXd-xc-Qdr" id="fjQ-Mz-iad"/>
                         <outlet property="ticketTitle" destination="83h-u0-wFT" id="LFG-F8-WNQ"/>
                     </connections>
@@ -207,6 +303,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="plus.app" catalog="system" width="128" height="114"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
