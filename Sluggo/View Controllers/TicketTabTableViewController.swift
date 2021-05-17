@@ -27,7 +27,11 @@ class TicketTabTableViewController: UITableViewController {
                 self.completion?(self.selectedTags)
             }
         }
+        let cancelAction = UIAction { _ in
+            self.dismiss(animated: true)
+        }
         navigationItem.rightBarButtonItem = UIBarButtonItem(systemItem: .done, primaryAction: doneAction)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(systemItem: .cancel, primaryAction: cancelAction)
     }
 
     func loadData() {
@@ -37,6 +41,7 @@ class TicketTabTableViewController: UITableViewController {
                 self.processResult(result: result, onSuccess: { record in
                     self.ticketTags = []
                     self.ticketTags += record.results
+                    print(self.ticketTags)
                     self.tableView.reloadData()
                     self.preselectItems()
                 })
@@ -67,14 +72,16 @@ class TicketTabTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        var count = 0
-        for selected in selectedTags {
+        for (count, selected) in selectedTags.enumerated() {
             if selected.object_uuid == ticketTags[indexPath.row].object_uuid {
                 selectedTags.remove(at: count)
                 break
             }
-            count+=1
         }
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Tags"
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

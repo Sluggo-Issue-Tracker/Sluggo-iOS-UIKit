@@ -111,8 +111,7 @@ class TicketDetailTableViewController: UITableViewController {
         assignedField.isEnabled = true
         navBar.title = self.ticket != nil ? "Selected Ticket" : "Create a Ticket"
         rightButton.title = (self.ticket != nil) ? "Edit" : "Done"
-        
-        
+
         setEditMode(self.ticket == nil)
         createUserPicker()
         createStatusPicker()
@@ -142,7 +141,7 @@ class TicketDetailTableViewController: UITableViewController {
         let member = currentMember?.id
         let status = currentStatus?.id
         let tags = selectedTags.map({$0.id})
-        
+
         let manager = TicketManager(identity)
 
         if editingTicket {
