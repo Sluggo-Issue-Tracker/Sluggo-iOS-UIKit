@@ -8,6 +8,8 @@ import UIKit
 
 class MemberListViewController: UITableViewController {
     var identity: AppIdentity!
+    var generateSegueableController: ((AppIdentity) -> UIViewController?)?
+    var generateMemberDetail: ((MemberRecord) -> String?)?
     private var maxNumber: Int = 0
     private var members: [MemberRecord] = []
     private var isFetching  = false
@@ -25,6 +27,8 @@ class MemberListViewController: UITableViewController {
     override func viewDidLoad() {
         self.configureRefreshControl()
         self.handleRefreshAction()
+
+        self.tableView.allowsSelection = (generateSegueableController != nil)
     }
 
     func configureRefreshControl() {
@@ -40,8 +44,21 @@ class MemberListViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MemberCell", for: indexPath) as UITableViewCell
         let member = self.members[indexPath.row]
         cell.textLabel?.text = member.owner.username
+        cell.detailTextLabel?.text = generateMemberDetail?(member) ?? ""
 
         return cell
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let generateController = self.generateSegueableController else { return }
+
+        guard let viewController = generateController(identity) else { return }
+
+        if let navController = self.navigationController {
+            navController.show(viewController, sender: self)
+        } else {
+            self.present(viewController, animated: true, completion: nil)
+        }
     }
 
     @objc func handleRefreshAction() {
