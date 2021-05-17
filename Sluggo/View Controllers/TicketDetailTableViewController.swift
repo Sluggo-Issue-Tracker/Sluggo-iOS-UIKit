@@ -103,6 +103,7 @@ class TicketDetailTableViewController: UITableViewController {
         dueDateSwitch.isHidden = !editing
         dueDatePicker.isHidden = (ticket?.due_date == nil && !editing)
         dueDateLabel.isHidden = (ticket?.due_date != nil || editing)
+        if editing { ticketTitle.becomeFirstResponder() }
     }
 
     func doSave() {
