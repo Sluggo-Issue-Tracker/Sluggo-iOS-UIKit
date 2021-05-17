@@ -44,15 +44,12 @@ class TicketTabTableViewController: UITableViewController {
     }
 
     func preselectItems() {
-        for select in selectedTags {
-            var count = 0
-            for comparison in ticketTags {
-                if select.object_uuid == comparison.object_uuid {
-                    let indexPath = IndexPath(row: count, section: 0)
-                    tableView.selectRow(at: indexPath, animated: true, scrollPosition: .bottom)
-                    break
-                }
-                count += 1
+        let objects = Set(selectedTags.map {$0.object_uuid})
+
+        for (count, comparison) in ticketTags.enumerated() {
+            if objects.contains(comparison.object_uuid) {
+                let indexPath = IndexPath(row: count, section: 0)
+                tableView.selectRow(at: indexPath, animated: true, scrollPosition: .bottom)
             }
         }
     }
