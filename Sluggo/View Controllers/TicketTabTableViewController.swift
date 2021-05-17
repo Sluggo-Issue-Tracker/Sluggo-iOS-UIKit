@@ -10,10 +10,10 @@ import UIKit
 class TicketTabTableViewController: UITableViewController {
 
     var identity: AppIdentity!
-    var completion: (([TagRecord?]) -> Void)?
-    var selectedTags: [TagRecord?] = [nil]
+    var completion: (([TagRecord]) -> Void)?
+    var selectedTags: [TagRecord] = []
 
-    var ticketTags: [TagRecord?] = []
+    var ticketTags: [TagRecord] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,16 +41,26 @@ class TicketTabTableViewController: UITableViewController {
                         print(tag)
                     }
                     self.tableView.reloadData()
+                    self.preselectItems()
                 })
             }
     }
 
     func preselectItems() {
-
+        for select in selectedTags {
+            var count = 0
+            for comparison in ticketTags {
+                if select.object_uuid == comparison.object_uuid {
+                    let indexPath = IndexPath(row: count, section: 0)
+                    tableView.selectRow(at: indexPath, animated: true, scrollPosition: .bottom)
+                    break
+                }
+                count+=1
+            }
+        }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("I am here. The count is: ")
         print(ticketTags.count)
         return ticketTags.count
     }
@@ -59,8 +69,23 @@ class TicketTabTableViewController: UITableViewController {
                                 indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "TagEntry", for: indexPath)
-        let text = ticketTags[indexPath.row]!.getTitle()
+        let text = ticketTags[indexPath.row].getTitle()
         cell.textLabel?.text = text
         return cell
+    }
+
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        var count = 0
+        for selected in selectedTags {
+            if selected.object_uuid == ticketTags[indexPath.row].object_uuid {
+                selectedTags.remove(at: count)
+                break
+            }
+            count+=1
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedTags.append(ticketTags[indexPath.row])
     }
 }

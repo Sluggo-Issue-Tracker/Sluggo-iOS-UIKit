@@ -275,6 +275,7 @@
                         <outlet property="rightButton" destination="Y0g-vW-zoO" id="Fmv-oR-rUF"/>
                         <outlet property="statusField" destination="Vd7-MX-zXP" id="n8a-fO-fIH"/>
                         <outlet property="tagLabel" destination="Vqw-Ya-YEt" id="Xtk-B3-vja"/>
+                        <outlet property="tagPlusButton" destination="FpC-hV-Akd" id="3DB-UR-Fte"/>
                         <outlet property="ticketDescription" destination="FXd-xc-Qdr" id="fjQ-Mz-iad"/>
                         <outlet property="ticketTitle" destination="83h-u0-wFT" id="LFG-F8-WNQ"/>
                     </connections>

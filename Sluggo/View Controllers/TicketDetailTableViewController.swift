@@ -16,6 +16,7 @@ class TicketDetailTableViewController: UITableViewController {
     @IBOutlet var statusField: UITextField!
     @IBOutlet var dueDatePicker: UIDatePicker!
     @IBOutlet weak var tagLabel: UILabel!
+    @IBOutlet weak var tagPlusButton: UIButton!
     @IBOutlet var dueDateSwitch: UISwitch!
     @IBOutlet var dueDateLabel: UILabel!
     @IBOutlet var navBar: UINavigationItem!
@@ -32,7 +33,7 @@ class TicketDetailTableViewController: UITableViewController {
     var statuses: [StatusRecord?] = [nil]
     var currentMember: MemberRecord?
     var currentStatus: StatusRecord?
-    var selectedTags: [TagRecord?] = [nil]
+    var selectedTags: [TagRecord] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,16 +60,7 @@ class TicketDetailTableViewController: UITableViewController {
             })
         }
 
-//        let tagManager = TagManager(identity: self.identity)
-//        tagManager.listFromTeams(page: 1) {result in
-//            self.processResult(result: result, onSuccess: { record in
-//                for tag in record.results {
-//                    self.selectedTags.append(tag)
-//                }
-//            })
-//        }
-
-        self.selectedTags = ticket!.tag_list
+        self.selectedTags = self.ticket != nil ? ticket!.tag_list : []
 
         refreshTagLabel()
 
@@ -106,12 +98,16 @@ class TicketDetailTableViewController: UITableViewController {
     func refreshTagLabel() {
         if selectedTags.count == 0 {
             tagLabel.text = "No Tags Selected"
-        } else if selectedTags.count == 1 {
-            tagLabel.text = selectedTags[0]?.title
-        } else if selectedTags.count == 2 {
-            tagLabel.text = selectedTags[0]!.title + ", " + selectedTags[1]!.title
         } else {
-            tagLabel.text = selectedTags[0]!.title + ", " + selectedTags[1]!.title + ", ..."
+            var labelText = ""
+            for counter in 0...selectedTags.count - 1 {
+                if counter == selectedTags.count - 1 {
+                    labelText += selectedTags[counter].title
+                } else {
+                    labelText += selectedTags[counter].title + ", "
+                }
+            }
+            tagLabel.text = labelText
         }
     }
 
@@ -122,6 +118,7 @@ class TicketDetailTableViewController: UITableViewController {
         assignedField.text = ticket?.assigned_user?.owner.username ?? "No Assigned User"
         statusField.text = ticket?.status?.title ?? "No Status Selected"
         currentMember = ticket?.assigned_user ?? nil
+        currentStatus = ticket?.status ?? nil
         dueDatePicker.date = ticket?.due_date ?? Date()
         dueDatePicker.isHidden = (ticket?.due_date == nil)
         dueDateLabel.isHidden = (ticket?.due_date != nil)
@@ -149,6 +146,7 @@ class TicketDetailTableViewController: UITableViewController {
         dueDateSwitch.isHidden = !editing
         dueDatePicker.isHidden = (ticket?.due_date == nil && !editing)
         dueDateLabel.isHidden = (ticket?.due_date != nil || editing)
+        tagPlusButton.isHidden = !editing
     }
 
     func doSave() {
@@ -157,6 +155,10 @@ class TicketDetailTableViewController: UITableViewController {
         let date = dueDateSwitch.isOn ? dueDatePicker.date : nil
         let member = currentMember?.id
         let status = currentStatus?.id
+        var tags: [Int] = []
+        for selected in selectedTags {
+            tags.append(selected.id)
+        }
 
         if editingTicket {
             ticket!.title = title
@@ -164,6 +166,7 @@ class TicketDetailTableViewController: UITableViewController {
             ticket!.due_date = date
             ticket!.assigned_user = currentMember
             ticket!.status = currentStatus
+            ticket!.tag_list = selectedTags
 
             let manager = TicketManager(identity)
 
@@ -176,7 +179,7 @@ class TicketDetailTableViewController: UITableViewController {
                 }
             }
         } else {
-            let ticket = WriteTicketRecord(tag_list: [],
+            let ticket = WriteTicketRecord(tag_list: tags,
                                            assigned_user: member,
                                            status: status,
                                            title: title,
