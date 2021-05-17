@@ -44,9 +44,7 @@ class TicketDetailTableViewController: UITableViewController {
         memberManager.listFromTeams(page: 1) { result in
             self.processResult(result: result, onSuccess: { record in
                 self.teamMembers = [nil]
-                for user in record.results {
-                    self.teamMembers.append(user)
-                }
+                self.teamMembers += record.results
             })
         }
 
@@ -54,13 +52,11 @@ class TicketDetailTableViewController: UITableViewController {
         statusManager.listFromTeams(page: 1) {result in
             self.processResult(result: result, onSuccess: { record in
                 self.statuses = [nil]
-                for status in record.results {
-                    self.statuses.append(status)
-                }
+                self.statuses += record.results
             })
         }
 
-        self.selectedTags = self.ticket != nil ? ticket!.tag_list : []
+        self.selectedTags = self.ticket?.tag_list ??  []
 
         refreshTagLabel()
 
@@ -76,7 +72,7 @@ class TicketDetailTableViewController: UITableViewController {
 
     }
 
-    func launchTagPopup() {
+    @IBAction func addTagButtonHit(_ sender: Any) {
         // launch the view controller holding the tag view
         if let view = storyboard?.instantiateViewController(identifier: "TagNavigationController") {
             if let child = view.children[0] as? TicketTabTableViewController {
@@ -91,23 +87,11 @@ class TicketDetailTableViewController: UITableViewController {
         }
     }
 
-    @IBAction func addTagButtonHit(_ sender: Any) {
-        launchTagPopup()
-    }
-
     func refreshTagLabel() {
         if selectedTags.count == 0 {
             tagLabel.text = "No Tags Selected"
         } else {
-            var labelText = ""
-            for counter in 0...selectedTags.count - 1 {
-                if counter == selectedTags.count - 1 {
-                    labelText += selectedTags[counter].title
-                } else {
-                    labelText += selectedTags[counter].title + ", "
-                }
-            }
-            tagLabel.text = labelText
+            tagLabel.text = selectedTags.map({$0.title}).joined(separator: ", ")
         }
     }
 
@@ -126,10 +110,12 @@ class TicketDetailTableViewController: UITableViewController {
         dueDatePicker.isEnabled = dueDateSwitch.isEnabled
         assignedField.isEnabled = true
         navBar.title = self.ticket != nil ? "Selected Ticket" : "Create a Ticket"
+        rightButton.title = (self.ticket != nil) ? "Edit" : "Done"
+        
+        
         setEditMode(self.ticket == nil)
         createUserPicker()
         createStatusPicker()
-        rightButton.title = (self.ticket != nil) ? "Edit" : "Done"
     }
 
     func setEditMode(_ editing: Bool) {
@@ -155,10 +141,9 @@ class TicketDetailTableViewController: UITableViewController {
         let date = dueDateSwitch.isOn ? dueDatePicker.date : nil
         let member = currentMember?.id
         let status = currentStatus?.id
-        var tags: [Int] = []
-        for selected in selectedTags {
-            tags.append(selected.id)
-        }
+        let tags = selectedTags.map({$0.id})
+        
+        let manager = TicketManager(identity)
 
         if editingTicket {
             ticket!.title = title
@@ -167,8 +152,6 @@ class TicketDetailTableViewController: UITableViewController {
             ticket!.assigned_user = currentMember
             ticket!.status = currentStatus
             ticket!.tag_list = selectedTags
-
-            let manager = TicketManager(identity)
 
             manager.updateTicket(ticket: ticket!) { result in
                 self.processResult(result: result) { _ in
@@ -185,7 +168,6 @@ class TicketDetailTableViewController: UITableViewController {
                                            title: title,
                                            description: description,
                                            due_date: date)
-            let manager = TicketManager(identity)
             manager.makeTicket(ticket: ticket) { result in
                 self.processResult(result: result) { _ in
                     DispatchQueue.main.async {
@@ -272,10 +254,8 @@ extension TicketDetailTableViewController: UIPickerViewDelegate, UIPickerViewDat
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView.tag == 1 {
             currentMember = teamMembers[row]
-            // assignedField.text = currentMember?.owner.username ?? "No Assigned User"
         } else {
             currentStatus = statuses[row]
-            // statusField.text = currentStatus?.title ?? "No Status Selected"
         }
     }
 

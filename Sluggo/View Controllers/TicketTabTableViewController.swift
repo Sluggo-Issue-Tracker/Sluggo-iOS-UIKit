@@ -22,7 +22,7 @@ class TicketTabTableViewController: UITableViewController {
     }
 
     func configureBarItems() {
-        let doneAction = UIAction {_ in
+        let doneAction = UIAction { _ in
             self.dismiss(animated: true) {
                 self.completion?(self.selectedTags)
             }
@@ -36,10 +36,7 @@ class TicketTabTableViewController: UITableViewController {
             tagManager.listFromTeams(page: 1) {result in
                 self.processResult(result: result, onSuccess: { record in
                     self.ticketTags = []
-                    for tag in record.results {
-                        self.ticketTags.append(tag)
-                        print(tag)
-                    }
+                    self.ticketTags += record.results
                     self.tableView.reloadData()
                     self.preselectItems()
                 })
@@ -55,13 +52,12 @@ class TicketTabTableViewController: UITableViewController {
                     tableView.selectRow(at: indexPath, animated: true, scrollPosition: .bottom)
                     break
                 }
-                count+=1
+                count += 1
             }
         }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(ticketTags.count)
         return ticketTags.count
     }
 
@@ -69,8 +65,7 @@ class TicketTabTableViewController: UITableViewController {
                                 indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "TagEntry", for: indexPath)
-        let text = ticketTags[indexPath.row].getTitle()
-        cell.textLabel?.text = text
+        cell.textLabel?.text = ticketTags[indexPath.row].getTitle()
         return cell
     }
 
