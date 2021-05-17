@@ -15,6 +15,8 @@ class TicketDetailTableViewController: UITableViewController {
     @IBOutlet var assignedField: UITextField!
     @IBOutlet var statusField: UITextField!
     @IBOutlet var dueDatePicker: UIDatePicker!
+    @IBOutlet weak var tagLabel: UILabel!
+    @IBOutlet weak var tagPlusButton: UIButton!
     @IBOutlet var dueDateSwitch: UISwitch!
     @IBOutlet var dueDateLabel: UILabel!
     @IBOutlet var navBar: UINavigationItem!
@@ -31,6 +33,7 @@ class TicketDetailTableViewController: UITableViewController {
     var statuses: [StatusRecord?] = [nil]
     var currentMember: MemberRecord?
     var currentStatus: StatusRecord?
+    var selectedTags: [TagRecord] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,9 +44,7 @@ class TicketDetailTableViewController: UITableViewController {
         memberManager.listFromTeams(page: 1) { result in
             self.processResult(result: result, onSuccess: { record in
                 self.teamMembers = [nil]
-                for user in record.results {
-                    self.teamMembers.append(user)
-                }
+                self.teamMembers += record.results
             })
         }
 
@@ -51,11 +52,13 @@ class TicketDetailTableViewController: UITableViewController {
         statusManager.listFromTeams(page: 1) {result in
             self.processResult(result: result, onSuccess: { record in
                 self.statuses = [nil]
-                for status in record.results {
-                    self.statuses.append(status)
-                }
+                self.statuses += record.results
             })
         }
+
+        self.selectedTags = self.ticket?.tag_list ??  []
+
+        refreshTagLabel()
 
         pickerView.dataSource = self
         pickerView.delegate = self
@@ -69,6 +72,29 @@ class TicketDetailTableViewController: UITableViewController {
 
     }
 
+    @IBAction func addTagButtonHit(_ sender: Any) {
+        // launch the view controller holding the tag view
+        if let view = storyboard?.instantiateViewController(identifier: "TagNavigationController") {
+            if let child = view.children[0] as? TicketTabTableViewController {
+                child.identity = self.identity
+                child.selectedTags = self.selectedTags
+                child.completion = { newTags in
+                    self.selectedTags = newTags
+                    self.refreshTagLabel()
+                }
+            }
+            self.present(view, animated: true, completion: nil)
+        }
+    }
+
+    func refreshTagLabel() {
+        if selectedTags.count == 0 {
+            tagLabel.text = "No Tags Selected"
+        } else {
+            tagLabel.text = selectedTags.map({$0.title}).joined(separator: ", ")
+        }
+    }
+
     func updateUI() {
 
         ticketTitle.text = self.ticket?.title ?? ""
@@ -76,6 +102,7 @@ class TicketDetailTableViewController: UITableViewController {
         assignedField.text = ticket?.assigned_user?.owner.username ?? "No Assigned User"
         statusField.text = ticket?.status?.title ?? "No Status Selected"
         currentMember = ticket?.assigned_user ?? nil
+        currentStatus = ticket?.status ?? nil
         dueDatePicker.date = ticket?.due_date ?? Date()
         dueDatePicker.isHidden = (ticket?.due_date == nil)
         dueDateLabel.isHidden = (ticket?.due_date != nil)
@@ -83,10 +110,11 @@ class TicketDetailTableViewController: UITableViewController {
         dueDatePicker.isEnabled = dueDateSwitch.isEnabled
         assignedField.isEnabled = true
         navBar.title = self.ticket != nil ? "Selected Ticket" : "Create a Ticket"
+        rightButton.title = (self.ticket != nil) ? "Edit" : "Done"
+
         setEditMode(self.ticket == nil)
         createUserPicker()
         createStatusPicker()
-        rightButton.title = (self.ticket != nil) ? "Edit" : "Done"
     }
 
     func setEditMode(_ editing: Bool) {
@@ -103,6 +131,7 @@ class TicketDetailTableViewController: UITableViewController {
         dueDateSwitch.isHidden = !editing
         dueDatePicker.isHidden = (ticket?.due_date == nil && !editing)
         dueDateLabel.isHidden = (ticket?.due_date != nil || editing)
+        tagPlusButton.isHidden = !editing
         if editing { ticketTitle.becomeFirstResponder() }
     }
 
@@ -112,6 +141,9 @@ class TicketDetailTableViewController: UITableViewController {
         let date = dueDateSwitch.isOn ? dueDatePicker.date : nil
         let member = currentMember?.id
         let status = currentStatus?.id
+        let tags = selectedTags.map({$0.id})
+
+        let manager = TicketManager(identity)
 
         if editingTicket {
             ticket!.title = title
@@ -119,8 +151,7 @@ class TicketDetailTableViewController: UITableViewController {
             ticket!.due_date = date
             ticket!.assigned_user = currentMember
             ticket!.status = currentStatus
-
-            let manager = TicketManager(identity)
+            ticket!.tag_list = selectedTags
 
             manager.updateTicket(ticket: ticket!) { result in
                 self.processResult(result: result) { _ in
@@ -131,13 +162,12 @@ class TicketDetailTableViewController: UITableViewController {
                 }
             }
         } else {
-            let ticket = WriteTicketRecord(tag_list: [],
+            let ticket = WriteTicketRecord(tag_list: tags,
                                            assigned_user: member,
                                            status: status,
                                            title: title,
                                            description: description,
                                            due_date: date)
-            let manager = TicketManager(identity)
             manager.makeTicket(ticket: ticket) { result in
                 self.processResult(result: result) { _ in
                     DispatchQueue.main.async {
