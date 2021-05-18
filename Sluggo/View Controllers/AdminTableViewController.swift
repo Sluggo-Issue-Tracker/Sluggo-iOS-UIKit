@@ -24,6 +24,9 @@ class AdminTableViewController: UITableViewController {
     @IBSegueAction func createUsersList(_ coder: NSCoder) -> MemberListViewController? {
         let memberVC = MemberListViewController(coder: coder, identity: identity)
         memberVC?.generateSegueableController = { oldIdentity, record in
+            if oldIdentity.authenticatedUser?.pk == record?.owner.id {
+                return nil
+            }
             if let view = self.storyboard?.instantiateViewController(identifier: "AdminRoleNavController") {
                 if let child = view.children[0] as? AdminUserRolesTableViewController {
                     child.member = record

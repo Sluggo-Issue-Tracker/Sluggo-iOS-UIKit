@@ -42,6 +42,9 @@ class HomeTableViewController: UITableViewController {
                                                queue: nil) { _ in
             self.refreshContent()
         }
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(refreshContent),
+                                               name: .refreshTrigger, object: nil)
         self.refreshControl?.addTarget(self, action: #selector(refreshContent), for: .valueChanged)
 
         // Uncomment the following line to preserve selection between presentations
