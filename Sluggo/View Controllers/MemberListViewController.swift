@@ -8,7 +8,7 @@ import UIKit
 
 class MemberListViewController: UITableViewController {
     var identity: AppIdentity!
-    var generateSegueableController: ((AppIdentity) -> UIViewController?)?
+    var generateSegueableController: ((AppIdentity, MemberRecord?) -> UIViewController?)?
     var generateMemberDetail: ((MemberRecord) -> String?)?
     private var maxNumber: Int = 0
     private var members: [MemberRecord] = []
@@ -27,6 +27,9 @@ class MemberListViewController: UITableViewController {
     override func viewDidLoad() {
         self.configureRefreshControl()
         self.handleRefreshAction()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(handleRefreshAction),
+                                               name: .refreshMembers, object: nil)
 
         self.tableView.allowsSelection = (generateSegueableController != nil)
     }
@@ -52,7 +55,7 @@ class MemberListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let generateController = self.generateSegueableController else { return }
 
-        guard let viewController = generateController(identity) else { return }
+        guard let viewController = generateController(identity, self.members[indexPath.row]) else { return }
 
         if let navController = self.navigationController {
             navController.show(viewController, sender: self)
@@ -87,4 +90,8 @@ class MemberListViewController: UITableViewController {
         }
     }
 
+}
+
+extension Notification.Name {
+    static let refreshMembers = Notification.Name(rawValue: "SLGRefreshMembersNotification")
 }

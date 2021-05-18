@@ -60,6 +60,72 @@
             </objects>
             <point key="canvasLocation" x="1001" y="100"/>
         </scene>
+        <!--Root View Controller-->
+        <scene sceneID="g33-Xj-d4Y">
+            <objects>
+                <tableViewController id="Y4a-Fj-3r3" customClass="AdminUserRolesTableViewController" customModule="Sluggo" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="plY-XN-gHg">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <sections>
+                            <tableViewSection headerTitle="User Roles" id="n1J-v6-Vi6">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="NaF-b5-xQ0" customClass="TicketTagTableViewCell" customModule="Sluggo" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="49.5" width="374" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NaF-b5-xQ0" id="oqJ-UC-03O">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Approved User" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="htc-DA-xlY">
+                                                    <rect key="frame" x="30" y="11" width="114" height="22"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="htc-DA-xlY" firstAttribute="leading" secondItem="oqJ-UC-03O" secondAttribute="leadingMargin" constant="10" id="5VK-Kx-sq9"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="htc-DA-xlY" secondAttribute="bottom" id="bDk-VB-SRC"/>
+                                                <constraint firstItem="htc-DA-xlY" firstAttribute="top" secondItem="oqJ-UC-03O" secondAttribute="topMargin" id="luO-uS-ezS"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="wdh-32-WB1" customClass="TicketTagTableViewCell" customModule="Sluggo" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="93" width="374" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wdh-32-WB1" id="INS-L1-LXh">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Admin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFM-ZQ-tfq">
+                                                    <rect key="frame" x="30" y="12" width="48.5" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="cFM-ZQ-tfq" firstAttribute="top" secondItem="INS-L1-LXh" secondAttribute="topMargin" constant="1" id="ALv-Hu-mob"/>
+                                                <constraint firstItem="cFM-ZQ-tfq" firstAttribute="leading" secondItem="INS-L1-LXh" secondAttribute="leadingMargin" constant="10" id="F7C-x8-nFU"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="cFM-ZQ-tfq" secondAttribute="bottom" constant="1" id="pcY-Ef-l3J"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="Y4a-Fj-3r3" id="LhP-Yg-Sa4"/>
+                            <outlet property="delegate" destination="Y4a-Fj-3r3" id="2yb-YF-vFc"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="vBe-Dc-8ak"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0wj-aj-u16" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2768.1159420289855" y="-763.39285714285711"/>
+        </scene>
         <!--MemberListViewController-->
         <scene sceneID="hNF-tx-jae">
             <objects>
@@ -69,6 +135,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9fO-4e-am2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1824" y="-144"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="URV-lv-mtA">
+            <objects>
+                <navigationController storyboardIdentifier="AdminRoleNavController" automaticallyAdjustsScrollViewInsets="NO" id="Jn8-SW-muk" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MAr-uB-B2c">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Y4a-Fj-3r3" kind="relationship" relationship="rootViewController" id="Diu-VN-uac"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1N9-kd-7qm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1857.9710144927537" y="-763.39285714285711"/>
         </scene>
     </scenes>
     <resources>

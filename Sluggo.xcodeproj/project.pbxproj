@@ -26,6 +26,7 @@
 		3A150A77263CB5F70052934B /* TicketDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A150A76263CB5F70052934B /* TicketDetail.storyboard */; };
 		3A90FBB12651CEED00BE4F5D /* TicketTagTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A90FBB02651CEED00BE4F5D /* TicketTagTableViewCell.swift */; };
 		3A90FBB32651D76900BE4F5D /* TicketTabTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A90FBB22651D76900BE4F5D /* TicketTabTableViewController.swift */; };
+		3A90FBB526531AC600BE4F5D /* AdminUserRolesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A90FBB426531AC600BE4F5D /* AdminUserRolesTableViewController.swift */; };
 		5A00A0142639EDEA0085C8C6 /* URLRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A00A0132639EDEA0085C8C6 /* URLRequestBuilder.swift */; };
 		5A00A045263A34CC0085C8C6 /* TicketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A00A044263A34CC0085C8C6 /* TicketTableViewCell.swift */; };
 		5A25CFA2264B8C8100852035 /* TagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A25CFA1264B8C8100852035 /* TagTests.swift */; };
@@ -112,6 +113,7 @@
 		3A150A76263CB5F70052934B /* TicketDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TicketDetail.storyboard; sourceTree = "<group>"; };
 		3A90FBB02651CEED00BE4F5D /* TicketTagTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketTagTableViewCell.swift; sourceTree = "<group>"; };
 		3A90FBB22651D76900BE4F5D /* TicketTabTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketTabTableViewController.swift; sourceTree = "<group>"; };
+		3A90FBB426531AC600BE4F5D /* AdminUserRolesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminUserRolesTableViewController.swift; sourceTree = "<group>"; };
 		5A00A0132639EDEA0085C8C6 /* URLRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestBuilder.swift; sourceTree = "<group>"; };
 		5A00A044263A34CC0085C8C6 /* TicketTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketTableViewCell.swift; sourceTree = "<group>"; };
 		5A25CFA1264B8C8100852035 /* TagTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagTests.swift; sourceTree = "<group>"; };
@@ -377,6 +379,7 @@
 				3A90FBB22651D76900BE4F5D /* TicketTabTableViewController.swift */,
 				05DE0CD6264F11E400D69C61 /* MemberListViewController.swift */,
 				7D01B55D264FADC40009FA97 /* AdminTableViewController.swift */,
+				3A90FBB426531AC600BE4F5D /* AdminUserRolesTableViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -552,6 +555,7 @@
 				5A25CFDF264BCF2C00852035 /* TicketFilterParameters.swift in Sources */,
 				5A25CFE7264BD73D00852035 /* TicketFilterTableViewCell.swift in Sources */,
 				7D1DA6B7262B866D00E7C12D /* SidebarData.swift in Sources */,
+				3A90FBB526531AC600BE4F5D /* AdminUserRolesTableViewController.swift in Sources */,
 				5A00A0142639EDEA0085C8C6 /* URLRequestBuilder.swift in Sources */,
 				5A25CFC2264B9AFF00852035 /* TeamPaginatedListable.swift in Sources */,
 				2FD70D5D2636144300D13C75 /* LogoutMessage.swift in Sources */,
