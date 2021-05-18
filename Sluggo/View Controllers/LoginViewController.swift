@@ -11,6 +11,7 @@ class LoginViewController: UIViewController {
 
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
+    @IBOutlet var instanceURL: UITextField!
     @IBOutlet weak var persistButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
 
@@ -37,6 +38,8 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         self.isModalInPresentation = true
 
+        username.becomeFirstResponder()
+
         persistButton.setImage(UIImage(systemName: "checkmark.square.fill"), for: [.highlighted, .selected])
     }
 
@@ -47,19 +50,35 @@ class LoginViewController: UIViewController {
     @IBAction func loginButton(_ sender: Any) {
         let userString = username.text
         let passString = password.text
+        let instString = instanceURL.text
 
         print("button pressed")
 
-        if userString!.isEmpty || passString!.isEmpty {
+        if userString!.isEmpty || passString!.isEmpty || instString!.isEmpty {
             // login Error
-            print("No username or password provided, not attempting login")
+            self.presentError(error: Exception.runtimeError(message: "Please fill out all fields."))
             return
         } else {
+            if !self.verifyUrl(urlString: instString) {
+                self.presentError(error: Exception.runtimeError(
+                                    message: "Invalid Sluggo URL, please put your entire URL."))
+                return
+            }
             DispatchQueue.global(qos: .userInitiated).async {
+                self.identity.baseAddress = instString!
                 self.attemptLogin(username: userString!, password: passString!)
             }
         }
     }
+
+    func verifyUrl (urlString: String?) -> Bool {
+       if let urlString = urlString {
+           if let url = NSURL(string: urlString) {
+               return UIApplication.shared.canOpenURL(url as URL)
+           }
+       }
+       return false
+   }
 
     func attemptLogin(username: String, password: String) {
         let userManager = UserManager(identity: identity)
