@@ -7,6 +7,12 @@
 
 import UIKit
 
+enum MemberRoleCategories: String {
+    case admin = "AD"
+    case approved = "AP"
+    case invited = "IN"// Invited added for adding users to teams
+}
+
 class AdminUserRolesTableViewController: UITableViewController {
 
     var identity: AppIdentity!
@@ -34,26 +40,26 @@ class AdminUserRolesTableViewController: UITableViewController {
     }
 
     func preSelect() {
-        if member?.role == "AD" {
+        if member?.role == MemberRoleCategories.admin.rawValue {
             let indexPath = IndexPath(row: 1, section: 0)
             tableView.selectRow(at: indexPath, animated: true, scrollPosition: .bottom)
-            role = "AD"
-            initialRole = "AD"
+            role = MemberRoleCategories.admin.rawValue
+            initialRole = MemberRoleCategories.admin.rawValue
             // print("Selected AD")
         } else {
             let indexPath = IndexPath(row: 0, section: 0)
             tableView.selectRow(at: indexPath, animated: true, scrollPosition: .bottom)
-            role = "AP"
-            initialRole = "AP"
+            role = MemberRoleCategories.approved.rawValue
+            initialRole = MemberRoleCategories.approved.rawValue
             // print("Selected AP")
         }
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            role = "AP"
+            role =  MemberRoleCategories.admin.rawValue
         } else {
-            role = "AD"
+            role = MemberRoleCategories.approved.rawValue
         }
     }
 
