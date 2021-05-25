@@ -72,11 +72,10 @@ class TicketTabTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        for (count, selected) in selectedTags.enumerated() {
-            if selected.object_uuid == ticketTags[indexPath.row].object_uuid {
-                selectedTags.remove(at: count)
-                break
-            }
+        for (count, selected) in selectedTags.enumerated()
+        where selected.object_uuid == ticketTags[indexPath.row].object_uuid {
+            selectedTags.remove(at: count)
+            break
         }
     }
 

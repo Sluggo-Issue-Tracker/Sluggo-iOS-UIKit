@@ -194,31 +194,32 @@
                                             <rect key="frame" x="0.0" y="0.0" width="350" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="leading" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="aIS-TR-fvJ">
-                                                    <rect key="frame" x="10" y="5" width="51" height="33.666666666666664"/>
-                                                </switch>
-                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="7js-fL-0er">
-                                                    <rect key="frame" x="119" y="5" width="226" height="33.666666666666664"/>
-                                                </datePicker>
-                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Due Date Selected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bhP-22-63p">
-                                                    <rect key="frame" x="5" y="5" width="335" height="33.333333333333336"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="lPD-Tl-46m">
+                                                    <rect key="frame" x="10" y="5" width="330" height="33.666666666666664"/>
+                                                    <subviews>
+                                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Due Date Selected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bhP-22-63p">
+                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="33.666666666666664"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="leading" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="aIS-TR-fvJ">
+                                                            <rect key="frame" x="0.0" y="0.0" width="51" height="33.666666666666664"/>
+                                                        </switch>
+                                                        <datePicker contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="7js-fL-0er">
+                                                            <rect key="frame" x="73" y="0.0" width="257" height="33.666666666666664"/>
+                                                        </datePicker>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="7js-fL-0er" firstAttribute="leading" secondItem="aIS-TR-fvJ" secondAttribute="trailing" constant="24" id="kaJ-Pb-1eC"/>
+                                                    </constraints>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="7js-fL-0er" secondAttribute="bottom" constant="5" id="HRE-Bh-y6q"/>
-                                                <constraint firstAttribute="trailing" secondItem="bhP-22-63p" secondAttribute="trailing" constant="10" id="Qom-4N-8IV"/>
-                                                <constraint firstItem="aIS-TR-fvJ" firstAttribute="leading" secondItem="VL6-jI-WTv" secondAttribute="leading" constant="10" id="aDB-F6-ObM"/>
-                                                <constraint firstAttribute="bottom" secondItem="aIS-TR-fvJ" secondAttribute="bottom" constant="5" id="dnF-TB-5az"/>
-                                                <constraint firstAttribute="trailing" secondItem="7js-fL-0er" secondAttribute="trailing" constant="5" id="eH7-Vm-sd8"/>
-                                                <constraint firstItem="7js-fL-0er" firstAttribute="leading" secondItem="aIS-TR-fvJ" secondAttribute="trailing" constant="60" id="hfI-9h-Aj1"/>
-                                                <constraint firstItem="aIS-TR-fvJ" firstAttribute="top" secondItem="VL6-jI-WTv" secondAttribute="top" constant="5" id="jdu-Al-TsW"/>
-                                                <constraint firstAttribute="bottom" secondItem="bhP-22-63p" secondAttribute="bottom" constant="5.5" id="jmr-0f-zSf"/>
-                                                <constraint firstItem="bhP-22-63p" firstAttribute="leading" secondItem="VL6-jI-WTv" secondAttribute="leading" constant="5" id="kqw-4s-YAs"/>
-                                                <constraint firstItem="bhP-22-63p" firstAttribute="top" secondItem="VL6-jI-WTv" secondAttribute="top" constant="5" id="oNL-hj-9J5"/>
-                                                <constraint firstItem="7js-fL-0er" firstAttribute="top" secondItem="VL6-jI-WTv" secondAttribute="top" constant="5" id="r7k-Zw-kpe"/>
+                                                <constraint firstItem="lPD-Tl-46m" firstAttribute="leading" secondItem="VL6-jI-WTv" secondAttribute="leading" constant="10" id="1Ls-YO-v6h"/>
+                                                <constraint firstAttribute="trailing" secondItem="lPD-Tl-46m" secondAttribute="trailing" constant="10" id="H9r-Wo-9dx"/>
+                                                <constraint firstItem="lPD-Tl-46m" firstAttribute="top" secondItem="VL6-jI-WTv" secondAttribute="top" constant="5" id="Prk-JD-d4q"/>
+                                                <constraint firstAttribute="bottom" secondItem="lPD-Tl-46m" secondAttribute="bottom" constant="5" id="cZI-yx-7Sw"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -251,6 +252,35 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection id="YGG-YI-y2a">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="6nG-7R-tv9">
+                                        <rect key="frame" x="20" y="751.83333015441895" width="350" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6nG-7R-tv9" id="xva-rM-eEx">
+                                            <rect key="frame" x="0.0" y="0.0" width="350" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="20e-lW-E9X">
+                                                    <rect key="frame" x="10" y="4.6666666666666679" width="330" height="34.333333333333329"/>
+                                                    <state key="normal" title="Delete Ticket">
+                                                        <color key="titleColor" systemColor="systemPinkColor"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="deleteButtonHit:" destination="tgi-Ip-0ok" eventType="touchUpInside" id="dio-S4-U73"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="20e-lW-E9X" secondAttribute="bottom" constant="5" id="CXm-7z-Tkm"/>
+                                                <constraint firstAttribute="trailing" secondItem="20e-lW-E9X" secondAttribute="trailing" constant="10" id="XU8-rV-9aI"/>
+                                                <constraint firstItem="20e-lW-E9X" firstAttribute="leading" secondItem="xva-rM-eEx" secondAttribute="leading" constant="10" id="bEj-te-sgR"/>
+                                                <constraint firstItem="20e-lW-E9X" firstAttribute="top" secondItem="xva-rM-eEx" secondAttribute="top" constant="4.5" id="iHO-Za-72e"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="tgi-Ip-0ok" id="yD6-nR-PkF"/>
@@ -268,6 +298,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="assignedField" destination="5VZ-XF-oZ3" id="3ua-SG-I4l"/>
+                        <outlet property="deleteButton" destination="20e-lW-E9X" id="mcV-yK-5PB"/>
                         <outlet property="dueDateLabel" destination="bhP-22-63p" id="cMg-nQ-Pzg"/>
                         <outlet property="dueDatePicker" destination="7js-fL-0er" id="m61-PZ-TWs"/>
                         <outlet property="dueDateSwitch" destination="aIS-TR-fvJ" id="ubA-vL-JMq"/>
@@ -310,6 +341,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

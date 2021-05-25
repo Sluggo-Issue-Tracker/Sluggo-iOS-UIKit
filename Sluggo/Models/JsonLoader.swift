@@ -86,4 +86,32 @@ class JsonLoader {
             }
         }).resume()
     }
+
+    static func executeEmptyRequest(request: URLRequest,
+                                    completionHandler: @escaping (Result<Void, Error>) -> Void) {
+
+        let session = URLSession.shared
+        session.dataTask(with: request, completionHandler: { data, response, error -> Void in
+            if error != nil {
+                completionHandler(.failure(Exception.runtimeError(message: "Server Error!")))
+                return
+            }
+            // swiftlint:disable:next force_cast
+            let resp = response as! HTTPURLResponse
+            if resp.statusCode <= 299 && resp.statusCode >= 200 {
+                completionHandler(.success(()))
+                return
+            } else {
+                if let fetchedData = data {
+                    let fetchedString = String(data: fetchedData, encoding: .utf8) ?? "A parsing error occurred"
+                    let errorMessage = "HTTP Error \(resp.statusCode): \(fetchedString)"
+                    completionHandler(.failure(RESTException.failedRequest(message: errorMessage)))
+                    return
+                }
+                let errorMessage = "HTTP Error \(resp.statusCode): An unknown error occured."
+                completionHandler(.failure(RESTException.failedRequest(message: errorMessage)))
+                return
+            }
+        }).resume()
+    }
 }

@@ -21,6 +21,7 @@ class TicketDetailTableViewController: UITableViewController {
     @IBOutlet var dueDateLabel: UILabel!
     @IBOutlet var navBar: UINavigationItem!
     @IBOutlet var rightButton: UIBarButtonItem!
+    @IBOutlet var deleteButton: UIButton!
 
     // MARK: Variables
     var identity: AppIdentity!
@@ -132,7 +133,10 @@ class TicketDetailTableViewController: UITableViewController {
         dueDatePicker.isHidden = (ticket?.due_date == nil && !editing)
         dueDateLabel.isHidden = (ticket?.due_date != nil || editing)
         tagPlusButton.isHidden = !editing
-        if editing { ticketTitle.becomeFirstResponder() }
+        tableView.reloadData()
+        if editing {
+            ticketTitle.becomeFirstResponder()
+        }
     }
 
     func doSave() {
@@ -194,6 +198,28 @@ class TicketDetailTableViewController: UITableViewController {
         }
     }
 
+    @IBAction func deleteButtonHit(_ sender: Any) {
+        let acon = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        acon.addAction(UIAlertAction(title: "Delete Ticket", style: .destructive, handler: doDeleteTicket))
+        acon.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        acon.popoverPresentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
+        present(acon, animated: true)
+    }
+
+    func doDeleteTicket(action: UIAlertAction) {
+        let manager = TicketManager(identity)
+        if let ticket = self.ticket {
+            manager.deleteTicket(ticket: ticket) { result in
+                self.processResult(result: result) { _ in
+                    DispatchQueue.main.async {
+                        self.setEditMode(false)
+                        NotificationCenter.default.post(name: .refreshTrigger, object: self)
+                        self.navigationController?.popViewController(animated: false)
+                    }
+                }
+            }
+        }
+    }
 }
 
 extension TicketDetailTableViewController: UIPickerViewDelegate, UIPickerViewDataSource {
@@ -259,4 +285,16 @@ extension TicketDetailTableViewController: UIPickerViewDelegate, UIPickerViewDat
         }
     }
 
+}
+
+extension TicketDetailTableViewController {
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case 6:
+            return (self.editingTicket && self.ticket != nil) ? 1 : 0
+        default:
+            return 1
+        }
+    }
 }
