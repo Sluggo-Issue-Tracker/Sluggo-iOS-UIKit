@@ -212,6 +212,7 @@ class TicketDetailTableViewController: UITableViewController {
             manager.deleteTicket(ticket: ticket) { result in
                 self.processResult(result: result) { _ in
                     DispatchQueue.main.async {
+                        self.setEditMode(false)
                         NotificationCenter.default.post(name: .refreshTrigger, object: self)
                         self.navigationController?.popViewController(animated: false)
                     }
