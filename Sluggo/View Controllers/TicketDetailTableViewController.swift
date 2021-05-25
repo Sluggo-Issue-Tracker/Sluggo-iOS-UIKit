@@ -213,7 +213,7 @@ class TicketDetailTableViewController: UITableViewController {
                 self.processResult(result: result) { _ in
                     DispatchQueue.main.async {
                         NotificationCenter.default.post(name: .refreshTrigger, object: self)
-                        self.dismiss(animated: true, completion: nil)
+                        self.navigationController?.popViewController(animated: false)
                     }
                 }
             }

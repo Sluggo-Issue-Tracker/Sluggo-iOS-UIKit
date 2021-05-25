@@ -87,13 +87,13 @@ class TicketManager {
         JsonLoader.executeCodableRequest(request: requestBuilder.getRequest(), completionHandler: completionHandler)
 
     }
-    public func deleteTicket(ticket: TicketRecord, completionHandler: @escaping(Result<TicketRecord, Error>) -> Void) {
+    public func deleteTicket(ticket: TicketRecord, completionHandler: @escaping(Result<Void, Error>) -> Void) {
 
         let requestBuilder = URLRequestBuilder(url: makeDetailUrl(ticket))
             .setMethod(method: .DELETE)
             .setIdentity(identity: self.identity)
 
-        JsonLoader.executeCodableRequest(request: requestBuilder.getRequest(), completionHandler: completionHandler)
+        JsonLoader.executeEmptyRequest(request: requestBuilder.getRequest(), completionHandler: completionHandler)
 
     }
 }
