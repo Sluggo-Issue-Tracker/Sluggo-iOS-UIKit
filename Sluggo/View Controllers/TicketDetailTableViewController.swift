@@ -22,10 +22,13 @@ class TicketDetailTableViewController: UITableViewController {
     @IBOutlet var navBar: UINavigationItem!
     @IBOutlet var rightButton: UIBarButtonItem!
     @IBOutlet var deleteButton: UIButton!
+    @IBOutlet var pinTicketButton: UIButton!
 
     // MARK: Variables
     var identity: AppIdentity!
+    var member: MemberRecord!
     var ticket: TicketRecord?
+    var pinnedTicket: PinnedTicketRecord?
     var pickerView: UIPickerView = UIPickerView()
     var statusPicker: UIPickerView = UIPickerView()
     var editingTicket = false
@@ -46,6 +49,20 @@ class TicketDetailTableViewController: UITableViewController {
             self.processResult(result: result, onSuccess: { record in
                 self.teamMembers = [nil]
                 self.teamMembers += record.results
+                self.member = self.teamMembers.filter { $0?.owner.id == self.identity.authenticatedUser?.pk }[0]
+                if let ticket = self.ticket {
+                    let pinnedManager = PinnedTicketManager(identity: self.identity, member: self.member)
+                    pinnedManager.fetchPinned(ticket: ticket) { result in
+                        self.processResult(result: result, onSuccess: { record in
+                            self.pinnedTicket = record
+                        }, onError: { _ in
+                            self.pinnedTicket = nil
+                        }, after: {
+                            let title = self.pinnedTicket != nil ? "Un-pin Ticket" : "Pin Ticket"
+                            self.pinTicketButton.setTitle(title, for: .normal)
+                        })
+                    }
+                }
             })
         }
 
@@ -220,6 +237,32 @@ class TicketDetailTableViewController: UITableViewController {
             }
         }
     }
+    @IBAction func pinTicketHit(_ sender: Any) {
+
+        let manager = PinnedTicketManager(identity: identity, member: self.member)
+        if let pinned = pinnedTicket {
+            manager.deletePinnedTicket(pinned: pinned) { result in
+                self.processResult(result: result) { _ in
+                    DispatchQueue.main.async {
+                        NotificationCenter.default.post(name: .refreshTrigger, object: self)
+                        self.pinTicketButton.setTitle("Pin Ticket", for: .normal)
+                        self.pinnedTicket = nil
+                    }
+                }
+
+            }
+        } else {
+            manager.postPinnedTicket(ticket: self.ticket!) { result in
+                self.processResult(result: result) { record in
+                    DispatchQueue.main.async {
+                        NotificationCenter.default.post(name: .refreshTrigger, object: self)
+                        self.pinTicketButton.setTitle("Un-pin Ticket", for: .normal)
+                        self.pinnedTicket = record
+                    }
+                }
+            }
+        }
+    }
 }
 
 extension TicketDetailTableViewController: UIPickerViewDelegate, UIPickerViewDataSource {
@@ -292,6 +335,8 @@ extension TicketDetailTableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 6:
+            return self.ticket != nil ? 1 : 0
+        case 7:
             return (self.editingTicket && self.ticket != nil) ? 1 : 0
         default:
             return 1

@@ -15,5 +15,5 @@ struct PinnedTicketRecord: Codable {
 }
 
 struct WritePinnedTicketRecord: Codable {
-    let ticketID: Int
+    let ticket: Int
 }
