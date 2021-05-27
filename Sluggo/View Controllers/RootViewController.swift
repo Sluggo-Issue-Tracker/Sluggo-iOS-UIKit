@@ -62,23 +62,24 @@ class RootViewController: UIViewController {
 
     func logOutAction() {
         // This needs to be done in a specific order to avoid nil exceptions
-
         // First, dismiss the main view controller and sidebar
-        // Assume we are in the key window
-        let keyWindow = UIApplication.shared.keyWindow
-        keyWindow?.dismiss()
+        self.mainTabBarController?.dismiss(animated: true, completion: {
+            // Assume we are in the key window
+            let keyWindow = UIApplication.shared.keyWindow
+            keyWindow?.dismiss()
 
-        // Hopefully the user cannot access anything now
-        // We don't do background calls to API so this *shouldn't* crash
-        // Remove AppIdentity persistence file
-        let identityClearingSuccess = AppIdentity.deletePersistenceFile()
+            // Hopefully the user cannot access anything now
+            // We don't do background calls to API so this *shouldn't* crash
+            // Remove AppIdentity persistence file
+            let identityClearingSuccess = AppIdentity.deletePersistenceFile()
 
-        // After this is done, make a call to reconfigure
-        guard let application = UIApplication.shared.delegate as? AppDelegate else {
-            print("FUCK")
-            return
-        }
-        application.configureInitialViewController()
+            // After this is done, make a call to reconfigure
+            guard let application = UIApplication.shared.delegate as? AppDelegate else {
+                print("FUCK")
+                return
+            }
+            application.configureInitialViewController()
+        })
     }
 
     func getMember(completionHandler: @escaping ((MemberRecord) -> Void)) {
