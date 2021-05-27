@@ -75,6 +75,7 @@
 		7DC54AE526437AB3000C8300 /* PinnedTicketRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC54AE426437AB3000C8300 /* PinnedTicketRecord.swift */; };
 		7DEA17852639E7B5004E5A71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DEA17842639E7B5004E5A71 /* LaunchScreen.storyboard */; };
 		7DF6CBA5265F8D620013CAEA /* UIWindowExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF6CBA4265F8D620013CAEA /* UIWindowExtensions.swift */; };
+		7DF6CBA7265F93A90013CAEA /* TitleScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DF6CBA6265F93A90013CAEA /* TitleScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -168,6 +169,7 @@
 		7DC54AE426437AB3000C8300 /* PinnedTicketRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnedTicketRecord.swift; sourceTree = "<group>"; };
 		7DEA17842639E7B5004E5A71 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7DF6CBA4265F8D620013CAEA /* UIWindowExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindowExtensions.swift; sourceTree = "<group>"; };
+		7DF6CBA6265F93A90013CAEA /* TitleScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TitleScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -354,6 +356,7 @@
 			children = (
 				7D679F802650EF83000429E8 /* Admin */,
 				5A79FFE0262E562A00D04320 /* Main.storyboard */,
+				7DF6CBA6265F93A90013CAEA /* TitleScreen.storyboard */,
 				7D9963AB261EF3A4002338E7 /* Root.storyboard */,
 				7DC2A21626293F360002CEE6 /* Home.storyboard */,
 				7DC2A21B262943A70002CEE6 /* Sidebar.storyboard */,
@@ -502,6 +505,7 @@
 				5A79FFE1262E562A00D04320 /* Main.storyboard in Resources */,
 				05588A12264DB61E000D8674 /* TeamMembers.storyboard in Resources */,
 				7D9963AD261EF3A4002338E7 /* Root.storyboard in Resources */,
+				7DF6CBA7265F93A90013CAEA /* TitleScreen.storyboard in Resources */,
 				7DEA17852639E7B5004E5A71 /* LaunchScreen.storyboard in Resources */,
 				7D01B55C264FAAEE0009FA97 /* Admin.storyboard in Resources */,
 				3A150A77263CB5F70052934B /* TicketDetail.storyboard in Resources */,

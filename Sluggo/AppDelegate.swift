@@ -31,6 +31,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
         window!.rootViewController = initialViewController
         window!.makeKeyAndVisible()
+        
+        // If any windows exist below, delete them
+        if(!(UIApplication.shared.windows.first == window)) {
+            UIApplication.shared.windows[0].dismiss()
+        }
     }
 
     // MARK: UISceneSession Lifecycle

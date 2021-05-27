@@ -66,16 +66,28 @@ class RootViewController: UIViewController {
         self.mainTabBarController?.dismiss(animated: true, completion: {
             // Assume we are in the key window
             let keyWindow = UIApplication.shared.keyWindow
+
+            // Setup temporary window to make it look like we don't cut in and out
+            // Relies on logo VC being identical in nature to existing VC
+            let temporaryLogoWindow = UIWindow()
+            let logoStoryboard = UIStoryboard(name: "TitleScreen", bundle: Bundle.main)
+            let logoVC = logoStoryboard.instantiateInitialViewController()
+            temporaryLogoWindow.rootViewController = logoVC
+
+            // Make new logo window visible
+            temporaryLogoWindow.makeKeyAndVisible()
+
+            // Dismiss our old window after this has been made key and visible
             keyWindow?.dismiss()
 
             // Hopefully the user cannot access anything now
             // We don't do background calls to API so this *shouldn't* crash
             // Remove AppIdentity persistence file
-            let identityClearingSuccess = AppIdentity.deletePersistenceFile()
+            _ = AppIdentity.deletePersistenceFile()
 
             // After this is done, make a call to reconfigure
+            // Reconfiguring will remove the logo window if it exists
             guard let application = UIApplication.shared.delegate as? AppDelegate else {
-                print("FUCK")
                 return
             }
             application.configureInitialViewController()
