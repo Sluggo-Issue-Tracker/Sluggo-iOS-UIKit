@@ -27,6 +27,8 @@
 		3A90FBB12651CEED00BE4F5D /* TicketTagTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A90FBB02651CEED00BE4F5D /* TicketTagTableViewCell.swift */; };
 		3A90FBB32651D76900BE4F5D /* TicketTabTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A90FBB22651D76900BE4F5D /* TicketTabTableViewController.swift */; };
 		3A90FBB526531AC600BE4F5D /* AdminUserRolesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A90FBB426531AC600BE4F5D /* AdminUserRolesTableViewController.swift */; };
+		3A90FBB9265F4E7900BE4F5D /* AdminTag.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A90FBB8265F4E7900BE4F5D /* AdminTag.storyboard */; };
+		3A90FBBB265F4FAB00BE4F5D /* AdminTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A90FBBA265F4FAB00BE4F5D /* AdminTagViewController.swift */; };
 		5A00A0142639EDEA0085C8C6 /* URLRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A00A0132639EDEA0085C8C6 /* URLRequestBuilder.swift */; };
 		5A00A045263A34CC0085C8C6 /* TicketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A00A044263A34CC0085C8C6 /* TicketTableViewCell.swift */; };
 		5A25CFA2264B8C8100852035 /* TagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A25CFA1264B8C8100852035 /* TagTests.swift */; };
@@ -117,6 +119,8 @@
 		3A90FBB02651CEED00BE4F5D /* TicketTagTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketTagTableViewCell.swift; sourceTree = "<group>"; };
 		3A90FBB22651D76900BE4F5D /* TicketTabTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketTabTableViewController.swift; sourceTree = "<group>"; };
 		3A90FBB426531AC600BE4F5D /* AdminUserRolesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminUserRolesTableViewController.swift; sourceTree = "<group>"; };
+		3A90FBB8265F4E7900BE4F5D /* AdminTag.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AdminTag.storyboard; sourceTree = "<group>"; };
+		3A90FBBA265F4FAB00BE4F5D /* AdminTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminTagViewController.swift; sourceTree = "<group>"; };
 		5A00A0132639EDEA0085C8C6 /* URLRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestBuilder.swift; sourceTree = "<group>"; };
 		5A00A044263A34CC0085C8C6 /* TicketTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketTableViewCell.swift; sourceTree = "<group>"; };
 		5A25CFA1264B8C8100852035 /* TagTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagTests.swift; sourceTree = "<group>"; };
@@ -282,6 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				7D01B55B264FAAEE0009FA97 /* Admin.storyboard */,
+				3A90FBB8265F4E7900BE4F5D /* AdminTag.storyboard */,
 			);
 			path = Admin;
 			sourceTree = "<group>";
@@ -389,6 +394,7 @@
 				7D01B55D264FADC40009FA97 /* AdminTableViewController.swift */,
 				3A90FBB426531AC600BE4F5D /* AdminUserRolesTableViewController.swift */,
 				7DF6CBA8265F9A8E0013CAEA /* SluggoNavigationController.swift */,
+				3A90FBBA265F4FAB00BE4F5D /* AdminTagViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -504,6 +510,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D9963B2261EF3A5002338E7 /* Assets.xcassets in Resources */,
+				3A90FBB9265F4E7900BE4F5D /* AdminTag.storyboard in Resources */,
 				5A9FF88926386D1400378550 /* Ticket.storyboard in Resources */,
 				5A79FFE1262E562A00D04320 /* Main.storyboard in Resources */,
 				05588A12264DB61E000D8674 /* TeamMembers.storyboard in Resources */,
@@ -575,6 +582,7 @@
 				7DC54AE526437AB3000C8300 /* PinnedTicketRecord.swift in Sources */,
 				7DC2A227262948800002CEE6 /* SluggoSidebarContainerViewController.swift in Sources */,
 				2FF89024264BBAC600D50B69 /* TicketDetailTableViewController.swift in Sources */,
+				3A90FBBB265F4FAB00BE4F5D /* AdminTagViewController.swift in Sources */,
 				5AC6459026412F0C00F46137 /* TeamTableViewCell.swift in Sources */,
 				051AAB0B2630FD6500BCB9C7 /* Constants.swift in Sources */,
 				7DF6CBA9265F9A8E0013CAEA /* SluggoNavigationController.swift in Sources */,
