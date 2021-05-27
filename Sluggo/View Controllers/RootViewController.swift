@@ -140,14 +140,54 @@ class RootViewController: UIViewController {
     }
 
     @IBAction func receivedGesture() {
-        NotificationCenter.default.post(name: .onSidebarTrigger,
-                                        object: self, userInfo: [Sidebar.USER_INFO_KEY: SidebarStatus.open])
+        // Determine if feasible here
+        let shouldPresentSidebar = determineIfPresenting()
+
+        if shouldPresentSidebar {
+            NotificationCenter.default.post(name: .onSidebarTrigger,
+                                            object: self, userInfo: [Sidebar.USER_INFO_KEY: SidebarStatus.open])
+        }
     }
+
     @IBAction func receieveLeft() {
         NotificationCenter.default.post(name: .onSidebarTrigger,
                                         object: self, userInfo: [Sidebar.USER_INFO_KEY: SidebarStatus.closed])
     }
     @IBSegueAction func showSidebar(_ coder: NSCoder) -> UIViewController? {
         return SluggoSidebarContainerViewController(coder: coder, identity: self.identity)
+    }
+
+    private func determineIfPresenting() -> Bool {
+        /*
+         * Some notes on the below implementation:
+         * We determine if we can present based on the number of VCs in the
+         * navigation stack of each controller. This is acceptable, because
+         * navigation presentation is susceptible to still recieving the
+         * sidebar gestures.
+         *
+         * Modal presentation is *not* susceptible to this, and so does not
+         * need to be accounted for here.
+         */
+        guard let tabBarControllerVCs = mainTabBarController?.viewControllers
+        else { return false } // return false if something goes wrong in determining
+
+        var shouldPresentSidebar = true
+
+        for tabVC in tabBarControllerVCs {
+            if let navVC = tabVC as? UINavigationController {
+                if navVC.viewControllers.count > 1 {
+                    // More than one view controller present
+                    print(navVC.viewControllers)
+                    shouldPresentSidebar = false
+                    break // save additional cycles
+                }
+            } else {
+                print("RootViewController: Error: Root view controller on" +
+                      " tab bar controller was not a navigation controller")
+                continue
+            }
+        }
+
+        return shouldPresentSidebar
     }
 }
