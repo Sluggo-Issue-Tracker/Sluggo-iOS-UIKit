@@ -45,6 +45,33 @@
                                             <segue destination="XMy-yX-PQZ" kind="show" identifier="createUsersList" destinationCreationSelector="createUsersList:" id="p9F-N2-shF"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="r7v-WH-Cu9" detailTextLabel="Anm-hW-DmG" style="IBUITableViewCellStyleSubtitle" id="BgD-BG-lAA">
+                                        <rect key="frame" x="0.0" y="68" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BgD-BG-lAA" id="PH6-DU-EFP">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Tags" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="r7v-WH-Cu9">
+                                                    <rect key="frame" x="20" y="6" width="27" height="14.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Manage Ticket tags" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Anm-hW-DmG">
+                                                    <rect key="frame" x="20" y="22.5" width="103" height="13.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="9Is-y3-2me" kind="show" destinationCreationSelector="createTagsList:" id="Pbf-UO-Cyv"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -135,6 +162,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9fO-4e-am2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1824" y="-144"/>
+        </scene>
+        <!--AdminTagViewController-->
+        <scene sceneID="QY2-qz-RZZ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="AdminTag" referencedIdentifier="AdminTagViewController" id="9Is-y3-2me" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="boI-aE-7e2"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zwr-jF-Bex" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1824" y="355"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="URV-lv-mtA">

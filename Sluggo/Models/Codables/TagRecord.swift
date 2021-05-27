@@ -22,3 +22,7 @@ struct TagRecord: Codable, HasTitle {
         return title
     }
 }
+
+struct WriteTagRecord: Codable {
+    var title: String
+}
