@@ -42,4 +42,8 @@ class AdminTableViewController: UITableViewController {
 
         return memberVC
     }
+    @IBSegueAction func createTagsList(_ coder: NSCoder) -> AdminTagViewController? {
+        let view = AdminTagViewController(coder: coder, identity: identity)
+        return view
+    }
 }

@@ -36,4 +36,20 @@ class TagManager: TeamPaginatedListable {
         JsonLoader.executeCodableRequest(request: requestBuilder.getRequest(), completionHandler: completionHandler)
     }
 
+    public func makeTag(tag: WriteTagRecord,
+                        completionHandler: @escaping(Result<TagRecord, Error>) -> Void) {
+        guard let body = JsonLoader.encode(object: tag) else {
+            let errorMessage = "Failed to serialize tag JSON for makeTag in TagManager"
+            completionHandler(.failure(Exception.runtimeError(message: errorMessage)))
+            return
+        }
+
+        let requestBuilder = URLRequestBuilder(url: makeListUrl(page: 1))
+            .setMethod(method: .POST)
+            .setData(data: body)
+            .setIdentity(identity: self.identity)
+
+        JsonLoader.executeCodableRequest(request: requestBuilder.getRequest(), completionHandler: completionHandler)
+    }
+
 }
