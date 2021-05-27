@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     // https://stackoverflow.com/questions/33714671/value-of-type-appdelegate-has-no-member-window
-    private func configureInitialViewController() {
+    func configureInitialViewController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let initialViewController: UIViewController
 

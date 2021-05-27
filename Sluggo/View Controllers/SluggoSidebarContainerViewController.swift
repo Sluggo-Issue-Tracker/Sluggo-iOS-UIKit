@@ -15,6 +15,7 @@ class SluggoSidebarContainerViewController: UIViewController {
     @IBOutlet weak var sidebarContainerLeadingConstraint: NSLayoutConstraint!
 
     private var identity: AppIdentity
+    var logOutAction: (() -> Void)?
 
     init? (coder: NSCoder, identity: AppIdentity) {
         self.identity = identity
@@ -100,6 +101,7 @@ class SluggoSidebarContainerViewController: UIViewController {
     @IBSegueAction func launchSidebar(_ coder: NSCoder) -> UITableViewController? {
         let view = TeamTableViewController(coder: coder)
         view?.identity = self.identity
+        view?.logOutAction = self.logOutAction
         view?.completion = { team in
             self.identity.team = team
             NotificationCenter.default.post(name: Constants.Signals.TEAM_CHANGE_NOTIFICATION, object: nil)

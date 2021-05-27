@@ -60,6 +60,27 @@ class RootViewController: UIViewController {
         getMember(completionHandler: updateAdminAttachmentForMemberRole)
     }
 
+    func logOutAction() {
+        // This needs to be done in a specific order to avoid nil exceptions
+
+        // First, dismiss the main view controller and sidebar
+        // Assume we are in the key window
+        let keyWindow = UIApplication.shared.keyWindow
+        keyWindow?.dismiss()
+
+        // Hopefully the user cannot access anything now
+        // We don't do background calls to API so this *shouldn't* crash
+        // Remove AppIdentity persistence file
+        let identityClearingSuccess = AppIdentity.deletePersistenceFile()
+
+        // After this is done, make a call to reconfigure
+        guard let application = UIApplication.shared.delegate as? AppDelegate else {
+            print("FUCK")
+            return
+        }
+        application.configureInitialViewController()
+    }
+
     func getMember(completionHandler: @escaping ((MemberRecord) -> Void)) {
         let memberManager = MemberManager(identity: identity)
         memberManager.getMemberRecord(user: identity.authenticatedUser!, identity: identity) { result in
@@ -68,7 +89,6 @@ class RootViewController: UIViewController {
                 completionHandler(member)
             case .failure:
                 // Silently fails, for now
-                // TODO: is there a better approach?
                 print("Getting the member failed.")
             }
         }
@@ -154,7 +174,10 @@ class RootViewController: UIViewController {
                                         object: self, userInfo: [Sidebar.USER_INFO_KEY: SidebarStatus.closed])
     }
     @IBSegueAction func showSidebar(_ coder: NSCoder) -> UIViewController? {
-        return SluggoSidebarContainerViewController(coder: coder, identity: self.identity)
+        let sidebarContainerVC = SluggoSidebarContainerViewController(coder: coder, identity: self.identity)
+        sidebarContainerVC?.logOutAction = self.logOutAction
+
+        return sidebarContainerVC
     }
 
     private func determineIfPresenting() -> Bool {

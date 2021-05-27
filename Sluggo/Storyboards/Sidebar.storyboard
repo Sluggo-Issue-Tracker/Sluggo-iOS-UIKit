@@ -40,7 +40,13 @@
                             <outlet property="delegate" destination="PJK-Xs-1jr" id="hoY-C6-eCq"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Teams" largeTitleDisplayMode="always" id="s2u-Yn-B73"/>
+                    <navigationItem key="navigationItem" title="Teams" largeTitleDisplayMode="always" id="s2u-Yn-B73">
+                        <barButtonItem key="leftBarButtonItem" title="Log Out" id="AWX-g9-4q7">
+                            <connections>
+                                <action selector="doLogOutAction:" destination="PJK-Xs-1jr" id="ees-yu-euF"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HKS-Hy-anX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

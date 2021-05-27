@@ -74,6 +74,7 @@
 		7DC2A227262948800002CEE6 /* SluggoSidebarContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC2A226262948800002CEE6 /* SluggoSidebarContainerViewController.swift */; };
 		7DC54AE526437AB3000C8300 /* PinnedTicketRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC54AE426437AB3000C8300 /* PinnedTicketRecord.swift */; };
 		7DEA17852639E7B5004E5A71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DEA17842639E7B5004E5A71 /* LaunchScreen.storyboard */; };
+		7DF6CBA5265F8D620013CAEA /* UIWindowExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF6CBA4265F8D620013CAEA /* UIWindowExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -166,6 +167,7 @@
 		7DC2A226262948800002CEE6 /* SluggoSidebarContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SluggoSidebarContainerViewController.swift; sourceTree = "<group>"; };
 		7DC54AE426437AB3000C8300 /* PinnedTicketRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnedTicketRecord.swift; sourceTree = "<group>"; };
 		7DEA17842639E7B5004E5A71 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7DF6CBA4265F8D620013CAEA /* UIWindowExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindowExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -284,6 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				7D778C05264A374C00D4061A /* ViewControllerExtensions.swift */,
+				7DF6CBA4265F8D620013CAEA /* UIWindowExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -575,6 +578,7 @@
 				052258702636100B00B49CE4 /* LaunchViewController.swift in Sources */,
 				3A150A6726365A9A0052934B /* StatusRecord.swift in Sources */,
 				3A90FBB12651CEED00BE4F5D /* TicketTagTableViewCell.swift in Sources */,
+				7DF6CBA5265F8D620013CAEA /* UIWindowExtensions.swift in Sources */,
 				5A25CFF1264BE28100852035 /* HasTitle.swift in Sources */,
 				7D01B55E264FADC40009FA97 /* AdminTableViewController.swift in Sources */,
 				7D53BE6926433D6600400D0E /* PinnedTicketManager.swift in Sources */,
