@@ -118,7 +118,7 @@ class RootViewController: UIViewController {
                     adminVC.identity = self.identity // Does this create a race condition?
 
                     // Wrap this in a navigation controller
-                    let navVC = UINavigationController(rootViewController: adminVC)
+                    let navVC = SluggoNavigationController(rootViewController: adminVC)
 
                     // Create bar button item
                     let adminBarButtonImage = UIImage(systemName: "shield")
@@ -197,7 +197,7 @@ class RootViewController: UIViewController {
         /*
          * Some notes on the below implementation:
          * We determine if we can present based on the number of VCs in the
-         * navigation stack of each controller. This is acceptable, because
+         * navigation stack of the selected tab controller. This is acceptable, because
          * navigation presentation is susceptible to still recieving the
          * sidebar gestures.
          *
@@ -207,23 +207,14 @@ class RootViewController: UIViewController {
         guard let tabBarControllerVCs = mainTabBarController?.viewControllers
         else { return false } // return false if something goes wrong in determining
 
-        var shouldPresentSidebar = true
-
-        for tabVC in tabBarControllerVCs {
-            if let navVC = tabVC as? UINavigationController {
-                if navVC.viewControllers.count > 1 {
-                    // More than one view controller present
-                    print(navVC.viewControllers)
-                    shouldPresentSidebar = false
-                    break // save additional cycles
-                }
-            } else {
-                print("RootViewController: Error: Root view controller on" +
-                      " tab bar controller was not a navigation controller")
-                continue
+        let selectedTabVC = self.mainTabBarController?.selectedViewController
+        if let navVC = selectedTabVC as? UINavigationController {
+            if navVC.viewControllers.count > 1 {
+                // More than one view controller present
+                return false
             }
         }
 
-        return shouldPresentSidebar
+        return true
     }
 }

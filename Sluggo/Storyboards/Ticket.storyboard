@@ -130,7 +130,7 @@
         <!--Tickets-->
         <scene sceneID="Shx-pT-pdo">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Uq0-p5-H1Z" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Uq0-p5-H1Z" customClass="SluggoNavigationController" customModule="Sluggo" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Tickets" image="ticket" catalog="system" id="bbG-bf-pLB"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>

@@ -76,6 +76,7 @@
 		7DEA17852639E7B5004E5A71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DEA17842639E7B5004E5A71 /* LaunchScreen.storyboard */; };
 		7DF6CBA5265F8D620013CAEA /* UIWindowExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF6CBA4265F8D620013CAEA /* UIWindowExtensions.swift */; };
 		7DF6CBA7265F93A90013CAEA /* TitleScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DF6CBA6265F93A90013CAEA /* TitleScreen.storyboard */; };
+		7DF6CBA9265F9A8E0013CAEA /* SluggoNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF6CBA8265F9A8E0013CAEA /* SluggoNavigationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,6 +171,7 @@
 		7DEA17842639E7B5004E5A71 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7DF6CBA4265F8D620013CAEA /* UIWindowExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindowExtensions.swift; sourceTree = "<group>"; };
 		7DF6CBA6265F93A90013CAEA /* TitleScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TitleScreen.storyboard; sourceTree = "<group>"; };
+		7DF6CBA8265F9A8E0013CAEA /* SluggoNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SluggoNavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -386,6 +388,7 @@
 				05DE0CD6264F11E400D69C61 /* MemberListViewController.swift */,
 				7D01B55D264FADC40009FA97 /* AdminTableViewController.swift */,
 				3A90FBB426531AC600BE4F5D /* AdminUserRolesTableViewController.swift */,
+				7DF6CBA8265F9A8E0013CAEA /* SluggoNavigationController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -574,6 +577,7 @@
 				2FF89024264BBAC600D50B69 /* TicketDetailTableViewController.swift in Sources */,
 				5AC6459026412F0C00F46137 /* TeamTableViewCell.swift in Sources */,
 				051AAB0B2630FD6500BCB9C7 /* Constants.swift in Sources */,
+				7DF6CBA9265F9A8E0013CAEA /* SluggoNavigationController.swift in Sources */,
 				2F3F66E2262DD3BA0040404C /* JsonLoader.swift in Sources */,
 				2F2247AC262920AC006C6EE6 /* TokenRecord.swift in Sources */,
 				7D1DA6AE262B82C200E7C12D /* RootViewController.swift in Sources */,
