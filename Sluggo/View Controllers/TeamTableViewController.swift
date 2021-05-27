@@ -10,6 +10,7 @@ import UIKit
 class TeamTableViewController: UITableViewController {
     var identity: AppIdentity!
     var completion: ((TeamRecord) -> Void)?
+    var logOutAction: (() -> Void)?
     private var maxNumber: Int = 0
     private var fetchingTeams: [TeamRecord] = []
     private var teams: [TeamRecord] = []
@@ -82,4 +83,9 @@ class TeamTableViewController: UITableViewController {
                              after: after)
         }
     }
+    
+    @IBAction func doLogOutAction(_ sender: Any) {
+        self.logOutAction?()
+    }
+    
 }

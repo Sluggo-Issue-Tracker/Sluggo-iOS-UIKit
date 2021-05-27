@@ -76,6 +76,9 @@
 		7DC2A227262948800002CEE6 /* SluggoSidebarContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC2A226262948800002CEE6 /* SluggoSidebarContainerViewController.swift */; };
 		7DC54AE526437AB3000C8300 /* PinnedTicketRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC54AE426437AB3000C8300 /* PinnedTicketRecord.swift */; };
 		7DEA17852639E7B5004E5A71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DEA17842639E7B5004E5A71 /* LaunchScreen.storyboard */; };
+		7DF6CBA5265F8D620013CAEA /* UIWindowExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF6CBA4265F8D620013CAEA /* UIWindowExtensions.swift */; };
+		7DF6CBA7265F93A90013CAEA /* TitleScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DF6CBA6265F93A90013CAEA /* TitleScreen.storyboard */; };
+		7DF6CBA9265F9A8E0013CAEA /* SluggoNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF6CBA8265F9A8E0013CAEA /* SluggoNavigationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,6 +173,9 @@
 		7DC2A226262948800002CEE6 /* SluggoSidebarContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SluggoSidebarContainerViewController.swift; sourceTree = "<group>"; };
 		7DC54AE426437AB3000C8300 /* PinnedTicketRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnedTicketRecord.swift; sourceTree = "<group>"; };
 		7DEA17842639E7B5004E5A71 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7DF6CBA4265F8D620013CAEA /* UIWindowExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindowExtensions.swift; sourceTree = "<group>"; };
+		7DF6CBA6265F93A90013CAEA /* TitleScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TitleScreen.storyboard; sourceTree = "<group>"; };
+		7DF6CBA8265F9A8E0013CAEA /* SluggoNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SluggoNavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -289,6 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				7D778C05264A374C00D4061A /* ViewControllerExtensions.swift */,
+				7DF6CBA4265F8D620013CAEA /* UIWindowExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -356,6 +363,7 @@
 			children = (
 				7D679F802650EF83000429E8 /* Admin */,
 				5A79FFE0262E562A00D04320 /* Main.storyboard */,
+				7DF6CBA6265F93A90013CAEA /* TitleScreen.storyboard */,
 				7D9963AB261EF3A4002338E7 /* Root.storyboard */,
 				7DC2A21626293F360002CEE6 /* Home.storyboard */,
 				7DC2A21B262943A70002CEE6 /* Sidebar.storyboard */,
@@ -385,6 +393,7 @@
 				05DE0CD6264F11E400D69C61 /* MemberListViewController.swift */,
 				7D01B55D264FADC40009FA97 /* AdminTableViewController.swift */,
 				3A90FBB426531AC600BE4F5D /* AdminUserRolesTableViewController.swift */,
+				7DF6CBA8265F9A8E0013CAEA /* SluggoNavigationController.swift */,
 				3A90FBBA265F4FAB00BE4F5D /* AdminTagViewController.swift */,
 			);
 			path = "View Controllers";
@@ -506,6 +515,7 @@
 				5A79FFE1262E562A00D04320 /* Main.storyboard in Resources */,
 				05588A12264DB61E000D8674 /* TeamMembers.storyboard in Resources */,
 				7D9963AD261EF3A4002338E7 /* Root.storyboard in Resources */,
+				7DF6CBA7265F93A90013CAEA /* TitleScreen.storyboard in Resources */,
 				7DEA17852639E7B5004E5A71 /* LaunchScreen.storyboard in Resources */,
 				7D01B55C264FAAEE0009FA97 /* Admin.storyboard in Resources */,
 				3A150A77263CB5F70052934B /* TicketDetail.storyboard in Resources */,
@@ -575,6 +585,7 @@
 				3A90FBBB265F4FAB00BE4F5D /* AdminTagViewController.swift in Sources */,
 				5AC6459026412F0C00F46137 /* TeamTableViewCell.swift in Sources */,
 				051AAB0B2630FD6500BCB9C7 /* Constants.swift in Sources */,
+				7DF6CBA9265F9A8E0013CAEA /* SluggoNavigationController.swift in Sources */,
 				2F3F66E2262DD3BA0040404C /* JsonLoader.swift in Sources */,
 				2F2247AC262920AC006C6EE6 /* TokenRecord.swift in Sources */,
 				7D1DA6AE262B82C200E7C12D /* RootViewController.swift in Sources */,
@@ -583,6 +594,7 @@
 				052258702636100B00B49CE4 /* LaunchViewController.swift in Sources */,
 				3A150A6726365A9A0052934B /* StatusRecord.swift in Sources */,
 				3A90FBB12651CEED00BE4F5D /* TicketTagTableViewCell.swift in Sources */,
+				7DF6CBA5265F8D620013CAEA /* UIWindowExtensions.swift in Sources */,
 				5A25CFF1264BE28100852035 /* HasTitle.swift in Sources */,
 				7D01B55E264FADC40009FA97 /* AdminTableViewController.swift in Sources */,
 				7D53BE6926433D6600400D0E /* PinnedTicketManager.swift in Sources */,

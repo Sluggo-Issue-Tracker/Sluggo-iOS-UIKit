@@ -55,7 +55,7 @@
         <!--Members-->
         <scene sceneID="ami-Zl-Jrs">
             <objects>
-                <navigationController id="E8f-aG-d2W" sceneMemberID="viewController">
+                <navigationController id="E8f-aG-d2W" customClass="SluggoNavigationController" customModule="Sluggo" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Members" image="person.2.fill" catalog="system" id="urg-qZ-4T3"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="1QG-Aw-Qpg">

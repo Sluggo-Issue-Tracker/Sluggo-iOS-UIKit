@@ -60,6 +60,40 @@ class RootViewController: UIViewController {
         getMember(completionHandler: updateAdminAttachmentForMemberRole)
     }
 
+    func logOutAction() {
+        // This needs to be done in a specific order to avoid nil exceptions
+        // First, dismiss the main view controller and sidebar
+        self.mainTabBarController?.dismiss(animated: true, completion: {
+            // Assume we are in the key window
+            let keyWindow = UIApplication.shared.keyWindow
+
+            // Setup temporary window to make it look like we don't cut in and out
+            // Relies on logo VC being identical in nature to existing VC
+            let temporaryLogoWindow = UIWindow()
+            let logoStoryboard = UIStoryboard(name: "TitleScreen", bundle: Bundle.main)
+            let logoVC = logoStoryboard.instantiateInitialViewController()
+            temporaryLogoWindow.rootViewController = logoVC
+
+            // Make new logo window visible
+            temporaryLogoWindow.makeKeyAndVisible()
+
+            // Dismiss our old window after this has been made key and visible
+            keyWindow?.dismiss()
+
+            // Hopefully the user cannot access anything now
+            // We don't do background calls to API so this *shouldn't* crash
+            // Remove AppIdentity persistence file
+            _ = AppIdentity.deletePersistenceFile()
+
+            // After this is done, make a call to reconfigure
+            // Reconfiguring will remove the logo window if it exists
+            guard let application = UIApplication.shared.delegate as? AppDelegate else {
+                return
+            }
+            application.configureInitialViewController()
+        })
+    }
+
     func getMember(completionHandler: @escaping ((MemberRecord) -> Void)) {
         let memberManager = MemberManager(identity: identity)
         memberManager.getMemberRecord(user: identity.authenticatedUser!, identity: identity) { result in
@@ -68,7 +102,6 @@ class RootViewController: UIViewController {
                 completionHandler(member)
             case .failure:
                 // Silently fails, for now
-                // TODO: is there a better approach?
                 print("Getting the member failed.")
             }
         }
@@ -85,7 +118,7 @@ class RootViewController: UIViewController {
                     adminVC.identity = self.identity // Does this create a race condition?
 
                     // Wrap this in a navigation controller
-                    let navVC = UINavigationController(rootViewController: adminVC)
+                    let navVC = SluggoNavigationController(rootViewController: adminVC)
 
                     // Create bar button item
                     let adminBarButtonImage = UIImage(systemName: "shield")
@@ -140,14 +173,48 @@ class RootViewController: UIViewController {
     }
 
     @IBAction func receivedGesture() {
-        NotificationCenter.default.post(name: .onSidebarTrigger,
-                                        object: self, userInfo: [Sidebar.USER_INFO_KEY: SidebarStatus.open])
+        // Determine if feasible here
+        let shouldPresentSidebar = determineIfPresenting()
+
+        if shouldPresentSidebar {
+            NotificationCenter.default.post(name: .onSidebarTrigger,
+                                            object: self, userInfo: [Sidebar.USER_INFO_KEY: SidebarStatus.open])
+        }
     }
+
     @IBAction func receieveLeft() {
         NotificationCenter.default.post(name: .onSidebarTrigger,
                                         object: self, userInfo: [Sidebar.USER_INFO_KEY: SidebarStatus.closed])
     }
     @IBSegueAction func showSidebar(_ coder: NSCoder) -> UIViewController? {
-        return SluggoSidebarContainerViewController(coder: coder, identity: self.identity)
+        let sidebarContainerVC = SluggoSidebarContainerViewController(coder: coder, identity: self.identity)
+        sidebarContainerVC?.logOutAction = self.logOutAction
+
+        return sidebarContainerVC
+    }
+
+    private func determineIfPresenting() -> Bool {
+        /*
+         * Some notes on the below implementation:
+         * We determine if we can present based on the number of VCs in the
+         * navigation stack of the selected tab controller. This is acceptable, because
+         * navigation presentation is susceptible to still recieving the
+         * sidebar gestures.
+         *
+         * Modal presentation is *not* susceptible to this, and so does not
+         * need to be accounted for here.
+         */
+        guard let tabBarControllerVCs = mainTabBarController?.viewControllers
+        else { return false } // return false if something goes wrong in determining
+
+        let selectedTabVC = self.mainTabBarController?.selectedViewController
+        if let navVC = selectedTabVC as? UINavigationController {
+            if navVC.viewControllers.count > 1 {
+                // More than one view controller present
+                return false
+            }
+        }
+
+        return true
     }
 }

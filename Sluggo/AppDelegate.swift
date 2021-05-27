@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     // https://stackoverflow.com/questions/33714671/value-of-type-appdelegate-has-no-member-window
-    private func configureInitialViewController() {
+    func configureInitialViewController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let initialViewController: UIViewController
 
@@ -31,6 +31,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
         window!.rootViewController = initialViewController
         window!.makeKeyAndVisible()
+        
+        // If any windows exist below, delete them
+        if(!(UIApplication.shared.windows.first == window)) {
+            UIApplication.shared.windows[0].dismiss()
+        }
     }
 
     // MARK: UISceneSession Lifecycle
