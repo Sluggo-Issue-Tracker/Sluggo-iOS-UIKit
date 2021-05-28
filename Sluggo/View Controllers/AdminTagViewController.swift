@@ -51,8 +51,8 @@ class AdminTagViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle,
                             forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let acon = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-            acon.addAction(UIAlertAction(title: "Delete Tag", style: .destructive, handler: { _ in
+            let aCon = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            aCon.addAction(UIAlertAction(title: "Delete Tag", style: .destructive, handler: { _ in
                 let manager = TagManager(identity: self.identity)
                 let tag = self.tags[indexPath.row]
                 manager.deleteTag(tag: tag) { result in
@@ -64,15 +64,35 @@ class AdminTagViewController: UITableViewController {
                     }
                 }
             }))
-            acon.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-            acon.popoverPresentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
-            present(acon, animated: true)
+            aCon.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            aCon.popoverPresentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
+            present(aCon, animated: true)
         }
     }
 
-    @IBSegueAction func segueToTagCreate(_ coder: NSCoder) -> AdminTagCreateViewController? {
-        let view = AdminTagCreateViewController(coder: coder, identity: identity)
-        return view
+    @IBAction func addTagHit(_ sender: Any) {
+        let aCon = UIAlertController(title: "Create a Tag", message: nil, preferredStyle: .alert)
+        aCon.addTextField { textField in
+            textField.placeholder = "Enter Tag Title"
+        }
+        aCon.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        aCon.addAction(UIAlertAction(title: "Save", style: .default, handler: { _ in
+            let textField = aCon.textFields?[0] ?? nil
+            if let text = textField?.text {
+                let manager = TagManager(identity: self.identity)
+                let tag = WriteTagRecord(title: text)
+                manager.makeTag(tag: tag) { result in
+                    self.processResult(result: result) { _ in
+                        DispatchQueue.main.async {
+                            NotificationCenter.default.post(name: .refreshTags, object: self)
+                        }
+                    }
+                }
+            }
+        }))
+        aCon.popoverPresentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
+        present(aCon, animated: true)
+
     }
 
     @objc func handleRefreshAction() {
@@ -102,36 +122,4 @@ class AdminTagViewController: UITableViewController {
 
 extension Notification.Name {
     static let refreshTags = Notification.Name(rawValue: "SLGRefreshTagsNotification")
-}
-
-class AdminTagCreateViewController: UITableViewController {
-    var identity: AppIdentity!
-    @IBOutlet weak var tagTitle: UITextField!
-
-    required init? (coder: NSCoder, identity: AppIdentity) {
-        self.identity = identity
-        super.init(coder: coder)
-    }
-
-    required init? (coder: NSCoder) {
-        fatalError("Must be initialized with identity")
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
-    @IBAction func doneButtonClicked(_ sender: Any) {
-        let title = tagTitle.text ?? "Default Tag Title"
-        let manager = TagManager(identity: identity)
-        let tag = WriteTagRecord(title: title)
-        manager.makeTag(tag: tag) { result in
-            self.processResult(result: result) { _ in
-                DispatchQueue.main.async {
-                    NotificationCenter.default.post(name: .refreshTags, object: self)
-                    self.navigationController?.popViewController(animated: true)
-                }
-            }
-        }
-    }
 }
