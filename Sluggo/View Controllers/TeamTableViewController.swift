@@ -83,9 +83,9 @@ class TeamTableViewController: UITableViewController {
                              after: after)
         }
     }
-    
+
     @IBAction func doLogOutAction(_ sender: Any) {
         self.logOutAction?()
     }
-    
+
 }

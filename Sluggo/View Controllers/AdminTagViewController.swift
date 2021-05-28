@@ -48,6 +48,28 @@ class AdminTagViewController: UITableViewController {
         return cell
     }
 
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle,
+                            forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let acon = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            acon.addAction(UIAlertAction(title: "Delete Tag", style: .destructive, handler: { _ in
+                let manager = TagManager(identity: self.identity)
+                let tag = self.tags[indexPath.row]
+                manager.deleteTag(tag: tag) { result in
+                    self.processResult(result: result) { _ in
+                        DispatchQueue.main.async {
+                            NotificationCenter.default.post(name: .refreshTags, object: self)
+                            NotificationCenter.default.post(name: .refreshTrigger, object: self)
+                        }
+                    }
+                }
+            }))
+            acon.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            acon.popoverPresentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
+            present(acon, animated: true)
+        }
+    }
+
     @IBSegueAction func segueToTagCreate(_ coder: NSCoder) -> AdminTagCreateViewController? {
         let view = AdminTagCreateViewController(coder: coder, identity: identity)
         return view

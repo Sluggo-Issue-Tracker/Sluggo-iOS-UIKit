@@ -52,4 +52,13 @@ class TagManager: TeamPaginatedListable {
         JsonLoader.executeCodableRequest(request: requestBuilder.getRequest(), completionHandler: completionHandler)
     }
 
+    public func deleteTag(tag: TagRecord, completionHandler: @escaping(Result<Void, Error>) -> Void) {
+
+        let requestBuilder = URLRequestBuilder(url: makeDetailUrl(tagRecord: tag))
+            .setMethod(method: .DELETE)
+            .setIdentity(identity: self.identity)
+
+        JsonLoader.executeEmptyRequest(request: requestBuilder.getRequest(), completionHandler: completionHandler)
+    }
+
 }
