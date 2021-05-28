@@ -52,7 +52,34 @@ class AdminTagViewController: UITableViewController {
         let view = AdminTagCreateViewController(coder: coder, identity: identity)
         return view
     }
-
+    @IBAction func addTagHit(_ sender: Any) {
+        let aCon = UIAlertController(title: "Create a Tag", message: "", preferredStyle: .alert)
+        aCon.addTextField() { textField in
+            textField.placeholder = "Enter Tag Title"
+        }
+        aCon.addAction(UIAlertAction(title: "Delete Ticket", style: .default, handler: doCreateAction))
+        aCon.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        let saveAction = UIAlertAction(title: "Save", style: .default, handler: { alert -> Void in
+            
+        })
+        
+    }
+    
+    func doCreateAction(action: UIAlertAction) {
+//        let firstTextField = action..textFields![0] as UITextField
+        let title = action.textFields?[0] ?? "Default Tag Title"
+        let manager = TagManager(identity: identity)
+        let tag = WriteTagRecord(title: title)
+        manager.makeTag(tag: tag) { result in
+            self.processResult(result: result) { _ in
+                DispatchQueue.main.async {
+                    NotificationCenter.default.post(name: .refreshTags, object: self)
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }
+        }
+    }
+    
     @objc func handleRefreshAction() {
 
         DispatchQueue.global(qos: .userInitiated).async {

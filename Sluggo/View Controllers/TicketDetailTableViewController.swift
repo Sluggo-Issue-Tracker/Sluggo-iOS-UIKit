@@ -58,7 +58,7 @@ class TicketDetailTableViewController: UITableViewController {
                         }, onError: { _ in
                             self.pinnedTicket = nil
                         }, after: {
-                            let title = self.pinnedTicket != nil ? "Un-pin Ticket" : "Pin Ticket"
+                            let title = self.pinnedTicket != nil ? "Unpin Ticket" : "Pin Ticket"
                             self.pinTicketButton.setTitle(title, for: .normal)
                         })
                     }
@@ -256,7 +256,7 @@ class TicketDetailTableViewController: UITableViewController {
                 self.processResult(result: result) { record in
                     DispatchQueue.main.async {
                         NotificationCenter.default.post(name: .refreshTrigger, object: self)
-                        self.pinTicketButton.setTitle("Un-pin Ticket", for: .normal)
+                        self.pinTicketButton.setTitle("Unpin Ticket", for: .normal)
                         self.pinnedTicket = record
                     }
                 }
