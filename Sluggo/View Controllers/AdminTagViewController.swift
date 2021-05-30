@@ -76,7 +76,8 @@ class AdminTagViewController: UITableViewController {
             textField.placeholder = "Enter Tag Title"
         }
         aCon.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        aCon.addAction(UIAlertAction(title: "Save", style: .default, handler: { _ in
+        
+        let saveAction = UIAlertAction(title: "Save", style: .default, handler: { _ in
             let textField = aCon.textFields?[0] ?? nil
             if let text = textField?.text {
                 let manager = TagManager(identity: self.identity)
@@ -89,7 +90,19 @@ class AdminTagViewController: UITableViewController {
                     }
                 }
             }
-        }))
+        })
+
+        saveAction.enabled = false
+        // adding the notification observer here
+        NSNotificationCenter.defaultCenter().addObserverForName(UITextFieldTextDidChangeNotification, object:aCon.textFields?[0],
+            queue: NSOperationQueue.mainQueue()) { notification in
+
+                let title = aCon.textFields?[0] as! UITextField
+                saveAction.enabled = !title.text.isEmpty
+        }
+        
+        aCon.addAction(saveAction)
+
         aCon.popoverPresentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
         present(aCon, animated: true)
 
