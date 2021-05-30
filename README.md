@@ -12,18 +12,24 @@ Sluggo is an open source Issue Tracker for companies, teams, and more. The softw
 1) Before using the Sluggo iOS application, make sure to install the backend API following the instructions on the [repository here](https://github.com/Slugbotics/Sluggo-API).
 2) After completing the installation process, proceed to the admin dashboard (default `127.0.0.8:8000/admin`) and sign on with your super user account that you just created.
 3) In this page, you will be able to create a record for your Team by selecting `Team` on the admin page, and hitting the `Add Team` button in the top right. Just give the team a name and hit save.
-4) Finally, after creating your team go through the same process and create a `Member` record for yourself on the Member page. Select your admin user, your team, and fill out any optional fields such as Pronouns or Bio.
+4) Finally, after creating your team go through the same process and create a `Member` record for yourself on the Member page through the `Add Member` button on your top right. Set you user role as admin, select your team, and fill out any optional fields such as pronouns or Bio, then hit save.
+
+
+## SwiftLint
+The development of Sluggo uses SwiftLint to standardize all changes and coding styles, if you are contributing to Sluggo, please follow the installation instructions for SwiftLint [here](https://github.com/realm/SwiftLint).
 
 ## Installing the Application
 *Note: Once the app is placed on the App Store, the installation process is much simpler*
 1) Clone this repository on a Mac device with Xcode installed.
-2) Run the API on a system with either port forwarding enabled and a public IP, or on the same machine as the simulated app.
-3) Open the repository in Xcode, and hit build.
-4) If you are using the simulator, select your device of choice and hit run.
-5) If you have an apple device you would like to test on, follow [Apple's instruction on running apps on your phone](https://developer.apple.com/documentation/xcode/running-your-app-in-the-simulator-or-on-a-device).
-6) Hit run and load the application on your phone or the simulator.
+    - Preferably this is on the same device as the API. Otherwise, you must have the API acessable on your network with a public IP.
+3) Open the repository in Xcode, and select build.
+4) After this, your app is ready to run, configure your device and then select Run.
+    - If you have an apple device you would like to test on, follow [Apple's instruction on running apps on your phone](https://developer.apple.com/documentation/xcode/running-your-app-in-the-simulator-or-on-a-device).
+    - Otherwise you may use one of the built in simulators on XCode
 
 ## Running the App
 1) When launching the app for the first time, fill in your user name and password for your sluggo instance.
 2) Your Sluggo instance is the url of the API, make sure to have the entire path listed for example: `http://127.0.0.1:8000/`
-3) You will be dropped on the home screen, feel free to poke around!
+3) You will be dropped in the team select page, where you may choose any team your account is apart of. Once you have picked one the homepage will appear. Feel free to poke around!
+
+
