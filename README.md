@@ -32,4 +32,21 @@ The development of Sluggo uses SwiftLint to standardize all changes and coding s
 2) Your Sluggo instance is the url of the API, make sure to have the entire path listed for example: `http://127.0.0.1:8000/`
 3) You will be dropped in the team select page, where you may choose any team your account is apart of. Once you have picked one the homepage will appear. Feel free to poke around!
 
+## Creating Users
+New users (*for now*) must be created through the admin dashboard similarily to the admin user. As the Sluggo ecosystem progresses, this will be adjusted, but it is now the job of the Sysadmin to create accounts for every member.
+1) Open the admin dashboard on your web page (default `127.0.0.1:8000/admin`), scroll down to the **Authentication and Authorization** section, and select `Users`.
+2) Create a new user by hitting `Add User` in the top right corner, enter a username and password for the user, and hit save.
+3) This will lead you to a more indepth user editing page where their name, email, and other such fields can be filled out. (**Note: If you want to invite your user to your team, they must have an email address entered**) Fill out the necessarily fields and hit save.
+4) After creating the user, proceed to the next section to add them to your team.
 
+## Inviting Users to Your Team
+After a user has been created, they cannot do much until they are apart of your team, currently there are two ways to accomplish this:
+1) **Adding Members in App**:
+    - Signed into the Sluggo iOS application, proceed to the admin tab and select the *Invite* row. Here you will be able to enter the email address of the created user which will notify them the next time they log in that there is an invite waiting for accepting.
+    - As the new user, once they log into the application with the same instance url, they will see no teams they can currently access. However, there will be a section on the Team Select view for *Invites* where they can accept or decline the invitation from you as a Sysadmin. 
+    - If they accept, it will add them to your team, and they may proceed to the rest of the application.
+2) **Adding Members through the Admin Dashboard**:
+    - If you choose against adding members in app, you may go and follow the same process outlined in ``Installing the API`` *Step 4*.
+    - Log into the admin dashboard, and select the `Members` field in the **API** section. Select create a member in top right and select the new user's `User Record` in the dropdown and the `Team` record corresponding to your team.
+    - Any optional fields such as role, pronouns, or bio can all be adjusted here before hitting save.
+    - The next time the user logs into the iOS application, they will see the team you created the record for in their Team select and proceed to the rest of the application.
