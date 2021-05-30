@@ -135,7 +135,7 @@ class HomeTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 3
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -145,8 +145,8 @@ class HomeTableViewController: UITableViewController {
             return self.assignedTickets.count
         case HomepageCategories.pinned.rawValue:
             return self.pinnedTickets.count
-        case HomepageCategories.tags.rawValue:
-            return 1
+        // case HomepageCategories.tags.rawValue:
+            // return 1
         default:
             fatalError("Invalid section count queried")
         }

@@ -76,31 +76,38 @@ class AdminTagViewController: UITableViewController {
             textField.placeholder = "Enter Tag Title"
         }
         aCon.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        
+
         let saveAction = UIAlertAction(title: "Save", style: .default, handler: { _ in
-            let textField = aCon.textFields?[0] ?? nil
-            if let text = textField?.text {
-                let manager = TagManager(identity: self.identity)
-                let tag = WriteTagRecord(title: text)
-                manager.makeTag(tag: tag) { result in
-                    self.processResult(result: result) { _ in
-                        DispatchQueue.main.async {
-                            NotificationCenter.default.post(name: .refreshTags, object: self)
+            if aCon.textFields![0].text!.contains(" ") {
+                self.presentError(error: Exception.runtimeError(message: "Tag title cannot contain any spaces"))
+            } else {
+                let textField = aCon.textFields?[0] ?? nil
+                if let text = textField?.text {
+                    let manager = TagManager(identity: self.identity)
+                    let tag = WriteTagRecord(title: text)
+                    manager.makeTag(tag: tag) { result in
+                        self.processResult(result: result) { _ in
+                            DispatchQueue.main.async {
+                                NotificationCenter.default.post(name: .refreshTags, object: self)
+                            }
                         }
                     }
                 }
             }
         })
 
-        saveAction.enabled = false
+        saveAction.isEnabled = false
         // adding the notification observer here
-        NSNotificationCenter.defaultCenter().addObserverForName(UITextFieldTextDidChangeNotification, object:aCon.textFields?[0],
-            queue: NSOperationQueue.mainQueue()) { notification in
 
-                let title = aCon.textFields?[0] as! UITextField
-                saveAction.enabled = !title.text.isEmpty
+        NotificationCenter.default.addObserver(
+            forName: UITextField.textDidChangeNotification,
+            object: aCon.textFields?[0],
+            queue: OperationQueue.main) { _ in
+
+                let title = aCon.textFields?[0]
+                saveAction.isEnabled = !title!.text!.isEmpty
         }
-        
+
         aCon.addAction(saveAction)
 
         aCon.popoverPresentationController?.barButtonItem = self.navigationItem.rightBarButtonItem

@@ -166,7 +166,7 @@ class TicketDetailTableViewController: UITableViewController {
 
         let manager = TicketManager(identity)
 
-        if title.isEmpty  {
+        if title.trimmingCharacters(in: .whitespaces).isEmpty {
             // createError Error
             self.presentError(error: Exception.runtimeError(message: "Ticket Title Cannot Be Empty."))
             return
