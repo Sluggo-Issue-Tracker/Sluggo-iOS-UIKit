@@ -9,10 +9,10 @@ import UIKit
 
 class PendingInvitesViewController: UITableViewController {
     var identity: AppIdentity!
-    var generateSegueableController: ((AppIdentity, MemberRecord?) -> UIViewController?)?
-    var generateMemberDetail: ((MemberRecord) -> String?)?
+    var generateSegueableController: ((AppIdentity, TeamRecord?) -> UIViewController?)?
+    var generateTeamDetail: ((TeamRecord) -> String?)?
     private var maxNumber: Int = 0
-    private var members: [MemberRecord] = []
+    private var teams: [TeamRecord] = []
     private var isFetching  = false
     private var semaphore = DispatchSemaphore(value: 1)
 
@@ -28,9 +28,10 @@ class PendingInvitesViewController: UITableViewController {
     override func viewDidLoad() {
         self.configureRefreshControl()
         self.handleRefreshAction()
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(handleRefreshAction),
-                                               name: .refreshMembers, object: nil)
+
+//        NotificationCenter.default.addObserver(self,
+//                                               selector: #selector(handleRefreshAction),
+//                                               name: .refreshTeams, object: nil)
 
         self.tableView.allowsSelection = (generateSegueableController != nil)
     }
@@ -41,37 +42,26 @@ class PendingInvitesViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return members.count
+        return teams.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "pInviteCell", for: indexPath) as UITableViewCell
-        let member = self.members[indexPath.row]
-        cell.textLabel?.text = member.owner.username
-        cell.detailTextLabel?.text = generateMemberDetail?(member) ?? ""
+        let team = self.teams[indexPath.row]
+        cell.textLabel?.text = team.name
+        cell.detailTextLabel?.text = generateTeamDetail?(team) ?? ""
 
         return cell
-    }
-
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let generateController = self.generateSegueableController else { return }
-
-        guard let viewController = generateController(identity, self.members[indexPath.row]) else { return }
-
-        if let navController = self.navigationController {
-            navController.show(viewController, sender: self)
-        } else {
-            self.present(viewController, animated: true, completion: nil)
-        }
     }
 
     @objc func handleRefreshAction() {
 
         DispatchQueue.global(qos: .userInitiated).async {
+
             self.semaphore.wait()
 
-            let onSuccess = { (members: [MemberRecord]) -> Void in
-                self.members = members
+            let onSuccess = { (teams: [TeamRecord]) -> Void in
+                self.teams = teams
             }
 
             let after = { () -> Void in
@@ -82,8 +72,8 @@ class PendingInvitesViewController: UITableViewController {
                 self.semaphore.signal()
             }
 
-            let memberManager = MemberManager(identity: self.identity)
-            unwindPagination(manager: memberManager,
+            let inviteManager = InviteManager(identity: self.identity)
+            unwindPagination(manager: inviteManager,
                              startingPage: 1,
                              onSuccess: onSuccess,
                              onFailure: self.presentErrorFromMainThread,
@@ -93,5 +83,11 @@ class PendingInvitesViewController: UITableViewController {
 
     @IBAction func acceptInvite(_ sender: Any) {
         print("Accepted!")
+    }
+    @IBAction func rejectInvite(_ sender: Any) {
+        print("Rejected!")
+    }
+    @IBAction func backButton(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
 }
