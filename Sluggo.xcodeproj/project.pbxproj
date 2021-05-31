@@ -11,6 +11,7 @@
 		052258702636100B00B49CE4 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0522586F2636100B00B49CE4 /* LaunchViewController.swift */; };
 		053A259F26645DDD0072A773 /* PendingInvitesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053A259E26645DDD0072A773 /* PendingInvitesViewController.swift */; };
 		0541572326655FBA002A85F2 /* InviteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0541572226655FBA002A85F2 /* InviteManager.swift */; };
+		0541572826659F2E002A85F2 /* InviteRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0541572726659F2E002A85F2 /* InviteRecord.swift */; };
 		05588A12264DB61E000D8674 /* TeamMembers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05588A11264DB61E000D8674 /* TeamMembers.storyboard */; };
 		05DE0CD7264F11E400D69C61 /* MemberListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DE0CD6264F11E400D69C61 /* MemberListViewController.swift */; };
 		2F2247AC262920AC006C6EE6 /* TokenRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2247AB262920AC006C6EE6 /* TokenRecord.swift */; };
@@ -105,6 +106,7 @@
 		0522586F2636100B00B49CE4 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		053A259E26645DDD0072A773 /* PendingInvitesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingInvitesViewController.swift; sourceTree = "<group>"; };
 		0541572226655FBA002A85F2 /* InviteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteManager.swift; sourceTree = "<group>"; };
+		0541572726659F2E002A85F2 /* InviteRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteRecord.swift; sourceTree = "<group>"; };
 		05588A11264DB61E000D8674 /* TeamMembers.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TeamMembers.storyboard; sourceTree = "<group>"; };
 		05DE0CD6264F11E400D69C61 /* MemberListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberListViewController.swift; sourceTree = "<group>"; };
 		2F2247AB262920AC006C6EE6 /* TokenRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRecord.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 				3A150A6626365A9A0052934B /* StatusRecord.swift */,
 				3A150A6B26365B670052934B /* TagRecord.swift */,
 				7DC54AE426437AB3000C8300 /* PinnedTicketRecord.swift */,
+				0541572726659F2E002A85F2 /* InviteRecord.swift */,
 			);
 			path = Codables;
 			sourceTree = "<group>";
@@ -577,6 +580,7 @@
 				5AB1C8FC262FF1690010F85E /* TicketRecord.swift in Sources */,
 				3A90FBB32651D76900BE4F5D /* TicketTabTableViewController.swift in Sources */,
 				5A25CFDF264BCF2C00852035 /* TicketFilterParameters.swift in Sources */,
+				0541572826659F2E002A85F2 /* InviteRecord.swift in Sources */,
 				5A25CFE7264BD73D00852035 /* TicketFilterTableViewCell.swift in Sources */,
 				7D1DA6B7262B866D00E7C12D /* SidebarData.swift in Sources */,
 				3A90FBB526531AC600BE4F5D /* AdminUserRolesTableViewController.swift in Sources */,
