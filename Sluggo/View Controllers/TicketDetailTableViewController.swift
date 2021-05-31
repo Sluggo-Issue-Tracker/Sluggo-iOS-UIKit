@@ -184,10 +184,10 @@ class TicketDetailTableViewController: UITableViewController {
                     DispatchQueue.main.async {
                         self.setEditMode(false)
                         NotificationCenter.default.post(name: .refreshTrigger, object: self)
-                        return true
                     }
                 }
             }
+            return true
         } else {
             let ticket = WriteTicketRecord(tag_list: tags,
                                            assigned_user: member,
@@ -200,12 +200,11 @@ class TicketDetailTableViewController: UITableViewController {
                     DispatchQueue.main.async {
                         NotificationCenter.default.post(name: .refreshTrigger, object: self)
                         self.dismiss(animated: true, completion: nil)
-                        return true
                     }
                 }
             }
+            return true
         }
-        return false
     }
 
     @IBAction func editButtonHit(_ sender: Any) {
