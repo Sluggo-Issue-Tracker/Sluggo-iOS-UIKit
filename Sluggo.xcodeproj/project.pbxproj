@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		051AAB0B2630FD6500BCB9C7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051AAB0A2630FD6500BCB9C7 /* Constants.swift */; };
 		052258702636100B00B49CE4 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0522586F2636100B00B49CE4 /* LaunchViewController.swift */; };
+		053A259F26645DDD0072A773 /* PendingInvitesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053A259E26645DDD0072A773 /* PendingInvitesViewController.swift */; };
 		05588A12264DB61E000D8674 /* TeamMembers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05588A11264DB61E000D8674 /* TeamMembers.storyboard */; };
 		05DE0CD7264F11E400D69C61 /* MemberListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DE0CD6264F11E400D69C61 /* MemberListViewController.swift */; };
 		2F2247AC262920AC006C6EE6 /* TokenRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2247AB262920AC006C6EE6 /* TokenRecord.swift */; };
@@ -101,6 +102,7 @@
 /* Begin PBXFileReference section */
 		051AAB0A2630FD6500BCB9C7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0522586F2636100B00B49CE4 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		053A259E26645DDD0072A773 /* PendingInvitesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingInvitesViewController.swift; sourceTree = "<group>"; };
 		05588A11264DB61E000D8674 /* TeamMembers.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TeamMembers.storyboard; sourceTree = "<group>"; };
 		05DE0CD6264F11E400D69C61 /* MemberListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberListViewController.swift; sourceTree = "<group>"; };
 		2F2247AB262920AC006C6EE6 /* TokenRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRecord.swift; sourceTree = "<group>"; };
@@ -385,6 +387,7 @@
 				7DC2A226262948800002CEE6 /* SluggoSidebarContainerViewController.swift */,
 				5A9FF88D26386D4700378550 /* TicketListController.swift */,
 				5A9C4C1B2640BC4E00B270AB /* TeamTableViewController.swift */,
+				053A259E26645DDD0072A773 /* PendingInvitesViewController.swift */,
 				5A9C4C202641113D00B270AB /* TeamSelectorContainerViewController.swift */,
 				7D23834A264119050091C7E8 /* HomeTableViewController.swift */,
 				5A25CFAB264B966300852035 /* TicketFilterTableViewController.swift */,
@@ -611,6 +614,7 @@
 				5AB1C8EF262FE3210010F85E /* TagManager.swift in Sources */,
 				5A9FF88E26386D4700378550 /* TicketListController.swift in Sources */,
 				5AB1C8E5262FE2E60010F85E /* TicketManager.swift in Sources */,
+				053A259F26645DDD0072A773 /* PendingInvitesViewController.swift in Sources */,
 				2F3AD7A82627C89B00B61A97 /* MemberRecord.swift in Sources */,
 				5AB1C8DD262FE2DD0010F85E /* TeamManager.swift in Sources */,
 				5A00A045263A34CC0085C8C6 /* TicketTableViewCell.swift in Sources */,

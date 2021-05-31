@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="z3Q-wy-zSO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="z3Q-wy-zSO">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,14 +18,14 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="SLGSidebarCell" textLabel="73u-VP-0wj" style="IBUITableViewCellStyleDefault" id="t4U-f1-qzY" customClass="TeamTableViewCell" customModule="Sluggo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="24.5" width="280" height="43.5"/>
+                                <rect key="frame" x="0.0" y="28" width="280" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="t4U-f1-qzY" id="sBI-5J-NPm" customClass="TeamTableViewCell" customModule="Sluggo" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="243.5" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="240" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="73u-VP-0wj">
-                                            <rect key="frame" x="16" y="0.0" width="219.5" height="43.5"/>
+                                            <rect key="frame" x="16" y="0.0" width="216" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -46,11 +46,81 @@
                                 <action selector="doLogOutAction:" destination="PJK-Xs-1jr" id="ees-yu-euF"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Invites" id="DXd-cY-g2q">
+                            <connections>
+                                <action selector="showPendingInvites:" destination="PJK-Xs-1jr" id="XNG-hV-8xX"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HKS-Hy-anX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="913.04347826086962" y="63.616071428571423"/>
+        </scene>
+        <!--Pending Invites-->
+        <scene sceneID="JQZ-R2-Zc7">
+            <objects>
+                <tableViewController id="J7t-uV-EQA" customClass="PendingInvitesViewController" customModule="Sluggo" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="T72-92-ffa">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="pInviteCell" id="pyK-ed-07x">
+                                <rect key="frame" x="0.0" y="28" width="414" height="30.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pyK-ed-07x" id="XaT-gg-Tsn">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="30.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Ec-PB-KvF">
+                                            <rect key="frame" x="322" y="0.0" width="92" height="30.5"/>
+                                            <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="92" id="nlc-PW-mEa"/>
+                                            </constraints>
+                                            <state key="normal" title="Accept">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="acceptInvite:" destination="J7t-uV-EQA" eventType="touchUpInside" id="TWd-hb-9CG"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="8Ec-PB-KvF" secondAttribute="bottom" id="0Tl-oL-aiE"/>
+                                        <constraint firstItem="8Ec-PB-KvF" firstAttribute="top" secondItem="XaT-gg-Tsn" secondAttribute="top" id="Vpd-Gw-bRc"/>
+                                        <constraint firstAttribute="trailing" secondItem="8Ec-PB-KvF" secondAttribute="trailing" id="hfY-oL-vfP"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="J7t-uV-EQA" id="CjP-Tb-R24"/>
+                            <outlet property="delegate" destination="J7t-uV-EQA" id="ysC-bh-Q5q"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Pending Invites" id="Vt0-qm-ZHx"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Okk-f2-MWT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="89" y="-732"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="R09-Ck-t38">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FOH-lf-Dto" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <navigationController storyboardIdentifier="pendingInvites" id="fdh-m1-1oK" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0Nn-gf-U7w">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="J7t-uV-EQA" kind="relationship" relationship="rootViewController" id="qAa-Et-V6K"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="-801" y="-732"/>
         </scene>
         <!--Sluggo Sidebar Container View Controller-->
         <scene sceneID="qeb-n7-jUm">
@@ -128,6 +198,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
