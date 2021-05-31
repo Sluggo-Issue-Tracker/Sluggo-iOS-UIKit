@@ -156,7 +156,7 @@ class TicketDetailTableViewController: UITableViewController {
         }
     }
 
-    func doSave() {
+    func doSave() -> Bool {
         let title = ticketTitle.text ?? ""
         let description = ticketDescription.text
         let date = dueDateSwitch.isOn ? dueDatePicker.date : nil
@@ -169,7 +169,7 @@ class TicketDetailTableViewController: UITableViewController {
         if title.trimmingCharacters(in: .whitespaces).isEmpty {
             // createError Error
             self.presentError(error: Exception.runtimeError(message: "Ticket Title Cannot Be Empty."))
-            return
+            return false
         }
         if editingTicket {
             ticket!.title = title
@@ -184,6 +184,7 @@ class TicketDetailTableViewController: UITableViewController {
                     DispatchQueue.main.async {
                         self.setEditMode(false)
                         NotificationCenter.default.post(name: .refreshTrigger, object: self)
+                        return true
                     }
                 }
             }
@@ -199,10 +200,12 @@ class TicketDetailTableViewController: UITableViewController {
                     DispatchQueue.main.async {
                         NotificationCenter.default.post(name: .refreshTrigger, object: self)
                         self.dismiss(animated: true, completion: nil)
+                        return true
                     }
                 }
             }
         }
+        return false
     }
 
     @IBAction func editButtonHit(_ sender: Any) {
@@ -211,13 +214,12 @@ class TicketDetailTableViewController: UITableViewController {
                 setEditMode(true)
                 barButton.title = "Save"
             } else if barButton.title == "Save" {
-                doSave()
-                if !ticketTitle.text!.trimmingCharacters(in: .whitespaces).isEmpty {
+                if doSave() {
                     barButton.title = "Edit"
                 }
             } else {
                 editingTicket = false
-                doSave()
+               _ = doSave()
             }
         }
     }
