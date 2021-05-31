@@ -212,7 +212,9 @@ class TicketDetailTableViewController: UITableViewController {
                 barButton.title = "Save"
             } else if barButton.title == "Save" {
                 doSave()
-                barButton.title = "Edit"
+                if !ticketTitle.text!.trimmingCharacters(in: .whitespaces).isEmpty {
+                    barButton.title = "Edit"
+                }
             } else {
                 editingTicket = false
                 doSave()
