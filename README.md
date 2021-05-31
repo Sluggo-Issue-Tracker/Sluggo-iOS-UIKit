@@ -3,7 +3,7 @@ This repository will hold the source code for the iOS client for the Sluggo
 issue tracker. It is currently beign developed for CSE 115A at UCSC, and will
 eventually expand into a fully maintained frontend for the Sluggo project.
 
-# NOTE: ALL DOCUMENTATION FOR CSE115A RESIDES WITHIN THE [docs](docs/) FOLDER AT THE ROOT OF THIS PROJECT.
+# NOTE: ALL DOCUMENTATION FOR CSE115A RESIDES WITHIN THE [docs](doc/) FOLDER AT THE ROOT OF THIS PROJECT.
 
 ## About Sluggo
 Sluggo is an open source Issue Tracker for companies, teams, and more. The software is selfhosted, and decentralized in a way that any team can spin up their own instance in minutes! This software is broken into two main parts: the [Django REST Application](https://github.com/Slugbotics/Sluggo-API) as the backend and the Sluggo iOS app as a front end.
@@ -18,7 +18,7 @@ Sluggo is an open source Issue Tracker for companies, teams, and more. The softw
 ## SwiftLint and Coding Standards
 The development of Sluggo uses SwiftLint to standardize all changes and coding styles, if you are contributing to Sluggo, please follow the installation instructions for SwiftLint [here](https://github.com/realm/SwiftLint).
 
-In addition, all coding standards and acceptance tests reside within the [documentation folder](docs/), these standards are required to be followed before contributing to the project.
+In addition, all coding standards and acceptance tests reside within the [documentation folder](doc/), these standards are required to be followed before contributing to the project.
 
 ## Installing the Application
 1) Clone this repository on a Mac device with Xcode installed.
