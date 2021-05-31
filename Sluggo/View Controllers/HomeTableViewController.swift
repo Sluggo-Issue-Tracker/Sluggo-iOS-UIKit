@@ -164,10 +164,10 @@ class HomeTableViewController: UITableViewController {
                                                      for: indexPath) as! TicketTableViewCell
             cell.loadFromTicketRecord(ticket: pinnedTickets[indexPath.row].ticket)
             return cell
-        case HomepageCategories.tags.rawValue:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "PlaceholderCell")!
-            cell.textLabel?.text = "Not yet implemented."
-            return cell
+        // case HomepageCategories.tags.rawValue:
+        //     let cell = tableView.dequeueReusableCell(withIdentifier: "PlaceholderCell")!
+        //     cell.textLabel?.text = "Not yet implemented."
+        //     return cell
         default:
             fatalError("Accessed section outside of scope, should never occur")
         }
@@ -179,8 +179,8 @@ class HomeTableViewController: UITableViewController {
             return "Assigned to You"
         case HomepageCategories.pinned.rawValue:
             return "Pinned Tickets"
-        case HomepageCategories.tags.rawValue:
-            return "Your Tags"
+        // case HomepageCategories.tags.rawValue:
+        //     return "Your Tags"
         default:
             return "Error!"
         }
