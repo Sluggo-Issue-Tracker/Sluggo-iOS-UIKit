@@ -105,7 +105,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="acceptButton" destination="8Ec-PB-KvF" id="lEJ-YF-99G"/>
+                                    <outlet property="acceptButton" destination="8Ec-PB-KvF" id="eVA-r0-htf"/>
                                     <outlet property="rejectButton" destination="LWK-vF-6ni" id="hEv-WH-3Gf"/>
                                 </connections>
                             </tableViewCell>
@@ -116,7 +116,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Pending Invites" id="Vt0-qm-ZHx">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="ufR-MP-33Z">
+                        <barButtonItem key="leftBarButtonItem" title="Close" id="ufR-MP-33Z">
                             <connections>
                                 <action selector="backButton:" destination="J7t-uV-EQA" id="LVo-Jo-Fth"/>
                             </connections>
