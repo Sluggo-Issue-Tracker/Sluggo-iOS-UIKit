@@ -165,7 +165,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="TeamSelect" id="6JP-5O-LNy" customClass="TeamTableViewController" customModule="Sluggo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="k0U-Dp-z3Q">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="673"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="695"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
@@ -192,77 +192,63 @@
                             <outlet property="delegate" destination="6JP-5O-LNy" id="jW3-b5-AgP"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZY0-VO-EJL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6057" y="-359"/>
+            <point key="canvasLocation" x="5895" y="-344"/>
         </scene>
         <!--Team Selector Container View Controller-->
         <scene sceneID="Rmd-hI-BYc">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DyB-vH-6LV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="TableViewContainer" id="rGb-An-tKe" customClass="TeamSelectorContainerViewController" customModule="Sluggo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Eze-HK-nVO">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4nR-dn-Ih4">
-                                <rect key="frame" x="0.0" y="78" width="390" height="673"/>
+                                <rect key="frame" x="0.0" y="56" width="390" height="695"/>
                                 <connections>
                                     <segue destination="6JP-5O-LNy" kind="embed" id="Yx7-MO-wXK"/>
                                 </connections>
                             </containerView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MSw-Vx-lxb">
-                                <rect key="frame" x="0.0" y="24" width="390" height="46"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Teams" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ehp-J6-oju">
-                                        <rect key="frame" x="8" y="2" width="78.666666666666671" height="32"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QMb-3q-4Z8">
-                                        <rect key="frame" x="357" y="6" width="25" height="24"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="25" id="9co-2D-ewI"/>
-                                            <constraint firstAttribute="height" constant="24" id="lRj-IX-VFF"/>
-                                        </constraints>
-                                        <connections>
-                                            <action selector="didCancel:" destination="rGb-An-tKe" eventType="touchUpInside" id="tr8-iJ-4QF"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstItem="ehp-J6-oju" firstAttribute="leading" secondItem="MSw-Vx-lxb" secondAttribute="leadingMargin" id="Bf5-Qs-lqo"/>
-                                    <constraint firstItem="ehp-J6-oju" firstAttribute="top" secondItem="MSw-Vx-lxb" secondAttribute="top" constant="2" id="Cli-th-hYr"/>
-                                    <constraint firstItem="QMb-3q-4Z8" firstAttribute="trailing" secondItem="MSw-Vx-lxb" secondAttribute="trailingMargin" id="PdH-7b-IxJ"/>
-                                    <constraint firstItem="QMb-3q-4Z8" firstAttribute="centerY" secondItem="ehp-J6-oju" secondAttribute="centerY" id="rMY-hT-450"/>
-                                    <constraint firstItem="QMb-3q-4Z8" firstAttribute="top" secondItem="MSw-Vx-lxb" secondAttribute="top" constant="6" id="xaO-sw-hLK"/>
-                                </constraints>
-                            </view>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Szf-mh-qem">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
+                                <items>
+                                    <navigationItem title="Teams" id="mIu-wx-cEX">
+                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="q4K-ZG-KM8">
+                                            <connections>
+                                                <action selector="didCancel:" destination="rGb-An-tKe" id="pgb-fP-CPr"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Invites" id="8ex-Vd-6eV">
+                                            <connections>
+                                                <action selector="showPendingInvites:" destination="rGb-An-tKe" id="yPV-LZ-n8V"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="sU3-8g-FUq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="4nR-dn-Ih4" firstAttribute="top" secondItem="Eze-HK-nVO" secondAttribute="top" constant="78" id="7gm-fV-scn"/>
-                            <constraint firstItem="MSw-Vx-lxb" firstAttribute="top" secondItem="sU3-8g-FUq" secondAttribute="top" constant="24" id="Nda-wb-dt3"/>
+                            <constraint firstItem="4nR-dn-Ih4" firstAttribute="top" secondItem="Eze-HK-nVO" secondAttribute="top" constant="56" id="7gm-fV-scn"/>
+                            <constraint firstItem="Szf-mh-qem" firstAttribute="leading" secondItem="sU3-8g-FUq" secondAttribute="leading" id="BQJ-gu-Pl4"/>
+                            <constraint firstItem="Szf-mh-qem" firstAttribute="trailing" secondItem="sU3-8g-FUq" secondAttribute="trailing" id="Ddw-jm-KoW"/>
                             <constraint firstItem="4nR-dn-Ih4" firstAttribute="leading" secondItem="sU3-8g-FUq" secondAttribute="leading" id="UaY-5y-FCr"/>
+                            <constraint firstItem="Szf-mh-qem" firstAttribute="top" secondItem="sU3-8g-FUq" secondAttribute="top" id="bt5-xv-OeR"/>
                             <constraint firstItem="sU3-8g-FUq" firstAttribute="bottom" secondItem="4nR-dn-Ih4" secondAttribute="bottom" constant="5" id="dHm-Ag-YP0"/>
                             <constraint firstItem="4nR-dn-Ih4" firstAttribute="trailing" secondItem="sU3-8g-FUq" secondAttribute="trailing" id="dhk-qE-WJ6"/>
-                            <constraint firstItem="4nR-dn-Ih4" firstAttribute="top" secondItem="MSw-Vx-lxb" secondAttribute="bottom" constant="8" symbolic="YES" id="gmY-4J-eJf"/>
-                            <constraint firstItem="MSw-Vx-lxb" firstAttribute="trailing" secondItem="sU3-8g-FUq" secondAttribute="trailing" id="mzO-ck-2uQ"/>
-                            <constraint firstItem="MSw-Vx-lxb" firstAttribute="leading" secondItem="sU3-8g-FUq" secondAttribute="leading" id="xYl-F3-GsO"/>
                         </constraints>
                     </view>
                     <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <connections>
-                        <outlet property="cancelButton" destination="QMb-3q-4Z8" id="SCw-Ud-ElF"/>
-                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DyB-vH-6LV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4990.7692307692305" y="-359.00473933649289"/>
+            <point key="canvasLocation" x="4829" y="-343"/>
         </scene>
         <!--Root-->
         <scene sceneID="Oaf-ww-D71">
@@ -273,6 +259,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PMQ-JX-4wg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4525" y="93"/>
+        </scene>
+        <!--pendingInvites-->
+        <scene sceneID="NiN-EJ-mdy">
+            <objects>
+                <viewControllerPlaceholder storyboardName="PendingInvites" referencedIdentifier="pendingInvites" id="QEI-B2-xuE" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pFR-YU-R1b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6595" y="-343"/>
         </scene>
     </scenes>
     <resources>

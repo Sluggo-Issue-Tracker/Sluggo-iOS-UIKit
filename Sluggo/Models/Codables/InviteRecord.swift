@@ -16,6 +16,10 @@ struct UserInviteRecord: Codable {
 
 struct TeamInviteRecord: Codable {
     var id: Int
-    var email: String
+    var user_email: String
     var team: TeamRecord
+}
+
+struct WriteTeamInviteRecord: Codable {
+    var user_email: String
 }

@@ -14,6 +14,8 @@
 		0541572826659F2E002A85F2 /* InviteRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0541572726659F2E002A85F2 /* InviteRecord.swift */; };
 		0541572D2665BD29002A85F2 /* AdminInviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0541572C2665BD29002A85F2 /* AdminInviteViewController.swift */; };
 		05588A12264DB61E000D8674 /* TeamMembers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05588A11264DB61E000D8674 /* TeamMembers.storyboard */; };
+		05D3BA1A2666B9F8008AE9D8 /* AdminInvite.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05D3BA192666B9F8008AE9D8 /* AdminInvite.storyboard */; };
+		05D3BA272666DA3D008AE9D8 /* PendingInvites.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05D3BA262666DA3D008AE9D8 /* PendingInvites.storyboard */; };
 		05DE0CD7264F11E400D69C61 /* MemberListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DE0CD6264F11E400D69C61 /* MemberListViewController.swift */; };
 		2F2247AC262920AC006C6EE6 /* TokenRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2247AB262920AC006C6EE6 /* TokenRecord.swift */; };
 		2F3AD7A32627C86A00B61A97 /* UserRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3AD7A22627C86A00B61A97 /* UserRecord.swift */; };
@@ -110,6 +112,8 @@
 		0541572726659F2E002A85F2 /* InviteRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteRecord.swift; sourceTree = "<group>"; };
 		0541572C2665BD29002A85F2 /* AdminInviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminInviteViewController.swift; sourceTree = "<group>"; };
 		05588A11264DB61E000D8674 /* TeamMembers.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TeamMembers.storyboard; sourceTree = "<group>"; };
+		05D3BA192666B9F8008AE9D8 /* AdminInvite.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AdminInvite.storyboard; sourceTree = "<group>"; };
+		05D3BA262666DA3D008AE9D8 /* PendingInvites.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PendingInvites.storyboard; sourceTree = "<group>"; };
 		05DE0CD6264F11E400D69C61 /* MemberListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberListViewController.swift; sourceTree = "<group>"; };
 		2F2247AB262920AC006C6EE6 /* TokenRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRecord.swift; sourceTree = "<group>"; };
 		2F3AD7A22627C86A00B61A97 /* UserRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRecord.swift; sourceTree = "<group>"; };
@@ -297,6 +301,7 @@
 			children = (
 				7D01B55B264FAAEE0009FA97 /* Admin.storyboard */,
 				3A90FBB8265F4E7900BE4F5D /* AdminTag.storyboard */,
+				05D3BA192666B9F8008AE9D8 /* AdminInvite.storyboard */,
 			);
 			path = Admin;
 			sourceTree = "<group>";
@@ -377,6 +382,7 @@
 				7D9963AB261EF3A4002338E7 /* Root.storyboard */,
 				7DC2A21626293F360002CEE6 /* Home.storyboard */,
 				7DC2A21B262943A70002CEE6 /* Sidebar.storyboard */,
+				05D3BA262666DA3D008AE9D8 /* PendingInvites.storyboard */,
 				5A9FF88826386D1400378550 /* Ticket.storyboard */,
 				7DEA17842639E7B5004E5A71 /* LaunchScreen.storyboard */,
 				3A150A76263CB5F70052934B /* TicketDetail.storyboard */,
@@ -531,8 +537,10 @@
 				7DEA17852639E7B5004E5A71 /* LaunchScreen.storyboard in Resources */,
 				7D01B55C264FAAEE0009FA97 /* Admin.storyboard in Resources */,
 				3A150A77263CB5F70052934B /* TicketDetail.storyboard in Resources */,
+				05D3BA1A2666B9F8008AE9D8 /* AdminInvite.storyboard in Resources */,
 				7DC2A21726293F360002CEE6 /* Home.storyboard in Resources */,
 				7DC2A21C262943A70002CEE6 /* Sidebar.storyboard in Resources */,
+				05D3BA272666DA3D008AE9D8 /* PendingInvites.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

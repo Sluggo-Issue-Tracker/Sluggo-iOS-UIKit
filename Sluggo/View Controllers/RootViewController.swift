@@ -204,7 +204,7 @@ class RootViewController: UIViewController {
          * Modal presentation is *not* susceptible to this, and so does not
          * need to be accounted for here.
          */
-        guard let tabBarControllerVCs = mainTabBarController?.viewControllers
+        guard (mainTabBarController?.viewControllers) != nil
         else { return false } // return false if something goes wrong in determining
 
         let selectedTabVC = self.mainTabBarController?.selectedViewController

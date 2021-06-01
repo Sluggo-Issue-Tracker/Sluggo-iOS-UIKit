@@ -9,7 +9,7 @@ import UIKit
 
 class AdminInviteViewController: UITableViewController {
     var identity: AppIdentity!
-    private var invites: [TagRecord] = []
+    private var invites: [TeamInviteRecord] = []
     private var isFetching = false
     private var semaphore = DispatchSemaphore(value: 1)
 
@@ -38,9 +38,10 @@ class AdminInviteViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TagCell", for: indexPath) as UITableViewCell
-        let tag = self.invites[indexPath.row]
-        cell.textLabel?.text = tag.title
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TeamInviteCell", for: indexPath) as UITableViewCell
+        let invite = self.invites[indexPath.row]
+
+        cell.textLabel?.text = invite.user_email
         cell.detailTextLabel?.text = ""
 
         return cell
@@ -50,13 +51,13 @@ class AdminInviteViewController: UITableViewController {
                             forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let aCon = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-            aCon.addAction(UIAlertAction(title: "Delete Tag", style: .destructive, handler: { _ in
-                let manager = TagManager(identity: self.identity)
-                let tag = self.invites[indexPath.row]
-                manager.deleteTag(tag: tag) { result in
+            aCon.addAction(UIAlertAction(title: "Delete Invite", style: .destructive, handler: { _ in
+                let manager = TeamInviteManager(identity: self.identity)
+                let invite = self.invites[indexPath.row]
+                manager.deleteTeamInvite(invite: invite) { result in
                     self.processResult(result: result) { _ in
                         DispatchQueue.main.async {
-                            NotificationCenter.default.post(name: .refreshTags, object: self)
+                            NotificationCenter.default.post(name: .refreshTeamInvites, object: self)
                             NotificationCenter.default.post(name: .refreshTrigger, object: self)
                         }
                     }
@@ -68,26 +69,46 @@ class AdminInviteViewController: UITableViewController {
         }
     }
 
-    @IBAction func addTagHit(_ sender: Any) {
+    @IBAction func addInvite(_ sender: Any) {
         let aCon = UIAlertController(title: "Invite User", message: nil, preferredStyle: .alert)
         aCon.addTextField { textField in
-            textField.placeholder = "Email"
+            textField.placeholder = "User Email"
         }
         aCon.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        aCon.addAction(UIAlertAction(title: "Send", style: .default, handler: { _ in
-            let textField = aCon.textFields?[0] ?? nil
-            if let text = textField?.text {
-                let manager = TagManager(identity: self.identity)
-                let tag = WriteTagRecord(title: text)
-                manager.makeTag(tag: tag) { result in
-                    self.processResult(result: result) { _ in
-                        DispatchQueue.main.async {
-                            NotificationCenter.default.post(name: .refreshTags, object: self)
+
+        let saveAction = UIAlertAction(title: "Save", style: .default, handler: { _ in
+            if aCon.textFields![0].text!.contains(" ") {
+                self.presentError(error: Exception.runtimeError(message: "User Email cannot contain any spaces"))
+            } else {
+                let textField = aCon.textFields?[0] ?? nil
+                if let text = textField?.text {
+                    let inviteManager = TeamInviteManager(identity: self.identity)
+                    let invite = WriteTeamInviteRecord(user_email: text)
+                    inviteManager.addTeamInvite(invite: invite) { result in
+                        self.processResult(result: result) { _ in
+                            DispatchQueue.main.async {
+                                NotificationCenter.default.post(name: .refreshTeamInvites, object: self)
+                            }
                         }
                     }
                 }
             }
-        }))
+        })
+
+        saveAction.isEnabled = false
+        // adding the notification observer here
+
+        NotificationCenter.default.addObserver(
+            forName: UITextField.textDidChangeNotification,
+            object: aCon.textFields?[0],
+            queue: OperationQueue.main) { _ in
+
+                let title = aCon.textFields?[0]
+                saveAction.isEnabled = !title!.text!.isEmpty
+        }
+
+        aCon.addAction(saveAction)
+
         aCon.popoverPresentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
         present(aCon, animated: true)
 
@@ -98,8 +119,8 @@ class AdminInviteViewController: UITableViewController {
         DispatchQueue.global(qos: .userInitiated).async {
             self.semaphore.wait()
 
-            let onSuccess = { (tags: [TagRecord]) -> Void in
-                self.invites = tags
+            let onSuccess = { (invites: [TeamInviteRecord]) -> Void in
+                self.invites = invites
             }
 
             let after = { () -> Void in
@@ -110,10 +131,14 @@ class AdminInviteViewController: UITableViewController {
                 self.semaphore.signal()
             }
 
-            let tagManager = TagManager(identity: self.identity)
-            unwindPagination(manager: tagManager, startingPage: 1, onSuccess: onSuccess,
+            let teamInviteManager = TeamInviteManager(identity: self.identity)
+            unwindPagination(manager: teamInviteManager, startingPage: 1, onSuccess: onSuccess,
                              onFailure: self.presentErrorFromMainThread, after: after)
         }
 
     }
+}
+
+extension Notification.Name {
+    static let refreshTeamInvites = Notification.Name(rawValue: "SLGRefreshTeamInvitesNotification")
 }
