@@ -85,6 +85,11 @@ class RootViewController: UIViewController {
             // Remove AppIdentity persistence file
             _ = AppIdentity.deletePersistenceFile()
 
+            // invalidate token to prevent automatic login when app is logged out and closed.
+            self.identity.token = nil
+            self.identity.authenticatedUser = nil
+            self.identity.team = nil
+
             // After this is done, make a call to reconfigure
             // Reconfiguring will remove the logo window if it exists
             guard let application = UIApplication.shared.delegate as? AppDelegate else {
@@ -204,7 +209,7 @@ class RootViewController: UIViewController {
          * Modal presentation is *not* susceptible to this, and so does not
          * need to be accounted for here.
          */
-        guard let tabBarControllerVCs = mainTabBarController?.viewControllers
+        guard (mainTabBarController?.viewControllers) != nil
         else { return false } // return false if something goes wrong in determining
 
         let selectedTabVC = self.mainTabBarController?.selectedViewController
