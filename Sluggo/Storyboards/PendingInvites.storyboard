@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Pending Invites-->
+        <scene sceneID="JQZ-R2-Zc7">
+            <objects>
+                <tableViewController id="J7t-uV-EQA" customClass="PendingInvitesViewController" customModule="Sluggo" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="45" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="T72-92-ffa">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationLevel="1" indentationWidth="10" reuseIdentifier="pInviteCell" rowHeight="44" id="pyK-ed-07x" customClass="InviteTableCell" customModule="Sluggo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pyK-ed-07x" id="XaT-gg-Tsn">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LWK-vF-6ni">
+                                            <rect key="frame" x="350" y="0.0" width="64" height="44"/>
+                                            <color key="backgroundColor" systemColor="systemRedColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="Hvv-uh-i6G"/>
+                                                <constraint firstAttribute="width" constant="64" id="OCk-WV-P4W"/>
+                                            </constraints>
+                                            <state key="normal" title="Reject">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Ec-PB-KvF">
+                                            <rect key="frame" x="286" y="0.0" width="64" height="44"/>
+                                            <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="64" id="P3k-bv-Iyl"/>
+                                            </constraints>
+                                            <state key="normal" title="Accept">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="LWK-vF-6ni" secondAttribute="bottom" id="A14-FJ-2Le"/>
+                                        <constraint firstItem="LWK-vF-6ni" firstAttribute="leading" secondItem="8Ec-PB-KvF" secondAttribute="trailing" id="frR-gy-oCS"/>
+                                        <constraint firstItem="8Ec-PB-KvF" firstAttribute="top" secondItem="XaT-gg-Tsn" secondAttribute="top" id="ha0-qL-uZX"/>
+                                        <constraint firstAttribute="trailing" secondItem="LWK-vF-6ni" secondAttribute="trailing" id="n78-oF-vYe"/>
+                                        <constraint firstItem="LWK-vF-6ni" firstAttribute="top" secondItem="XaT-gg-Tsn" secondAttribute="top" id="tPg-1J-k7e"/>
+                                        <constraint firstAttribute="bottom" secondItem="8Ec-PB-KvF" secondAttribute="bottom" id="wb2-86-1wf"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="acceptButton" destination="8Ec-PB-KvF" id="eVA-r0-htf"/>
+                                    <outlet property="rejectButton" destination="LWK-vF-6ni" id="hEv-WH-3Gf"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="J7t-uV-EQA" id="CjP-Tb-R24"/>
+                            <outlet property="delegate" destination="J7t-uV-EQA" id="ysC-bh-Q5q"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Pending Invites" id="Vt0-qm-ZHx">
+                        <barButtonItem key="leftBarButtonItem" title="Close" id="ufR-MP-33Z">
+                            <connections>
+                                <action selector="backButton:" destination="J7t-uV-EQA" id="LVo-Jo-Fth"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Okk-f2-MWT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="88.405797101449281" y="-732.58928571428567"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="R09-Ck-t38">
+            <objects>
+                <navigationController storyboardIdentifier="pendingInvites" id="fdh-m1-1oK" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="0Nn-gf-U7w">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="J7t-uV-EQA" kind="relationship" relationship="rootViewController" id="qAa-Et-V6K"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FOH-lf-Dto" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-801" y="-732"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

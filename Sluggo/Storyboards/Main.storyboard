@@ -263,7 +263,7 @@
         <!--pendingInvites-->
         <scene sceneID="NiN-EJ-mdy">
             <objects>
-                <viewControllerPlaceholder storyboardName="PendingInvites" referencedIdentifier="pendingInvites" id="QEI-B2-xuE" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="pendingInvites" storyboardName="PendingInvites" referencedIdentifier="pendingInvites" id="QEI-B2-xuE" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pFR-YU-R1b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6595" y="-343"/>
