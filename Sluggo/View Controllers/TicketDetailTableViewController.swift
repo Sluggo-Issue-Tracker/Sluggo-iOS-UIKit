@@ -156,8 +156,8 @@ class TicketDetailTableViewController: UITableViewController {
         }
     }
 
-    func doSave() {
-        let title = ticketTitle.text ?? "Default Title"
+    func doSave() -> Bool {
+        let title = ticketTitle.text ?? ""
         let description = ticketDescription.text
         let date = dueDateSwitch.isOn ? dueDatePicker.date : nil
         let member = currentMember?.id
@@ -166,6 +166,11 @@ class TicketDetailTableViewController: UITableViewController {
 
         let manager = TicketManager(identity)
 
+        if title.trimmingCharacters(in: .whitespaces).isEmpty {
+            // createError Error
+            self.presentError(error: Exception.runtimeError(message: "Ticket Title Cannot Be Empty."))
+            return false
+        }
         if editingTicket {
             ticket!.title = title
             ticket!.description = description
@@ -182,6 +187,7 @@ class TicketDetailTableViewController: UITableViewController {
                     }
                 }
             }
+            return true
         } else {
             let ticket = WriteTicketRecord(tag_list: tags,
                                            assigned_user: member,
@@ -197,6 +203,7 @@ class TicketDetailTableViewController: UITableViewController {
                     }
                 }
             }
+            return true
         }
     }
 
@@ -206,11 +213,12 @@ class TicketDetailTableViewController: UITableViewController {
                 setEditMode(true)
                 barButton.title = "Save"
             } else if barButton.title == "Save" {
-                doSave()
-                barButton.title = "Edit"
+                if doSave() {
+                    barButton.title = "Edit"
+                }
             } else {
                 editingTicket = false
-                doSave()
+               _ = doSave()
             }
         }
     }

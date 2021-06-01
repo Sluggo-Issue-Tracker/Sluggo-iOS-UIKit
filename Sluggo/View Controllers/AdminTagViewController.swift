@@ -76,20 +76,40 @@ class AdminTagViewController: UITableViewController {
             textField.placeholder = "Enter Tag Title"
         }
         aCon.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        aCon.addAction(UIAlertAction(title: "Save", style: .default, handler: { _ in
-            let textField = aCon.textFields?[0] ?? nil
-            if let text = textField?.text {
-                let manager = TagManager(identity: self.identity)
-                let tag = WriteTagRecord(title: text)
-                manager.makeTag(tag: tag) { result in
-                    self.processResult(result: result) { _ in
-                        DispatchQueue.main.async {
-                            NotificationCenter.default.post(name: .refreshTags, object: self)
+
+        let saveAction = UIAlertAction(title: "Save", style: .default, handler: { _ in
+            if aCon.textFields![0].text!.contains(" ") {
+                self.presentError(error: Exception.runtimeError(message: "Tag title cannot contain any spaces"))
+            } else {
+                let textField = aCon.textFields?[0] ?? nil
+                if let text = textField?.text {
+                    let manager = TagManager(identity: self.identity)
+                    let tag = WriteTagRecord(title: text)
+                    manager.makeTag(tag: tag) { result in
+                        self.processResult(result: result) { _ in
+                            DispatchQueue.main.async {
+                                NotificationCenter.default.post(name: .refreshTags, object: self)
+                            }
                         }
                     }
                 }
             }
-        }))
+        })
+
+        saveAction.isEnabled = false
+        // adding the notification observer here
+
+        NotificationCenter.default.addObserver(
+            forName: UITextField.textDidChangeNotification,
+            object: aCon.textFields?[0],
+            queue: OperationQueue.main) { _ in
+
+                let title = aCon.textFields?[0]
+                saveAction.isEnabled = !title!.text!.isEmpty
+        }
+
+        aCon.addAction(saveAction)
+
         aCon.popoverPresentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
         present(aCon, animated: true)
 
