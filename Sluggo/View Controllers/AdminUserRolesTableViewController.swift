@@ -57,9 +57,9 @@ class AdminUserRolesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            role =  MemberRoleCategories.admin.rawValue
+            role =  MemberRoleCategories.approved.rawValue
         } else {
-            role = MemberRoleCategories.approved.rawValue
+            role = MemberRoleCategories.admin.rawValue
         }
     }
 

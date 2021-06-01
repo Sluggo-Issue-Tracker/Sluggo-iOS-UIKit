@@ -135,7 +135,7 @@ class HomeTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 3
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -145,8 +145,8 @@ class HomeTableViewController: UITableViewController {
             return self.assignedTickets.count
         case HomepageCategories.pinned.rawValue:
             return self.pinnedTickets.count
-        case HomepageCategories.tags.rawValue:
-            return 1
+        // case HomepageCategories.tags.rawValue:
+            // return 1
         default:
             fatalError("Invalid section count queried")
         }
@@ -164,10 +164,10 @@ class HomeTableViewController: UITableViewController {
                                                      for: indexPath) as! TicketTableViewCell
             cell.loadFromTicketRecord(ticket: pinnedTickets[indexPath.row].ticket)
             return cell
-        case HomepageCategories.tags.rawValue:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "PlaceholderCell")!
-            cell.textLabel?.text = "Not yet implemented."
-            return cell
+        // case HomepageCategories.tags.rawValue:
+        //     let cell = tableView.dequeueReusableCell(withIdentifier: "PlaceholderCell")!
+        //     cell.textLabel?.text = "Not yet implemented."
+        //     return cell
         default:
             fatalError("Accessed section outside of scope, should never occur")
         }
@@ -179,8 +179,8 @@ class HomeTableViewController: UITableViewController {
             return "Assigned to You"
         case HomepageCategories.pinned.rawValue:
             return "Pinned Tickets"
-        case HomepageCategories.tags.rawValue:
-            return "Your Tags"
+        // case HomepageCategories.tags.rawValue:
+        //     return "Your Tags"
         default:
             return "Error!"
         }
