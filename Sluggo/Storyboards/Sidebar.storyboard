@@ -61,43 +61,38 @@
         <scene sceneID="JQZ-R2-Zc7">
             <objects>
                 <tableViewController id="J7t-uV-EQA" customClass="PendingInvitesViewController" customModule="Sluggo" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="T72-92-ffa">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="45" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="T72-92-ffa">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="pInviteCell" id="pyK-ed-07x">
-                                <rect key="frame" x="0.0" y="28" width="414" height="30.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationLevel="1" indentationWidth="10" reuseIdentifier="pInviteCell" rowHeight="44" id="pyK-ed-07x" customClass="InviteTableCell" customModule="Sluggo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pyK-ed-07x" id="XaT-gg-Tsn">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="30.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LWK-vF-6ni">
-                                            <rect key="frame" x="322" y="0.0" width="92" height="30.5"/>
+                                            <rect key="frame" x="350" y="0.0" width="64" height="44"/>
                                             <color key="backgroundColor" systemColor="systemRedColor"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="92" id="XLO-AC-U3v"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="Hvv-uh-i6G"/>
+                                                <constraint firstAttribute="width" constant="64" id="OCk-WV-P4W"/>
                                             </constraints>
                                             <state key="normal" title="Reject">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
-                                            <connections>
-                                                <action selector="rejectInvite:" destination="J7t-uV-EQA" eventType="touchUpInside" id="gUW-oe-FJP"/>
-                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Ec-PB-KvF">
-                                            <rect key="frame" x="230" y="0.0" width="92" height="30.5"/>
+                                            <rect key="frame" x="286" y="0.0" width="64" height="44"/>
                                             <color key="backgroundColor" systemColor="systemBlueColor"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="92" id="Z15-fn-8CI"/>
+                                                <constraint firstAttribute="width" constant="64" id="P3k-bv-Iyl"/>
                                             </constraints>
                                             <state key="normal" title="Accept">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
-                                            <connections>
-                                                <action selector="acceptInvite:" destination="J7t-uV-EQA" eventType="touchUpInside" id="TWd-hb-9CG"/>
-                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -109,6 +104,10 @@
                                         <constraint firstAttribute="bottom" secondItem="8Ec-PB-KvF" secondAttribute="bottom" id="wb2-86-1wf"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="acceptButton" destination="8Ec-PB-KvF" id="lEJ-YF-99G"/>
+                                    <outlet property="rejectButton" destination="LWK-vF-6ni" id="hEv-WH-3Gf"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -126,7 +125,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Okk-f2-MWT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="89" y="-732"/>
+            <point key="canvasLocation" x="88.405797101449281" y="-732.58928571428567"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="R09-Ck-t38">

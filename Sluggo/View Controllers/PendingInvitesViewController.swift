@@ -29,9 +29,6 @@ class PendingInvitesViewController: UITableViewController {
         self.configureRefreshControl()
         self.handleRefreshAction()
 
-        refreshControl = UIRefreshControl()
-        refreshControl?.addTarget(self, action: #selector(handleRefreshAction), for: .valueChanged)
-
         self.tableView.allowsSelection = (generateSegueableController != nil)
     }
 
@@ -45,9 +42,10 @@ class PendingInvitesViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "pInviteCell", for: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "pInviteCell", for: indexPath) as InviteTableCell
         let inviteeTeam = self.inviteeTeams[indexPath.row]
         cell.textLabel?.text = inviteeTeam.team.name
+        cell.acceptButton.tag = indexPath.row
         // cell.detailTextLabel?.text = generateTeamInviteDetail?(inviteeTeam) ?? ""
 
         return cell
@@ -75,13 +73,29 @@ class PendingInvitesViewController: UITableViewController {
         }
     }
 
-    @IBAction func acceptInvite(_ sender: Any) {
+    @objc func doAcceptInvitation() {
         print("Accepted!")
     }
-    @IBAction func rejectInvite(_ sender: Any) {
+
+    @objc func doRejectInvitation() {
         print("Rejected!")
     }
+
     @IBAction func backButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+}
+
+class InviteTableCell: UITableViewCell {
+
+    @IBOutlet weak var acceptButton: UIButton!
+    @IBOutlet weak var rejectButton: UIButton!
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+            super.setSelected(selected, animated: animated)
     }
 }

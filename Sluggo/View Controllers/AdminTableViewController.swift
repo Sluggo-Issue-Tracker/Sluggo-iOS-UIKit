@@ -46,4 +46,8 @@ class AdminTableViewController: UITableViewController {
         let view = AdminTagViewController(coder: coder, identity: identity)
         return view
     }
+    @IBSegueAction func createInvitesList(_ coder: NSCoder) -> AdminTagViewController? {
+        let view = AdminTagViewController(coder: coder, identity: identity)
+        return view
+    }
 }
