@@ -44,20 +44,14 @@ class TeamSelectorContainerViewController: UIViewController {
             }
         }
     }
-//
-//    @IBSegueAction func launchTeamSelect(_ coder: NSCoder) -> TeamTableViewController? {
-//        let vc = TeamTableViewController(coder: coder)
-//        vc?.identity = self.identity
-//        vc?.completion = { team in
-//            self.identity.team = team
-//            self.dismiss(animated: true, completion: self.completion)
-//        }
-//        vc?.failure = {
-//            self.dismiss(animated: true, completion: self.failure)
-//        }
-//
-//        return vc
-//    }
+    @IBAction func showPendingInvites(_ sender: Any) {
+        if let view = storyboard?.instantiateViewController(identifier: "pendingInvites") {
+            if let child = view.children[0] as? PendingInvitesViewController {
+                child.identity = self.identity
+            }
+            self.present(view, animated: true, completion: nil)
+        }
+    }
     @IBAction func didCancel(_ sender: Any) {
         self.dismiss(animated: true, completion: self.failure)
     }

@@ -20,6 +20,8 @@ class TeamTableViewController: UITableViewController {
     override func viewDidLoad() {
         self.configureRefreshControl()
         self.handleRefreshAction()
+        NotificationCenter.default.addObserver(self, selector: #selector(handleRefreshAction),
+                                               name: .refreshTeams, object: nil)
     }
 
     func configureRefreshControl() {
@@ -88,4 +90,16 @@ class TeamTableViewController: UITableViewController {
         self.logOutAction?()
     }
 
+    @IBAction func showPendingInvites(_ sender: Any) {
+        if let view = storyboard?.instantiateViewController(identifier: "pendingInvites") {
+            if let child = view.children[0] as? PendingInvitesViewController {
+                child.identity = self.identity
+            }
+            self.present(view, animated: true, completion: nil)
+        }
+    }
+}
+
+extension Notification.Name {
+    static let refreshTeams = Notification.Name(rawValue: "SLGRefreshTeamsNotification")
 }
