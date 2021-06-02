@@ -109,6 +109,15 @@ class HomeTableViewController: UITableViewController {
             var loadedAssigned = false
             var loadedPinned = false
 
+            // Check if member matches team, if not, reload the member
+            // Use a semaphore to gate flow
+            if !self.identity.team!.isMemberInTeam(memberRecord: self.member) {
+                self.loadMember {
+                    sem.signal()
+                }
+                sem.wait()
+            }
+
             // Make calls to reload data, with completions to signal semaphore
             self.loadAssignedTickets {
                 loadedAssigned = true
@@ -146,8 +155,6 @@ class HomeTableViewController: UITableViewController {
             return self.assignedTickets.count
         case HomepageCategories.pinned.rawValue:
             return self.pinnedTickets.count
-        // case HomepageCategories.tags.rawValue:
-            // return 1
         default:
             fatalError("Invalid section count queried")
         }
@@ -165,10 +172,6 @@ class HomeTableViewController: UITableViewController {
                                                      for: indexPath) as! TicketTableViewCell
             cell.loadFromTicketRecord(ticket: pinnedTickets[indexPath.row].ticket)
             return cell
-        // case HomepageCategories.tags.rawValue:
-        //     let cell = tableView.dequeueReusableCell(withIdentifier: "PlaceholderCell")!
-        //     cell.textLabel?.text = "Not yet implemented."
-        //     return cell
         default:
             fatalError("Accessed section outside of scope, should never occur")
         }
@@ -180,23 +183,10 @@ class HomeTableViewController: UITableViewController {
             return "Assigned to You"
         case HomepageCategories.pinned.rawValue:
             return "Pinned Tickets"
-        // case HomepageCategories.tags.rawValue:
-        //     return "Your Tags"
         default:
             return "Error!"
         }
     }
-
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if let _ = self.tableView(self.tableView, cellForRowAt: indexPath) as? TicketTableViewCell {
-//            // Present error
-//            let error = Exception.runtimeError(message: "Opening ticket details from Home not yet implemented!")
-//            UIAlertController.createAndPresentError(vc: self, error: error) { action in
-//                // Deselect row once alert acknowledged
-//                tableView.deselectRow(at: indexPath, animated: true)
-//            }
-//        }
-//    }
 
     @IBSegueAction func gotoTicketDetail(_ coder: NSCoder) -> TicketDetailTableViewController? {
         let selectedPath = tableView.indexPathForSelectedRow
@@ -215,52 +205,4 @@ class HomeTableViewController: UITableViewController {
             fatalError("Nothing should be selectable from unimplemented categories!")
         }
     }
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView,
-                            commit editingStyle: UITableViewCell.EditingStyle,
-                            forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class
-            // insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
