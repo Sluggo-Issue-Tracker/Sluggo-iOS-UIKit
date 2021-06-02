@@ -3,19 +3,88 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		051AAB0B2630FD6500BCB9C7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051AAB0A2630FD6500BCB9C7 /* Constants.swift */; };
+		052258702636100B00B49CE4 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0522586F2636100B00B49CE4 /* LaunchViewController.swift */; };
+		053A259F26645DDD0072A773 /* PendingInvitesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053A259E26645DDD0072A773 /* PendingInvitesViewController.swift */; };
+		0541572326655FBA002A85F2 /* InviteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0541572226655FBA002A85F2 /* InviteManager.swift */; };
+		0541572826659F2E002A85F2 /* InviteRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0541572726659F2E002A85F2 /* InviteRecord.swift */; };
+		0541572D2665BD29002A85F2 /* AdminInviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0541572C2665BD29002A85F2 /* AdminInviteViewController.swift */; };
+		05588A12264DB61E000D8674 /* TeamMembers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05588A11264DB61E000D8674 /* TeamMembers.storyboard */; };
+		05D3BA1A2666B9F8008AE9D8 /* AdminInvite.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05D3BA192666B9F8008AE9D8 /* AdminInvite.storyboard */; };
+		05D3BA272666DA3D008AE9D8 /* PendingInvites.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05D3BA262666DA3D008AE9D8 /* PendingInvites.storyboard */; };
+		05DE0CD7264F11E400D69C61 /* MemberListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DE0CD6264F11E400D69C61 /* MemberListViewController.swift */; };
+		2F2247AC262920AC006C6EE6 /* TokenRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2247AB262920AC006C6EE6 /* TokenRecord.swift */; };
+		2F3AD7A32627C86A00B61A97 /* UserRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3AD7A22627C86A00B61A97 /* UserRecord.swift */; };
+		2F3AD7A82627C89B00B61A97 /* MemberRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3AD7A72627C89B00B61A97 /* MemberRecord.swift */; };
+		2F3AD7AD2627C8EF00B61A97 /* TeamRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3AD7AC2627C8EF00B61A97 /* TeamRecord.swift */; };
+		2F3F66E2262DD3BA0040404C /* JsonLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3F66E1262DD3BA0040404C /* JsonLoader.swift */; };
+		2F44E21D2639FA6B006CA85D /* TicketTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F44E21C2639FA6B006CA85D /* TicketTests.swift */; };
+		2FD70D5D2636144300D13C75 /* LogoutMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD70D5C2636144300D13C75 /* LogoutMessage.swift */; };
+		2FEF5DA9262D0E7C00434763 /* PaginatedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEF5DA8262D0E7C00434763 /* PaginatedList.swift */; };
+		2FEF5DAE262D1C4900434763 /* MemberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FEF5DAD262D1C4900434763 /* MemberTests.swift */; };
+		2FF89024264BBAC600D50B69 /* TicketDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF89023264BBAC600D50B69 /* TicketDetailTableViewController.swift */; };
+		3A150A6726365A9A0052934B /* StatusRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A150A6626365A9A0052934B /* StatusRecord.swift */; };
+		3A150A6C26365B670052934B /* TagRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A150A6B26365B670052934B /* TagRecord.swift */; };
+		3A150A77263CB5F70052934B /* TicketDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A150A76263CB5F70052934B /* TicketDetail.storyboard */; };
+		3A90FBB12651CEED00BE4F5D /* TicketTagTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A90FBB02651CEED00BE4F5D /* TicketTagTableViewCell.swift */; };
+		3A90FBB32651D76900BE4F5D /* TicketTabTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A90FBB22651D76900BE4F5D /* TicketTabTableViewController.swift */; };
+		3A90FBB526531AC600BE4F5D /* AdminUserRolesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A90FBB426531AC600BE4F5D /* AdminUserRolesTableViewController.swift */; };
+		3A90FBB9265F4E7900BE4F5D /* AdminTag.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A90FBB8265F4E7900BE4F5D /* AdminTag.storyboard */; };
+		3A90FBBB265F4FAB00BE4F5D /* AdminTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A90FBBA265F4FAB00BE4F5D /* AdminTagViewController.swift */; };
+		5A00A0142639EDEA0085C8C6 /* URLRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A00A0132639EDEA0085C8C6 /* URLRequestBuilder.swift */; };
+		5A00A045263A34CC0085C8C6 /* TicketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A00A044263A34CC0085C8C6 /* TicketTableViewCell.swift */; };
+		5A25CFA2264B8C8100852035 /* TagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A25CFA1264B8C8100852035 /* TagTests.swift */; };
+		5A25CFA7264B934400852035 /* StatusManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A25CFA6264B934400852035 /* StatusManager.swift */; };
+		5A25CFAC264B966300852035 /* TicketFilterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A25CFAB264B966300852035 /* TicketFilterTableViewController.swift */; };
+		5A25CFB1264B9A9300852035 /* Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A25CFB0264B9A9300852035 /* Methods.swift */; };
+		5A25CFC2264B9AFF00852035 /* TeamPaginatedListable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A25CFC1264B9AFF00852035 /* TeamPaginatedListable.swift */; };
+		5A25CFDF264BCF2C00852035 /* TicketFilterParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A25CFDE264BCF2C00852035 /* TicketFilterParameters.swift */; };
+		5A25CFE7264BD73D00852035 /* TicketFilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A25CFE6264BD73D00852035 /* TicketFilterTableViewCell.swift */; };
+		5A25CFF1264BE28100852035 /* HasTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A25CFF0264BE28100852035 /* HasTitle.swift */; };
+		5A673570263BF2D200C4C778 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A67356F263BF2D200C4C778 /* UIColor.swift */; };
+		5A79FFE1262E562A00D04320 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A79FFE0262E562A00D04320 /* Main.storyboard */; };
+		5A79FFE6262E563F00D04320 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A79FFE5262E563F00D04320 /* LoginViewController.swift */; };
+		5A9C4C1C2640BC4E00B270AB /* TeamTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9C4C1B2640BC4E00B270AB /* TeamTableViewController.swift */; };
+		5A9C4C212641113D00B270AB /* TeamSelectorContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9C4C202641113D00B270AB /* TeamSelectorContainerViewController.swift */; };
+		5A9FF88926386D1400378550 /* Ticket.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A9FF88826386D1400378550 /* Ticket.storyboard */; };
+		5A9FF88E26386D4700378550 /* TicketListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9FF88D26386D4700378550 /* TicketListController.swift */; };
+		5AB1C8DD262FE2DD0010F85E /* TeamManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB1C8DC262FE2DD0010F85E /* TeamManager.swift */; };
+		5AB1C8E5262FE2E60010F85E /* TicketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB1C8E4262FE2E60010F85E /* TicketManager.swift */; };
+		5AB1C8EA262FE2EF0010F85E /* MemberManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB1C8E9262FE2EF0010F85E /* MemberManager.swift */; };
+		5AB1C8EF262FE3210010F85E /* TagManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB1C8EE262FE3210010F85E /* TagManager.swift */; };
+		5AB1C8F7262FE3520010F85E /* AppIdentity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB1C8F6262FE3520010F85E /* AppIdentity.swift */; };
+		5AB1C8FC262FF1690010F85E /* TicketRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB1C8FB262FF1690010F85E /* TicketRecord.swift */; };
+		5AB1C909262FFF500010F85E /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB1C908262FFF500010F85E /* UserManager.swift */; };
+		5AB1F18F26435F9600993D1A /* NullCodable in Frameworks */ = {isa = PBXBuildFile; productRef = 5AB1F18E26435F9600993D1A /* NullCodable */; };
+		5AC6459026412F0C00F46137 /* TeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC6458F26412F0C00F46137 /* TeamTableViewCell.swift */; };
+		5ACC0F012630CA1400DCF83E /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACC0F002630CA1400DCF83E /* ErrorMessage.swift */; };
+		5ACC0F062630CA2700DCF83E /* Exceptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ACC0F052630CA2700DCF83E /* Exceptions.swift */; };
+		7D01B55C264FAAEE0009FA97 /* Admin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D01B55B264FAAEE0009FA97 /* Admin.storyboard */; };
+		7D01B55E264FADC40009FA97 /* AdminTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D01B55D264FADC40009FA97 /* AdminTableViewController.swift */; };
+		7D1354FC262D026E00D38EE0 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1354FB262D026E00D38EE0 /* UserTests.swift */; };
+		7D1DA6AE262B82C200E7C12D /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1DA6AD262B82C200E7C12D /* RootViewController.swift */; };
+		7D1DA6B7262B866D00E7C12D /* SidebarData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1DA6B6262B866D00E7C12D /* SidebarData.swift */; };
+		7D23834B264119050091C7E8 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D23834A264119050091C7E8 /* HomeTableViewController.swift */; };
+		7D53BE6926433D6600400D0E /* PinnedTicketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D53BE6826433D6600400D0E /* PinnedTicketManager.swift */; };
+		7D778C06264A374C00D4061A /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D778C05264A374C00D4061A /* ViewControllerExtensions.swift */; };
+		7D778C0A264A6A0F00D4061A /* TicketManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D778C09264A6A0F00D4061A /* TicketManagerTests.swift */; };
 		7D9963A6261EF3A4002338E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9963A5261EF3A4002338E7 /* AppDelegate.swift */; };
-		7D9963A8261EF3A4002338E7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9963A7261EF3A4002338E7 /* SceneDelegate.swift */; };
-		7D9963AA261EF3A4002338E7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9963A9261EF3A4002338E7 /* ViewController.swift */; };
-		7D9963AD261EF3A4002338E7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D9963AB261EF3A4002338E7 /* Main.storyboard */; };
-		7D9963B0261EF3A4002338E7 /* Sluggo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7D9963AE261EF3A4002338E7 /* Sluggo.xcdatamodeld */; };
+		7D9963AD261EF3A4002338E7 /* Root.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D9963AB261EF3A4002338E7 /* Root.storyboard */; };
 		7D9963B2261EF3A5002338E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D9963B1261EF3A5002338E7 /* Assets.xcassets */; };
-		7D9963B5261EF3A5002338E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D9963B3261EF3A5002338E7 /* LaunchScreen.storyboard */; };
 		7D9963C0261EF3A5002338E7 /* SluggoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9963BF261EF3A5002338E7 /* SluggoTests.swift */; };
 		7D9963CB261EF3A5002338E7 /* SluggoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9963CA261EF3A5002338E7 /* SluggoUITests.swift */; };
+		7DC2A21726293F360002CEE6 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DC2A21626293F360002CEE6 /* Home.storyboard */; };
+		7DC2A21C262943A70002CEE6 /* Sidebar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DC2A21B262943A70002CEE6 /* Sidebar.storyboard */; };
+		7DC2A227262948800002CEE6 /* SluggoSidebarContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC2A226262948800002CEE6 /* SluggoSidebarContainerViewController.swift */; };
+		7DC54AE526437AB3000C8300 /* PinnedTicketRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC54AE426437AB3000C8300 /* PinnedTicketRecord.swift */; };
+		7DEA17852639E7B5004E5A71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DEA17842639E7B5004E5A71 /* LaunchScreen.storyboard */; };
+		7DF6CBA5265F8D620013CAEA /* UIWindowExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF6CBA4265F8D620013CAEA /* UIWindowExtensions.swift */; };
+		7DF6CBA7265F93A90013CAEA /* TitleScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DF6CBA6265F93A90013CAEA /* TitleScreen.storyboard */; };
+		7DF6CBA9265F9A8E0013CAEA /* SluggoNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF6CBA8265F9A8E0013CAEA /* SluggoNavigationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,14 +105,74 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		051AAB0A2630FD6500BCB9C7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		0522586F2636100B00B49CE4 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		053A259E26645DDD0072A773 /* PendingInvitesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingInvitesViewController.swift; sourceTree = "<group>"; };
+		0541572226655FBA002A85F2 /* InviteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteManager.swift; sourceTree = "<group>"; };
+		0541572726659F2E002A85F2 /* InviteRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteRecord.swift; sourceTree = "<group>"; };
+		0541572C2665BD29002A85F2 /* AdminInviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminInviteViewController.swift; sourceTree = "<group>"; };
+		05588A11264DB61E000D8674 /* TeamMembers.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TeamMembers.storyboard; sourceTree = "<group>"; };
+		05D3BA192666B9F8008AE9D8 /* AdminInvite.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AdminInvite.storyboard; sourceTree = "<group>"; };
+		05D3BA262666DA3D008AE9D8 /* PendingInvites.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PendingInvites.storyboard; sourceTree = "<group>"; };
+		05DE0CD6264F11E400D69C61 /* MemberListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberListViewController.swift; sourceTree = "<group>"; };
+		2F2247AB262920AC006C6EE6 /* TokenRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRecord.swift; sourceTree = "<group>"; };
+		2F3AD7A22627C86A00B61A97 /* UserRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRecord.swift; sourceTree = "<group>"; };
+		2F3AD7A72627C89B00B61A97 /* MemberRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberRecord.swift; sourceTree = "<group>"; };
+		2F3AD7AC2627C8EF00B61A97 /* TeamRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRecord.swift; sourceTree = "<group>"; };
+		2F3F66E1262DD3BA0040404C /* JsonLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonLoader.swift; sourceTree = "<group>"; };
+		2F44E21C2639FA6B006CA85D /* TicketTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketTests.swift; sourceTree = "<group>"; };
+		2FD70D5C2636144300D13C75 /* LogoutMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutMessage.swift; sourceTree = "<group>"; };
+		2FEF5DA8262D0E7C00434763 /* PaginatedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginatedList.swift; sourceTree = "<group>"; };
+		2FEF5DAD262D1C4900434763 /* MemberTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberTests.swift; sourceTree = "<group>"; };
+		2FF89023264BBAC600D50B69 /* TicketDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketDetailTableViewController.swift; sourceTree = "<group>"; };
+		3A150A6626365A9A0052934B /* StatusRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusRecord.swift; sourceTree = "<group>"; };
+		3A150A6B26365B670052934B /* TagRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagRecord.swift; sourceTree = "<group>"; };
+		3A150A76263CB5F70052934B /* TicketDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TicketDetail.storyboard; sourceTree = "<group>"; };
+		3A90FBB02651CEED00BE4F5D /* TicketTagTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketTagTableViewCell.swift; sourceTree = "<group>"; };
+		3A90FBB22651D76900BE4F5D /* TicketTabTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketTabTableViewController.swift; sourceTree = "<group>"; };
+		3A90FBB426531AC600BE4F5D /* AdminUserRolesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminUserRolesTableViewController.swift; sourceTree = "<group>"; };
+		3A90FBB8265F4E7900BE4F5D /* AdminTag.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AdminTag.storyboard; sourceTree = "<group>"; };
+		3A90FBBA265F4FAB00BE4F5D /* AdminTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminTagViewController.swift; sourceTree = "<group>"; };
+		5A00A0132639EDEA0085C8C6 /* URLRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestBuilder.swift; sourceTree = "<group>"; };
+		5A00A044263A34CC0085C8C6 /* TicketTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketTableViewCell.swift; sourceTree = "<group>"; };
+		5A25CFA1264B8C8100852035 /* TagTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagTests.swift; sourceTree = "<group>"; };
+		5A25CFA6264B934400852035 /* StatusManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusManager.swift; sourceTree = "<group>"; };
+		5A25CFAB264B966300852035 /* TicketFilterTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketFilterTableViewController.swift; sourceTree = "<group>"; };
+		5A25CFB0264B9A9300852035 /* Methods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Methods.swift; sourceTree = "<group>"; };
+		5A25CFC1264B9AFF00852035 /* TeamPaginatedListable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamPaginatedListable.swift; sourceTree = "<group>"; };
+		5A25CFDE264BCF2C00852035 /* TicketFilterParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketFilterParameters.swift; sourceTree = "<group>"; };
+		5A25CFE6264BD73D00852035 /* TicketFilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketFilterTableViewCell.swift; sourceTree = "<group>"; };
+		5A25CFF0264BE28100852035 /* HasTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasTitle.swift; sourceTree = "<group>"; };
+		5A67356F263BF2D200C4C778 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		5A79FFE0262E562A00D04320 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		5A79FFE5262E563F00D04320 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		5A9C4C1B2640BC4E00B270AB /* TeamTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTableViewController.swift; sourceTree = "<group>"; };
+		5A9C4C202641113D00B270AB /* TeamSelectorContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSelectorContainerViewController.swift; sourceTree = "<group>"; };
+		5A9FF88826386D1400378550 /* Ticket.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Ticket.storyboard; sourceTree = "<group>"; };
+		5A9FF88D26386D4700378550 /* TicketListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketListController.swift; sourceTree = "<group>"; };
+		5AB1C8DC262FE2DD0010F85E /* TeamManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamManager.swift; sourceTree = "<group>"; };
+		5AB1C8E4262FE2E60010F85E /* TicketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketManager.swift; sourceTree = "<group>"; };
+		5AB1C8E9262FE2EF0010F85E /* MemberManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberManager.swift; sourceTree = "<group>"; };
+		5AB1C8EE262FE3210010F85E /* TagManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagManager.swift; sourceTree = "<group>"; };
+		5AB1C8F6262FE3520010F85E /* AppIdentity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIdentity.swift; sourceTree = "<group>"; };
+		5AB1C8FB262FF1690010F85E /* TicketRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketRecord.swift; sourceTree = "<group>"; };
+		5AB1C908262FFF500010F85E /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		5AC6458F26412F0C00F46137 /* TeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamTableViewCell.swift; sourceTree = "<group>"; };
+		5ACC0F002630CA1400DCF83E /* ErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
+		5ACC0F052630CA2700DCF83E /* Exceptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exceptions.swift; sourceTree = "<group>"; };
+		7D01B55B264FAAEE0009FA97 /* Admin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Admin.storyboard; sourceTree = "<group>"; };
+		7D01B55D264FADC40009FA97 /* AdminTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminTableViewController.swift; sourceTree = "<group>"; };
+		7D1354FB262D026E00D38EE0 /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
+		7D1DA6AD262B82C200E7C12D /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RootViewController.swift; path = "Sluggo/View Controllers/RootViewController.swift"; sourceTree = SOURCE_ROOT; };
+		7D1DA6B6262B866D00E7C12D /* SidebarData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarData.swift; sourceTree = "<group>"; };
+		7D23834A264119050091C7E8 /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeTableViewController.swift; path = "Sluggo/View Controllers/HomeTableViewController.swift"; sourceTree = SOURCE_ROOT; };
+		7D53BE6826433D6600400D0E /* PinnedTicketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnedTicketManager.swift; sourceTree = "<group>"; };
+		7D778C05264A374C00D4061A /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
+		7D778C09264A6A0F00D4061A /* TicketManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketManagerTests.swift; sourceTree = "<group>"; };
 		7D9963A2261EF3A4002338E7 /* Sluggo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sluggo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D9963A5261EF3A4002338E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7D9963A7261EF3A4002338E7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		7D9963A9261EF3A4002338E7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		7D9963AC261EF3A4002338E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		7D9963AF261EF3A4002338E7 /* Sluggo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Sluggo.xcdatamodel; sourceTree = "<group>"; };
+		7D9963AC261EF3A4002338E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Root.storyboard; sourceTree = "<group>"; };
 		7D9963B1261EF3A5002338E7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		7D9963B4261EF3A5002338E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7D9963B6261EF3A5002338E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D9963BB261EF3A5002338E7 /* SluggoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SluggoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D9963BF261EF3A5002338E7 /* SluggoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SluggoTests.swift; sourceTree = "<group>"; };
@@ -51,6 +180,14 @@
 		7D9963C6261EF3A5002338E7 /* SluggoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SluggoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D9963CA261EF3A5002338E7 /* SluggoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SluggoUITests.swift; sourceTree = "<group>"; };
 		7D9963CC261EF3A5002338E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7DC2A21626293F360002CEE6 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		7DC2A21B262943A70002CEE6 /* Sidebar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Sidebar.storyboard; sourceTree = "<group>"; };
+		7DC2A226262948800002CEE6 /* SluggoSidebarContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SluggoSidebarContainerViewController.swift; sourceTree = "<group>"; };
+		7DC54AE426437AB3000C8300 /* PinnedTicketRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinnedTicketRecord.swift; sourceTree = "<group>"; };
+		7DEA17842639E7B5004E5A71 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7DF6CBA4265F8D620013CAEA /* UIWindowExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindowExtensions.swift; sourceTree = "<group>"; };
+		7DF6CBA6265F93A90013CAEA /* TitleScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TitleScreen.storyboard; sourceTree = "<group>"; };
+		7DF6CBA8265F9A8E0013CAEA /* SluggoNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SluggoNavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +195,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AB1F18F26435F9600993D1A /* NullCodable in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +216,105 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2F81E6E62627E85000B6D86D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5A25CFB8264B9AC500852035 /* Interfaces */,
+				5AB1C8DB262FE29E0010F85E /* Managers */,
+				5A79FFED262E5FEF00D04320 /* Codables */,
+				2F3F66E1262DD3BA0040404C /* JsonLoader.swift */,
+				7D1DA6B6262B866D00E7C12D /* SidebarData.swift */,
+				5AB1C8F6262FE3520010F85E /* AppIdentity.swift */,
+				051AAB0A2630FD6500BCB9C7 /* Constants.swift */,
+				5ACC0F052630CA2700DCF83E /* Exceptions.swift */,
+				5A00A0132639EDEA0085C8C6 /* URLRequestBuilder.swift */,
+				5A25CFB0264B9A9300852035 /* Methods.swift */,
+				5A25CFDE264BCF2C00852035 /* TicketFilterParameters.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5A00A043263A349F0085C8C6 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				5A00A044263A34CC0085C8C6 /* TicketTableViewCell.swift */,
+				5AC6458F26412F0C00F46137 /* TeamTableViewCell.swift */,
+				5A25CFE6264BD73D00852035 /* TicketFilterTableViewCell.swift */,
+				3A90FBB02651CEED00BE4F5D /* TicketTagTableViewCell.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		5A25CFB8264B9AC500852035 /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				5A25CFC1264B9AFF00852035 /* TeamPaginatedListable.swift */,
+				5A25CFF0264BE28100852035 /* HasTitle.swift */,
+			);
+			path = Interfaces;
+			sourceTree = "<group>";
+		};
+		5A67356E263BF2C600C4C778 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5A67356F263BF2D200C4C778 /* UIColor.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		5A79FFED262E5FEF00D04320 /* Codables */ = {
+			isa = PBXGroup;
+			children = (
+				2F3AD7A22627C86A00B61A97 /* UserRecord.swift */,
+				2F3AD7A72627C89B00B61A97 /* MemberRecord.swift */,
+				2F3AD7AC2627C8EF00B61A97 /* TeamRecord.swift */,
+				2F2247AB262920AC006C6EE6 /* TokenRecord.swift */,
+				2FEF5DA8262D0E7C00434763 /* PaginatedList.swift */,
+				5AB1C8FB262FF1690010F85E /* TicketRecord.swift */,
+				5ACC0F002630CA1400DCF83E /* ErrorMessage.swift */,
+				2FD70D5C2636144300D13C75 /* LogoutMessage.swift */,
+				3A150A6626365A9A0052934B /* StatusRecord.swift */,
+				3A150A6B26365B670052934B /* TagRecord.swift */,
+				7DC54AE426437AB3000C8300 /* PinnedTicketRecord.swift */,
+				0541572726659F2E002A85F2 /* InviteRecord.swift */,
+			);
+			path = Codables;
+			sourceTree = "<group>";
+		};
+		5AB1C8DB262FE29E0010F85E /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				5AB1C8DC262FE2DD0010F85E /* TeamManager.swift */,
+				5AB1C8E4262FE2E60010F85E /* TicketManager.swift */,
+				7D53BE6826433D6600400D0E /* PinnedTicketManager.swift */,
+				5AB1C8E9262FE2EF0010F85E /* MemberManager.swift */,
+				5AB1C8EE262FE3210010F85E /* TagManager.swift */,
+				5AB1C908262FFF500010F85E /* UserManager.swift */,
+				5A25CFA6264B934400852035 /* StatusManager.swift */,
+				0541572226655FBA002A85F2 /* InviteManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		7D679F802650EF83000429E8 /* Admin */ = {
+			isa = PBXGroup;
+			children = (
+				7D01B55B264FAAEE0009FA97 /* Admin.storyboard */,
+				3A90FBB8265F4E7900BE4F5D /* AdminTag.storyboard */,
+				05D3BA192666B9F8008AE9D8 /* AdminInvite.storyboard */,
+			);
+			path = Admin;
+			sourceTree = "<group>";
+		};
+		7D778C04264A374200D4061A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7D778C05264A374C00D4061A /* ViewControllerExtensions.swift */,
+				7DF6CBA4265F8D620013CAEA /* UIWindowExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		7D996399261EF3A4002338E7 = {
 			isa = PBXGroup;
 			children = (
@@ -101,14 +338,14 @@
 		7D9963A4261EF3A4002338E7 /* Sluggo */ = {
 			isa = PBXGroup;
 			children = (
+				5A67356E263BF2C600C4C778 /* Extensions */,
+				5A00A043263A349F0085C8C6 /* Components */,
+				7DC2A2202629442B0002CEE6 /* View Controllers */,
+				7DC2A21526293F1E0002CEE6 /* Storyboards */,
+				2F81E6E62627E85000B6D86D /* Models */,
 				7D9963A5261EF3A4002338E7 /* AppDelegate.swift */,
-				7D9963A7261EF3A4002338E7 /* SceneDelegate.swift */,
-				7D9963A9261EF3A4002338E7 /* ViewController.swift */,
-				7D9963AB261EF3A4002338E7 /* Main.storyboard */,
 				7D9963B1261EF3A5002338E7 /* Assets.xcassets */,
-				7D9963B3261EF3A5002338E7 /* LaunchScreen.storyboard */,
 				7D9963B6261EF3A5002338E7 /* Info.plist */,
-				7D9963AE261EF3A4002338E7 /* Sluggo.xcdatamodeld */,
 			);
 			path = Sluggo;
 			sourceTree = "<group>";
@@ -118,6 +355,11 @@
 			children = (
 				7D9963BF261EF3A5002338E7 /* SluggoTests.swift */,
 				7D9963C1261EF3A5002338E7 /* Info.plist */,
+				7D1354FB262D026E00D38EE0 /* UserTests.swift */,
+				2FEF5DAD262D1C4900434763 /* MemberTests.swift */,
+				2F44E21C2639FA6B006CA85D /* TicketTests.swift */,
+				7D778C09264A6A0F00D4061A /* TicketManagerTests.swift */,
+				5A25CFA1264B8C8100852035 /* TagTests.swift */,
 			);
 			path = SluggoTests;
 			sourceTree = "<group>";
@@ -131,6 +373,50 @@
 			path = SluggoUITests;
 			sourceTree = "<group>";
 		};
+		7DC2A21526293F1E0002CEE6 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				7D679F802650EF83000429E8 /* Admin */,
+				5A79FFE0262E562A00D04320 /* Main.storyboard */,
+				7DF6CBA6265F93A90013CAEA /* TitleScreen.storyboard */,
+				7D9963AB261EF3A4002338E7 /* Root.storyboard */,
+				7DC2A21626293F360002CEE6 /* Home.storyboard */,
+				7DC2A21B262943A70002CEE6 /* Sidebar.storyboard */,
+				05D3BA262666DA3D008AE9D8 /* PendingInvites.storyboard */,
+				5A9FF88826386D1400378550 /* Ticket.storyboard */,
+				7DEA17842639E7B5004E5A71 /* LaunchScreen.storyboard */,
+				3A150A76263CB5F70052934B /* TicketDetail.storyboard */,
+				05588A11264DB61E000D8674 /* TeamMembers.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		7DC2A2202629442B0002CEE6 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				7D778C04264A374200D4061A /* Extensions */,
+				0522586F2636100B00B49CE4 /* LaunchViewController.swift */,
+				5A79FFE5262E563F00D04320 /* LoginViewController.swift */,
+				7D1DA6AD262B82C200E7C12D /* RootViewController.swift */,
+				7DC2A226262948800002CEE6 /* SluggoSidebarContainerViewController.swift */,
+				5A9FF88D26386D4700378550 /* TicketListController.swift */,
+				5A9C4C1B2640BC4E00B270AB /* TeamTableViewController.swift */,
+				053A259E26645DDD0072A773 /* PendingInvitesViewController.swift */,
+				5A9C4C202641113D00B270AB /* TeamSelectorContainerViewController.swift */,
+				7D23834A264119050091C7E8 /* HomeTableViewController.swift */,
+				5A25CFAB264B966300852035 /* TicketFilterTableViewController.swift */,
+				2FF89023264BBAC600D50B69 /* TicketDetailTableViewController.swift */,
+				3A90FBB22651D76900BE4F5D /* TicketTabTableViewController.swift */,
+				05DE0CD6264F11E400D69C61 /* MemberListViewController.swift */,
+				7D01B55D264FADC40009FA97 /* AdminTableViewController.swift */,
+				3A90FBB426531AC600BE4F5D /* AdminUserRolesTableViewController.swift */,
+				7DF6CBA8265F9A8E0013CAEA /* SluggoNavigationController.swift */,
+				3A90FBBA265F4FAB00BE4F5D /* AdminTagViewController.swift */,
+				0541572C2665BD29002A85F2 /* AdminInviteViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -141,12 +427,16 @@
 				7D99639E261EF3A4002338E7 /* Sources */,
 				7D99639F261EF3A4002338E7 /* Frameworks */,
 				7D9963A0261EF3A4002338E7 /* Resources */,
+				2F0A5167264DB61C00276172 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Sluggo;
+			packageProductDependencies = (
+				5AB1F18E26435F9600993D1A /* NullCodable */,
+			);
 			productName = Sluggo;
 			productReference = 7D9963A2261EF3A4002338E7 /* Sluggo.app */;
 			productType = "com.apple.product-type.application";
@@ -218,6 +508,9 @@
 				Base,
 			);
 			mainGroup = 7D996399261EF3A4002338E7;
+			packageReferences = (
+				5AB1F18D26435F9600993D1A /* XCRemoteSwiftPackageReference "NullCodable" */,
+			);
 			productRefGroup = 7D9963A3261EF3A4002338E7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -234,9 +527,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D9963B5261EF3A5002338E7 /* LaunchScreen.storyboard in Resources */,
 				7D9963B2261EF3A5002338E7 /* Assets.xcassets in Resources */,
-				7D9963AD261EF3A4002338E7 /* Main.storyboard in Resources */,
+				3A90FBB9265F4E7900BE4F5D /* AdminTag.storyboard in Resources */,
+				5A9FF88926386D1400378550 /* Ticket.storyboard in Resources */,
+				5A79FFE1262E562A00D04320 /* Main.storyboard in Resources */,
+				05588A12264DB61E000D8674 /* TeamMembers.storyboard in Resources */,
+				7D9963AD261EF3A4002338E7 /* Root.storyboard in Resources */,
+				7DF6CBA7265F93A90013CAEA /* TitleScreen.storyboard in Resources */,
+				7DEA17852639E7B5004E5A71 /* LaunchScreen.storyboard in Resources */,
+				7D01B55C264FAAEE0009FA97 /* Admin.storyboard in Resources */,
+				3A150A77263CB5F70052934B /* TicketDetail.storyboard in Resources */,
+				05D3BA1A2666B9F8008AE9D8 /* AdminInvite.storyboard in Resources */,
+				7DC2A21726293F360002CEE6 /* Home.storyboard in Resources */,
+				7DC2A21C262943A70002CEE6 /* Sidebar.storyboard in Resources */,
+				05D3BA272666DA3D008AE9D8 /* PendingInvites.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,15 +560,87 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2F0A5167264DB61C00276172 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		7D99639E261EF3A4002338E7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D9963B0261EF3A4002338E7 /* Sluggo.xcdatamodeld in Sources */,
-				7D9963AA261EF3A4002338E7 /* ViewController.swift in Sources */,
+				5A9C4C212641113D00B270AB /* TeamSelectorContainerViewController.swift in Sources */,
+				5A79FFE6262E563F00D04320 /* LoginViewController.swift in Sources */,
+				0541572326655FBA002A85F2 /* InviteManager.swift in Sources */,
+				5AB1C8FC262FF1690010F85E /* TicketRecord.swift in Sources */,
+				3A90FBB32651D76900BE4F5D /* TicketTabTableViewController.swift in Sources */,
+				5A25CFDF264BCF2C00852035 /* TicketFilterParameters.swift in Sources */,
+				0541572826659F2E002A85F2 /* InviteRecord.swift in Sources */,
+				5A25CFE7264BD73D00852035 /* TicketFilterTableViewCell.swift in Sources */,
+				7D1DA6B7262B866D00E7C12D /* SidebarData.swift in Sources */,
+				3A90FBB526531AC600BE4F5D /* AdminUserRolesTableViewController.swift in Sources */,
+				5A00A0142639EDEA0085C8C6 /* URLRequestBuilder.swift in Sources */,
+				5A25CFC2264B9AFF00852035 /* TeamPaginatedListable.swift in Sources */,
+				2FD70D5D2636144300D13C75 /* LogoutMessage.swift in Sources */,
+				5AB1C8EA262FE2EF0010F85E /* MemberManager.swift in Sources */,
+				5A9C4C1C2640BC4E00B270AB /* TeamTableViewController.swift in Sources */,
+				2F3AD7AD2627C8EF00B61A97 /* TeamRecord.swift in Sources */,
+				7DC54AE526437AB3000C8300 /* PinnedTicketRecord.swift in Sources */,
+				7DC2A227262948800002CEE6 /* SluggoSidebarContainerViewController.swift in Sources */,
+				2FF89024264BBAC600D50B69 /* TicketDetailTableViewController.swift in Sources */,
+				3A90FBBB265F4FAB00BE4F5D /* AdminTagViewController.swift in Sources */,
+				5AC6459026412F0C00F46137 /* TeamTableViewCell.swift in Sources */,
+				051AAB0B2630FD6500BCB9C7 /* Constants.swift in Sources */,
+				7DF6CBA9265F9A8E0013CAEA /* SluggoNavigationController.swift in Sources */,
+				2F3F66E2262DD3BA0040404C /* JsonLoader.swift in Sources */,
+				2F2247AC262920AC006C6EE6 /* TokenRecord.swift in Sources */,
+				7D1DA6AE262B82C200E7C12D /* RootViewController.swift in Sources */,
+				5ACC0F012630CA1400DCF83E /* ErrorMessage.swift in Sources */,
+				2F3AD7A32627C86A00B61A97 /* UserRecord.swift in Sources */,
+				052258702636100B00B49CE4 /* LaunchViewController.swift in Sources */,
+				3A150A6726365A9A0052934B /* StatusRecord.swift in Sources */,
+				3A90FBB12651CEED00BE4F5D /* TicketTagTableViewCell.swift in Sources */,
+				7DF6CBA5265F8D620013CAEA /* UIWindowExtensions.swift in Sources */,
+				5A25CFF1264BE28100852035 /* HasTitle.swift in Sources */,
+				7D01B55E264FADC40009FA97 /* AdminTableViewController.swift in Sources */,
+				7D53BE6926433D6600400D0E /* PinnedTicketManager.swift in Sources */,
+				5ACC0F062630CA2700DCF83E /* Exceptions.swift in Sources */,
+				05DE0CD7264F11E400D69C61 /* MemberListViewController.swift in Sources */,
+				5A25CFA7264B934400852035 /* StatusManager.swift in Sources */,
+				5AB1C8F7262FE3520010F85E /* AppIdentity.swift in Sources */,
 				7D9963A6261EF3A4002338E7 /* AppDelegate.swift in Sources */,
-				7D9963A8261EF3A4002338E7 /* SceneDelegate.swift in Sources */,
+				5A673570263BF2D200C4C778 /* UIColor.swift in Sources */,
+				0541572D2665BD29002A85F2 /* AdminInviteViewController.swift in Sources */,
+				3A150A6C26365B670052934B /* TagRecord.swift in Sources */,
+				5A25CFB1264B9A9300852035 /* Methods.swift in Sources */,
+				7D778C06264A374C00D4061A /* ViewControllerExtensions.swift in Sources */,
+				7D23834B264119050091C7E8 /* HomeTableViewController.swift in Sources */,
+				5AB1C8EF262FE3210010F85E /* TagManager.swift in Sources */,
+				5A9FF88E26386D4700378550 /* TicketListController.swift in Sources */,
+				5AB1C8E5262FE2E60010F85E /* TicketManager.swift in Sources */,
+				053A259F26645DDD0072A773 /* PendingInvitesViewController.swift in Sources */,
+				2F3AD7A82627C89B00B61A97 /* MemberRecord.swift in Sources */,
+				5AB1C8DD262FE2DD0010F85E /* TeamManager.swift in Sources */,
+				5A00A045263A34CC0085C8C6 /* TicketTableViewCell.swift in Sources */,
+				5AB1C909262FFF500010F85E /* UserManager.swift in Sources */,
+				2FEF5DA9262D0E7C00434763 /* PaginatedList.swift in Sources */,
+				5A25CFAC264B966300852035 /* TicketFilterTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,7 +648,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D1354FC262D026E00D38EE0 /* UserTests.swift in Sources */,
+				2FEF5DAE262D1C4900434763 /* MemberTests.swift in Sources */,
 				7D9963C0261EF3A5002338E7 /* SluggoTests.swift in Sources */,
+				7D778C0A264A6A0F00D4061A /* TicketManagerTests.swift in Sources */,
+				5A25CFA2264B8C8100852035 /* TagTests.swift in Sources */,
+				2F44E21D2639FA6B006CA85D /* TicketTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,20 +681,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		7D9963AB261EF3A4002338E7 /* Main.storyboard */ = {
+		7D9963AB261EF3A4002338E7 /* Root.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				7D9963AC261EF3A4002338E7 /* Base */,
 			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		7D9963B3261EF3A5002338E7 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7D9963B4261EF3A5002338E7 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
+			name = Root.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -440,6 +813,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LUQ6CX5JDC;
 				INFOPLIST_FILE = Sluggo/Info.plist;
@@ -450,6 +824,7 @@
 				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = ex.sluggotrack.Sluggo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -460,6 +835,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LUQ6CX5JDC;
 				INFOPLIST_FILE = Sluggo/Info.plist;
@@ -470,6 +846,7 @@
 				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = ex.sluggotrack.Sluggo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -523,6 +900,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LUQ6CX5JDC;
 				INFOPLIST_FILE = SluggoUITests/Info.plist;
@@ -533,6 +912,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ex.sluggotrack.SluggoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Sluggo;
@@ -543,6 +924,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LUQ6CX5JDC;
 				INFOPLIST_FILE = SluggoUITests/Info.plist;
@@ -553,6 +936,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ex.sluggotrack.SluggoUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Sluggo;
@@ -600,18 +985,24 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCVersionGroup section */
-		7D9963AE261EF3A4002338E7 /* Sluggo.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				7D9963AF261EF3A4002338E7 /* Sluggo.xcdatamodel */,
-			);
-			currentVersion = 7D9963AF261EF3A4002338E7 /* Sluggo.xcdatamodel */;
-			path = Sluggo.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
+/* Begin XCRemoteSwiftPackageReference section */
+		5AB1F18D26435F9600993D1A /* XCRemoteSwiftPackageReference "NullCodable" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/g-mark/NullCodable.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
+			};
 		};
-/* End XCVersionGroup section */
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5AB1F18E26435F9600993D1A /* NullCodable */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5AB1F18D26435F9600993D1A /* XCRemoteSwiftPackageReference "NullCodable" */;
+			productName = NullCodable;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7D99639A261EF3A4002338E7 /* Project object */;
 }
