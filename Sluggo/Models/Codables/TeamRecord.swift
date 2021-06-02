@@ -21,4 +21,12 @@ struct TeamRecord: Codable, Equatable {
     static func == (lhs: TeamRecord, rhs: TeamRecord) -> Bool {
         return lhs.object_uuid == rhs.object_uuid
     }
+
+    func isMemberInTeam(memberRecord: MemberRecord?) -> Bool {
+        guard let memberInfo = memberRecord else {
+            return false
+        }
+
+        return self.id == memberInfo.team_id
+    }
 }

@@ -109,6 +109,15 @@ class HomeTableViewController: UITableViewController {
             var loadedAssigned = false
             var loadedPinned = false
 
+            // Check if member matches team, if not, reload the member
+            // Use a semaphore to gate flow
+            if !self.identity.team!.isMemberInTeam(memberRecord: self.member) {
+                self.loadMember {
+                    sem.signal()
+                }
+                sem.wait()
+            }
+
             // Make calls to reload data, with completions to signal semaphore
             self.loadAssignedTickets {
                 loadedAssigned = true
