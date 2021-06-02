@@ -48,7 +48,7 @@ class SluggoSidebarContainerViewController: UIViewController {
     @objc func triggerSidebar(_notification: Notification) {
         guard let sidebarState = _notification.userInfo?[Sidebar.USER_INFO_KEY] as? SidebarStatus else {
             print("Sidebar triggered without explicit state.")
-            return // TODO log this as an error
+            return
         }
 
         sidebarPresenting = sidebarState

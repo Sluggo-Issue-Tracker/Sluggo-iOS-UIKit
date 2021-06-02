@@ -29,7 +29,7 @@ class TicketManager {
         return URL(string: urlString)!
     }
 
-    // TODO: nest a params class that will make querying slightly easier
+    // Future: nest a params class might make querying slightly easier
     public func makeListUrl(page: Int, assignedMember: MemberRecord?) -> URL {
         let queryParams = TicketFilterParameters(assignedUser: assignedMember)
 
@@ -54,7 +54,7 @@ class TicketManager {
             return
         }
 
-        // TODO: this works but the page here does effectively nothing. I think for clarity introducing a separate
+        // NOTE: this works but the page here does effectively nothing. I think for clarity introducing a separate
         // function for making the url might be beneficial
         let requestBuilder = URLRequestBuilder(url: makeListUrl(page: 1, assignedMember: nil))
             .setMethod(method: .POST)

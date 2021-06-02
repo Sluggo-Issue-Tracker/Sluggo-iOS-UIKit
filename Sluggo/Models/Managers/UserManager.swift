@@ -39,7 +39,6 @@ class UserManager {
         JsonLoader.executeCodableRequest(request: requestBuilder.getRequest(), completionHandler: completionHandler)
     }
 
-    // TODO: this is probably incorrect
     public func doLogout(completionHandler: @escaping(Result<LogoutMessage, Error>) -> Void) {
         let url = URL(string: identity.baseAddress + UserManager.urlBase + "logout/")!
         let requestBuilder = URLRequestBuilder(url: url)

@@ -76,7 +76,6 @@ class MemberManager: TeamPaginatedListable {
         let memberPk = teamHash.appending(userHash)
 
         // Execute request
-        // TODO: this needs to handle pagination correclty!
         let request = URLRequestBuilder(url: URL(string: makeDetailUrl(id: memberPk).absoluteString)!)
             .setMethod(method: .GET)
             .setIdentity(identity: identity)

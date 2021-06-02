@@ -15,10 +15,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var persistButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
 
-    // TODO: AppIdentity be migrated when login flow progressed
-    // This should really be managed by the AppDelegate and passed into VCs along
-    // segues and otherwise.
-
     // Attempt to load from disk, otherwise, use the new one.
     var identity: AppIdentity
     var completion: (() -> Void)?
