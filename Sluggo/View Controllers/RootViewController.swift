@@ -83,12 +83,7 @@ class RootViewController: UIViewController {
             // Hopefully the user cannot access anything now
             // We don't do background calls to API so this *shouldn't* crash
             // Remove AppIdentity persistence file
-            _ = AppIdentity.deletePersistenceFile()
-
-            // invalidate token to prevent automatic login when app is logged out and closed.
-            self.identity.token = nil
-            self.identity.authenticatedUser = nil
-            self.identity.team = nil
+            self.identity.setPersistData(persist: false)
 
             // After this is done, make a call to reconfigure
             // Reconfiguring will remove the logo window if it exists
@@ -219,7 +214,6 @@ class RootViewController: UIViewController {
                 return false
             }
         }
-
         return true
     }
 }
