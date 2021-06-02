@@ -41,6 +41,7 @@ class HomeTableViewController: UITableViewController {
                                                object: nil,
                                                queue: nil) { _ in
             self.refreshContent()
+            NotificationCenter.default.post(name: .refreshMembers, object: self)
         }
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(refreshContent),
