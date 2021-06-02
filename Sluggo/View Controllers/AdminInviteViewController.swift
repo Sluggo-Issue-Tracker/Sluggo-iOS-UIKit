@@ -25,6 +25,8 @@ class AdminInviteViewController: UITableViewController {
     override func viewDidLoad() {
         self.configureRefreshControl()
         self.handleRefreshAction()
+        NotificationCenter.default.addObserver(self, selector: #selector(handleRefreshAction),
+                                               name: .refreshTeamInvites, object: nil)
 
     }
 

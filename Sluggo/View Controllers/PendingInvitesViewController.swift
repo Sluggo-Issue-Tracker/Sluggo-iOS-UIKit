@@ -28,8 +28,8 @@ class PendingInvitesViewController: UITableViewController {
     override func viewDidLoad() {
         self.configureRefreshControl()
         self.handleRefreshAction()
-
-        self.tableView.allowsSelection = (generateSegueableController != nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleRefreshAction),
+                                               name: .refreshInvites, object: nil)
     }
 
     func configureRefreshControl() {
@@ -46,8 +46,10 @@ class PendingInvitesViewController: UITableViewController {
                 as? InviteTableCell else {fatalError("Could not load InviteTableCell")}
         let inviteeTeam = self.inviteeTeams[indexPath.row]
         cell.textLabel?.text = inviteeTeam.team.name
+
         cell.acceptButton.tag = indexPath.row
         cell.acceptButton.addTarget(self, action: #selector(doAcceptInvitation(sender:)), for: .touchUpInside)
+
         cell.rejectButton.tag = indexPath.row
         cell.rejectButton.addTarget(self, action: #selector(doRejectInvitation(sender:)), for: .touchUpInside)
 
@@ -84,7 +86,8 @@ class PendingInvitesViewController: UITableViewController {
         inviteManager.acceptUserInvite(invite: invite) { result in
             self.processResult(result: result) { _ in
                 DispatchQueue.main.async {
-                    NotificationCenter.default.post(name: .refreshTrigger, object: self)
+                    NotificationCenter.default.post(name: .refreshInvites, object: self)
+                    NotificationCenter.default.post(name: .refreshTeams, object: self)
                     self.navigationController?.popViewController(animated: false)
                 }
             }
@@ -99,7 +102,7 @@ class PendingInvitesViewController: UITableViewController {
         inviteManager.rejectUserInvite(invite: invite) { result in
             self.processResult(result: result) { _ in
                 DispatchQueue.main.async {
-                    NotificationCenter.default.post(name: .refreshTrigger, object: self)
+                    NotificationCenter.default.post(name: .refreshInvites, object: self)
                     self.navigationController?.popViewController(animated: false)
                 }
             }
@@ -109,6 +112,10 @@ class PendingInvitesViewController: UITableViewController {
     @IBAction func backButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
+}
+
+extension Notification.Name {
+    static let refreshInvites = Notification.Name(rawValue: "SLGRefreshInvitesNotification")
 }
 
 // MARK: Invite Table Cell

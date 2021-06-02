@@ -20,6 +20,8 @@ class TeamTableViewController: UITableViewController {
     override func viewDidLoad() {
         self.configureRefreshControl()
         self.handleRefreshAction()
+        NotificationCenter.default.addObserver(self, selector: #selector(handleRefreshAction),
+                                               name: .refreshTeams, object: nil)
     }
 
     func configureRefreshControl() {
@@ -96,4 +98,8 @@ class TeamTableViewController: UITableViewController {
             self.present(view, animated: true, completion: nil)
         }
     }
+}
+
+extension Notification.Name {
+    static let refreshTeams = Notification.Name(rawValue: "SLGRefreshTeamsNotification")
 }
