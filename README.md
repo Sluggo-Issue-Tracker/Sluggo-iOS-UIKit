@@ -1,3 +1,7 @@
+**NOTE: This frontend is deprecated, and replaced by a rewrite in SwiftUI which
+can be found here:**
+**https://www.github.com/Sluggo-Issue-Tracker/Sluggo-iOS**
+
 # Sluggo-iOS-UIKit
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
