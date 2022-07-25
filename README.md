@@ -1,4 +1,6 @@
 # Sluggo-iOS
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
 This repository will hold the source code for the iOS client for the Sluggo
 issue tracker. It is currently beign developed for CSE 115A at UCSC, and will
 eventually expand into a fully maintained frontend for the Sluggo project.
@@ -53,3 +55,6 @@ After a user has been created, they cannot do much until they are apart of your 
 1) When launching the app for the first time, fill in your user name and password for your sluggo instance.
 2) Your Sluggo instance is the url of the API, make sure to have the entire path listed for example: `http://127.0.0.1:8000/`
 3) You will be dropped in the team select page, where you may choose any team your account is apart of. Once you have picked one the homepage will appear. Feel free to poke around!
+
+## License
+This project is licensed under the Apache 2.0 License. See LICENSE for details.
