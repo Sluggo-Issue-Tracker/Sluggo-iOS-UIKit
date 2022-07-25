@@ -12,10 +12,10 @@ eventually expand into a fully maintained frontend for the Sluggo project.
 # NOTE: ALL DOCUMENTATION FOR CSE115A RESIDES WITHIN THE [docs](doc/) FOLDER AT THE ROOT OF THIS PROJECT.
 
 ## About Sluggo
-Sluggo is an open source Issue Tracker for companies, teams, and more. The software is selfhosted, and decentralized in a way that any team can spin up their own instance in minutes! This software is broken into two main parts: the [Django REST Application](https://github.com/Slugbotics/Sluggo-API) as the backend and the Sluggo iOS app as a front end.
+Sluggo is an open source Issue Tracker for companies, teams, and more. The software is selfhosted, and decentralized in a way that any team can spin up their own instance in minutes! This software is broken into two main parts: the [Django REST Application](https://github.com/Sluggo-Issue-Tracker/Sluggo-API) as the backend and the Sluggo iOS app as a front end.
 
 ## Installing the API:
-1) Before using the Sluggo iOS application, make sure to install the backend API following the instructions on the [repository here](https://github.com/Slugbotics/Sluggo-API).
+1) Before using the Sluggo iOS application, make sure to install the backend API following the instructions on the [repository here](https://github.com/Sluggo-Issue-Tracker/Sluggo-API).
 2) After completing the installation process, proceed to the admin dashboard (default `127.0.0.8:8000/admin`) and sign on with your super user account that you just created.
 3) In this page, you will be able to create a record for your Team by selecting `Team` on the admin page, and hitting the `Add Team` button in the top right. Just give the team a name and hit save.
 4) Finally, after creating your team go through the same process and create a `Member` record for yourself on the Member page through the `Add Member` button on your top right. Set you user role as admin, select your team, and fill out any optional fields such as pronouns or Bio, then hit save.
