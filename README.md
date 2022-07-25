@@ -1,4 +1,10 @@
-# Sluggo-iOS
+**NOTE: This frontend is deprecated, and replaced by a rewrite in SwiftUI which
+can be found here:**
+**https://www.github.com/Sluggo-Issue-Tracker/Sluggo-iOS**
+
+# Sluggo-iOS-UIKit
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
 This repository will hold the source code for the iOS client for the Sluggo
 issue tracker. It is currently beign developed for CSE 115A at UCSC, and will
 eventually expand into a fully maintained frontend for the Sluggo project.
@@ -6,10 +12,10 @@ eventually expand into a fully maintained frontend for the Sluggo project.
 # NOTE: ALL DOCUMENTATION FOR CSE115A RESIDES WITHIN THE [docs](doc/) FOLDER AT THE ROOT OF THIS PROJECT.
 
 ## About Sluggo
-Sluggo is an open source Issue Tracker for companies, teams, and more. The software is selfhosted, and decentralized in a way that any team can spin up their own instance in minutes! This software is broken into two main parts: the [Django REST Application](https://github.com/Slugbotics/Sluggo-API) as the backend and the Sluggo iOS app as a front end.
+Sluggo is an open source Issue Tracker for companies, teams, and more. The software is selfhosted, and decentralized in a way that any team can spin up their own instance in minutes! This software is broken into two main parts: the [Django REST Application](https://github.com/Sluggo-Issue-Tracker/Sluggo-API) as the backend and the Sluggo iOS app as a front end.
 
 ## Installing the API:
-1) Before using the Sluggo iOS application, make sure to install the backend API following the instructions on the [repository here](https://github.com/Slugbotics/Sluggo-API).
+1) Before using the Sluggo iOS application, make sure to install the backend API following the instructions on the [repository here](https://github.com/Sluggo-Issue-Tracker/Sluggo-API).
 2) After completing the installation process, proceed to the admin dashboard (default `127.0.0.8:8000/admin`) and sign on with your super user account that you just created.
 3) In this page, you will be able to create a record for your Team by selecting `Team` on the admin page, and hitting the `Add Team` button in the top right. Just give the team a name and hit save.
 4) Finally, after creating your team go through the same process and create a `Member` record for yourself on the Member page through the `Add Member` button on your top right. Set you user role as admin, select your team, and fill out any optional fields such as pronouns or Bio, then hit save.
@@ -53,3 +59,6 @@ After a user has been created, they cannot do much until they are apart of your 
 1) When launching the app for the first time, fill in your user name and password for your sluggo instance.
 2) Your Sluggo instance is the url of the API, make sure to have the entire path listed for example: `http://127.0.0.1:8000/`
 3) You will be dropped in the team select page, where you may choose any team your account is apart of. Once you have picked one the homepage will appear. Feel free to poke around!
+
+## License
+This project is licensed under the Apache 2.0 License. See LICENSE for details.
